@@ -133,9 +133,39 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Portable.BouncyCastle/1.8.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/crypto.dll": {}
+        },
+        "runtime": {
+          "lib/net45/crypto.dll": {}
+        }
+      },
+      "System.IO.Compression/4.0.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.IO.Compression"
+        ],
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      },
       "SystemFrameWork/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5.1"
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Newtonsoft.Json": "7.0.1",
+          "Portable.BouncyCastle": "1.8.0",
+          "System.IO.Compression": "4.0.0"
+        },
+        "frameworkAssemblies": [
+          "System.Xml",
+          "System.Xml.XmlSerializer"
+        ]
       },
       "xunit/2.1.0": {
         "type": "package",
@@ -423,6 +453,40 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Portable.BouncyCastle/1.8.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.FileSystem": "4.0.0",
+          "System.IO.FileSystem.Primitives": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10"
+        },
+        "compile": {
+          "lib/dotnet/crypto.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/crypto.dll": {}
+        }
+      },
+      "Portable.BouncyCastle-Signed/1.7.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+dnxcore50+wp80+win+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+dnxcore50+wp80+win+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.dll": {}
         }
       },
       "System.Collections/4.0.11-beta-23516": {
@@ -1010,15 +1074,68 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
+      "System.Xml.XmlDocument/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/System.Xml.XmlDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "System.Xml.XmlSerializer/4.0.10": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Reflection.Primitives": "4.0.0",
+          "System.Reflection.TypeExtensions": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/System.Xml.XmlSerializer.dll": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
       "SystemFrameWork/1.0.0": {
         "type": "project",
         "framework": ".NETPlatform,Version=v5.4",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23516",
+          "Newtonsoft.Json": "7.0.1",
+          "Portable.BouncyCastle": "1.8.0",
+          "Portable.BouncyCastle-Signed": "1.7.0.2",
           "System.Collections": "4.0.11-beta-23516",
+          "System.IO.Compression": "4.0.0",
           "System.Linq": "4.0.1-beta-23516",
           "System.Runtime": "4.0.21-beta-23516",
-          "System.Threading": "4.0.11-beta-23516"
+          "System.Threading": "4.0.11-beta-23516",
+          "System.Xml.XmlSerializer": "4.0.10"
         }
       },
       "xunit/2.1.0": {
@@ -1315,9 +1432,45 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Portable.BouncyCastle/1.8.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/crypto.dll": {}
+        },
+        "runtime": {
+          "lib/net45/crypto.dll": {}
+        }
+      },
+      "System.IO.Compression/4.0.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.IO.Compression"
+        ],
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      },
+      "System.IO.Compression.clrcompression-x86/4.0.0": {
+        "type": "package",
+        "native": {
+          "runtimes/win7-x86/native/clrcompression.dll": {}
+        }
+      },
       "SystemFrameWork/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5.1"
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Newtonsoft.Json": "7.0.1",
+          "Portable.BouncyCastle": "1.8.0",
+          "System.IO.Compression": "4.0.0"
+        },
+        "frameworkAssemblies": [
+          "System.Xml",
+          "System.Xml.XmlSerializer"
+        ]
       },
       "xunit/2.1.0": {
         "type": "package",
@@ -1560,9 +1713,45 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Portable.BouncyCastle/1.8.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/crypto.dll": {}
+        },
+        "runtime": {
+          "lib/net45/crypto.dll": {}
+        }
+      },
+      "System.IO.Compression/4.0.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.IO.Compression"
+        ],
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      },
+      "System.IO.Compression.clrcompression-x64/4.0.0": {
+        "type": "package",
+        "native": {
+          "runtimes/win7-x64/native/clrcompression.dll": {}
+        }
+      },
       "SystemFrameWork/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5.1"
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Newtonsoft.Json": "7.0.1",
+          "Portable.BouncyCastle": "1.8.0",
+          "System.IO.Compression": "4.0.0"
+        },
+        "frameworkAssemblies": [
+          "System.Xml",
+          "System.Xml.XmlSerializer"
+        ]
       },
       "xunit/2.1.0": {
         "type": "package",
@@ -1868,6 +2057,40 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Portable.BouncyCastle/1.8.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.FileSystem": "4.0.0",
+          "System.IO.FileSystem.Primitives": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10"
+        },
+        "compile": {
+          "lib/dotnet/crypto.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/crypto.dll": {}
+        }
+      },
+      "Portable.BouncyCastle-Signed/1.7.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+dnxcore50+wp80+win+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+dnxcore50+wp80+win+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.dll": {}
         }
       },
       "runtime.any.System.Linq.Expressions/4.0.11-beta-23516": {
@@ -2795,15 +3018,68 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
+      "System.Xml.XmlDocument/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/System.Xml.XmlDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "System.Xml.XmlSerializer/4.0.10": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Reflection.Primitives": "4.0.0",
+          "System.Reflection.TypeExtensions": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/System.Xml.XmlSerializer.dll": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
       "SystemFrameWork/1.0.0": {
         "type": "project",
         "framework": ".NETPlatform,Version=v5.4",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23516",
+          "Newtonsoft.Json": "7.0.1",
+          "Portable.BouncyCastle": "1.8.0",
+          "Portable.BouncyCastle-Signed": "1.7.0.2",
           "System.Collections": "4.0.11-beta-23516",
+          "System.IO.Compression": "4.0.0",
           "System.Linq": "4.0.1-beta-23516",
           "System.Runtime": "4.0.21-beta-23516",
-          "System.Threading": "4.0.11-beta-23516"
+          "System.Threading": "4.0.11-beta-23516",
+          "System.Xml.XmlSerializer": "4.0.10"
         }
       },
       "xunit/2.1.0": {
@@ -3163,6 +3439,40 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Portable.BouncyCastle/1.8.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.FileSystem": "4.0.0",
+          "System.IO.FileSystem.Primitives": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10"
+        },
+        "compile": {
+          "lib/dotnet/crypto.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/crypto.dll": {}
+        }
+      },
+      "Portable.BouncyCastle-Signed/1.7.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+dnxcore50+wp80+win+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+dnxcore50+wp80+win+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.dll": {}
         }
       },
       "runtime.any.System.Linq.Expressions/4.0.11-beta-23516": {
@@ -4090,15 +4400,68 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
+      "System.Xml.XmlDocument/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/System.Xml.XmlDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "System.Xml.XmlSerializer/4.0.10": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Reflection.Primitives": "4.0.0",
+          "System.Reflection.TypeExtensions": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/System.Xml.XmlSerializer.dll": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
       "SystemFrameWork/1.0.0": {
         "type": "project",
         "framework": ".NETPlatform,Version=v5.4",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23516",
+          "Newtonsoft.Json": "7.0.1",
+          "Portable.BouncyCastle": "1.8.0",
+          "Portable.BouncyCastle-Signed": "1.7.0.2",
           "System.Collections": "4.0.11-beta-23516",
+          "System.IO.Compression": "4.0.0",
           "System.Linq": "4.0.1-beta-23516",
           "System.Runtime": "4.0.21-beta-23516",
-          "System.Threading": "4.0.11-beta-23516"
+          "System.Threading": "4.0.11-beta-23516",
+          "System.Xml.XmlSerializer": "4.0.10"
         }
       },
       "xunit/2.1.0": {
@@ -4501,6 +4864,67 @@
         "Newtonsoft.Json.7.0.1.nupkg.sha512",
         "Newtonsoft.Json.nuspec",
         "tools/install.ps1"
+      ]
+    },
+    "Portable.BouncyCastle/1.8.0": {
+      "type": "package",
+      "sha512": "MqzBSMh7/aKcQGsJlcLT8WjApuojJMb7fKbL9ZMt4vNyMOppKcdzw5v76oRRTykQqZrDDtGUI6tXt+8+3fqCKA==",
+      "files": [
+        "lib/dotnet/crypto.dll",
+        "lib/dotnet/crypto.pdb",
+        "lib/dotnet/crypto.xml",
+        "lib/MonoAndroid/crypto.dll",
+        "lib/MonoAndroid/crypto.pdb",
+        "lib/MonoAndroid/crypto.xml",
+        "lib/MonoTouch/crypto.dll",
+        "lib/MonoTouch/crypto.pdb",
+        "lib/MonoTouch/crypto.xml",
+        "lib/net45/crypto.dll",
+        "lib/net45/crypto.pdb",
+        "lib/net45/crypto.xml",
+        "lib/net46/crypto.dll",
+        "lib/net46/crypto.pdb",
+        "lib/net46/crypto.xml",
+        "lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.dll",
+        "lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.pdb",
+        "lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.xml",
+        "lib/portable-net45+win8+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.dll",
+        "lib/portable-net45+win8+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.pdb",
+        "lib/portable-net45+win8+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.xml",
+        "lib/uap10.0/crypto.dll",
+        "lib/uap10.0/crypto.pdb",
+        "lib/uap10.0/crypto.xml",
+        "lib/win8/crypto.dll",
+        "lib/win8/crypto.pdb",
+        "lib/win8/crypto.xml",
+        "lib/wpa81/crypto.dll",
+        "lib/wpa81/crypto.pdb",
+        "lib/wpa81/crypto.xml",
+        "lib/XamarinIos/crypto.dll",
+        "lib/XamarinIos/crypto.pdb",
+        "lib/XamarinIos/crypto.xml",
+        "lib/XamarinMac/crypto.dll",
+        "lib/XamarinMac/crypto.pdb",
+        "lib/XamarinMac/crypto.xml",
+        "Portable.BouncyCastle.1.8.0.nupkg",
+        "Portable.BouncyCastle.1.8.0.nupkg.sha512",
+        "Portable.BouncyCastle.nuspec",
+        "Readme.html"
+      ]
+    },
+    "Portable.BouncyCastle-Signed/1.7.0.2": {
+      "type": "package",
+      "sha512": "aBVsV7h2b0nfKUrp63MDXH181qqC7RSf/AjuUViUigyRy7CAXC9/On7Gyg/IXM3FR/wMEbjAJXvSS3SsJiet/g==",
+      "files": [
+        "lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.dll",
+        "lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.xml",
+        "lib/portable-net45+dnxcore50+wp80+win+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.dll",
+        "lib/portable-net45+dnxcore50+wp80+win+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10/crypto.xml",
+        "License.html",
+        "Portable.BouncyCastle-Signed.1.7.0.2.nupkg",
+        "Portable.BouncyCastle-Signed.1.7.0.2.nupkg.sha512",
+        "Portable.BouncyCastle-Signed.nuspec",
+        "Readme.html"
       ]
     },
     "runtime.any.System.Linq.Expressions/4.0.11-beta-23516": {
@@ -6797,6 +7221,73 @@
         "System.Xml.XDocument.4.0.11-beta-23516.nupkg",
         "System.Xml.XDocument.4.0.11-beta-23516.nupkg.sha512",
         "System.Xml.XDocument.nuspec"
+      ]
+    },
+    "System.Xml.XmlDocument/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "H5qTx2+AXgaKE5wehU1ZYeYPFpp/rfFh69/937NvwCrDqbIkvJRmIFyKKpkoMI6gl9hGfuVizfIudVTMyowCXw==",
+      "files": [
+        "lib/dotnet/System.Xml.XmlDocument.dll",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Xml.XmlDocument.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet/de/System.Xml.XmlDocument.xml",
+        "ref/dotnet/es/System.Xml.XmlDocument.xml",
+        "ref/dotnet/fr/System.Xml.XmlDocument.xml",
+        "ref/dotnet/it/System.Xml.XmlDocument.xml",
+        "ref/dotnet/ja/System.Xml.XmlDocument.xml",
+        "ref/dotnet/ko/System.Xml.XmlDocument.xml",
+        "ref/dotnet/ru/System.Xml.XmlDocument.xml",
+        "ref/dotnet/System.Xml.XmlDocument.dll",
+        "ref/dotnet/System.Xml.XmlDocument.xml",
+        "ref/dotnet/zh-hans/System.Xml.XmlDocument.xml",
+        "ref/dotnet/zh-hant/System.Xml.XmlDocument.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Xml.XmlDocument.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "System.Xml.XmlDocument.4.0.0.nupkg",
+        "System.Xml.XmlDocument.4.0.0.nupkg.sha512",
+        "System.Xml.XmlDocument.nuspec"
+      ]
+    },
+    "System.Xml.XmlSerializer/4.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "OKhE6vruk88z/hl0lmfrMvXteTASgJUagu6PT6S10i9uLbvDR3pTwB6jVgiwa2D2qtTB+eneZbS9jljhPXhTtg==",
+      "files": [
+        "lib/DNXCore50/System.Xml.XmlSerializer.dll",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/_._",
+        "lib/netcore50/System.Xml.XmlSerializer.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet/de/System.Xml.XmlSerializer.xml",
+        "ref/dotnet/es/System.Xml.XmlSerializer.xml",
+        "ref/dotnet/fr/System.Xml.XmlSerializer.xml",
+        "ref/dotnet/it/System.Xml.XmlSerializer.xml",
+        "ref/dotnet/ja/System.Xml.XmlSerializer.xml",
+        "ref/dotnet/ko/System.Xml.XmlSerializer.xml",
+        "ref/dotnet/ru/System.Xml.XmlSerializer.xml",
+        "ref/dotnet/System.Xml.XmlSerializer.dll",
+        "ref/dotnet/System.Xml.XmlSerializer.xml",
+        "ref/dotnet/zh-hans/System.Xml.XmlSerializer.xml",
+        "ref/dotnet/zh-hant/System.Xml.XmlSerializer.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "runtime.json",
+        "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll",
+        "System.Xml.XmlSerializer.4.0.10.nupkg",
+        "System.Xml.XmlSerializer.4.0.10.nupkg.sha512",
+        "System.Xml.XmlSerializer.nuspec"
       ]
     },
     "xunit/2.1.0": {
