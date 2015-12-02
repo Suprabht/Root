@@ -1,0 +1,5 @@
+D:\Practice\SuperSix\SystemFrameworkPortable\bin\Debug\SystemFrameworkPortable.dll
+D:\Practice\SuperSix\SystemFrameworkPortable\bin\Debug\SystemFrameworkPortable.pdb
+D:\Practice\SuperSix\SystemFrameworkPortable\obj\Debug\SystemFrameworkPortable.csprojResolveAssemblyReference.cache
+D:\Practice\SuperSix\SystemFrameworkPortable\obj\Debug\SystemFrameworkPortable.dll
+D:\Practice\SuperSix\SystemFrameworkPortable\obj\Debug\SystemFrameworkPortable.pdb
