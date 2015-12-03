@@ -4631,7 +4631,7 @@
   "libraries": {
     "SystemFrameWork/1.0.0": {
       "type": "project",
-      "path": "../SystemFrameWork/project.json"
+      "path": "../../SystemFrameWork/project.json"
     },
     "Microsoft.CSharp/4.0.1-beta-23516": {
       "type": "package",
