@@ -15,5 +15,10 @@ namespace SystemFrameWorkUnitTest
         {
             Assert.True(true);
         }
+        [Fact]
+        public void UniTest2()
+        {
+            Assert.True(true);
+        }
     }
 }
