@@ -1,12 +1,17 @@
 ﻿{
   "version": "1.0.0-*",
-
-  "dependencies": {
-    "NETStandard.Library": "1.6.0"
+  "buildOptions": {
+    "debugType": "portable"
   },
-
+  "dependencies": {
+    "System.Runtime.Serialization.Primitives": "4.1.1",
+    "xunit": "2.1.0",
+    "dotnet-test-xunit": "1.0.0-rc2-192208-24",
+    "SystemFramework": "1.0.0-*"
+  },
+  "testRunner": "xunit",
   "frameworks": {
-     "netcoreapp1.0": {
+    "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
