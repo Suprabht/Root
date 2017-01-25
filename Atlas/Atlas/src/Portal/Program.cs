@@ -12,8 +12,8 @@ namespace Portal
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
-                .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseKestrel()                
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
