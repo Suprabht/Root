@@ -165,6 +165,7 @@
 -r:"C:\Users\suprabhatpaul\.nuget\packages\System.Xml.ReaderWriter\4.3.0\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\suprabhatpaul\.nuget\packages\System.Xml.XDocument\4.3.0\ref\netstandard1.3\System.Xml.XDocument.dll"
 -resource:"D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\obj\Debug\netcoreapp1.0\Portaldotnet-compile.deps.json",Portal.deps.json
+"D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Appsettings.cs"
 "D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Program.cs"
 "D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Startup.cs"
 "D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Controllers\HomeController.cs"

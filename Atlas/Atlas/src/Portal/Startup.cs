@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 
-
 namespace Portal
 {
     public class Startup
@@ -31,8 +30,17 @@ namespace Portal
         public void ConfigureServices(IServiceCollection services)
         {
 
-            // Add framework services.
-            //services.AddApplicationInsightsTelemetry(Configuration);
+            
+            
+            services.AddOptions();
+
+            services.Configure<Appsettings>(appsettings =>
+            {
+                 appsettings.ApplicationName = Configuration.GetSection("AppSettings:ApplicationName").Value;
+                
+            });
+            // services.Configure<Appsettings>(Configuration.GetSection("AppSettings").Value);
+
             services.AddMvc();
         }
 
