@@ -6,36 +6,36 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DomainService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("cms/[controller]")]
     public class ValuesController : Controller
     {
-        // GET api/values
+        // GET cms/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET cms/values/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/values
+        // POST cms/values
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/values/5
+        // PUT cms/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE cms/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
