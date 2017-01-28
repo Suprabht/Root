@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Portal.Models;
 
 namespace Portal.Controllers
 {
@@ -16,6 +17,7 @@ namespace Portal.Controllers
         {
             _configuration = configuration.Value;
         }
+
         // GET: /<controller>/
         [Route("index")]
         [Route("~/")]
@@ -23,7 +25,15 @@ namespace Portal.Controllers
         {
             ViewBag.AppName = _configuration.ApplicationName;
             ViewBag.Title = "foo bag";
-            return View();
+            return View("Index", new Person { Name = "Raj"});
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("home/submit", Name ="Submit")]
+        public IActionResult Submit()
+        {           
+            return View("Index", new Person { Name = "Raj" });
         }
     }
 }

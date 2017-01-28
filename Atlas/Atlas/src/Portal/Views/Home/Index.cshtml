@@ -5,6 +5,8 @@
     //Layout = "_Layout";
    
 }
+@model Portal.Models.Person
+
 <h1>Home Page</h1>
 <h2>@ViewBag.AppName</h2>
 
@@ -13,3 +15,12 @@ attr
 
 tag app
 <app-name></app-name>
+
+<form asp-controller="Home" asp-action="Submit" method="post">
+    <div>
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name"/>
+        <span asp-validation-for ="Name"></span>
+    </div>
+    <div><button>Submit</button></div>
+</form>
