@@ -21,7 +21,8 @@ namespace Portal.Controllers
         [Route("~/")]
         public IActionResult Index()
         {
-            Console.WriteLine(_configuration.ApplicationName);
+            ViewBag.AppName = _configuration.ApplicationName;
+            ViewBag.Title = "foo bag";
             return View();
         }
     }
