@@ -191,6 +191,9 @@
 D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Appsettings.cs
 D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Program.cs
 D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Startup.cs
-D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Controllers\HomeController.cs
-D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Models\Person.cs
-D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Models\TagHelpers\AppNameTagHalper.cs
+D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Areas\CMS\Controllers\HomeController.cs
+D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Areas\CMS\Controllers\HomeController1.cs
+D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Areas\CMS\Models\Person.cs
+D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Areas\CMS\Models\TagHelpers\AppNameTagHalper.cs
+D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Areas\Default\Controllers\HomeController.cs
+D:\Practice\GitHub\Root\Atlas\Atlas\src\Portal\Areas\Default\Models\Person.cs

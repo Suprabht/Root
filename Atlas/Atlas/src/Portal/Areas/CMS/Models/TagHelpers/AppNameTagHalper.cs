@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Options;
 
-namespace Portal.Models.TagHelpers
+namespace Portal.Areas.CMS.Models.TagHelpers
 {
     [HtmlTargetElement("app-name")]
     [HtmlTargetElement("div", Attributes ="app-name")]

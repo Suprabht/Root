@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Portal.Models;
+using Portal.Areas.CMS.Models;
 
-namespace Portal.Controllers
+namespace Portal.Areas.CMS.Controllers
 {
-    [Route("home")]
+    [Area("CMS")]
+   // [Route("home")]
     public class HomeController : Controller
     {
         private Appsettings _configuration;
@@ -19,8 +20,8 @@ namespace Portal.Controllers
         }
 
         // GET: /<controller>/
-        [Route("index")]
-        [Route("~/")]
+      //  [Route("index")]
+      //  [Route("~/")]
         public IActionResult Index()
         {
             ViewBag.AppName = _configuration.ApplicationName;

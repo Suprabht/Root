@@ -47,6 +47,10 @@ namespace Portal
             loggerFactory.AddConsole();
             
             app.UseMvc(routes=> {
+                routes.MapRoute(
+                    name: "areaRoute",
+                    template: "{area:exists}/{controller=Home}/{action=Index}");
+
                 routes.MapRoute("default", "{controller=Home}/{action=Index}");
             });
             
