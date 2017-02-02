@@ -10,7 +10,8 @@ using Portal.Areas.CMS.Models;
 namespace Portal.Areas.CMS.Controllers
 {
     [Area("CMS")]
-   // [Route("home")]
+    [Route("CMS/home")]
+   // [Route("home")] Note possible
     public class HomeController : Controller
     {
         private Appsettings _configuration;
@@ -20,8 +21,8 @@ namespace Portal.Areas.CMS.Controllers
         }
 
         // GET: /<controller>/
-      //  [Route("index")]
-      //  [Route("~/")]
+        [Route("index")]
+        [Route("~/")]
         public IActionResult Index()
         {
             ViewBag.AppName = _configuration.ApplicationName;
