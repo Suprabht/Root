@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Portal.Filters.ActionFilters;
 using Portal.Filters.ExceptionFilters;
 using Portal.Filters.ResourceFilters;
+using Portal.Library;
 
 namespace Portal
 {

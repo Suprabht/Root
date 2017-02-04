@@ -6,12 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Portal.Areas.CMS.Models;
+using Portal.Library;
+using Portal.Filters.CustomAttributes;
 
 namespace Portal.Areas.CMS.Controllers
 {
     [Area("CMS")]
     [Route("CMS/home")]
-   // [Route("home")] Note possible
+    [WhitespaceFilter]
+    // [Route("home")] Note possible
     public class HomeController : Controller
     {
         private Appsettings _configuration;
