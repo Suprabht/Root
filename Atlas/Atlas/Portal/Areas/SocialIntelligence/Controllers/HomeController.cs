@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Portal.Areas.SocialIntelligence.Models;
 
 namespace Portal.Areas.SocialIntelligence.Controllers
 {
@@ -24,8 +23,8 @@ namespace Portal.Areas.SocialIntelligence.Controllers
         public IActionResult Index()
         {
             ViewBag.AppName = _configuration.ApplicationName;
-            ViewBag.Title = "foo bag";
-            return View("Index", new Person { Name = "Raj" });
+            ViewBag.Title = "Social Intelligence....";
+            return View();
         }
 
     }

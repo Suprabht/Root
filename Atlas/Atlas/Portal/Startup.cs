@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Portal.Filters.ActionFilters;
+using Portal.Filters.ExceptionFilters;
+using Portal.Filters.ResourceFilters;
 
 namespace Portal
 {
@@ -30,7 +33,9 @@ namespace Portal
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
+            var loggerFactory = new LoggerFactory();
+            loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
             services.AddOptions();
 
             services.Configure<Appsettings>(appsettings =>
@@ -39,7 +44,20 @@ namespace Portal
 
             });
 
-            services.AddMvc();
+            services.AddMvc(config =>
+            {
+                config.Filters.Add(new GlobalFilter(loggerFactory));
+                config.Filters.Add(new GlobalLoggingExceptionFilter(loggerFactory));
+            });
+
+            services.AddScoped<ConsoleLogActionOneFilter>();
+            services.AddScoped<ConsoleLogActionTwoFilter>();
+            services.AddScoped<ClassConsoleLogActionBaseFilter>();
+            services.AddScoped<ClassConsoleLogActionOneFilter>();
+
+            services.AddScoped<CustomOneLoggingExceptionFilter>();
+            services.AddScoped<CustomTwoLoggingExceptionFilter>();
+            services.AddScoped<CustomOneResourceFilter>();
         }
 
 

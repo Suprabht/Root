@@ -26,8 +26,8 @@ namespace Portal.Areas.CMS.Controllers
         public IActionResult Index()
         {
             ViewBag.AppName = _configuration.ApplicationName;
-            ViewBag.Title = "foo bag";
-            return View("Index", new Person { Name = "Raj"});
+            ViewBag.Title = "CMS....";
+            return View("Index", new Person { Name = "Raj Aryan"});
         }
 
         [HttpPost]

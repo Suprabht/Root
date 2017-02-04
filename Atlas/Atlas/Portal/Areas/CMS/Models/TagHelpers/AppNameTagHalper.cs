@@ -18,7 +18,7 @@ namespace Portal.Areas.CMS.Models.TagHelpers
         }
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            output.Content.SetContent("this is my tag helper " + _config.ApplicationName);
+            output.Content.SetContent("this is my tag helper from CMS " + _config.ApplicationName);
         }
     }
 }
