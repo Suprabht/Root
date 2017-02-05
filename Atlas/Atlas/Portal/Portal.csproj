@@ -3,6 +3,9 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="wwwroot\js\index3.ts" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.2.306" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
@@ -17,6 +20,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\SocialIntelligence\Models\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 </Project>
