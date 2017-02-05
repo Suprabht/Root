@@ -2,6 +2,12 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
+      "BuildBundlerMinifier/2.2.306": {
+        "type": "package",
+        "build": {
+          "build/BuildBundlerMinifier.targets": {}
+        }
+      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -3631,6 +3637,12 @@
       }
     },
     ".NETCoreApp,Version=v1.1/win": {
+      "BuildBundlerMinifier/2.2.306": {
+        "type": "package",
+        "build": {
+          "build/BuildBundlerMinifier.targets": {}
+        }
+      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -7301,6 +7313,12 @@
       }
     },
     ".NETCoreApp,Version=v1.1/win-x64": {
+      "BuildBundlerMinifier/2.2.306": {
+        "type": "package",
+        "build": {
+          "build/BuildBundlerMinifier.targets": {}
+        }
+      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -10969,6 +10987,12 @@
       }
     },
     ".NETCoreApp,Version=v1.1/win-x86": {
+      "BuildBundlerMinifier/2.2.306": {
+        "type": "package",
+        "build": {
+          "build/BuildBundlerMinifier.targets": {}
+        }
+      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -14638,6 +14662,20 @@
     }
   },
   "libraries": {
+    "BuildBundlerMinifier/2.2.306": {
+      "sha512": "dR1FhdaKEAYailv1eCZCy5D0y+6wvPg5c4JosbA4sVHZpEyAao+eI2zmQg5z87Yq57OlKZmpjJUKTX75pOUjWQ==",
+      "type": "package",
+      "path": "buildbundlerminifier/2.2.306",
+      "files": [
+        "build/BuildBundlerMinifier.targets",
+        "buildbundlerminifier.2.2.306.nupkg.sha512",
+        "buildbundlerminifier.nuspec",
+        "tools/BundlerMinifier.exe",
+        "tools/BundlerMinifier.pdb",
+        "tools/NUglify.dll",
+        "tools/Newtonsoft.Json.dll"
+      ]
+    },
     "Libuv/1.9.1": {
       "sha512": "uqX2Frwf9PW8MaY7PRNY6HM5BpW1D8oj1EdqzrmbEFD5nH63Yat3aEjN/tws6Tw6Fk7LwmLBvtUh32tTeTaHiA==",
       "type": "package",
@@ -21295,6 +21333,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.1": [
+      "BuildBundlerMinifier >= 2.2.306",
       "Microsoft.ApplicationInsights.AspNetCore >= 2.0.0",
       "Microsoft.AspNetCore >= 1.1.0",
       "Microsoft.AspNetCore.Mvc >= 1.1.1",
@@ -21368,11 +21407,15 @@
           },
           "Microsoft.ApplicationInsights.AspNetCore": {
             "target": "Package",
-            "version": "[2.0.0, )"
+            "version": "2.0.0"
           },
           "Microsoft.AspNetCore.StaticFiles": {
             "target": "Package",
             "version": "1.1.0"
+          },
+          "BuildBundlerMinifier": {
+            "target": "Package",
+            "version": "2.2.306"
           }
         }
       }

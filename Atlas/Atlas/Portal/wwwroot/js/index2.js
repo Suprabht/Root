@@ -1,1 +1,1 @@
-﻿//alert("2 change");
+﻿alert("2 change");
