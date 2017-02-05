@@ -10,6 +10,8 @@ using Portal.Filters.ActionFilters;
 using Portal.Filters.ExceptionFilters;
 using Portal.Filters.ResourceFilters;
 using Portal.Library;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Portal
 {
@@ -66,7 +68,13 @@ namespace Portal
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
+            app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "node_modules")),
+                RequestPath = "/node_modules"
+            });
             app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "areaRoute",

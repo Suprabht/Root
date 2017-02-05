@@ -3,6 +3,19 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="wwwroot\app\app.component.js" />
+    <Content Include="wwwroot\app\app.component.js.map" />
+    <Content Include="wwwroot\app\app.component.spec.js" />
+    <Content Include="wwwroot\app\app.component.spec.js.map" />
+    <Content Include="wwwroot\app\app.component.ts" />
+    <Content Include="wwwroot\app\app.module.js" />
+    <Content Include="wwwroot\app\app.module.js.map" />
+    <Content Include="wwwroot\app\app.module.ts" />
+    <Content Include="wwwroot\app\main.js" />
+    <Content Include="wwwroot\app\main.js.map" />
+    <Content Include="wwwroot\app\main.ts" />
+    <Content Include="wwwroot\js\index1.ts" />
+    <Content Include="wwwroot\js\index2.ts" />
     <Content Include="wwwroot\js\index3.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -20,5 +33,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\SocialIntelligence\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\app\main.js" />
+    <None Include="wwwroot\app\main.js.map" />
+    <None Include="wwwroot\app\main.ts" />
+    <None Include="wwwroot\systemjs.config.js" />
   </ItemGroup>
 </Project>

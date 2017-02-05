@@ -13,7 +13,7 @@ namespace Portal.Areas.CMS.Controllers
 {
     [Area("CMS")]
     [Route("CMS/home")]
-    [WhitespaceFilter]
+   // [WhitespaceFilter]
     // [Route("home")] Note possible
     public class HomeController : Controller
     {
