@@ -1,0 +1,7 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DAL\bin\Debug\netcoreapp1.0\CMS.DAL.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DAL\bin\Debug\netcoreapp1.0\CMS.DAL.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DAL\bin\Debug\netcoreapp1.0\CMS.DAL.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DAL\obj\Debug\netcoreapp1.0\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DAL\obj\Debug\netcoreapp1.0\DAL.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DAL\obj\Debug\netcoreapp1.0\CMS.DAL.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DAL\obj\Debug\netcoreapp1.0\CMS.DAL.pdb

@@ -1,0 +1,7 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\EnumsAndConstants\bin\Debug\netcoreapp1.0\EnumsAndConstants.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\EnumsAndConstants\bin\Debug\netcoreapp1.0\EnumsAndConstants.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\EnumsAndConstants\bin\Debug\netcoreapp1.0\EnumsAndConstants.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\EnumsAndConstants\obj\Debug\netcoreapp1.0\EnumsAndConstants.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\EnumsAndConstants\obj\Debug\netcoreapp1.0\EnumsAndConstants.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\EnumsAndConstants\obj\Debug\netcoreapp1.0\EnumsAndConstants.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\EnumsAndConstants\obj\Debug\netcoreapp1.0\EnumsAndConstants.pdb

@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <AssemblyName>CMS.DomainModel</AssemblyName>
+    <RootNamespace>CMS.DomainModel</RootNamespace>
+  </PropertyGroup>
+</Project>
