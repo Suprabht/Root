@@ -33,6 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\SocialIntelligence\Models\" />
+    <Folder Include="wwwroot\library\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\app\main.js" />
