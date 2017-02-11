@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'my-app',
-  template: `<h1>Hello {{name}}</h1><ngb-alert [dismissible]="true">I'm a dismissible alert :) </ngb-alert>`,
+  selector: 'app',
+  template: `
+    <h1>Hello {{firstName}}</h1>
+    <ngb-alert [dismissible]="true">I'm a dismissible alert :) </ngb-alert>
+    <input type="text" id="firstName" [(ngModel)]="firstName"/>
+    <my-component></my-component>
+    `
 })
-export class AppComponent  { name = 'Angular'; }
+export class AppComponent  {
+    firstName: string = 'Angular';
+}

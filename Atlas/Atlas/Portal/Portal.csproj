@@ -14,6 +14,7 @@
     <Content Include="wwwroot\app\main.js" />
     <Content Include="wwwroot\app\main.js.map" />
     <Content Include="wwwroot\app\main.ts" />
+    <Content Include="wwwroot\app\my-component.component.ts" />
     <Content Include="wwwroot\js\index1.ts" />
     <Content Include="wwwroot\js\index2.ts" />
     <Content Include="wwwroot\js\index3.ts" />

@@ -1,1 +1,1 @@
-﻿alert("tipescript loaded......")
+﻿//alert("tipescript loaded......")

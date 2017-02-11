@@ -6977,6 +6977,7 @@
     "C:\\Users\\Suprabhatpaul\\.nuget\\packages\\": {}
   },
   "project": {
+    "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Atlas\\Atlas\\SystemFramework\\SystemFramework.csproj",
       "projectName": "SystemFramework",
@@ -7005,7 +7006,8 @@
           },
           "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "1.1.0"
+            "version": "1.1.0",
+            "autoReferenced": true
           },
           "System.Xml.XmlSerializer": {
             "target": "Package",

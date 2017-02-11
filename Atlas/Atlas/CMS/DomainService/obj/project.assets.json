@@ -21136,6 +21136,7 @@
     "C:\\Users\\Suprabhatpaul\\.nuget\\packages\\": {}
   },
   "project": {
+    "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Atlas\\Atlas\\CMS\\DomainService\\DomainService.csproj",
       "projectName": "DomainService",
@@ -21164,7 +21165,8 @@
           },
           "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "1.1.0"
+            "version": "1.1.0",
+            "autoReferenced": true
           },
           "Microsoft.AspNetCore.Mvc": {
             "target": "Package",

@@ -6711,6 +6711,7 @@
     "C:\\Users\\Suprabhatpaul\\.nuget\\packages\\": {}
   },
   "project": {
+    "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Atlas\\Atlas\\EnumsAndConstants\\EnumsAndConstants.csproj",
       "projectName": "EnumsAndConstants",
@@ -6731,7 +6732,8 @@
         "dependencies": {
           "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "1.1.0"
+            "version": "1.1.0",
+            "autoReferenced": true
           }
         }
       }

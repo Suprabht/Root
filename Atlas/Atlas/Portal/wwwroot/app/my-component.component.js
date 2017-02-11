@@ -6,17 +6,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
-        this.firstName = 'Angular';
+var MyComponentComponent = (function () {
+    function MyComponentComponent() {
     }
-    return AppComponent;
+    return MyComponentComponent;
 }());
-AppComponent = __decorate([
+MyComponentComponent = __decorate([
     core_1.Component({
-        selector: 'app',
-        template: "\n    <h1>Hello {{firstName}}</h1>\n    <ngb-alert [dismissible]=\"true\">I'm a dismissible alert :) </ngb-alert>\n    <input type=\"text\" id=\"firstName\" [(ngModel)]=\"firstName\"/>\n    <my-component></my-component>\n    "
+        selector: 'my-component',
+        template: "\n   <h2>This is my component</h2>\n    "
     })
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], MyComponentComponent);
+exports.MyComponentComponent = MyComponentComponent;
+//# sourceMappingURL=my-component.component.js.map
