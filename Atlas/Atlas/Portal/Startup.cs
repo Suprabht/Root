@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +9,9 @@ using Portal.Filters.ResourceFilters;
 using Portal.Library;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Microsoft.AspNetCore.Rewrite;
+using System.Net;
+using Portal.Middleware;
 
 namespace Portal
 {
@@ -68,6 +68,24 @@ namespace Portal
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
+            /*
+             *  // Set up custom content types -associating file extension to MIME type
+            var provider = new FileExtensionContentTypeProvider();
+            // Add new mappings
+            provider.Mappings[".myapp"] = "application/x-msdownload";
+            provider.Mappings[".htm3"] = "text/html";
+            provider.Mappings[".image"] = "image/png";
+            // Replace an existing mapping
+            provider.Mappings[".rtf"] = "application/x-msdownload";
+            // Remove MP4 videos.
+            provider.Mappings.Remove(".mp4");
+
+            var options = new RewriteOptions()
+                 .Add(new CustomRedirect());
+            app.UseRewriter(options);*/
+
+            app.UseMiddleware<AngularModule>();
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions
@@ -81,8 +99,8 @@ namespace Portal
                     template: "{area:exists}/{controller=Home}/{action=Index}");
 
                 routes.MapRoute("default", "{controller=Home}/{action=Index}");
-            });
 
+            });
         }
     }
 }

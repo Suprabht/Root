@@ -9,3 +9,5 @@ C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\obj\Debug\n
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\obj\Debug\netcoreapp1.1\Portal.AssemblyInfo.cs
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\obj\Debug\netcoreapp1.1\Portal.dll
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\obj\Debug\netcoreapp1.1\Portal.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\bin\Debug\netcoreapp1.1\SystemFramework.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\bin\Debug\netcoreapp1.1\SystemFramework.pdb

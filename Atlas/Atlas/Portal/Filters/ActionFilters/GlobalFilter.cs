@@ -19,7 +19,8 @@ namespace Portal.Filters.ActionFilters
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            _logger.LogInformation("OnActionExecuting");
+            
+            string path = context.HttpContext.Request.Path.Value.Trim().ToLower();
             base.OnActionExecuting(context);
         }
 

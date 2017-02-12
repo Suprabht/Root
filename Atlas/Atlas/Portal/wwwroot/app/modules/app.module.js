@@ -9,8 +9,8 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
-var app_component_1 = require("./app.component");
-var my_component_component_1 = require("./my-component.component");
+var app_component_1 = require("./../components/app.component");
+var my_component_component_1 = require("./../components/my-component.component");
 var AppModule = (function () {
     function AppModule() {
     }

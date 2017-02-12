@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { AppComponent } from './app.component';
-import { MyComponentComponent } from "./my-component.component";
+import { AppComponent } from './../components/app.component';
+import { MyComponentComponent } from "./../components/my-component.component";
 
 
 @NgModule({

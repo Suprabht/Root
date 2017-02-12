@@ -25,7 +25,7 @@ namespace Portal.Areas.CMS.Controllers
 
         // GET: /<controller>/
         [Route("index")]
-        [Route("~/")]
+        
         public IActionResult Index()
         {
             ViewBag.AppName = _configuration.ApplicationName;
