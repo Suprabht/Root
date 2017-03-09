@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26127.3
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal", "Portal\Portal.csproj", "{28A4F9F0-2F66-4085-B3E6-69950DA498A8}"
 EndProject
@@ -18,6 +18,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SocialIntelligence", "SocialIntelligence", "{DA8E356D-0CE4-4832-BE30-8BF987340B7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemFramework", "SystemFramework\SystemFramework.csproj", "{8B3E8575-D79B-4D30-A8DA-635099D15D3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthorizationServer", "AuthorizationServer", "{B370110A-7B02-4145-8CC9-49EBB5E8FBE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationService", "AuthorizationServer\AuthorizationService\AuthorizationService.csproj", "{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagram", "Diagram", "{011CB939-D97F-46FC-A7E4-ACB6CA593ABF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +107,18 @@ Global
 		{8B3E8575-D79B-4D30-A8DA-635099D15D3E}.Release|x64.Build.0 = Release|x64
 		{8B3E8575-D79B-4D30-A8DA-635099D15D3E}.Release|x86.ActiveCfg = Release|x86
 		{8B3E8575-D79B-4D30-A8DA-635099D15D3E}.Release|x86.Build.0 = Release|x86
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Debug|x64.ActiveCfg = Debug|x64
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Debug|x64.Build.0 = Debug|x64
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Debug|x86.ActiveCfg = Debug|x86
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Debug|x86.Build.0 = Debug|x86
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Release|x64.ActiveCfg = Release|x64
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Release|x64.Build.0 = Release|x64
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Release|x86.ActiveCfg = Release|x86
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,5 +127,6 @@ Global
 		{FE10EF1A-78FA-4541-8C84-4FCE6EFAC43C} = {8CE3CD6C-8DD5-44C1-8A91-DDB4DE4CCD94}
 		{A4F74DCA-3820-4FFA-9442-9EB7F3002635} = {8CE3CD6C-8DD5-44C1-8A91-DDB4DE4CCD94}
 		{EBB88C0E-BA01-497B-8205-C99FF03851C8} = {8CE3CD6C-8DD5-44C1-8A91-DDB4DE4CCD94}
+		{9CA2E84B-8C2B-4CC7-834D-762AAD2091A3} = {B370110A-7B02-4145-8CC9-49EBB5E8FBE6}
 	EndGlobalSection
 EndGlobal

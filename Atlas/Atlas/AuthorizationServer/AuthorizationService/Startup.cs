@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Swashbuckle.AspNetCore.Swagger;
+using AuthorizationService.Configuration;
+using IdentityServer4.Validation;
+using IdentityServer4.Services;
 
-namespace CMS.DomainService
+namespace AuthorizationService
 {
     public class Startup
     {
@@ -28,13 +30,15 @@ namespace CMS.DomainService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           // services.AddIdentityServer()
+            //    .AddInMemoryClients(Clients.Get());
+            //    .AddInMemoryScopes(Scopes.GetScopes());
             // Add framework services.
+            
+            var builder = services.AddIdentityServer();
+            builder.Services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
+            builder.Services.AddTransient<IProfileService, ProfileService>();
             services.AddMvc();
-            // Register the Swagger generator, defining one or more Swagger documents
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,13 +48,6 @@ namespace CMS.DomainService
             loggerFactory.AddDebug();
 
             app.UseMvc();
-            app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
         }
     }
 }
