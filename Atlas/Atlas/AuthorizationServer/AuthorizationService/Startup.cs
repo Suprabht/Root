@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AuthorizationService.Configuration;
-using IdentityServer4.Validation;
-using IdentityServer4.Services;
 
 namespace AuthorizationService
 {
@@ -30,15 +24,9 @@ namespace AuthorizationService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           // services.AddIdentityServer()
-            //    .AddInMemoryClients(Clients.Get());
-            //    .AddInMemoryScopes(Scopes.GetScopes());
-            // Add framework services.
-            
-            var builder = services.AddIdentityServer();
-            builder.Services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
-            builder.Services.AddTransient<IProfileService, ProfileService>();
-            services.AddMvc();
+            services.AddMvcCore()
+                .AddAuthorization()
+                .AddJsonFormatters();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +34,14 @@ namespace AuthorizationService
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            {
+                Authority = "http://localhost:5000",
+                RequireHttpsMetadata = false,
+
+                ApiName = "api1"
+            });
 
             app.UseMvc();
         }
