@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Portal</id>
+    <version>1.0.0</version>
+    <authors>Portal</authors>
+    <owners>Portal</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp1.1">
+        <dependency id="SystemFramework" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Debug" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Server.Kestrel" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Razor" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.VisualStudio.Web.CodeGeneration.Design" version="1.1.0-msbuild3-final" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.Design" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Server.IISIntegration" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Mvc.TagHelpers" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.NETCore.App" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.VisualStudio.Web.BrowserLink" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.SqlServer" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.SqlServer.Design" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Mvc" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.ApplicationInsights.AspNetCore" version="2.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Rewrite" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.StaticFiles" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="BuildBundlerMinifier" version="2.2.306" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <contentFiles>
+      <files include="any/netcoreapp1.1/Microsoft.DiaSymReader.Native.x86.dll" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Microsoft.DiaSymReader.Native.amd64.dll" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/components/app.component.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/components/app.component.js.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/components/app.component.spec.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/components/app.component.spec.js.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/components/app.component.ts" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/components/my-component.component.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/components/my-component.component.js.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/components/my-component.component.ts" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/main.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/main.js.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/main.ts" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/modules/app.module.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/modules/app.module.js.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/app/modules/app.module.ts" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/Areas/CMS/css/Site.css" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/Areas/SocialIntelligence/css/Site.css" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/Areas/SocialIntelligence/css/Site.min.css" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/css/site.css" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/css/site.min.css" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/js/index1.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/js/index1.js.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/js/index1.ts" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/js/index2.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/js/index2.js.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/js/index2.ts" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/js/index3.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/js/index3.js.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/js/index3.ts" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/js/Site.min.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-grid.css" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-grid.css.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-grid.min.css" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-grid.min.css.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-reboot.css" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-reboot.css.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-reboot.min.css" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-reboot.min.css.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.css" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.css.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css.map" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/library/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/systemjs.config.extras.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/systemjs.config.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/wwwroot/_references.js" buildAction="Content" />
+      <files include="any/netcoreapp1.1/web.config" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Areas/CMS/Views/Home/Index.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Areas/CMS/Views/Shared/_Layout.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Areas/CMS/Views/_ViewImports.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Areas/CMS/Views/_ViewStart.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Areas/SocialIntelligence/Views/Home/Index.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Areas/SocialIntelligence/Views/Shared/_Layout.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Areas/SocialIntelligence/Views/_ViewImports.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Areas/SocialIntelligence/Views/_ViewStart.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Views/App/Index.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Views/Shared/_Layout.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Views/_ViewImports.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Views/_ViewStart.cshtml" buildAction="Content" />
+      <files include="any/netcoreapp1.1/appsettings.json" buildAction="Content" />
+      <files include="any/netcoreapp1.1/bundleconfig.json" buildAction="Content" />
+      <files include="any/netcoreapp1.1/package.json" buildAction="Content" />
+      <files include="any/netcoreapp1.1/Properties/launchSettings.json" buildAction="Content" />
+      <files include="any/netcoreapp1.1/runtimeconfig.template.json" buildAction="Content" />
+      <files include="any/netcoreapp1.1/tsconfig.json" buildAction="Content" />
+      <files include="any/netcoreapp1.1/tslint.json" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\bin\Debug\netcoreapp1.1\Portal.runtimeconfig.json" target="lib\netcoreapp1.1\Portal.runtimeconfig.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\bin\Debug\netcoreapp1.1\Portal.dll" target="lib\netcoreapp1.1\Portal.dll" />
+    <file src="C:\Users\Suprabhatpaul\.nuget\packages\microsoft.diasymreader.native\1.4.0\runtimes\win\native\Microsoft.DiaSymReader.Native.x86.dll" target="content\Microsoft.DiaSymReader.Native.x86.dll" />
+    <file src="C:\Users\Suprabhatpaul\.nuget\packages\microsoft.diasymreader.native\1.4.0\runtimes\win\native\Microsoft.DiaSymReader.Native.x86.dll" target="contentFiles\any\netcoreapp1.1\Microsoft.DiaSymReader.Native.x86.dll" />
+    <file src="C:\Users\Suprabhatpaul\.nuget\packages\microsoft.diasymreader.native\1.4.0\runtimes\win\native\Microsoft.DiaSymReader.Native.amd64.dll" target="content\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <file src="C:\Users\Suprabhatpaul\.nuget\packages\microsoft.diasymreader.native\1.4.0\runtimes\win\native\Microsoft.DiaSymReader.Native.amd64.dll" target="contentFiles\any\netcoreapp1.1\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.js" target="content\wwwroot\app\components\app.component.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.js" target="contentFiles\any\netcoreapp1.1\wwwroot\app\components\app.component.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.js.map" target="content\wwwroot\app\components\app.component.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.js.map" target="contentFiles\any\netcoreapp1.1\wwwroot\app\components\app.component.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.spec.js" target="content\wwwroot\app\components\app.component.spec.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.spec.js" target="contentFiles\any\netcoreapp1.1\wwwroot\app\components\app.component.spec.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.spec.js.map" target="content\wwwroot\app\components\app.component.spec.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.spec.js.map" target="contentFiles\any\netcoreapp1.1\wwwroot\app\components\app.component.spec.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.ts" target="content\wwwroot\app\components\app.component.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.ts" target="contentFiles\any\netcoreapp1.1\wwwroot\app\components\app.component.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\my-component.component.js" target="content\wwwroot\app\components\my-component.component.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\my-component.component.js" target="contentFiles\any\netcoreapp1.1\wwwroot\app\components\my-component.component.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\my-component.component.js.map" target="content\wwwroot\app\components\my-component.component.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\my-component.component.js.map" target="contentFiles\any\netcoreapp1.1\wwwroot\app\components\my-component.component.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\my-component.component.ts" target="content\wwwroot\app\components\my-component.component.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\my-component.component.ts" target="contentFiles\any\netcoreapp1.1\wwwroot\app\components\my-component.component.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\main.js" target="content\wwwroot\app\main.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\main.js" target="contentFiles\any\netcoreapp1.1\wwwroot\app\main.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\main.js.map" target="content\wwwroot\app\main.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\main.js.map" target="contentFiles\any\netcoreapp1.1\wwwroot\app\main.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\main.ts" target="content\wwwroot\app\main.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\main.ts" target="contentFiles\any\netcoreapp1.1\wwwroot\app\main.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\modules\app.module.js" target="content\wwwroot\app\modules\app.module.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\modules\app.module.js" target="contentFiles\any\netcoreapp1.1\wwwroot\app\modules\app.module.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\modules\app.module.js.map" target="content\wwwroot\app\modules\app.module.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\modules\app.module.js.map" target="contentFiles\any\netcoreapp1.1\wwwroot\app\modules\app.module.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\modules\app.module.ts" target="content\wwwroot\app\modules\app.module.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\modules\app.module.ts" target="contentFiles\any\netcoreapp1.1\wwwroot\app\modules\app.module.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\Areas\CMS\css\Site.css" target="content\wwwroot\Areas\CMS\css\Site.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\Areas\CMS\css\Site.css" target="contentFiles\any\netcoreapp1.1\wwwroot\Areas\CMS\css\Site.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\Areas\SocialIntelligence\css\Site.css" target="content\wwwroot\Areas\SocialIntelligence\css\Site.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\Areas\SocialIntelligence\css\Site.css" target="contentFiles\any\netcoreapp1.1\wwwroot\Areas\SocialIntelligence\css\Site.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\Areas\SocialIntelligence\css\Site.min.css" target="content\wwwroot\Areas\SocialIntelligence\css\Site.min.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\Areas\SocialIntelligence\css\Site.min.css" target="contentFiles\any\netcoreapp1.1\wwwroot\Areas\SocialIntelligence\css\Site.min.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\css\site.css" target="content\wwwroot\css\site.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\css\site.css" target="contentFiles\any\netcoreapp1.1\wwwroot\css\site.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\css\site.min.css" target="content\wwwroot\css\site.min.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\css\site.min.css" target="contentFiles\any\netcoreapp1.1\wwwroot\css\site.min.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index1.js" target="content\wwwroot\js\index1.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index1.js" target="contentFiles\any\netcoreapp1.1\wwwroot\js\index1.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index1.js.map" target="content\wwwroot\js\index1.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index1.js.map" target="contentFiles\any\netcoreapp1.1\wwwroot\js\index1.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index1.ts" target="content\wwwroot\js\index1.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index1.ts" target="contentFiles\any\netcoreapp1.1\wwwroot\js\index1.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index2.js" target="content\wwwroot\js\index2.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index2.js" target="contentFiles\any\netcoreapp1.1\wwwroot\js\index2.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index2.js.map" target="content\wwwroot\js\index2.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index2.js.map" target="contentFiles\any\netcoreapp1.1\wwwroot\js\index2.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index2.ts" target="content\wwwroot\js\index2.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index2.ts" target="contentFiles\any\netcoreapp1.1\wwwroot\js\index2.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index3.js" target="content\wwwroot\js\index3.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index3.js" target="contentFiles\any\netcoreapp1.1\wwwroot\js\index3.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index3.js.map" target="content\wwwroot\js\index3.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index3.js.map" target="contentFiles\any\netcoreapp1.1\wwwroot\js\index3.js.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index3.ts" target="content\wwwroot\js\index3.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index3.ts" target="contentFiles\any\netcoreapp1.1\wwwroot\js\index3.ts" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\Site.min.js" target="content\wwwroot\js\Site.min.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\Site.min.js" target="contentFiles\any\netcoreapp1.1\wwwroot\js\Site.min.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.css" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.css" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.css.map" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.css.map" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.min.css" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.min.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.min.css" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.min.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.min.css.map" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.min.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.min.css.map" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.min.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.css" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.css" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.css.map" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.css.map" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.min.css" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.min.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.min.css" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.min.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.min.css.map" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.min.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.min.css.map" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.min.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.css" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.css" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.css.map" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.css.map" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.min.css" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.min.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.min.css" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.min.css" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.min.css.map" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.min.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.min.css.map" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.min.css.map" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\js\bootstrap.js" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\js\bootstrap.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\js\bootstrap.js" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\js\bootstrap.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\js\bootstrap.min.js" target="content\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\js\bootstrap.min.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\js\bootstrap.min.js" target="contentFiles\any\netcoreapp1.1\wwwroot\library\bootstrap-4.0.0-alpha.6-dist\js\bootstrap.min.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\systemjs.config.extras.js" target="content\wwwroot\systemjs.config.extras.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\systemjs.config.extras.js" target="contentFiles\any\netcoreapp1.1\wwwroot\systemjs.config.extras.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\systemjs.config.js" target="content\wwwroot\systemjs.config.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\systemjs.config.js" target="contentFiles\any\netcoreapp1.1\wwwroot\systemjs.config.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\_references.js" target="content\wwwroot\_references.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\_references.js" target="contentFiles\any\netcoreapp1.1\wwwroot\_references.js" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\web.config" target="content\web.config" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\web.config" target="contentFiles\any\netcoreapp1.1\web.config" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\CMS\Views\Home\Index.cshtml" target="content\Areas\CMS\Views\Home\Index.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\CMS\Views\Home\Index.cshtml" target="contentFiles\any\netcoreapp1.1\Areas\CMS\Views\Home\Index.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\CMS\Views\Shared\_Layout.cshtml" target="content\Areas\CMS\Views\Shared\_Layout.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\CMS\Views\Shared\_Layout.cshtml" target="contentFiles\any\netcoreapp1.1\Areas\CMS\Views\Shared\_Layout.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\CMS\Views\_ViewImports.cshtml" target="content\Areas\CMS\Views\_ViewImports.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\CMS\Views\_ViewImports.cshtml" target="contentFiles\any\netcoreapp1.1\Areas\CMS\Views\_ViewImports.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\CMS\Views\_ViewStart.cshtml" target="content\Areas\CMS\Views\_ViewStart.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\CMS\Views\_ViewStart.cshtml" target="contentFiles\any\netcoreapp1.1\Areas\CMS\Views\_ViewStart.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\SocialIntelligence\Views\Home\Index.cshtml" target="content\Areas\SocialIntelligence\Views\Home\Index.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\SocialIntelligence\Views\Home\Index.cshtml" target="contentFiles\any\netcoreapp1.1\Areas\SocialIntelligence\Views\Home\Index.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\SocialIntelligence\Views\Shared\_Layout.cshtml" target="content\Areas\SocialIntelligence\Views\Shared\_Layout.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\SocialIntelligence\Views\Shared\_Layout.cshtml" target="contentFiles\any\netcoreapp1.1\Areas\SocialIntelligence\Views\Shared\_Layout.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\SocialIntelligence\Views\_ViewImports.cshtml" target="content\Areas\SocialIntelligence\Views\_ViewImports.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\SocialIntelligence\Views\_ViewImports.cshtml" target="contentFiles\any\netcoreapp1.1\Areas\SocialIntelligence\Views\_ViewImports.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\SocialIntelligence\Views\_ViewStart.cshtml" target="content\Areas\SocialIntelligence\Views\_ViewStart.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Areas\SocialIntelligence\Views\_ViewStart.cshtml" target="contentFiles\any\netcoreapp1.1\Areas\SocialIntelligence\Views\_ViewStart.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Views\App\Index.cshtml" target="content\Views\App\Index.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Views\App\Index.cshtml" target="contentFiles\any\netcoreapp1.1\Views\App\Index.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Views\Shared\_Layout.cshtml" target="content\Views\Shared\_Layout.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Views\Shared\_Layout.cshtml" target="contentFiles\any\netcoreapp1.1\Views\Shared\_Layout.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Views\_ViewImports.cshtml" target="content\Views\_ViewImports.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Views\_ViewImports.cshtml" target="contentFiles\any\netcoreapp1.1\Views\_ViewImports.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Views\_ViewStart.cshtml" target="content\Views\_ViewStart.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Views\_ViewStart.cshtml" target="contentFiles\any\netcoreapp1.1\Views\_ViewStart.cshtml" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\appsettings.json" target="content\appsettings.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\appsettings.json" target="contentFiles\any\netcoreapp1.1\appsettings.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\bundleconfig.json" target="content\bundleconfig.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\bundleconfig.json" target="contentFiles\any\netcoreapp1.1\bundleconfig.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\package.json" target="content\package.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\package.json" target="contentFiles\any\netcoreapp1.1\package.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Properties\launchSettings.json" target="content\Properties\launchSettings.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\Properties\launchSettings.json" target="contentFiles\any\netcoreapp1.1\Properties\launchSettings.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\runtimeconfig.template.json" target="content\runtimeconfig.template.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\runtimeconfig.template.json" target="contentFiles\any\netcoreapp1.1\runtimeconfig.template.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\tsconfig.json" target="content\tsconfig.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\tsconfig.json" target="contentFiles\any\netcoreapp1.1\tsconfig.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\tslint.json" target="content\tslint.json" />
+    <file src="C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\tslint.json" target="contentFiles\any\netcoreapp1.1\tslint.json" />
+  </files>
+</package>

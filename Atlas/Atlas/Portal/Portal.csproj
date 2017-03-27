@@ -4,6 +4,16 @@
     <PackageTargetFallback>portable-net45+win8</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Filters\**" />
+    <Compile Remove="Library\**" />
+    <Content Remove="Filters\**" />
+    <Content Remove="Library\**" />
+    <EmbeddedResource Remove="Filters\**" />
+    <EmbeddedResource Remove="Library\**" />
+    <None Remove="Filters\**" />
+    <None Remove="Library\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="wwwroot\app\components\app.component.js" />
     <Content Include="wwwroot\app\components\app.component.js.map" />
     <Content Include="wwwroot\app\components\app.component.spec.js">

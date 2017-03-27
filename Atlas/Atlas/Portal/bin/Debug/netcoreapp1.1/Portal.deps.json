@@ -1860,6 +1860,11 @@
       },
       "systemframework/1.0.0": {
         "dependencies": {
+          "BuildBundlerMinifier": "2.2.306",
+          "Microsoft.ApplicationInsights.AspNetCore": "2.0.0",
+          "Microsoft.AspNetCore": "1.1.0",
+          "Microsoft.AspNetCore.Mvc": "1.1.1",
+          "Microsoft.Extensions.Logging.Debug": "1.1.0",
           "Microsoft.NETCore.App": "1.1.0",
           "Newtonsoft.Json": "9.0.1",
           "System.IO": "4.3.0",

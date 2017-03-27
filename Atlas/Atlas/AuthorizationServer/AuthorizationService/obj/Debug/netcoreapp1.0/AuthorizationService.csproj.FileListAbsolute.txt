@@ -1,9 +1,0 @@
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\AuthorizationServer\AuthorizationService\bin\Debug\netcoreapp1.0\AuthorizationService.deps.json
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\AuthorizationServer\AuthorizationService\bin\Debug\netcoreapp1.0\AuthorizationService.runtimeconfig.json
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\AuthorizationServer\AuthorizationService\bin\Debug\netcoreapp1.0\AuthorizationService.runtimeconfig.dev.json
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\AuthorizationServer\AuthorizationService\bin\Debug\netcoreapp1.0\AuthorizationService.dll
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\AuthorizationServer\AuthorizationService\bin\Debug\netcoreapp1.0\AuthorizationService.pdb
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\AuthorizationServer\AuthorizationService\obj\Debug\netcoreapp1.0\AuthorizationService.csprojResolveAssemblyReference.cache
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\AuthorizationServer\AuthorizationService\obj\Debug\netcoreapp1.0\AuthorizationService.AssemblyInfo.cs
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\AuthorizationServer\AuthorizationService\obj\Debug\netcoreapp1.0\AuthorizationService.dll
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\AuthorizationServer\AuthorizationService\obj\Debug\netcoreapp1.0\AuthorizationService.pdb

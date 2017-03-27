@@ -1,0 +1,9 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\IdentityAuthorization\bin\Debug\netcoreapp1.0\IdentityAuthorization.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\IdentityAuthorization\bin\Debug\netcoreapp1.0\IdentityAuthorization.runtimeconfig.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\IdentityAuthorization\bin\Debug\netcoreapp1.0\IdentityAuthorization.runtimeconfig.dev.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\IdentityAuthorization\bin\Debug\netcoreapp1.0\IdentityAuthorization.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\IdentityAuthorization\bin\Debug\netcoreapp1.0\IdentityAuthorization.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\IdentityAuthorization\obj\Debug\netcoreapp1.0\IdentityAuthorization.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\IdentityAuthorization\obj\Debug\netcoreapp1.0\IdentityAuthorization.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\IdentityAuthorization\obj\Debug\netcoreapp1.0\IdentityAuthorization.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\IdentityAuthorization\obj\Debug\netcoreapp1.0\IdentityAuthorization.pdb
