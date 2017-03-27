@@ -1902,3 +1902,17 @@ C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index2.js.map
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index3.js
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index3.js.map
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.js
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\app.component.js.map
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\my-component.component.js
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\components\my-component.component.js.map
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\modules\app.module.js
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\modules\app.module.js.map
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\main.js
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\app\main.js.map
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index1.js
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index1.js.map
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index2.js
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index2.js.map
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index3.js
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\Portal\wwwroot\js\index3.js.map

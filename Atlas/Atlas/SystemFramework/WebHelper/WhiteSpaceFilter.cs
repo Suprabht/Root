@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SystemFrameWork.Library
+namespace SystemFrameWork.WebHelper
 {
     public class WhiteSpaceFilter : Stream
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Options;
-using SystemFrameWork.Library;
+using SystemFrameWork.WebHelper;
 
 namespace Portal.Areas.CMS.Models.TagHelpers
 {

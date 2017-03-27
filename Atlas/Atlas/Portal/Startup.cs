@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using SystemFrameWork.Filters.ActionFilters;
 using SystemFrameWork.Filters.ExceptionFilters;
 using SystemFrameWork.Filters.ResourceFilters;
-using SystemFrameWork.Library;
+using SystemFrameWork.WebHelper;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Rewrite;

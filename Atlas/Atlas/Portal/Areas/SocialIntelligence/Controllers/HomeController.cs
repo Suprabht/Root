@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using SystemFrameWork.Library;
+using SystemFrameWork.WebHelper;
 
 namespace Portal.Areas.SocialIntelligence.Controllers
 {
