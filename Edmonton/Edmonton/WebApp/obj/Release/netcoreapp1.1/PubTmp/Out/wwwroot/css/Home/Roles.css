@@ -1,0 +1,18 @@
+﻿
+.left_pane {
+    width: 25%;
+    height: 100%;   
+    display:inline-block;
+    float:left;
+    border-right:1px solid #ccc;
+    padding: 10px 0px 0px 10px;
+}
+
+.right_pane {
+    width: 75%;
+    height: 100%;
+    display: inline-block;
+    border-left: 1px solid #ccc;
+    float: right;
+}
+

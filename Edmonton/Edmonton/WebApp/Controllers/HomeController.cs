@@ -5,12 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using SystemFrameWork.Filters.CustomAttributes;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using WebApp.Models.Identity;
 
 namespace WebApp.Controllers
 {
     [WhitespaceFilter]
     public class HomeController : Controller
     {
+        
         public IActionResult Index()
         {
             return View();
@@ -33,8 +37,11 @@ namespace WebApp.Controllers
 
         public IActionResult Roles()
         {
+            var userIdentity = (ClaimsIdentity)User.Identity;
+            var claims = userIdentity.Claims;
+            var roleClaimType = userIdentity.RoleClaimType;
+            var roles = claims.ToList();
             ViewData["Message"] = "Your Roles page.";
-
             return View();
         }
 

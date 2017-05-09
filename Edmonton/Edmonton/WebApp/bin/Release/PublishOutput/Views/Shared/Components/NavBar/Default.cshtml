@@ -1,0 +1,59 @@
+﻿
+@using WebApp.Models;
+@model Menu
+
+<div class="navbar-collapse collapse">
+    <form id="formLogout" asp-controller="Account" asp-action="LogOff" method="post" autocomplete="off">
+        <ul class="nav navbar-nav navbar-left">
+
+            @if (Model.IsRoles)
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="Roles">Roles</a></li>
+
+            }
+            @if (Model.IsProgramDetails)
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="ProgramDetails">Program Details</a></li>
+            }
+            @if (Model.IsUserRegistration)
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="UserRegistration">User Registration</a></li>
+            }
+            @if (Model.IsPaymentDetails)
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="PaymentDetails">Payment Details</a></li>
+            }
+            @if (Model.IsUserInfo)
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="UserInfo">User Info</a></li>
+            }
+            @if (Model.IsUserLevelDetail)
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="UserLevelDetails">User Level Details</a></li>
+            }
+            @if (Model.IsDataBackup)
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="DataBackup">Data Backup</a></li>
+            }
+            @if (Model.IsTaskAssignment)
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="TaskAssignment">Task Assignment</a></li>
+            }
+            @if (Model.IsAssignmentPlan)
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="AssignmentPlan">Assignment Plan</a></li>
+            }
+            @if (Model.IsPaymentView)
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="PaymentView">Payment View</a></li>
+            }
+            @if (Model.IsLeavePlanner)
+            {
+                <li><a asp-area="" asp-controller="Home" asp-action="LeavePlanner">Leave Planner</a></li>
+            }
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" id="logoff">Log Off</a></li>
+        </ul>
+    </form>
+</div>

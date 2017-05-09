@@ -1,0 +1,37 @@
+﻿hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+.navbar-inverse {
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#000000, #808080); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#000000, #808080); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#000000, #808080); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#000000, #808080); /* Standard syntax */
+}
+.navbar-nav > li > a, .navbar-brand {
+    padding-top: 5px !important;
+    padding-bottom: 0 !important;
+    height: 30px;
+}
+
+.navbar {
+    min-height: 30px !important;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ddd;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+}
+.navbar-inverse .navbar-brand {
+    color: #ddd;
+}
+#container {
+    width: 100%;
+    min-height: 500px;
+    margin-top: 30px;
+    border-bottom: 1px solid #ccc;
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "Scripts/site.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Roles.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/Roles.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Home/Roles.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/Roles.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Roles.js",
+    "inputFiles": [
+      "Scripts/Home/Roles/file.js",
+      "Scripts/Home/Roles/file1.js",
+      "wwwroot/js/Home/tree.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Account/Login.min.css",
+    "inputFiles": [
+      "wwwroot/css/Account/Login.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Account/login.min.js",
+    "inputFiles": [
+      "Scripts/Account/Login/login.js"
+    ]
+  }
+]

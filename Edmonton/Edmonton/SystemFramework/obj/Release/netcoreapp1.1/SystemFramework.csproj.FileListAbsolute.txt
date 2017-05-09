@@ -1,0 +1,7 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\bin\Release\netcoreapp1.1\SystemFramework.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\bin\Release\netcoreapp1.1\SystemFramework.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\bin\Release\netcoreapp1.1\SystemFramework.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\obj\Release\netcoreapp1.1\SystemFramework.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\obj\Release\netcoreapp1.1\SystemFramework.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\obj\Release\netcoreapp1.1\SystemFramework.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\obj\Release\netcoreapp1.1\SystemFramework.pdb
