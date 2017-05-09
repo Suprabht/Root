@@ -1,7 +1,0 @@
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DataAccessLayer\bin\Debug\netcoreapp1.1\DataAccessLayer.deps.json
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DataAccessLayer\bin\Debug\netcoreapp1.1\DataAccessLayer.dll
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DataAccessLayer\bin\Debug\netcoreapp1.1\DataAccessLayer.pdb
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DataAccessLayer\obj\Debug\netcoreapp1.1\DataAccessLayer.csprojResolveAssemblyReference.cache
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DataAccessLayer\obj\Debug\netcoreapp1.1\DataAccessLayer.AssemblyInfo.cs
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DataAccessLayer\obj\Debug\netcoreapp1.1\DataAccessLayer.dll
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DataAccessLayer\obj\Debug\netcoreapp1.1\DataAccessLayer.pdb
