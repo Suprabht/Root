@@ -1,0 +1,16 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\SystemFramework\bin\Debug\netcoreapp1.1\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\SystemFramework\bin\Debug\netcoreapp1.1\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\SystemFramework\bin\Debug\netcoreapp1.1\SystemFramework.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\SystemFramework\bin\Debug\netcoreapp1.1\SystemFramework.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\SystemFramework\bin\Debug\netcoreapp1.1\SystemFramework.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\SystemFramework\obj\Debug\netcoreapp1.1\SystemFramework.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\SystemFramework\obj\Debug\netcoreapp1.1\SystemFramework.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\SystemFramework\obj\Debug\netcoreapp1.1\SystemFramework.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\SystemFramework\obj\Debug\netcoreapp1.1\SystemFramework.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\bin\Debug\netcoreapp1.1\SystemFramework.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\bin\Debug\netcoreapp1.1\SystemFramework.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\bin\Debug\netcoreapp1.1\SystemFramework.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\obj\Debug\netcoreapp1.1\SystemFramework.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\obj\Debug\netcoreapp1.1\SystemFramework.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\obj\Debug\netcoreapp1.1\SystemFramework.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\SystemFramework\obj\Debug\netcoreapp1.1\SystemFramework.pdb

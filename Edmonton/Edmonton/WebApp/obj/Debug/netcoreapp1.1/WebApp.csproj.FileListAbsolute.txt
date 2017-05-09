@@ -1,0 +1,11 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Debug\netcoreapp1.1\WebApp.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Debug\netcoreapp1.1\WebApp.runtimeconfig.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Debug\netcoreapp1.1\WebApp.runtimeconfig.dev.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Debug\netcoreapp1.1\WebApp.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Debug\netcoreapp1.1\WebApp.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Debug\netcoreapp1.1\WebApp.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Debug\netcoreapp1.1\WebApp.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Debug\netcoreapp1.1\WebApp.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Debug\netcoreapp1.1\WebApp.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Debug\netcoreapp1.1\SystemFramework.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Debug\netcoreapp1.1\SystemFramework.pdb

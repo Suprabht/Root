@@ -1,0 +1,9 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Portal\bin\Debug\netcoreapp1.0\Portal.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Portal\bin\Debug\netcoreapp1.0\Portal.runtimeconfig.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Portal\bin\Debug\netcoreapp1.0\Portal.runtimeconfig.dev.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Portal\bin\Debug\netcoreapp1.0\Portal.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Portal\bin\Debug\netcoreapp1.0\Portal.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Portal\obj\Debug\netcoreapp1.0\Portal.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Portal\obj\Debug\netcoreapp1.0\Portal.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Portal\obj\Debug\netcoreapp1.0\Portal.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Portal\obj\Debug\netcoreapp1.0\Portal.pdb

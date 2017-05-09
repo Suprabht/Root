@@ -1,0 +1,1 @@
+﻿///<binding BeforeBuild='Clean output files, wwwroot/css/site.min.css, wwwroot/css/Home/Roles.min.css, wwwroot/css/Account/Login.min.css, Stylesheets' AfterBuild='JavaScript, wwwroot/js/site.min.js, wwwroot/js/Home/Roles.min.js' Clean='wwwroot/js/Home/Roles.min.js' />

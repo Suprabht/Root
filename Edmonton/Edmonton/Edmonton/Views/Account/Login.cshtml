@@ -1,0 +1,54 @@
+@model Edmonton.Models.ViewModels.LoginViewModel
+@*@{
+    Layout = "Views/Shared/_LoginLayout.cshtml";
+}*@
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js">
+</script>
+
+<h1>Login</h1>
+<div class="col-lg-4"></div>
+<div class="col-lg-4">
+    <div class="jumbotron">
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <div class="form-group">
+                <input  asp-for="UserName" class="form-control" placeholder="Enter Username" />
+            </div>
+            <div class="form-group">
+                <input asp-for="Password" class="form-control" placeholder="Password" />
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input asp-for="RememberMe" /> Remember me
+                </label>
+            </div>
+            <div asp-validation-summary="All"></div>
+            <button type="submit" class="btn btn-primary form-control">Login</button>
+        </form>
+    </div>
+</div>
+<div class="col-lg-4"></div>
+@*<form asp-controller="Account" asp-action="Login" method="post">
+    <table>
+        <tr>
+            <td><label asp-for="UserName"></label></td>
+            <td><input asp-for="UserName" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Password"></label></td>
+            <td><input asp-for="Password" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="RememberMe"></label></td>
+            <td><input asp-for="RememberMe" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit"
+                       value="Register" />
+            </td>
+        </tr>
+    </table>
+    <div asp-validation-summary="All"></div>
+</form>*@

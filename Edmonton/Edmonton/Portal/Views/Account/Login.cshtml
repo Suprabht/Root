@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+Login
+<div class="container body-content">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <div class="jumbotron">
+            <form  method="post">
+                <div class="form-group">
+                    <input class="form-control" placeholder="Enter Username" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Password" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"/> Remember me
+                    </label>
+                </div>
+                <div asp-validation-summary="All"></div>
+                <button type="submit" class="btn btn-primary form-control">Login</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>

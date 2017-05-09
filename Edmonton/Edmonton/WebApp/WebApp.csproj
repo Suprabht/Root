@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Scripts\types\jqueryui\tsconfig.json" />
+    <Content Remove="Scripts\types\jquery\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\types\jqueryui\jqueryui-tests.ts" />
+    <None Remove="Scripts\types\jquery\jquery-tests.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\css\Account\Login.css" />
+    <Content Include="wwwroot\css\Home\Roles.css" />
+    <Content Include="wwwroot\js\Home\Roles.js" />
+    <Content Include="wwwroot\js\Home\tree.js" />
+    <Content Include="wwwroot\lib\Other\Splitter\Split.js" />
+    <Content Include="wwwroot\lib\Other\Splitter\Splitter.js" />
+    <Content Include="wwwroot\lib\Other\Splitter\Splitter.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\js\Account\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SystemFramework\SystemFramework.csproj" />
+  </ItemGroup>
+
+</Project>
