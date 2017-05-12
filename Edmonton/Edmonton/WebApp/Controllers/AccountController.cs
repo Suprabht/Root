@@ -149,5 +149,36 @@ namespace Edmonton.Controllers
         }
         #endregion LogOff
 
+        #region ForgetPassword
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ForgetPassword(ForgetPasswordViewModel obj)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = userManager.FindByEmailAsync(obj.EmailId);
+                if (user.Result != null)
+                {
+                    var token = userManager.GeneratePasswordResetTokenAsync(user.Result).Result;
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        IdentityResult result = userManager.ResetPasswordAsync(user.Result, token, obj.Password).Result;
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Login", "Account");
+                        }
+                    }
+                    
+                }
+            }
+
+            return View(); ;
+        }
+        #endregion
     }
 }
