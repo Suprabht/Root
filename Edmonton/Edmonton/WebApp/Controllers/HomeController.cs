@@ -8,13 +8,23 @@ using SystemFrameWork.Filters.CustomAttributes;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using WebApp.Models.Identity;
+using WebApp.Models.IdentityModels;
+using SystemFrameWork.WebHelper;
+using Microsoft.Extensions.Options;
 
 namespace WebApp.Controllers
 {
     [WhitespaceFilter]
     public class HomeController : Controller
     {
-        
+        private Appsettings _configuration;
+        private BridgeToCareContext _context;
+        public HomeController(IOptions<Appsettings> configuration, BridgeToCareContext context)
+        {
+            _configuration = configuration.Value;
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -37,11 +47,12 @@ namespace WebApp.Controllers
 
         public IActionResult Roles()
         {
-            var userIdentity = (ClaimsIdentity)User.Identity;
-            var claims = userIdentity.Claims;
-            var roleClaimType = userIdentity.RoleClaimType;
-            var roles = claims.ToList();
-            ViewData["Message"] = "Your Roles page.";
+            var string1 = string.Empty;
+            foreach (var item in _context.AspNetRoles.ToList())
+            {
+                string1 = string1 + " " + item.Name;
+            }
+                ViewData["Message"] = "Your Roles page.";
             return View();
         }
 

@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using WebApp.Models.Identity;
 using Microsoft.EntityFrameworkCore;
+using WebApp.Models.IdentityModels;
+using SystemFrameWork.WebHelper;
 
 namespace WebApp
 {
@@ -30,8 +32,17 @@ namespace WebApp
             services.AddIdentity<AppIdentityUser, AppIdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.Configure<Appsettings>(appsettings =>
+            {
+                appsettings.ApplicationName = Configuration.GetSection("ApplicationName").Value;
+
+            });
             // Add framework services.
             services.AddMvc();
+
+            //var connection = @"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;";
+            services.AddDbContext<BridgeToCareContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
