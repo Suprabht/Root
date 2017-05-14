@@ -1,0 +1,7 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\bin\Debug\netcoreapp1.1\DomainModel.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\bin\Debug\netcoreapp1.1\DomainModel.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\bin\Debug\netcoreapp1.1\DomainModel.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\obj\Debug\netcoreapp1.1\DomainModel.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\obj\Debug\netcoreapp1.1\DomainModel.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\obj\Debug\netcoreapp1.1\DomainModel.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\obj\Debug\netcoreapp1.1\DomainModel.pdb

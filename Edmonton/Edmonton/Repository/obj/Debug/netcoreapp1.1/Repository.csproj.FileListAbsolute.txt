@@ -1,0 +1,6 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\bin\Debug\netcoreapp1.1\Repository.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\bin\Debug\netcoreapp1.1\Repository.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\bin\Debug\netcoreapp1.1\Repository.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\obj\Debug\netcoreapp1.1\Repository.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\obj\Debug\netcoreapp1.1\Repository.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\obj\Debug\netcoreapp1.1\Repository.pdb

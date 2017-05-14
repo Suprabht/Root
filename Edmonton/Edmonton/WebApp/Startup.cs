@@ -36,12 +36,11 @@ namespace WebApp
             services.Configure<Appsettings>(appsettings =>
             {
                 appsettings.ApplicationName = Configuration.GetSection("ApplicationName").Value;
-
+                appsettings.Version = "1.0";
             });
             // Add framework services.
             services.AddMvc();
 
-            //var connection = @"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;";
             services.AddDbContext<BridgeToCareContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 

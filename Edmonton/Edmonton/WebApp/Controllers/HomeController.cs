@@ -77,6 +77,7 @@ namespace WebApp.Controllers
             jsonString = jsonString.TrimEnd(',');
             jsonString += "]";
             ViewData["Message"] = "Your Roles page.";
+
             return View();
         }
 
