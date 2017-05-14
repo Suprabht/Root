@@ -9,3 +9,5 @@ C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\D
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Debug\netcoreapp1.1\WebApp.pdb
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Debug\netcoreapp1.1\SystemFramework.dll
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Debug\netcoreapp1.1\SystemFramework.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Debug\netcoreapp1.1\Dal.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Debug\netcoreapp1.1\Dal.pdb

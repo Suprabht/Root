@@ -1,9 +1,0 @@
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Edmonton\bin\Debug\netcoreapp1.0\Edmonton.deps.json
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Edmonton\bin\Debug\netcoreapp1.0\Edmonton.runtimeconfig.json
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Edmonton\bin\Debug\netcoreapp1.0\Edmonton.runtimeconfig.dev.json
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Edmonton\bin\Debug\netcoreapp1.0\Edmonton.dll
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Edmonton\bin\Debug\netcoreapp1.0\Edmonton.pdb
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Edmonton\obj\Debug\netcoreapp1.0\Edmonton.csprojResolveAssemblyReference.cache
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Edmonton\obj\Debug\netcoreapp1.0\Edmonton.AssemblyInfo.cs
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Edmonton\obj\Debug\netcoreapp1.0\Edmonton.dll
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Edmonton\obj\Debug\netcoreapp1.0\Edmonton.pdb

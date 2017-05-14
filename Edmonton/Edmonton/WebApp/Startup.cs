@@ -5,8 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using WebApp.Models.Identity;
 using Microsoft.EntityFrameworkCore;
-using WebApp.Models.IdentityModels;
 using SystemFrameWork.WebHelper;
+using Dal.Models.Identity;
 
 namespace WebApp
 {

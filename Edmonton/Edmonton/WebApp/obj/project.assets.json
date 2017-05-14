@@ -4280,6 +4280,27 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "Dal/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "Microsoft.ApplicationInsights.AspNetCore": "2.0.0",
+          "Microsoft.AspNetCore": "1.1.1",
+          "Microsoft.AspNetCore.Authentication.Cookies": "1.1.1",
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.1.1",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.1.1",
+          "Microsoft.AspNetCore.Mvc": "1.1.2",
+          "Microsoft.AspNetCore.Rewrite": "1.0.1",
+          "Microsoft.AspNetCore.StaticFiles": "1.1.1",
+          "Microsoft.EntityFrameworkCore.Design": "1.1.1",
+          "Microsoft.EntityFrameworkCore.SqlServer": "1.1.1",
+          "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.1",
+          "Microsoft.Extensions.Logging.Debug": "1.1.1",
+          "Microsoft.NETCore.App": "1.1.1",
+          "Microsoft.VisualStudio.Web.BrowserLink": "1.1.0",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "1.1.0"
+        }
+      },
       "SystemFramework/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.1",
@@ -11107,6 +11128,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "Dal/1.0.0": {
+      "type": "project",
+      "path": "../Dal/Dal.csproj",
+      "msbuildProject": "../Dal/Dal.csproj"
+    },
     "SystemFramework/1.0.0": {
       "type": "project",
       "path": "../SystemFramework/SystemFramework.csproj",
@@ -11115,6 +11141,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.1": [
+      "Dal >= 1.0.0",
       "Microsoft.ApplicationInsights.AspNetCore >= 2.0.0",
       "Microsoft.AspNetCore >= 1.1.1",
       "Microsoft.AspNetCore.Authentication.Cookies >= 1.1.1",
@@ -11150,6 +11177,9 @@
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {
+            "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\Dal\\Dal.csproj": {
+              "projectPath": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\Dal\\Dal.csproj"
+            },
             "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\SystemFramework\\SystemFramework.csproj": {
               "projectPath": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\SystemFramework\\SystemFramework.csproj"
             }

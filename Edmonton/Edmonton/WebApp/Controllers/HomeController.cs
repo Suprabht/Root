@@ -8,9 +8,9 @@ using SystemFrameWork.Filters.CustomAttributes;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using WebApp.Models.Identity;
-using WebApp.Models.IdentityModels;
 using SystemFrameWork.WebHelper;
 using Microsoft.Extensions.Options;
+using Dal.Models.Identity;
 
 namespace WebApp.Controllers
 {
@@ -47,12 +47,36 @@ namespace WebApp.Controllers
 
         public IActionResult Roles()
         {
-            var string1 = string.Empty;
-            foreach (var item in _context.AspNetRoles.ToList())
+            var jsonString = "[";
+            foreach (var role in _context.AspNetRoles.ToList())
             {
-                string1 = string1 + " " + item.Name;
+                jsonString += "{";
+                jsonString += "\"Role\":\"" + role.Name + "\",";
+                jsonString += "\"Id\":\"" + role.Id + "\",";
+                jsonString += "\"Description\":\"" + role.Description + "\",";
+                jsonString += "\"Users\":[";
+                foreach (var userRoles in _context.AspNetUserRoles.ToList().Where(n => n.RoleId==role.Id).ToList())
+                {
+                    
+                    if (userRoles.UserId != null)
+                    {
+                        var user = _context.AspNetUsers.ToList().Where(u => u.Id == userRoles.UserId);
+                        if(user != null)
+                        {
+                            jsonString += "{";
+                            jsonString += "\"Email\":\"" + userRoles.User.Email + "\",";
+                            jsonString += "\"Id\":\"" + userRoles.User.Id + "\"";
+                            jsonString += "},";
+                        }                        
+                    }                    
+                }
+                jsonString = jsonString.TrimEnd(',');
+                jsonString += "]";
+                jsonString += "},";
             }
-                ViewData["Message"] = "Your Roles page.";
+            jsonString = jsonString.TrimEnd(',');
+            jsonString += "]";
+            ViewData["Message"] = "Your Roles page.";
             return View();
         }
 
