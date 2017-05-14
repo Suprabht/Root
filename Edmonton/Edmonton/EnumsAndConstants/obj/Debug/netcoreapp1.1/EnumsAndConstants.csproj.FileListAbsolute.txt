@@ -4,3 +4,4 @@ C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\EnumsAndCons
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\EnumsAndConstants\obj\Debug\netcoreapp1.1\EnumsAndConstants.AssemblyInfo.cs
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\EnumsAndConstants\obj\Debug\netcoreapp1.1\EnumsAndConstants.dll
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\EnumsAndConstants\obj\Debug\netcoreapp1.1\EnumsAndConstants.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\EnumsAndConstants\obj\Debug\netcoreapp1.1\EnumsAndConstants.csprojResolveAssemblyReference.cache
