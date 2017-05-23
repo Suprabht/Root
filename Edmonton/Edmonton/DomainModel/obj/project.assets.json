@@ -2264,6 +2264,13 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "EnumsAndConstants/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.1.1"
+        }
       }
     }
   },
@@ -7067,10 +7074,16 @@
         "system.xml.xpath.xdocument.4.0.1.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
+    },
+    "EnumsAndConstants/1.0.0": {
+      "type": "project",
+      "path": "../EnumsAndConstants/EnumsAndConstants.csproj",
+      "msbuildProject": "../EnumsAndConstants/EnumsAndConstants.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.1": [
+      "EnumsAndConstants >= 1.0.0",
       "Microsoft.NETCore.App >= 1.1.1"
     ]
   },
@@ -7090,7 +7103,11 @@
       ],
       "frameworks": {
         "netcoreapp1.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\EnumsAndConstants\\EnumsAndConstants.csproj": {
+              "projectPath": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\EnumsAndConstants\\EnumsAndConstants.csproj"
+            }
+          }
         }
       }
     },

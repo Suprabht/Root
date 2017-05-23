@@ -7,14 +7,40 @@
   "targets": {
     ".NETCoreApp,Version=v1.1": {
       "repository/1.0.0": {
+        "dependencies": {
+          "DomainModel": "1.0.0"
+        },
         "runtime": {
           "Repository.dll": {}
+        }
+      },
+      "domainmodel/1.0.0": {
+        "dependencies": {
+          "EnumsAndConstants": "1.0.0"
+        },
+        "runtime": {
+          "DomainModel.dll": {}
+        }
+      },
+      "enumsandconstants/1.0.0": {
+        "runtime": {
+          "EnumsAndConstants.dll": {}
         }
       }
     }
   },
   "libraries": {
     "repository/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "domainmodel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "enumsandconstants/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
