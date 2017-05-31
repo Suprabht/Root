@@ -25,24 +25,37 @@ class Roles {
     End:: Singleton implementation
     */
 
+    public callUser(value: string): void {
+        
+        $('.right_pane').load("/Home/UserDetails/" + value + "?_=" + Math.round(Math.random() * 10000));
+    }
+
+    public updateUser(): void {
+        var id = $("#id").val();
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var phone = $("#phone").val();
+        $.ajax({
+            type: "POST",
+            url: "/Home/UpdateUserDetails",
+            dataType: "json",
+            data: {
+                Id:id,
+                Name: name,
+                Email: email,
+                Phone: phone
+            },
+            cache: false,
+            success: function (data) {
+                $("#alertDiv").show().html("<strong>Success!</strong> User has been updated.");
+            },
+            error: function (xhr, ajaxOptions, error) {
+                alert(xhr.status);
+                alert('Error: ' + xhr.responseText);
+            }
+        });
+    }
     
-    private _score: number = 0;
-    public setScore(value: number): void {
-        this._score = value;
-    }
-
-    public getScore(): number {
-        alert(this._score)
-        return this._score;
-    }
-
-    public addPoints(value: number): void {
-        this._score += value;
-    }
-
-    public removePoints(value: number): void {
-        this._score -= value;
-    }
 }
 var roles = Roles.getInstance();
 roles.init();

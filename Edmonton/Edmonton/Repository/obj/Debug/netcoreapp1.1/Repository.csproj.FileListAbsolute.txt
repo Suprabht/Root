@@ -9,3 +9,5 @@ C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\b
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\bin\Debug\netcoreapp1.1\DomainModel.pdb
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\bin\Debug\netcoreapp1.1\EnumsAndConstants.dll
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\bin\Debug\netcoreapp1.1\EnumsAndConstants.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\bin\Debug\netcoreapp1.1\Dal.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Repository\bin\Debug\netcoreapp1.1\Dal.pdb

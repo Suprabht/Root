@@ -2,10 +2,6 @@
 /// <reference path="../../types/jstree/index.d.ts" />
 var Roles = (function () {
     function Roles() {
-        /*
-        End:: Singleton implementation
-        */
-        this._score = 0;
         if (Roles._instance) {
             throw new Error("Error: Instantiation failed: Use SingletonDemo.getInstance() instead of new.");
         }
@@ -17,18 +13,36 @@ var Roles = (function () {
     Roles.prototype.init = function () {
         $('#jstree').jstree();
     };
-    Roles.prototype.setScore = function (value) {
-        this._score = value;
+    /*
+    End:: Singleton implementation
+    */
+    Roles.prototype.callUser = function (value) {
+        $('.right_pane').load("/Home/UserDetails/" + value + "?_=" + Math.round(Math.random() * 10000));
     };
-    Roles.prototype.getScore = function () {
-        alert(this._score);
-        return this._score;
-    };
-    Roles.prototype.addPoints = function (value) {
-        this._score += value;
-    };
-    Roles.prototype.removePoints = function (value) {
-        this._score -= value;
+    Roles.prototype.updateUser = function () {
+        var id = $("#id").val();
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var phone = $("#phone").val();
+        $.ajax({
+            type: "POST",
+            url: "/Home/UpdateUserDetails",
+            dataType: "json",
+            data: {
+                Id: id,
+                Name: name,
+                Email: email,
+                Phone: phone
+            },
+            cache: false,
+            success: function (data) {
+                $("#alertDiv").show().html("<strong>Success!</strong> User has been updated.");
+            },
+            error: function (xhr, ajaxOptions, error) {
+                alert(xhr.status);
+                alert('Error: ' + xhr.responseText);
+            }
+        });
     };
     return Roles;
 }());

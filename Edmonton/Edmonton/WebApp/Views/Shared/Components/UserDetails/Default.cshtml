@@ -1,0 +1,42 @@
+﻿@using WebApp.Models;
+@model WebApp.Models.Home.UserDetails
+
+<div>
+    <div id="alertDiv" style="display: none" class="alert alert-success">
+
+    </div>
+    <input type="hidden" id="id" value="@Model.Id"/>
+    <div class="form-group">
+        <label for="Name">Name:</label>
+        <input type="text" class="form-control" id="name" value="@Model.Name">
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" value="@Model.Email">
+    </div>
+    <div class="form-group">
+        <label for="alternateEmail">Alternet Email:</label>
+        <input type="email" class="form-control" id="alternateEmail" value="@Model.AlternateEmail">
+    </div>
+    <div class="checkbox">
+        <label><input type="radio"> Male</label>
+        <label><input type="radio"> Female</label>
+    </div>
+    <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" class="form-control" id="address" value="@Model.Address">
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" class="form-control" id="phone" value="@Model.Phone">
+    </div>
+    <div class="form-group">
+        <label for="altPhone">Alternet Phone:</label>
+        <input type="tel" class="form-control" id="altPhone" value="@Model.AlternetPhone">
+    </div>
+    <div class="form-group">
+        <label for="bloodGroup">Blood Group:</label>
+        <input type="text" class="form-control" id="bloodGroup" value="@Model.BloodGroup">
+    </div>
+    <button class="btn btn-default" onclick="javascript: roles.updateUser();">Submit</button>
+</div>

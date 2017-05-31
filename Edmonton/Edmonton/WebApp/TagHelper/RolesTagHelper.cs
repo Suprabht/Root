@@ -32,7 +32,8 @@ namespace WebApp.TagHelper
                         var user = _context.AspNetUsers.ToList().Where(u => u.Id == userRoles.UserId);
                         if (user != null)
                         {
-                            jsonString += "<li>";
+                            // jsonString += "<li class='userRoles' userId="+ userRoles.User.Id + ">";
+                            jsonString += "<li onclick=\"javascript:roles.callUser(\'"+ userRoles.User.Id +"\');\">";
                             jsonString += userRoles.User.Email;
                             jsonString += "</li>";
                         }

@@ -11,6 +11,8 @@ using WebApp.Models.Identity;
 using SystemFrameWork.WebHelper;
 using Microsoft.Extensions.Options;
 using Dal.Models.Identity;
+using Microsoft.EntityFrameworkCore;
+using WebApp.Models.Home;
 
 namespace WebApp.Controllers
 {
@@ -37,6 +39,7 @@ namespace WebApp.Controllers
 
             return View();
         }
+
         [Authorize]
         public IActionResult Contact()
         {
@@ -45,40 +48,64 @@ namespace WebApp.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Roles()
         {
-            var jsonString = "[";
-            foreach (var role in _context.AspNetRoles.ToList())
-            {
-                jsonString += "{";
-                jsonString += "\"Role\":\"" + role.Name + "\",";
-                jsonString += "\"Id\":\"" + role.Id + "\",";
-                jsonString += "\"Description\":\"" + role.Description + "\",";
-                jsonString += "\"Users\":[";
-                foreach (var userRoles in _context.AspNetUserRoles.ToList().Where(n => n.RoleId==role.Id).ToList())
-                {
-                    
-                    if (userRoles.UserId != null)
-                    {
-                        var user = _context.AspNetUsers.ToList().Where(u => u.Id == userRoles.UserId);
-                        if(user != null)
-                        {
-                            jsonString += "{";
-                            jsonString += "\"Email\":\"" + userRoles.User.Email + "\",";
-                            jsonString += "\"Id\":\"" + userRoles.User.Id + "\"";
-                            jsonString += "},";
-                        }                        
-                    }                    
-                }
-                jsonString = jsonString.TrimEnd(',');
-                jsonString += "]";
-                jsonString += "},";
-            }
-            jsonString = jsonString.TrimEnd(',');
-            jsonString += "]";
             ViewData["Message"] = "Your Roles page.";
 
             return View();
+        }
+        public IActionResult UserDetails(string id)
+        {
+            var user = _context.AspNetUsers.ToList().Where(n => n.Id == id).ToList()[0];
+
+            UserDetails userDetails = new UserDetails
+            {
+                Id = user.Id,
+                Name = user.FullName,
+                Email = user.Email,
+                Phone = user.PhoneNumber
+            };
+
+            return ViewComponent("UserDetails", userDetails);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateUserDetails(UserDetails userDetails)
+        {
+            if (userDetails == null)
+            {
+                return NotFound();
+            }
+            var userToUpdate = _context.AspNetUsers.Find(userDetails.Id); //SingleOrDefaultAsync(s => s.Id == userDetails.Id);
+            userToUpdate.PhoneNumber = userDetails.Phone;
+            userToUpdate.Email = userDetails.Email;
+            userToUpdate.FullName = userDetails.Name;
+            _context.AspNetUsers.Update(userToUpdate);
+            _context.SaveChanges();
+
+            /*  var userToUpdate = await _context.AspNetUsers.SingleOrDefaultAsync(s => s.Id == userDetails.Id);
+              if (await TryUpdateModelAsync<AspNetUsers>(
+                  userToUpdate,
+                  "",
+                  s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
+              {
+                  try
+                  {
+                      await _context.SaveChangesAsync();
+                      return RedirectToAction("Index");
+                  }
+                  catch (DbUpdateException )
+                  {
+                      //Log the error (uncomment ex variable name and write a log.)
+                      ModelState.AddModelError("", "Unable to save changes. " +
+                                                   "Try again, and if the problem persists, " +
+                                                   "see your system administrator.");
+                  }
+              }
+              return View(studentToUpdate);*/
+
+            return Json(new { Response = "Success" });
         }
 
         public IActionResult ProgramDetails()
