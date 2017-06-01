@@ -15,7 +15,7 @@ namespace WebApp.Models.Home
         public String Gender { get; set; }
         public String Address { get; set; }
         public String Phone { get; set; }
-        public int AlternetPhone { get; set; }
+        public String AlternetPhone { get; set; }
         public String BloodGroup { get; set; }
         public String RoleName { get; set; }
         public int RoleId { get; set; }

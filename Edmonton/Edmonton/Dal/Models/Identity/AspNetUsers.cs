@@ -29,6 +29,11 @@ namespace Dal.Models.Identity
         public string UserName { get; set; }
         public string FullName { get; set; }
         public DateTime? BirthDate { get; set; }
+        public string AlternetEmail { get; set; }
+        public string Address { get; set; }
+        public string AlternetPhone { get; set; }
+        public string BloodGroup { get; set; }
+
 
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }

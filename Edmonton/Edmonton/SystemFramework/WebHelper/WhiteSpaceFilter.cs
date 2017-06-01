@@ -36,7 +36,15 @@ namespace SystemFrameWork.WebHelper
         }
         public override void SetLength(long value)
         {
-            _shrink.SetLength(value);
+            try
+            {
+                _shrink.SetLength(value);
+            }
+            catch (Exception e)
+            {
+                
+            }
+            
         }
         //public override void Close()
         //{

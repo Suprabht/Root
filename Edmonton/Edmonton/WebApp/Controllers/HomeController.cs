@@ -64,7 +64,12 @@ namespace WebApp.Controllers
                 Id = user.Id,
                 Name = user.FullName,
                 Email = user.Email,
-                Phone = user.PhoneNumber
+                AlternateEmail = user.AlternetEmail,
+                Address = user.Address,
+                Phone = user.PhoneNumber,
+                AlternetPhone = user.AlternetPhone,
+                BloodGroup = user.BloodGroup
+
             };
 
             return ViewComponent("UserDetails", userDetails);
@@ -77,10 +82,14 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-            var userToUpdate = _context.AspNetUsers.Find(userDetails.Id); //SingleOrDefaultAsync(s => s.Id == userDetails.Id);
+            var userToUpdate = _context.AspNetUsers.Find(userDetails.Id); 
             userToUpdate.PhoneNumber = userDetails.Phone;
             userToUpdate.Email = userDetails.Email;
             userToUpdate.FullName = userDetails.Name;
+            userToUpdate.AlternetEmail = userDetails.AlternateEmail;
+            userToUpdate.Address = userDetails.Address;
+            userToUpdate.AlternetPhone = userDetails.AlternetPhone;
+            userToUpdate.BloodGroup = userDetails.BloodGroup;
             _context.AspNetUsers.Update(userToUpdate);
             _context.SaveChanges();
 

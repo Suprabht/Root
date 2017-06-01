@@ -24,6 +24,10 @@ var Roles = (function () {
         var name = $("#name").val();
         var email = $("#email").val();
         var phone = $("#phone").val();
+        var alternateEmail = $("#alternateEmail").val();
+        var address = $("#address").val();
+        var alternetPhone = $("#alternetPhone").val();
+        var bloodGroup = $("#bloodGroup").val();
         $.ajax({
             type: "POST",
             url: "/Home/UpdateUserDetails",
@@ -32,7 +36,11 @@ var Roles = (function () {
                 Id: id,
                 Name: name,
                 Email: email,
-                Phone: phone
+                Phone: phone,
+                AlternateEmail: alternateEmail,
+                Address: address,
+                AlternetPhone: alternetPhone,
+                BloodGroup: bloodGroup
             },
             cache: false,
             success: function (data) {

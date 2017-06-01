@@ -128,6 +128,9 @@ namespace Dal.Models.Identity
                     .HasMaxLength(256);
 
                 entity.Property(e => e.UserName).HasMaxLength(256);
+                entity.Property(e => e.AlternetEmail).HasMaxLength(256);
+                entity.Property(e => e.Address).HasMaxLength(256);
+                entity.Property(e => e.BloodGroup).HasMaxLength(256);
             });
         }
     }
