@@ -21,7 +21,8 @@ namespace WebApp.TagHelper
             var jsonString = "<div id=\"jstree\"><ul>";
             foreach (var role in _context.AspNetRoles.ToList())
             {
-                jsonString += "<li>";
+                // jsonString += "<li onclick=\"javascript:roles.addUser(\'" + role.Id + "\');\">";
+                jsonString += "<li class='roleli' roleId ='" + role.Id + "'>";
                 jsonString +=  role.Name ;
                 jsonString += "<ul>";
                 foreach (var userRoles in _context.AspNetUserRoles.ToList().Where(n => n.RoleId == role.Id).ToList())
@@ -32,8 +33,7 @@ namespace WebApp.TagHelper
                         var user = _context.AspNetUsers.ToList().Where(u => u.Id == userRoles.UserId);
                         if (user != null)
                         {
-                            // jsonString += "<li class='userRoles' userId="+ userRoles.User.Id + ">";
-                            jsonString += "<li onclick=\"javascript:roles.callUser(\'"+ userRoles.User.Id +"\');\">";
+                            jsonString += "<li class='userli' userId='" + userRoles.User.Id + "' onclick=\"javascript:roles.callUser(\'" + userRoles.User.Id + "\');\">";
                             jsonString += userRoles.User.Email;
                             jsonString += "</li>";
                         }

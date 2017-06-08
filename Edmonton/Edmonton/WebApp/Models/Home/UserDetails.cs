@@ -18,11 +18,12 @@ namespace WebApp.Models.Home
         public String AlternetPhone { get; set; }
         public String BloodGroup { get; set; }
         public String RoleName { get; set; }
-        public int RoleId { get; set; }
+        public String RoleId { get; set; }
         public String LevelsName { get; set; }
         public int LevelsId { get; set; }
         public String Picture { get; set; }
         public int Payment { get; set; }
         public String EffectiveDate { get; set; }
+        public bool AddView { get; set; }
     }
 }

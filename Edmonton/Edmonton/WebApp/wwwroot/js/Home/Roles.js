@@ -10,14 +10,70 @@ var Roles = (function () {
     Roles.getInstance = function () {
         return Roles._instance;
     };
-    Roles.prototype.init = function () {
-        $('#jstree').jstree();
+    Roles.prototype.init = function (userId, roleId) {
+        $('.left_pane').load("/Home/RolesTree/?_=" + Math.round(Math.random() * 10000), function () {
+            $('#jstree').jstree('destroy');
+            $('#jstree').jstree().on('ready.jstree', function (e, data) {
+                $(".jstree-anchor").bind("click", function () {
+                    roles.addUser($(this).parent().attr("roleId"));
+                });
+                if (userId === "") {
+                    $(".jstree-anchor").first().click();
+                }
+                else {
+                    //alert(userId);
+                    $(".roleli[roleId=" + roleId + "]").children().first().click();
+                    $(".userli[userId=" + userId + "]").children()[1].click();
+                }
+            });
+        });
     };
     /*
     End:: Singleton implementation
     */
     Roles.prototype.callUser = function (value) {
-        $('.right_pane').load("/Home/UserDetails/" + value + "?_=" + Math.round(Math.random() * 10000));
+        $('.right_pane').load("/Home/UserDetails/" + value + "?_=" + Math.round(Math.random() * 10000), function () {
+            $("#tabs").tabs();
+        });
+    };
+    Roles.prototype.addUser = function (value) {
+        $('.right_pane').load("/Home/AddUser/" + value + "?_=" + Math.round(Math.random() * 10000));
+    };
+    Roles.prototype.addUserToDb = function () {
+        var id = $("#id").val();
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var phone = $("#phone").val();
+        var alternateEmail = $("#alternateEmail").val();
+        var address = $("#address").val();
+        var alternetPhone = $("#alternetPhone").val();
+        var bloodGroup = $("#bloodGroup").val();
+        var roleId = $("#roleId").val();
+        $.ajax({
+            type: "POST",
+            url: "/Home/AddUserDetails",
+            dataType: "json",
+            data: {
+                Id: id,
+                Name: name,
+                Email: email,
+                Phone: phone,
+                AlternateEmail: alternateEmail,
+                Address: address,
+                AlternetPhone: alternetPhone,
+                BloodGroup: bloodGroup,
+                RoleId: roleId
+            },
+            cache: false,
+            success: function (data) {
+                $("#alertDiv").show().html("<strong>Success!</strong> User has been added.");
+                roles.init(data.userId, data.roleId);
+            },
+            error: function (xhr, ajaxOptions, error) {
+                alert(xhr.status);
+                alert('Error: ' + xhr.responseText);
+            }
+        });
     };
     Roles.prototype.updateUser = function () {
         var id = $("#id").val();
@@ -59,7 +115,7 @@ Start:: Singleton implementation
 */
 Roles._instance = new Roles();
 var roles = Roles.getInstance();
-roles.init();
+roles.init("", "");
 //# sourceMappingURL=file.js.map
 //# sourceMappingURL=file1.js.map
 $(function () {

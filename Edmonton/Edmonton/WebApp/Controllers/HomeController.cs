@@ -20,11 +20,13 @@ namespace WebApp.Controllers
     public class HomeController : Controller
     {
         private Appsettings _configuration;
-        private BridgeToCareContext _context;
-        public HomeController(IOptions<Appsettings> configuration, BridgeToCareContext context)
+        private readonly BridgeToCareContext _context;
+        private readonly UserManager<AppIdentityUser> _userManager;
+        public HomeController(UserManager<AppIdentityUser> userManager, IOptions<Appsettings> configuration, BridgeToCareContext context)
         {
             _configuration = configuration.Value;
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -55,9 +57,15 @@ namespace WebApp.Controllers
 
             return View();
         }
+
+        public IActionResult RolesTree()
+        {
+            return ViewComponent("RolesTree");
+        }
         public IActionResult UserDetails(string id)
         {
-            var user = _context.AspNetUsers.ToList().Where(n => n.Id == id).ToList()[0];
+            //var user = _context.AspNetUsers.ToList().Where(n => n.Id == id).ToList()[0];
+            var user = _context.AspNetUsers.Find(id);
 
             UserDetails userDetails = new UserDetails
             {
@@ -73,6 +81,45 @@ namespace WebApp.Controllers
             };
 
             return ViewComponent("UserDetails", userDetails);
+        }
+        
+        public IActionResult AddUser(string id)
+        {
+            var roll = _context.AspNetRoles.Find(id);
+            var userDetails = new UserDetails
+            {
+                AddView = true,
+                RoleId = id,
+                RoleName = roll.Name
+            };
+            return ViewComponent("UserDetails", userDetails);
+        }
+
+        [HttpPost]
+        public IActionResult AddUserDetails(UserDetails userDetails)
+        {
+            if (userDetails == null)
+            {
+                return NotFound();
+            }
+            AppIdentityUser user = new AppIdentityUser();
+            user.UserName = userDetails.Name;
+            user.PhoneNumber = userDetails.Phone;
+            user.Email = userDetails.Email;
+            user.FullName = userDetails.Name;
+            user.AlternetEmail = userDetails.AlternateEmail;
+            user.Address = userDetails.Address;
+            user.AlternetPhone = userDetails.AlternetPhone;
+            user.BloodGroup = userDetails.BloodGroup;
+            IdentityResult result = _userManager.CreateAsync
+                (user, "Password123!").Result;
+            if (result.Succeeded)
+            {
+                var roll = _context.AspNetRoles.Find(userDetails.RoleId);
+                _userManager.AddToRoleAsync(user,
+                    roll.Name).Wait();
+            }
+            return Json(new { Response = "Success", userId = user.Id, roleId = userDetails.RoleId });
         }
 
         [HttpPost]
