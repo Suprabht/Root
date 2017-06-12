@@ -5,21 +5,21 @@ class Roles {
     /*
     Start:: Singleton implementation
     */
-    private static _instance: Roles = new Roles();    
+    private static instance: Roles = new Roles();    
 
     constructor() {
-        if (Roles._instance) {
+        if (Roles.instance) {
             throw new Error("Error: Instantiation failed: Use SingletonDemo.getInstance() instead of new.");
         }
-        Roles._instance = this;
+        Roles.instance = this;
     }
 
     public static getInstance(): Roles {
-        return Roles._instance;
+        return Roles.instance;
     }
 
     public init(userId:string, roleId:string): void {   
-        $('.left_pane').load("/Home/RolesTree/?_=" + Math.round(Math.random() * 10000), () => {
+        $('.left_pane').load(`/Home/RolesTree/?_=${Math.round(Math.random() * 10000)}`, () => {
             $('#jstree').jstree('destroy');
            
             $('#jstree').jstree().on('ready.jstree', (e, data) => {
@@ -30,8 +30,8 @@ class Roles {
                     $(".jstree-anchor").first().click();
                 } else {
                     //alert(userId);
-                    $(".roleli[roleId=" + roleId + "]").children().first().click();
-                    $(".userli[userId=" + userId + "]").children()[1].click();
+                    $(`.roleli[roleId=${roleId}]`).children().first().click();
+                    $(`.userli[userId=${userId}]`).children()[1].click();
                 }
             });
         });
@@ -41,13 +41,13 @@ class Roles {
     */
 
     public callUser(value: string): void {
-        $('.right_pane').load("/Home/UserDetails/" + value + "?_=" + Math.round(Math.random() * 10000), () => {
+        $('.right_pane').load(`/Home/UserDetails/${value}?_=${Math.round(Math.random() * 10000)}`, () => {
             $("#tabs").tabs();
         });
     }
 
     public addUser(value: string): void {
-        $('.right_pane').load("/Home/AddUser/" + value + "?_=" + Math.round(Math.random() * 10000));
+        $('.right_pane').load(`/Home/AddUser/${value}?_=${Math.round(Math.random() * 10000)}`);
     }
 
     public addUserToDb(): void {
@@ -82,7 +82,7 @@ class Roles {
             },
             error(xhr, ajaxOptions, error) {
                 alert(xhr.status);
-                alert('Error: ' + xhr.responseText);
+                alert(`Error: ${xhr.responseText}`);
             }
         });
     }
@@ -117,7 +117,7 @@ class Roles {
             },
             error(xhr, ajaxOptions, error) {
                 alert(xhr.status);
-                alert('Error: ' + xhr.responseText);
+                alert(`Error: ${xhr.responseText}`);
             }
         });
     }

@@ -13,6 +13,7 @@ namespace Dal.Models.Identity
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<ProgramDetails> ProgramDetails { get; set; }
 
         public BridgeToCareContext(DbContextOptions<BridgeToCareContext> options) : base(options)
         { }
@@ -131,6 +132,14 @@ namespace Dal.Models.Identity
                 entity.Property(e => e.AlternetEmail).HasMaxLength(256);
                 entity.Property(e => e.Address).HasMaxLength(256);
                 entity.Property(e => e.BloodGroup).HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<ProgramDetails>(entity =>
+            {
+                entity.HasKey(e => e.ProgramId)
+                    .HasName("PK_ProgramDetails");
+
+                entity.Property(e => e.ProgramName).HasMaxLength(250);
             });
         }
     }

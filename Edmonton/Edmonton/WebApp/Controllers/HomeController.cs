@@ -50,6 +50,7 @@ namespace WebApp.Controllers
             return View();
         }
 
+        #region Roles
         [Authorize]
         public IActionResult Roles()
         {
@@ -163,14 +164,27 @@ namespace WebApp.Controllers
 
             return Json(new { Response = "Success" });
         }
+        #endregion
 
+        #region ProgramDetails
+        [Authorize]
         public IActionResult ProgramDetails()
         {
             ViewData["Message"] = "Your Program Details page.";
 
             return View();
         }
-        public IActionResult UserRegistration()
+
+        public IActionResult GetPrograms(UserDetails userDetails)
+        {
+            //var programs = _context.ProgramDetails.ToList();
+
+            return Json(new { Page = 1, Rows = 2 });
+        }
+
+        #endregion
+
+            public IActionResult UserRegistration()
         {
             ViewData["Message"] = "Your User Registration page.";
 

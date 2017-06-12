@@ -2,13 +2,13 @@
 /// <reference path="../../types/jstree/index.d.ts" />
 var Roles = (function () {
     function Roles() {
-        if (Roles._instance) {
+        if (Roles.instance) {
             throw new Error("Error: Instantiation failed: Use SingletonDemo.getInstance() instead of new.");
         }
-        Roles._instance = this;
+        Roles.instance = this;
     }
     Roles.getInstance = function () {
-        return Roles._instance;
+        return Roles.instance;
     };
     Roles.prototype.init = function (userId, roleId) {
         $('.left_pane').load("/Home/RolesTree/?_=" + Math.round(Math.random() * 10000), function () {
@@ -71,7 +71,7 @@ var Roles = (function () {
             },
             error: function (xhr, ajaxOptions, error) {
                 alert(xhr.status);
-                alert('Error: ' + xhr.responseText);
+                alert("Error: " + xhr.responseText);
             }
         });
     };
@@ -104,7 +104,7 @@ var Roles = (function () {
             },
             error: function (xhr, ajaxOptions, error) {
                 alert(xhr.status);
-                alert('Error: ' + xhr.responseText);
+                alert("Error: " + xhr.responseText);
             }
         });
     };
@@ -113,7 +113,7 @@ var Roles = (function () {
 /*
 Start:: Singleton implementation
 */
-Roles._instance = new Roles();
+Roles.instance = new Roles();
 var roles = Roles.getInstance();
 roles.init("", "");
 //# sourceMappingURL=file.js.map
