@@ -11,9 +11,9 @@ var Roles = (function () {
         return Roles.instance;
     };
     Roles.prototype.init = function (userId, roleId) {
-        $('.left_pane').load("/Home/RolesTree/?_=" + Math.round(Math.random() * 10000), function () {
-            $('#jstree').jstree('destroy');
-            $('#jstree').jstree().on('ready.jstree', function (e, data) {
+        $(".left_pane").load("/Home/RolesTree/?_=" + Math.round(Math.random() * 10000), function () {
+            $("#jstree").jstree("destroy");
+            $("#jstree").jstree().on("ready.jstree", function (e, data) {
                 $(".jstree-anchor").bind("click", function () {
                     roles.addUser($(this).parent().attr("roleId"));
                 });
@@ -32,12 +32,12 @@ var Roles = (function () {
     End:: Singleton implementation
     */
     Roles.prototype.callUser = function (value) {
-        $('.right_pane').load("/Home/UserDetails/" + value + "?_=" + Math.round(Math.random() * 10000), function () {
+        $(".right_pane").load("/Home/UserDetails/" + value + "?_=" + Math.round(Math.random() * 10000), function () {
             $("#tabs").tabs();
         });
     };
     Roles.prototype.addUser = function (value) {
-        $('.right_pane').load("/Home/AddUser/" + value + "?_=" + Math.round(Math.random() * 10000));
+        $(".right_pane").load("/Home/AddUser/" + value + "?_=" + Math.round(Math.random() * 10000));
     };
     Roles.prototype.addUserToDb = function () {
         var id = $("#id").val();

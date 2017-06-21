@@ -18,6 +18,18 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/css/Home/Clients.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/Clients.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Home/TaskAssignment.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/TaskAssignment.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/css/Home/ProgramDetails.min.css",
     "inputFiles": [
       "wwwroot/css/Home/ProgramDetails.css"
@@ -35,6 +47,30 @@
       "Scripts/Home/Roles/file.js",
       "Scripts/Home/Roles/file1.js",
       "wwwroot/js/Home/tree.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Clients.js",
+    "inputFiles": [
+      "Scripts/Home/Clients/Clients.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Clients.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/Clients.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/TaskAssignment.js",
+    "inputFiles": [
+      "Scripts/Home/TaskAssignment/TaskAssignment.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/TaskAssignment.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/TaskAssignment.js"
     ]
   },
   {

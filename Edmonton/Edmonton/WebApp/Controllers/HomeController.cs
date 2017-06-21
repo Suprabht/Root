@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Dal.Models.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Models.Home;
+using SystemFramework.Json;
 
 namespace WebApp.Controllers
 {
@@ -177,19 +178,72 @@ namespace WebApp.Controllers
 
         public IActionResult GetPrograms(UserDetails userDetails)
         {
-            //var programs = _context.ProgramDetails.ToList();
-
-            return Json(new { Page = 1, Rows = 2 });
+            var programs = _context.ProgramDetails.ToList();
+            var jsonstring = JsonHelper.Serialize(programs);
+            return Json(new { page = 1, records = programs.Count, rows = programs });
         }
 
         #endregion
 
-            public IActionResult UserRegistration()
+        #region Clients
+        public IActionResult Clients()
         {
-            ViewData["Message"] = "Your User Registration page.";
+            ViewData["Message"] = "Your Client page.";
 
             return View();
         }
+
+        public IActionResult GetClients()
+        {
+            var clientsDal = _context.ClientDetails.ToList();
+            List<Client> clients = new List<Client>();
+            foreach(var clientDal in clientsDal)
+            {
+                var client = new Client();
+                client.ClientAddress = clientDal.ClientAddress;
+                client.ClientId = clientDal.ClientId;
+                client.ClientName = clientDal.ClientName;
+                client.Latt = clientDal.Latt;
+                client.Long = clientDal.Long;
+                client.Link = string.Format("http://maps.google.com/maps?q={0},{1}", clientDal.Latt, clientDal.Long);
+                clients.Add(client);
+            }
+            return Json(new { page = 1, records = clients.Count, rows = clients });
+        }
+        #endregion
+
+        #region TaskAssignment
+        public IActionResult TaskAssignment()
+        {
+            ViewData["Message"] = "Your Task Assignment page.";
+
+            return View();
+        }
+
+        public IActionResult GetAssignment()
+        {
+            List<Models.Home.Assignment> assigns = new List<Models.Home.Assignment>();
+            var assignmentsDal = _context.Assignment.ToList();
+            foreach(var assignmentDal in assignmentsDal)
+            {
+                Models.Home.Assignment assign = new Models.Home.Assignment();
+                assign.AssignmentId = assignmentDal.AssignmentId;
+                assign.AssignmentDate = Convert.ToDateTime(assignmentDal.AssignmentDate);
+                assign.ClientId = Convert.ToInt16(assignmentDal.ClientId);
+                var client = _context.ClientDetails.Find(assign.ClientId);
+                assign.ClientName = client.ClientName;
+                assign.ClientAddress = client.ClientAddress;
+                assign.UserId = assignmentDal.UserId;
+                var user = _context.AspNetUsers.Find(assign.UserId);
+                assign.UserName = user.UserName;
+                assign.UserEmail = user.Email;
+                assigns.Add(assign);
+            }
+            var jsonstring = JsonHelper.Serialize(assigns);
+            return Json(new { page = 1, records = assignmentsDal.Count, rows = assigns });
+        }
+        #endregion
+
         public IActionResult PaymentDetails()
         {
             ViewData["Message"] = "Your Payment Details page.";
@@ -215,12 +269,7 @@ namespace WebApp.Controllers
             return View();
         }
 
-        public IActionResult TaskAssignment()
-        {
-            ViewData["Message"] = "Your Task Assignment page.";
-
-            return View();
-        }
+        
         public IActionResult AssignmentPlan()
         {
             ViewData["Message"] = "Your Assignment Plan page.";

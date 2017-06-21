@@ -1,37 +1,38 @@
 ProgramDetails = function () { };
 ProgramDetails.prototype.init = function () {
-    $.getJSON("Home/GetPrograms",
+    $.getJSON("/Home/GetPrograms",
         function (data) {
-            alert(data);
+            programDetails.loadGrid(data);
         });
 
-    var data = {
-        "page": "1",
-        "records": "3",
-        "rows": [
-            { "id": "83123a", Name: "Name 1", "PackageCode": "83123a" },
-            { "id": "83432a", Name: "Name 3", "PackageCode": "83432a" },
-            { "id": "83566a", Name: "Name 2", "PackageCode": "83566a" }
-        ]
-    };
+    //var data = {
+    //    "page": "1",
+    //    "records": "3",
+    //    "rows": [
+    //        { "id": "83123a", Name: "Name 1", "PackageCode": "83123a" },
+    //        { "id": "83432a", Name: "Name 3", "PackageCode": "83432a" },
+    //        { "id": "83566a", Name: "Name 2", "PackageCode": "83566a" }
+    //    ]
+    //};
 
-    this.loadGrid(data);
+    //this.loadGrid(data);
 };
 ProgramDetails.prototype.loadGrid = function (data) {
     var grid = $("#grid");
     grid.jqGrid({
         colModel: [
-            { name: 'PackageCode', index: 'PackageCode', width: "110", editable: true, editrules: { required: true } },
-            { name: 'Name', index: 'Name', width: "300", editable: true, editrules: { required: true } }
+            { label: 'Program Id', name: 'programId', index: 'programId', width: "110", editable: false, editrules: { required: true } },
+            { label: 'Program Name', name: 'programName', index: 'programName', width: "210", editable: true, editrules: { required: true } },
+            { label: 'Program Description', name: 'programDescription', index: 'programDescription', width: "350", editable: true, editrules: { required: true } }
         ],
         pager: '#gridPager',
         regional: 'en',
         datatype: "jsonstring",
         datastr: data,
         jsonReader: { repeatitems: false },
-        rowNum: 2,
+        rowNum: data.records,
         viewrecords: true,
-        caption: "Packages",
+        caption: "Program",
         height: "auto",
         ignoreCase: true
     });

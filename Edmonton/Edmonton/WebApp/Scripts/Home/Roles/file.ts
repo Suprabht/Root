@@ -19,10 +19,10 @@ class Roles {
     }
 
     public init(userId:string, roleId:string): void {   
-        $('.left_pane').load(`/Home/RolesTree/?_=${Math.round(Math.random() * 10000)}`, () => {
-            $('#jstree').jstree('destroy');
+        $(".left_pane").load(`/Home/RolesTree/?_=${Math.round(Math.random() * 10000)}`, () => {
+            $("#jstree").jstree("destroy");
            
-            $('#jstree').jstree().on('ready.jstree', (e, data) => {
+            $("#jstree").jstree().on("ready.jstree", (e, data) => {
                 $(".jstree-anchor").bind("click", function () {
                     roles.addUser($(this).parent().attr("roleId"));
                 });
@@ -41,13 +41,13 @@ class Roles {
     */
 
     public callUser(value: string): void {
-        $('.right_pane').load(`/Home/UserDetails/${value}?_=${Math.round(Math.random() * 10000)}`, () => {
+        $(".right_pane").load(`/Home/UserDetails/${value}?_=${Math.round(Math.random() * 10000)}`, () => {
             $("#tabs").tabs();
         });
     }
 
     public addUser(value: string): void {
-        $('.right_pane').load(`/Home/AddUser/${value}?_=${Math.round(Math.random() * 10000)}`);
+        $(".right_pane").load(`/Home/AddUser/${value}?_=${Math.round(Math.random() * 10000)}`);
     }
 
     public addUserToDb(): void {

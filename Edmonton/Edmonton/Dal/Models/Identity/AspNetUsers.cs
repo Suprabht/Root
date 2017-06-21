@@ -38,5 +38,6 @@ namespace Dal.Models.Identity
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
+        public virtual ICollection<Assignment> Assignment { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace WebApp.ViewComponents
                 if (roles[0].Value.Equals("Director"))
                 {
                     menu.IsRoles = true;
-                    menu.IsUserRegistration = true;
+                    menu.IsClients = true;
                     menu.IsUserInfo = true;
                     menu.IsTaskAssignment = true;
                     menu.IsProgramDetails = true;
@@ -35,7 +35,7 @@ namespace WebApp.ViewComponents
                 if (roles[0].Value.Equals("Hr"))
                 {
                     menu.IsRoles = true;
-                    menu.IsUserRegistration = true;
+                    menu.IsClients = true;
                     menu.IsUserInfo = true;
                     menu.IsTaskAssignment = true;
                     menu.IsUserLevelDetail = true;

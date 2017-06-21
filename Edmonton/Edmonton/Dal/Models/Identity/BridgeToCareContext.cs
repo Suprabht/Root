@@ -14,6 +14,8 @@ namespace Dal.Models.Identity
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<ProgramDetails> ProgramDetails { get; set; }
+        public virtual DbSet<ClientDetails> ClientDetails { get; set; }
+        public virtual DbSet<Assignment> Assignment { get; set; }
 
         public BridgeToCareContext(DbContextOptions<BridgeToCareContext> options) : base(options)
         { }
@@ -140,6 +142,32 @@ namespace Dal.Models.Identity
                     .HasName("PK_ProgramDetails");
 
                 entity.Property(e => e.ProgramName).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<ClientDetails>(entity =>
+            {
+                entity.HasKey(e => e.ClientId)
+                    .HasName("PK_ClientDetails");
+
+                entity.Property(e => e.ClientName).HasMaxLength(250);
+
+                entity.Property(e => e.Latt).HasMaxLength(50);
+
+                entity.Property(e => e.Long).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Assignment>(entity =>
+            {
+                entity.Property(e => e.AssignmentId).ValueGeneratedNever();
+
+                entity.Property(e => e.AssignmentDate).HasColumnType("datetime");
+
+                entity.Property(e => e.UserId).HasMaxLength(450);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Assignment)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Assignment_ClientDetails");
             });
         }
     }

@@ -1,8 +1,8 @@
-﻿ProgramDetails = function () { };
-ProgramDetails.prototype.init = function () {
-    $.getJSON("/Home/GetPrograms",
+﻿TaskAssignment = function () { };
+TaskAssignment.prototype.init = function () {
+    $.getJSON("/Home/GetAssignment",
         function (data) {
-            programDetails.loadGrid(data);
+            taskAssignment.loadGrid(data);
         });
 
     //var data = {
@@ -17,13 +17,18 @@ ProgramDetails.prototype.init = function () {
 
     //this.loadGrid(data);
 };
-ProgramDetails.prototype.loadGrid = function (data) {
+TaskAssignment.prototype.loadGrid = function (data) {
     var grid = $("#grid");
     grid.jqGrid({
         colModel: [
-            { label: 'Program Id', name: 'programId', index: 'programId', width: "110", editable: false, editrules: { required: true } },
-            { label: 'Program Name', name: 'programName', index: 'programName', width: "210", editable: true, editrules: { required: true } },
-            { label: 'Program Description', name: 'programDescription', index: 'programDescription', width: "350", editable: true, editrules: { required: true } }
+            { label: 'Assignment Id', name: 'assignmentId', index: 'assignmentId', width: "110", editable: false, editrules: { required: true } },
+            { label: 'Assignment Date', name: 'assignmentDate', index: 'assignmentDate', width: "110", editable: true, editrules: { required: true } },
+            { label: 'Client Id', name: 'clientId', index: 'clientId', width: "110", hidden: true, editable: true, editrules: { required: true } },
+            { label: 'Client Name', name: 'clientName', index: 'clientName', width: "110", editable: true, editrules: { required: true } },
+            { label: 'Client Address', name: 'clientAddress', index: 'clientAddress', width: "110", editable: true, editrules: { required: true } },
+            { label: 'User Id', name: 'userId', index: 'userId', width: "110", hidden: true, editable: true, editrules: { required: true } },
+            { label: 'User Name', name: 'userName', index: 'userName', width: "110", editable: true, editrules: { required: true } },
+            { label: 'User Email', name: 'userEmail', index: 'userEmail', width: "110", editable: true, editrules: { required: true } },
         ],
         pager: '#gridPager',
         regional: 'en',
@@ -32,7 +37,7 @@ ProgramDetails.prototype.loadGrid = function (data) {
         jsonReader: { repeatitems: false },
         rowNum: data.records,
         viewrecords: true,
-        caption: "Program",
+        caption: "Assignment",
         height: "auto",
         ignoreCase: true
     });
@@ -87,5 +92,5 @@ ProgramDetails.prototype.loadGrid = function (data) {
             }
         });
 }
-var programDetails = new ProgramDetails();
-programDetails.init();
+var taskAssignment = new TaskAssignment();
+taskAssignment.init();

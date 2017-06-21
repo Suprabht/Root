@@ -1,29 +1,23 @@
-﻿ProgramDetails = function () { };
-ProgramDetails.prototype.init = function () {
-    $.getJSON("/Home/GetPrograms",
+﻿Clients = function () { };
+Clients.prototype.init = function () {
+
+    $.getJSON("/Home/GetClients",
         function (data) {
-            programDetails.loadGrid(data);
+            clients.loadGrid(data);
         });
-
-    //var data = {
-    //    "page": "1",
-    //    "records": "3",
-    //    "rows": [
-    //        { "id": "83123a", Name: "Name 1", "PackageCode": "83123a" },
-    //        { "id": "83432a", Name: "Name 3", "PackageCode": "83432a" },
-    //        { "id": "83566a", Name: "Name 2", "PackageCode": "83566a" }
-    //    ]
-    //};
-
-    //this.loadGrid(data);
 };
-ProgramDetails.prototype.loadGrid = function (data) {
+Clients.prototype.loadGrid = function (data) {
     var grid = $("#grid");
+    //http://www.google.com/maps/place/49.46800006494457,17.11514008755796
     grid.jqGrid({
         colModel: [
-            { label: 'Program Id', name: 'programId', index: 'programId', width: "110", editable: false, editrules: { required: true } },
-            { label: 'Program Name', name: 'programName', index: 'programName', width: "210", editable: true, editrules: { required: true } },
-            { label: 'Program Description', name: 'programDescription', index: 'programDescription', width: "350", editable: true, editrules: { required: true } }
+            { label: 'Client Id', name: 'clientId', index: 'clientId', width: "110", editable: false, editrules: { required: true } },
+            { label: 'Client Name', name: 'clientName', index: 'clientName', width: "210", editable: true, editrules: { required: true } },
+            { label: 'Client Address', name: 'clientAddress', index: 'clientAddress', width: "350", editable: true, editrules: { required: true } },
+            { label: 'Longitude', name: 'long', index: 'long', width: "210", editable: true, editrules: { required: true } },
+            { label: 'Latitude', name: 'latt', index: 'latt', width: "210", editable: true, editrules: { required: true } },
+           // { label: 'Link', name: 'link', index: 'link', width: "210", editable: true, editrules: { required: true } }
+            { label: 'Link', name: 'link', width: "200", editable: false, formatter: clients.methodFormatter }
         ],
         pager: '#gridPager',
         regional: 'en',
@@ -32,7 +26,7 @@ ProgramDetails.prototype.loadGrid = function (data) {
         jsonReader: { repeatitems: false },
         rowNum: data.records,
         viewrecords: true,
-        caption: "Program",
+        caption: "Client",
         height: "auto",
         ignoreCase: true
     });
@@ -87,5 +81,10 @@ ProgramDetails.prototype.loadGrid = function (data) {
             }
         });
 }
-var programDetails = new ProgramDetails();
-programDetails.init();
+Clients.prototype.methodFormatter = function (cellValue, options, rowObject) {
+    
+    return '<a href="' + rowObject.link +'" target="_blank" > Link </a>';
+}
+
+var clients = new Clients();
+clients.init();

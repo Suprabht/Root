@@ -17,7 +17,7 @@ namespace WebApp.Models
             get;
             set;
         }
-        public bool IsUserRegistration
+        public bool IsClients
         {
             get;
             set;

@@ -9,13 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Scripts\Home\NewFolder\**" />
-    <Content Remove="Scripts\Home\NewFolder\**" />
-    <EmbeddedResource Remove="Scripts\Home\NewFolder\**" />
-    <None Remove="Scripts\Home\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Remove="Scripts\types\jqueryui\tsconfig.json" />
     <Content Remove="Scripts\types\jquery\tsconfig.json" />
   </ItemGroup>
@@ -27,8 +20,18 @@
 
   <ItemGroup>
     <Content Include="wwwroot\css\Account\Login.css" />
+    <Content Include="wwwroot\css\Home\Clients - Copy.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\css\Home\Clients - Copy.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\css\Home\Clients.css" />
+    <Content Include="wwwroot\css\Home\Clients.min.css" />
     <Content Include="wwwroot\css\Home\ProgramDetails.css" />
     <Content Include="wwwroot\css\Home\Roles.css" />
+    <Content Include="wwwroot\css\Home\TaskAssignment.css" />
+    <Content Include="wwwroot\css\Home\TaskAssignment.min.css" />
     <Content Include="wwwroot\js\Home\Roles.js" />
     <Content Include="wwwroot\js\Home\tree.js" />
     <Content Include="wwwroot\lib\Other\Splitter\Split.js" />

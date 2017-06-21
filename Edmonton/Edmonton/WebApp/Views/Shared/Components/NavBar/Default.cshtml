@@ -15,9 +15,9 @@
             {
                 <li><a asp-area="" asp-controller="Home" asp-action="ProgramDetails">Program Details</a></li>
             }
-            @if (Model.IsUserRegistration)
+            @if (Model.IsClients)
             {
-                <li><a asp-area="" asp-controller="Home" asp-action="UserRegistration">User Registration</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Clients">Clients</a></li>
             }
             @if (Model.IsPaymentDetails)
             {
