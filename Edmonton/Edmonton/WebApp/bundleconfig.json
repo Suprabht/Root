@@ -24,6 +24,12 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/css/Home/UserLevel.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/UserLevel.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/css/Home/TaskAssignment.min.css",
     "inputFiles": [
       "wwwroot/css/Home/TaskAssignment.css"
@@ -59,6 +65,18 @@
     "outputFileName": "wwwroot/js/Home/Clients.min.js",
     "inputFiles": [
       "wwwroot/js/Home/Clients.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/UserLevel.js",
+    "inputFiles": [
+      "Scripts/Home/UserLevel/UserLevel.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/UserLevel.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/UserLevel.js"
     ]
   },
   {

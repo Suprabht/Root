@@ -4,18 +4,6 @@ TaskAssignment.prototype.init = function () {
         function (data) {
             taskAssignment.loadGrid(data);
         });
-
-    //var data = {
-    //    "page": "1",
-    //    "records": "3",
-    //    "rows": [
-    //        { "id": "83123a", Name: "Name 1", "PackageCode": "83123a" },
-    //        { "id": "83432a", Name: "Name 3", "PackageCode": "83432a" },
-    //        { "id": "83566a", Name: "Name 2", "PackageCode": "83566a" }
-    //    ]
-    //};
-
-    //this.loadGrid(data);
 };
 TaskAssignment.prototype.loadGrid = function (data) {
     var grid = $("#grid");

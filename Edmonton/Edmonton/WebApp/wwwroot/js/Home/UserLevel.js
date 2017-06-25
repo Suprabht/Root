@@ -1,22 +1,18 @@
-TaskAssignment = function () { };
-TaskAssignment.prototype.init = function () {
-    $.getJSON("/Home/GetAssignment",
+UserLevel = function () { };
+UserLevel.prototype.init = function () {
+
+    $.getJSON("/Home/GetUserLevel",
         function (data) {
-            taskAssignment.loadGrid(data);
+            userLevel.loadGrid(data);
         });
 };
-TaskAssignment.prototype.loadGrid = function (data) {
+UserLevel.prototype.loadGrid = function (data) {
     var grid = $("#grid");
     grid.jqGrid({
         colModel: [
-            { label: 'Assignment Id', name: 'assignmentId', index: 'assignmentId', width: "110", editable: false, editrules: { required: true } },
-            { label: 'Assignment Date', name: 'assignmentDate', index: 'assignmentDate', width: "110", editable: true, editrules: { required: true } },
-            { label: 'Client Id', name: 'clientId', index: 'clientId', width: "110", hidden: true, editable: true, editrules: { required: true } },
-            { label: 'Client Name', name: 'clientName', index: 'clientName', width: "110", editable: true, editrules: { required: true } },
-            { label: 'Client Address', name: 'clientAddress', index: 'clientAddress', width: "110", editable: true, editrules: { required: true } },
-            { label: 'User Id', name: 'userId', index: 'userId', width: "110", hidden: true, editable: true, editrules: { required: true } },
-            { label: 'User Name', name: 'userName', index: 'userName', width: "110", editable: true, editrules: { required: true } },
-            { label: 'User Email', name: 'userEmail', index: 'userEmail', width: "110", editable: true, editrules: { required: true } },
+            { label: 'User Level Id', name: 'userLevelId', index: 'userLevelId', width: "110", editable: false, editrules: { required: true } },
+            { label: 'User Level Name', name: 'userLevelName', index: 'userLevelName', width: "210", editable: true, editrules: { required: true } },
+            { label: 'User Level Description', name: 'userLevelDescription', index: 'userLevelDescription', width: "350", editable: true, editrules: { required: true } }
         ],
         pager: '#gridPager',
         regional: 'en',
@@ -25,7 +21,7 @@ TaskAssignment.prototype.loadGrid = function (data) {
         jsonReader: { repeatitems: false },
         rowNum: data.records,
         viewrecords: true,
-        caption: "Assignment",
+        caption: "User Level",
         height: "auto",
         ignoreCase: true
     });
@@ -80,5 +76,6 @@ TaskAssignment.prototype.loadGrid = function (data) {
             }
         });
 }
-var taskAssignment = new TaskAssignment();
-taskAssignment.init();
+
+var userLevel = new UserLevel();
+userLevel.init();

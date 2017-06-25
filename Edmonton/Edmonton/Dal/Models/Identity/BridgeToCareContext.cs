@@ -16,6 +16,7 @@ namespace Dal.Models.Identity
         public virtual DbSet<ProgramDetails> ProgramDetails { get; set; }
         public virtual DbSet<ClientDetails> ClientDetails { get; set; }
         public virtual DbSet<Assignment> Assignment { get; set; }
+        public virtual DbSet<UserLevel> UserLevel { get; set; }
 
         public BridgeToCareContext(DbContextOptions<BridgeToCareContext> options) : base(options)
         { }
@@ -168,6 +169,11 @@ namespace Dal.Models.Identity
                     .WithMany(p => p.Assignment)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_Assignment_ClientDetails");
+            });
+
+            modelBuilder.Entity<UserLevel>(entity =>
+            {
+                entity.Property(e => e.UserLevelName).HasMaxLength(50);
             });
         }
     }

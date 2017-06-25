@@ -244,6 +244,22 @@ namespace WebApp.Controllers
         }
         #endregion
 
+        #region userLevel
+        public IActionResult UserLevelDetails()
+        {
+            ViewData["Message"] = "Your User Level Details page.";
+
+            return View();
+        }
+
+        public IActionResult GetUserLevel()
+        {
+            var programs = _context.UserLevel.ToList();
+            var jsonstring = JsonHelper.Serialize(programs);
+            return Json(new { page = 1, records = programs.Count, rows = programs });
+        }
+        #endregion
+
         public IActionResult PaymentDetails()
         {
             ViewData["Message"] = "Your Payment Details page.";
@@ -256,12 +272,7 @@ namespace WebApp.Controllers
 
             return View();
         }
-        public IActionResult UserLevelDetails()
-        {
-            ViewData["Message"] = "Your User Level Details page.";
-
-            return View();
-        }
+       
         public IActionResult DataBackup()
         {
             ViewData["Message"] = "Your Data Backup page.";

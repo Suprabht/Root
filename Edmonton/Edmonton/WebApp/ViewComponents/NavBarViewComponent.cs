@@ -29,6 +29,7 @@ namespace WebApp.ViewComponents
                     menu.IsProgramDetails = true;
                     menu.IsPaymentDetails = true;
                     menu.IsDataBackup = true;
+                    menu.IsUserLevelDetail = true;
 
                 }
 

@@ -33,11 +33,13 @@ namespace Dal.Models.Identity
         public string Address { get; set; }
         public string AlternetPhone { get; set; }
         public string BloodGroup { get; set; }
+        public int? UserLevelId { get; set; }
 
 
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<Assignment> Assignment { get; set; }
+        public virtual UserLevel UserLevel { get; set; }
     }
 }

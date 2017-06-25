@@ -32,6 +32,8 @@
     <Content Include="wwwroot\css\Home\Roles.css" />
     <Content Include="wwwroot\css\Home\TaskAssignment.css" />
     <Content Include="wwwroot\css\Home\TaskAssignment.min.css" />
+    <Content Include="wwwroot\css\Home\UserLevel.css" />
+    <Content Include="wwwroot\css\Home\UserLevel.min.css" />
     <Content Include="wwwroot\js\Home\Roles.js" />
     <Content Include="wwwroot\js\Home\tree.js" />
     <Content Include="wwwroot\lib\Other\Splitter\Split.js" />
