@@ -35,7 +35,7 @@ namespace WebApp.Controllers
             return View();
         }
 
-       
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -50,6 +50,37 @@ namespace WebApp.Controllers
 
             return View();
         }
+
+        #region User
+       // [HttpGet]
+        public IActionResult GetUsers()
+        {
+            var users = new List<UserDetails>();
+            var role = _context.AspNetRoles
+                    .Where(b => b.Name == "Employees")
+                    .FirstOrDefault();
+
+            foreach (var userRoles in _context.AspNetUserRoles.ToList().Where(n => n.RoleId == role.Id).ToList())
+            {
+                if (userRoles.UserId != null)
+                {
+                    var user = _context.AspNetUsers.ToList().Where(u => u.Id == userRoles.UserId).Single();
+                    users.Add(new UserDetails {
+                        Id = user.Id,
+                        Name = user.FullName,
+                        Email = user.Email,
+                        Address = user.Address,
+                        AlternateEmail = user.AlternetEmail,
+                        AlternetPhone = user.AlternetPhone,
+                        BloodGroup = user.BloodGroup,
+                        Phone = user.PhoneNumber
+                    });
+                }
+            }
+            return Json(new { page = 1, records = users.Count, rows = users });
+
+        }
+        #endregion
 
         #region Roles
         [Authorize]
@@ -84,7 +115,7 @@ namespace WebApp.Controllers
 
             return ViewComponent("UserDetails", userDetails);
         }
-        
+
         public IActionResult AddUser(string id)
         {
             var roll = _context.AspNetRoles.Find(id);
@@ -131,7 +162,7 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-            var userToUpdate = _context.AspNetUsers.Find(userDetails.Id); 
+            var userToUpdate = _context.AspNetUsers.Find(userDetails.Id);
             userToUpdate.PhoneNumber = userDetails.Phone;
             userToUpdate.Email = userDetails.Email;
             userToUpdate.FullName = userDetails.Name;
@@ -176,28 +207,63 @@ namespace WebApp.Controllers
             return View();
         }
 
-        public IActionResult GetPrograms(UserDetails userDetails)
+        [HttpGet]
+        public IActionResult Program()
         {
             var programs = _context.ProgramDetails.ToList();
             var jsonstring = JsonHelper.Serialize(programs);
             return Json(new { page = 1, records = programs.Count, rows = programs });
         }
 
+        [HttpPost]
+        public IActionResult Program(int id, ProgramDetails programDetails)
+        {
+            if (programDetails == null)
+            {
+                return NotFound();
+            }
+            var programDetailsToUpdate = _context.ProgramDetails.Find(programDetails.ProgramId);
+            programDetailsToUpdate.ProgramName = programDetails.ProgramName;
+            programDetailsToUpdate.ProgramDescription = programDetails.ProgramDescription;
+            _context.ProgramDetails.Update(programDetailsToUpdate);
+            _context.SaveChanges();
+            return Json(new { Response = "Success" });
+        }
+
+        [HttpPut]
+        public IActionResult Program(ProgramDetails programDetails)
+        {
+            _context.ProgramDetails.Add(programDetails);
+            _context.SaveChanges();
+            return Json(new { Response = "Success" });
+        }
+        [HttpDelete]
+        public IActionResult Program(int id)
+        {
+            var programDetails = _context.ProgramDetails.Find(id);
+            if (programDetails != null)
+            {
+                _context.Entry(programDetails).State = EntityState.Deleted;
+                _context.SaveChanges();
+            }
+            return Json(new { Response = "Success" });
+        }
         #endregion
 
         #region Clients
+        [Authorize]
         public IActionResult Clients()
         {
             ViewData["Message"] = "Your Client page.";
 
             return View();
         }
-
-        public IActionResult GetClients()
+        [HttpGet]
+        public IActionResult Client()
         {
             var clientsDal = _context.ClientDetails.ToList();
             List<Client> clients = new List<Client>();
-            foreach(var clientDal in clientsDal)
+            foreach (var clientDal in clientsDal)
             {
                 var client = new Client();
                 client.ClientAddress = clientDal.ClientAddress;
@@ -210,21 +276,64 @@ namespace WebApp.Controllers
             }
             return Json(new { page = 1, records = clients.Count, rows = clients });
         }
+
+        [HttpPost]
+        public IActionResult Client(int id, Client client)
+        {
+            var clientToUpdate = _context.ClientDetails.Find(client.ClientId);
+
+            clientToUpdate.ClientAddress = client.ClientAddress;
+            clientToUpdate.ClientName = client.ClientName;
+            clientToUpdate.Latt = client.Latt;
+            clientToUpdate.Long = client.Long;
+            _context.ClientDetails.Update(clientToUpdate);
+            _context.SaveChanges();
+            return Json(new { Response = "Success" });
+        }
+
+        [HttpPut]
+        public IActionResult Client(Client client)
+        {
+            var clientDetails = new ClientDetails()
+            {
+                ClientId = client.ClientId,
+                ClientAddress = client.ClientAddress,
+                ClientName = client.ClientName,
+                Latt = client.Latt,
+                Long = client.Long
+            };
+            _context.ClientDetails.Add(clientDetails);
+            _context.SaveChanges();
+            return Json(new { Response = "Success" });
+        }
+
+        [HttpDelete]
+        public IActionResult Client(int id)
+        {
+            var clientDetails = _context.ClientDetails.Find(id);
+            if (clientDetails != null)
+            {
+                _context.Entry(clientDetails).State = EntityState.Deleted;
+                _context.SaveChanges();
+            }
+            return Json(new { Response = "Success" });
+        }
         #endregion
 
         #region TaskAssignment
-        public IActionResult TaskAssignment()
+        public IActionResult TaskAssignmentDetails()
         {
             ViewData["Message"] = "Your Task Assignment page.";
 
             return View();
         }
 
-        public IActionResult GetAssignment()
+        [HttpGet]
+        public IActionResult TaskAssignment()
         {
             List<Models.Home.Assignment> assigns = new List<Models.Home.Assignment>();
             var assignmentsDal = _context.Assignment.ToList();
-            foreach(var assignmentDal in assignmentsDal)
+            foreach (var assignmentDal in assignmentsDal)
             {
                 Models.Home.Assignment assign = new Models.Home.Assignment();
                 assign.AssignmentId = assignmentDal.AssignmentId;
@@ -242,9 +351,29 @@ namespace WebApp.Controllers
             var jsonstring = JsonHelper.Serialize(assigns);
             return Json(new { page = 1, records = assignmentsDal.Count, rows = assigns });
         }
+
+        [HttpPost]
+        public IActionResult TaskAssignment(int id, ProgramDetails programDetails)
+        {
+            return Json(new { Response = "Success" });
+        }
+
+        [HttpPut]
+        public IActionResult TaskAssignment(ProgramDetails programDetails)
+        {
+            
+            return Json(new { Response = "Success" });
+        }
+
+        [HttpDelete]
+        public IActionResult TaskAssignment(int id)
+        {
+            return Json(new { Response = "Success" });
+        }
         #endregion
 
-        #region userLevel
+        #region UserLevel
+        [Authorize]
         public IActionResult UserLevelDetails()
         {
             ViewData["Message"] = "Your User Level Details page.";
@@ -252,11 +381,52 @@ namespace WebApp.Controllers
             return View();
         }
 
-        public IActionResult GetUserLevel()
+        [HttpGet]
+        public IActionResult UserLevel()
         {
             var programs = _context.UserLevel.ToList();
             var jsonstring = JsonHelper.Serialize(programs);
             return Json(new { page = 1, records = programs.Count, rows = programs });
+        }
+
+        [HttpPost]
+        public IActionResult UserLevel(int id, UserLevel userLevel)
+        {
+            if (userLevel == null)
+            {
+                return NotFound();
+            }
+            var userLevelToUpdate = _context.UserLevel.Find(userLevel.UserLevelId);
+            userLevelToUpdate.UserLevelName = userLevel.UserLevelName;
+            userLevelToUpdate.UserLevelDescription = userLevel.UserLevelDescription;
+            _context.UserLevel.Update(userLevelToUpdate);
+            _context.SaveChanges();
+            return Json(new { Response = "Success" });
+        }
+
+        [HttpPut]
+        public IActionResult UserLevel(UserLevel userLevel)
+        {
+            //if (ModelState.IsValid)
+            //{
+            _context.UserLevel.Add(userLevel);
+            _context.SaveChanges();
+            return Json(new { Response = "Success" });
+            //}
+            //return Json(new { Response = "Error: User Level is not valid." });
+        }
+
+        [HttpDelete]
+        public IActionResult UserLevel(int id)
+        {
+            var userLevel = _context.UserLevel.Find(id);
+            if (userLevel != null)
+            {
+                _context.Entry(userLevel).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+                _context.SaveChanges();
+            }
+
+            return Json(new { Response = "Success" });
         }
         #endregion
 
@@ -272,7 +442,7 @@ namespace WebApp.Controllers
 
             return View();
         }
-       
+
         public IActionResult DataBackup()
         {
             ViewData["Message"] = "Your Data Backup page.";
@@ -280,7 +450,7 @@ namespace WebApp.Controllers
             return View();
         }
 
-        
+
         public IActionResult AssignmentPlan()
         {
             ViewData["Message"] = "Your Assignment Plan page.";

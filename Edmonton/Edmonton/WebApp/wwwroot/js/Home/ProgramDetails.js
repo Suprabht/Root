@@ -1,27 +1,21 @@
 ProgramDetails = function () { };
 ProgramDetails.prototype.init = function () {
-    $.getJSON("/Home/GetPrograms",
+    var table = document.createElement('table');
+    table.id = 'grid';
+    $('#gridContainer').append(table);
+    var div = document.createElement('div');
+    div.id = 'gridPager';
+    $('#gridContainer').append(div);
+    $.getJSON("/Home/Program",
         function (data) {
             programDetails.loadGrid(data);
         });
-
-    //var data = {
-    //    "page": "1",
-    //    "records": "3",
-    //    "rows": [
-    //        { "id": "83123a", Name: "Name 1", "PackageCode": "83123a" },
-    //        { "id": "83432a", Name: "Name 3", "PackageCode": "83432a" },
-    //        { "id": "83566a", Name: "Name 2", "PackageCode": "83566a" }
-    //    ]
-    //};
-
-    //this.loadGrid(data);
 };
 ProgramDetails.prototype.loadGrid = function (data) {
     var grid = $("#grid");
     grid.jqGrid({
         colModel: [
-            { label: 'Program Id', name: 'programId', index: 'programId', width: "110", editable: false, editrules: { required: true } },
+            { label: 'Program Id', name: 'programId', index: 'programId', width: "110", editable: false, editrules: { required: true }, key: true  },
             { label: 'Program Name', name: 'programName', index: 'programName', width: "210", editable: true, editrules: { required: true } },
             { label: 'Program Description', name: 'programDescription', index: 'programDescription', width: "350", editable: true, editrules: { required: true } }
         ],
@@ -41,17 +35,28 @@ ProgramDetails.prototype.loadGrid = function (data) {
         { edit: true, add: true, del: true, search: false, refresh: false, view: false, position: "left", cloneToTop: false },
         // options for the Edit Dialog
         {
+            url: "/Home/Program",
             editCaption: "The Edit Dialog",
             recreateForm: true,
-            checkOnUpdate: true,
-            checkOnSubmit: true,
+            checkOnUpdate: false,
+            checkOnSubmit: false,
             closeAfterEdit: true,
             reloadAfterSubmit: true,
-            ajaxEditOptions: { contentType: "application/json" },
-            serializeEditData: function (data1) {
-                alert(data1);
-                //var postData = { 'data': data };
-                //return JSON.stringify(postData);
+            mtype: "POST",
+            modal: true,
+            jqModal: true,
+            serializeEditData: function (data) {
+                var programDetailsData = {
+                    programId: parseInt(data.id),
+                    programName: data.programName,
+                    programDescription: data.programDescription
+                };
+                return programDetailsData;
+            },
+            afterSubmit: function (response, postdata) {
+                programDetails.unLoadGrid();
+                programDetails.init();
+                return true;
             },
             errorTextFormat: function (data1) {
                 return 'Error: ' + data1.responseText;
@@ -59,12 +64,20 @@ ProgramDetails.prototype.loadGrid = function (data) {
         },
         // options for the Add Dialog
         {
+            url: "/Home/Program",
             closeAfterAdd: true,
             recreateForm: true,
-            serializeAddData: function (data1) {
-                alert(data1);
-                //var postData = { 'data': data };
-                //return JSON.stringify(postData);
+            mtype: "PUT",
+            checkOnUpdate: false,
+            checkOnSubmit: false,
+            closeAfterAdd: true,
+            clearAfterAdd: true,
+            reloadAfterSubmit: false,
+            afterSubmit: function (response, postdata) {
+                programDetails.unLoadGrid();
+                programDetails.init();
+                $(".ui-icon-closethick").trigger('click');
+                return true;
             },
             errorTextFormat: function (data1) {
                 return 'Error: ' + data1.responseText;
@@ -72,20 +85,33 @@ ProgramDetails.prototype.loadGrid = function (data) {
         },
         // options for the Delete Dailog
         {
-            ajaxDelOptions: { contentType: "application/json" },
-            serializeDelData: function (data1) {
-                alert(data1);
-                //var postData = { 'data': data };
-                //return JSON.stringify(postData);
-            },
-
+            url: "/Home/Program",
+            mtype: "DELETE",
+            editCaption: "The Edit Dialog",
+            recreateForm: true,
+            checkOnUpdate: false,
+            checkOnSubmit: false,
+            closeAfterDelete: true,
+            reloadAfterSubmit: true,
+            modal: true,
+            jqModal: true,
             afterSubmit: function (response, postdata) {
-                alert(response);
+
+                programDetails.unLoadGrid();
+                programDetails.init();
+                $(".ui-icon-closethick").trigger('click');
+                return true;
             },
             errorTextFormat: function (data1) {
                 return 'Error: ' + data1.responseText;
             }
         });
+}
+ProgramDetails.prototype.unLoadGrid = function () {
+    $('#grid').jqGrid("clearGridData");
+    $('#grid').remove();
+    $('#gridPager').remove();
+    $('#gridContainer').empty();
 }
 var programDetails = new ProgramDetails();
 programDetails.init();
