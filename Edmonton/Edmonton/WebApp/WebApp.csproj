@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Content Include="wwwroot\css\Account\Login.css" />
+    <Content Include="wwwroot\css\Home\AssignmentPlan.css" />
     <Content Include="wwwroot\css\Home\Clients - Copy.css">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -28,6 +29,7 @@
     </Content>
     <Content Include="wwwroot\css\Home\Clients.css" />
     <Content Include="wwwroot\css\Home\Clients.min.css" />
+    <Content Include="wwwroot\css\Home\LeavePlanner.css" />
     <Content Include="wwwroot\css\Home\ProgramDetails.css" />
     <Content Include="wwwroot\css\Home\Roles.css" />
     <Content Include="wwwroot\css\Home\TaskAssignment.css" />
@@ -39,12 +41,14 @@
     <Content Include="wwwroot\lib\Other\Splitter\Split.js" />
     <Content Include="wwwroot\lib\Other\Splitter\Splitter.js" />
     <Content Include="wwwroot\lib\Other\Splitter\Splitter.min.js" />
+    <Content Include="wwwroot\lib\zabuto_calendar\zabuto_calendar.css" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="1.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.2" />

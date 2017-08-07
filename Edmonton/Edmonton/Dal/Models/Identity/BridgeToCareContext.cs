@@ -13,9 +13,11 @@ namespace Dal.Models.Identity
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<ProgramDetails> ProgramDetails { get; set; }
-        public virtual DbSet<ClientDetails> ClientDetails { get; set; }
         public virtual DbSet<Assignment> Assignment { get; set; }
+        public virtual DbSet<ClientDetails> ClientDetails { get; set; }
+        public virtual DbSet<Leave> Leave { get; set; }
+        public virtual DbSet<ProgramDetails> ProgramDetails { get; set; }
+        public virtual DbSet<Tracking> Tracking { get; set; }
         public virtual DbSet<UserLevel> UserLevel { get; set; }
 
         public BridgeToCareContext(DbContextOptions<BridgeToCareContext> options) : base(options)

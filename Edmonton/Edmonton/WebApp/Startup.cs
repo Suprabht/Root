@@ -32,7 +32,13 @@ namespace WebApp
             services.AddIdentity<AppIdentityUser, AppIdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
-
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Cookie settings
+                options.Cookies.ApplicationCookie.ExpireTimeSpan = System.TimeSpan.FromMinutes(1);
+                options.Cookies.ApplicationCookie.LoginPath = "/Account/Login";
+                options.Cookies.ApplicationCookie.LogoutPath = "/Account/LogOff";
+            });
             services.Configure<Appsettings>(appsettings =>
             {
                 appsettings.ApplicationName = Configuration.GetSection("ApplicationName").Value;
@@ -40,7 +46,7 @@ namespace WebApp
             });
             // Add framework services.
             services.AddMvc();
-
+            services.AddSession();
             services.AddDbContext<BridgeToCareContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
@@ -65,13 +71,14 @@ namespace WebApp
 
             app.UseIdentity();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Account}/{action=Login}/{id?}");
             });
+
         }
     }
 }

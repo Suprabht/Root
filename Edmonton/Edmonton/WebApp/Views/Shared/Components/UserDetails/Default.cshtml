@@ -7,6 +7,10 @@
     <ul>
         <li><a href="#tabs-1">General Details</a></li>
         <li><a href="#tabs-2">Reset Password</a></li>
+    @if (Model.RoleName == "Employees")
+    {
+            <li><a href="#tabs-3">Leave Planner</a></li>
+    }
     </ul>
 }
     <div id="tabs-1">
@@ -73,4 +77,25 @@
             <button class="btn btn-default">Send password reset email</button>
         </div>
     }
+    @if (!Model.AddView)
+    {
+        @if (Model.RoleName == "Employees")
+        {
+            <div id="tabs-3">
+                <div id="leave-calendar">
+                </div>
+            </div>
+        <!-- set the legend for the calendar -->
+            <script type="application/javascript">
+            $(document).ready(function () {
+                $.getJSON("/Home/LeaveCalendar/@Model.Id",
+                function (data) {
+                            $("#leave-calendar").zabuto_calendar({                            
+                            data:data.calendarDates
+                      });
+                });
+            });
+            </script>
+            }
+        }
 </div>

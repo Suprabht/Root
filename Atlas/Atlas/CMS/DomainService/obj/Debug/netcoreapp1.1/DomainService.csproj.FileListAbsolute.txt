@@ -1,5 +1,3 @@
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DomainService\bin\Debug\netcoreapp1.1\Microsoft.DiaSymReader.Native.x86.dll
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DomainService\bin\Debug\netcoreapp1.1\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DomainService\bin\Debug\netcoreapp1.1\CMS.DomainService.deps.json
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DomainService\bin\Debug\netcoreapp1.1\CMS.DomainService.runtimeconfig.json
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Atlas\Atlas\CMS\DomainService\bin\Debug\netcoreapp1.1\CMS.DomainService.runtimeconfig.dev.json

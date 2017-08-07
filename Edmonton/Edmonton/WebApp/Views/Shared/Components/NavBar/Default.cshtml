@@ -19,7 +19,7 @@
             {
                 <li><a asp-area="" asp-controller="Home" asp-action="Clients">Clients</a></li>
             }
-            @if (Model.IsPaymentDetails)
+            @if (Model.IsAttendanceDetails)
             {
                 <li><a asp-area="" asp-controller="Home" asp-action="PaymentDetails">Payment Details</a></li>
             }
@@ -39,9 +39,9 @@
             {
                 <li><a asp-area="" asp-controller="Home" asp-action="AssignmentPlan">Assignment Plan</a></li>
             }
-            @if (Model.IsPaymentView)
+            @if (Model.IsAttendanceView)
             {
-                <li><a asp-area="" asp-controller="Home" asp-action="PaymentView">Payment View</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="AttendanceView">Attendance View</a></li>
             }
             @if (Model.IsLeavePlanner)
             {

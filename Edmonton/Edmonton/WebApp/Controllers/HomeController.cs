@@ -14,6 +14,7 @@ using Dal.Models.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Models.Home;
 using SystemFramework.Json;
+using System.Text;
 
 namespace WebApp.Controllers
 {
@@ -99,7 +100,8 @@ namespace WebApp.Controllers
         {
             //var user = _context.AspNetUsers.ToList().Where(n => n.Id == id).ToList()[0];
             var user = _context.AspNetUsers.Find(id);
-
+            var userRoll = _context.AspNetUserRoles.ToList().Where(ur => ur.UserId == id).ToList()[0];
+            var roll = _context.AspNetRoles.ToList().Where(r => r.Id == userRoll.RoleId).Single();
             UserDetails userDetails = new UserDetails
             {
                 Id = user.Id,
@@ -109,8 +111,9 @@ namespace WebApp.Controllers
                 Address = user.Address,
                 Phone = user.PhoneNumber,
                 AlternetPhone = user.AlternetPhone,
-                BloodGroup = user.BloodGroup
-
+                BloodGroup = user.BloodGroup,
+                RoleId = roll.Id,
+                RoleName = roll.Name
             };
 
             return ViewComponent("UserDetails", userDetails);
@@ -372,6 +375,44 @@ namespace WebApp.Controllers
         }
         #endregion
 
+        #region AssignmentPlan
+        public IActionResult AssignmentPlan()
+        {
+            ViewData["Message"] = "Your Assignment Plan page.";
+
+            return View();
+        }
+        [Authorize]
+        [HttpGet]
+        public IActionResult AssignmentPlanRecords()
+        {
+            List<Models.Home.Assignment> assigns = new List<Models.Home.Assignment>();
+            byte[] useridB;
+            var userId = HttpContext.Session.TryGetValue("userId", out useridB);
+            var assignmentsDal = _context.Assignment.ToList().Where(u=>u.UserId == Encoding.ASCII.GetString(useridB)).ToList();
+            foreach (var assignmentDal in assignmentsDal)
+            {
+                Models.Home.Assignment assign = new Models.Home.Assignment();
+                assign.AssignmentId = assignmentDal.AssignmentId;
+                assign.AssignmentDate = Convert.ToDateTime(assignmentDal.AssignmentDate);
+                assign.ClientId = Convert.ToInt16(assignmentDal.ClientId);
+                var client = _context.ClientDetails.Find(assign.ClientId);
+                assign.ClientName = client.ClientName;
+                assign.ClientAddress = client.ClientAddress;
+                assign.Latt = client.Latt;
+                assign.Long = client.Long;
+                assign.Link = string.Format("http://maps.google.com/maps?q={0},{1}", client.Latt, client.Long);
+                assign.UserId = assignmentDal.UserId;
+                var user = _context.AspNetUsers.Find(assign.UserId);
+                assign.UserName = user.UserName;
+                assign.UserEmail = user.Email;
+                assigns.Add(assign);
+            }
+            var jsonstring = JsonHelper.Serialize(assigns);
+            return Json(new { page = 1, records = assignmentsDal.Count, rows = assigns });
+        }
+        #endregion
+
         #region UserLevel
         [Authorize]
         public IActionResult UserLevelDetails()
@@ -430,9 +471,67 @@ namespace WebApp.Controllers
         }
         #endregion
 
-        public IActionResult PaymentDetails()
+        #region EmployeesIndex
+        public IActionResult EmployeesIndex()
         {
-            ViewData["Message"] = "Your Payment Details page.";
+            ViewData["Message"] = "Your application description page.";
+
+            return View();
+        }
+        #endregion
+
+        #region LeavePlanner
+        public IActionResult LeavePlanner()
+        {
+            ViewData["Message"] = "Your Leave Planner page.";
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Leave()
+        {
+            byte[] useridB;
+            var userId = HttpContext.Session.TryGetValue("userId", out useridB);
+            var leaves = _context.Leave.ToList().Where(u => u.UserId == Encoding.ASCII.GetString(useridB)).ToList();
+            List<Models.Home.Leave> leavesModel = new List<Models.Home.Leave>();
+            foreach (var leave in leaves)
+            {
+                leavesModel.Add(new Models.Home.Leave
+                {
+                    LeaveId = leave.LeaveId,
+                    LeaveDate = leave.LeaveDate,
+                    UserId = leave.UserId
+                });
+            }
+            return Json(new { page = 1, records = leavesModel.Count, rows = leavesModel });
+        }
+
+       
+        public IActionResult LeaveCalendar(string id)
+        {
+            byte[] useridB;
+            var userId = HttpContext.Session.TryGetValue("userId", out useridB);
+            var leaves = _context.Leave.ToList().Where(u => u.UserId == (string.IsNullOrEmpty(id)? Encoding.ASCII.GetString(useridB):id)).ToList();
+            List<CalendarDate> calendarDates = new List<CalendarDate>();
+            foreach (var leave in leaves)
+            {
+                calendarDates.Add(new CalendarDate
+                {
+                    Date = String.Format("{0:yyyy-MM-dd}", leave.LeaveDate),
+                    Badge = false,
+                    Title = leave.LeaveDescription
+                    //Body = "<p class=\"lead\">Information for this date</p><p>You can add <strong>html</strong> in this block</p>",
+                    //Footer = "Extra information",
+                    //Classname = "grade-1"
+                });
+            }
+            return Json(new { calendarDates });
+        }
+        #endregion
+        public IActionResult AttendanceDetails()
+        {
+            ViewData["Message"] = "Your Attendance Details page.";
 
             return View();
         }
@@ -451,24 +550,14 @@ namespace WebApp.Controllers
         }
 
 
-        public IActionResult AssignmentPlan()
-        {
-            ViewData["Message"] = "Your Assignment Plan page.";
-
-            return View();
-        }
+        
         public IActionResult PaymentView()
         {
             ViewData["Message"] = "Your Payment View page.";
 
             return View();
         }
-        public IActionResult LeavePlanner()
-        {
-            ViewData["Message"] = "Your Leave Planner page.";
-
-            return View();
-        }
+        
 
         public IActionResult Error()
         {

@@ -22,7 +22,7 @@ namespace WebApp.Models
             get;
             set;
         }
-        public bool IsPaymentDetails
+        public bool IsAttendanceDetails
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace WebApp.Models
             get;
             set;
         }
-        public bool IsPaymentView
+        public bool IsAttendanceView
         {
             get;
             set;

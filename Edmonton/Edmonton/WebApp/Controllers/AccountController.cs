@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using WebApp.Models.Identity;
 using WebApp.ViewModels.Account;
 using SystemFrameWork.Filters.CustomAttributes;
+using System.Text;
+using Dal.Models.Identity;
+using System.Linq;
+using System;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,15 +18,16 @@ namespace Edmonton.Controllers
         private readonly UserManager<AppIdentityUser> userManager;
         private readonly SignInManager<AppIdentityUser> loginManager;
         private readonly RoleManager<AppIdentityRole> roleManager;
-
+        private readonly BridgeToCareContext _context;
 
         public AccountController(UserManager<AppIdentityUser> userManager,
            SignInManager<AppIdentityUser> loginManager,
-           RoleManager<AppIdentityRole> roleManager)
+           RoleManager<AppIdentityRole> roleManager, BridgeToCareContext context)
         {
             this.userManager = userManager;
             this.loginManager = loginManager;
             this.roleManager = roleManager;
+            _context = context;
         }
         #region Register
         // GET: /<controller>/
@@ -114,18 +119,40 @@ namespace Edmonton.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = userManager.FindByEmailAsync(obj.EmailId);
-                if (user.Result != null)
+                try
                 {
-                    var result = loginManager.PasswordSignInAsync
-                                    (user.Result, obj.Password,
-                                      obj.RememberMe, false).Result;
-
-                    if (result.Succeeded)
+                    var user = userManager.FindByEmailAsync(obj.EmailId);
+                    if (user.Result != null)
                     {
-                        return RedirectToAction("Index", "Home");
+                        var result = loginManager.PasswordSignInAsync
+                                        (user.Result, obj.Password,
+                                          obj.RememberMe, false).Result;
+
+                        if (result.Succeeded)
+                        {
+                            var userDetail = _context.AspNetUsers.ToList().Where(u => u.Email == obj.EmailId).Single();
+                            var userRoll = _context.AspNetUserRoles.ToList().Where(u => u.UserId == userDetail.Id).Single();
+                            var roll = _context.AspNetRoles.ToList().Where(u => u.Id == userRoll.RoleId).Single();
+                            HttpContext.Session.Set("roleId", Encoding.ASCII.GetBytes(roll.Id));
+                            HttpContext.Session.Set("roleName", Encoding.ASCII.GetBytes(roll.Name));
+                            HttpContext.Session.Set("userId", Encoding.ASCII.GetBytes(userDetail.Id));
+                            HttpContext.Session.Set("userEmail", Encoding.ASCII.GetBytes(userDetail.Email));
+                            if (roll.Name.Equals("Employees"))
+                            {
+                                return RedirectToAction("EmployeesIndex", "Home");
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index", "Home");
+                            }
+
+                        }
                     }
-                }               
+                }
+                catch (Exception exception)
+                {
+                    ModelState.AddModelError("", exception.Message);
+                }                           
 
                 ModelState.AddModelError("", "Invalid login!");
             }

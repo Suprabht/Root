@@ -10,6 +10,9 @@ namespace Dal.Models.Identity
             AspNetUserClaims = new HashSet<AspNetUserClaims>();
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
+            Assignment = new HashSet<Assignment>();
+            Leave = new HashSet<Leave>();
+            Tracking = new HashSet<Tracking>();
         }
 
         public string Id { get; set; }
@@ -40,6 +43,8 @@ namespace Dal.Models.Identity
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<Assignment> Assignment { get; set; }
+        public virtual ICollection<Leave> Leave { get; set; }
+        public virtual ICollection<Tracking> Tracking { get; set; }
         public virtual UserLevel UserLevel { get; set; }
     }
 }

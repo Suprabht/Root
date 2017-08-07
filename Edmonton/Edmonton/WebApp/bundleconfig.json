@@ -36,6 +36,18 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/css/Home/LeavePlanner.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/LeavePlanner.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Home/AssignmentPlan.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/AssignmentPlan.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/css/Home/ProgramDetails.min.css",
     "inputFiles": [
       "wwwroot/css/Home/ProgramDetails.css"
@@ -80,6 +92,18 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/js/Home/LeavePlanner.js",
+    "inputFiles": [
+      "Scripts/Home/LeavePlanner/LeavePlanner.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/LeavePlanner.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/LeavePlanner.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/js/Home/TaskAssignment.js",
     "inputFiles": [
       "Scripts/Home/TaskAssignment/TaskAssignment.js"
@@ -89,6 +113,18 @@
     "outputFileName": "wwwroot/js/Home/TaskAssignment.min.js",
     "inputFiles": [
       "wwwroot/js/Home/TaskAssignment.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/AssignmentPlan.js",
+    "inputFiles": [
+      "Scripts/Home/AssignmentPlan/AssignmentPlan.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/AssignmentPlan.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/AssignmentPlan.js"
     ]
   },
   {

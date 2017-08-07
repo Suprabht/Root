@@ -26,7 +26,7 @@ namespace WebApp.ViewComponents
                     menu.IsClients = true;
                     menu.IsUserInfo = true;
                     menu.IsTaskAssignment = true;
-                    menu.IsProgramDetails = true;
+                    menu.IsAttendanceDetails = true;
                     menu.IsPaymentDetails = true;
                     menu.IsDataBackup = true;
                     menu.IsUserLevelDetail = true;
@@ -45,7 +45,7 @@ namespace WebApp.ViewComponents
                 if (roles[0].Value.Equals("Employees"))
                 {
                     menu.IsAssignmentPlan = true;
-                    menu.IsPaymentView = true;
+                    menu.IsAttendanceView = true;
                     menu.IsLeavePlanner = true;
                 }
             }
