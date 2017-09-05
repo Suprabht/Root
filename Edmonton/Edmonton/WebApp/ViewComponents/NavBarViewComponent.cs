@@ -27,7 +27,7 @@ namespace WebApp.ViewComponents
                     menu.IsUserInfo = true;
                     menu.IsTaskAssignment = true;
                     menu.IsAttendanceDetails = true;
-                    menu.IsPaymentDetails = true;
+                    menu.IsProgramDetails = true;
                     menu.IsDataBackup = true;
                     menu.IsUserLevelDetail = true;
 
@@ -39,6 +39,7 @@ namespace WebApp.ViewComponents
                     menu.IsClients = true;
                     menu.IsUserInfo = true;
                     menu.IsTaskAssignment = true;
+                    menu.IsAttendanceDetails = true;
                     menu.IsUserLevelDetail = true;
                 }
 

@@ -14,6 +14,7 @@ namespace Dal.Models.Identity
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Assignment> Assignment { get; set; }
+        public virtual DbSet<Attendance> Attendance { get; set; }
         public virtual DbSet<ClientDetails> ClientDetails { get; set; }
         public virtual DbSet<Leave> Leave { get; set; }
         public virtual DbSet<ProgramDetails> ProgramDetails { get; set; }
@@ -171,6 +172,23 @@ namespace Dal.Models.Identity
                     .WithMany(p => p.Assignment)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_Assignment_ClientDetails");
+            });
+
+            modelBuilder.Entity<Attendance>(entity =>
+            {
+                entity.Property(e => e.CreatedOn)
+                    .HasColumnType("datetime")
+                    .HasComputedColumnSql("getdate()")
+                    .ValueGeneratedOnAddOrUpdate();
+
+                entity.Property(e => e.Latt).HasMaxLength(50);
+
+                entity.Property(e => e.Long).HasMaxLength(50);
+
+                entity.HasOne(d => d.Assignment)
+                    .WithMany(p => p.Attendance)
+                    .HasForeignKey(d => d.AssignmentId)
+                    .HasConstraintName("FK_Attendance_Assignment");
             });
 
             modelBuilder.Entity<UserLevel>(entity =>

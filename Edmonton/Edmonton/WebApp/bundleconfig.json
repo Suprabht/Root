@@ -48,6 +48,12 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/css/Home/Attendance.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/Attendance.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/css/Home/ProgramDetails.min.css",
     "inputFiles": [
       "wwwroot/css/Home/ProgramDetails.css"
@@ -128,6 +134,18 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/js/Home/Attendance.js",
+    "inputFiles": [
+      "Scripts/Home/Attendance/Attendance.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Attendance.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/Attendance.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/js/Home/ProgramDetails.min.js",
     "inputFiles": [
       "wwwroot/js/Home/ProgramDetails.js"
@@ -149,6 +167,30 @@
     "outputFileName": "wwwroot/js/Account/login.min.js",
     "inputFiles": [
       "Scripts/Account/Login/login.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Index.js",
+    "inputFiles": [
+      "Scripts/Home/Index/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Index.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/EmployeesIndex.js",
+    "inputFiles": [
+      "Scripts/Home/EmployeesIndex/EmployeesIndex.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/EmployeesIndex.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/EmployeesIndex.js"
     ]
   }
 ]

@@ -35,7 +35,7 @@ namespace WebApp
             services.Configure<IdentityOptions>(options =>
             {
                 // Cookie settings
-                options.Cookies.ApplicationCookie.ExpireTimeSpan = System.TimeSpan.FromMinutes(1);
+                options.Cookies.ApplicationCookie.ExpireTimeSpan = System.TimeSpan.FromHours(3);
                 options.Cookies.ApplicationCookie.LoginPath = "/Account/Login";
                 options.Cookies.ApplicationCookie.LogoutPath = "/Account/LogOff";
             });

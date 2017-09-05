@@ -46,3 +46,35 @@
     margin-top: 30px;
     border-bottom: 1px solid #ccc;
 }
+.row {
+    padding: 10px;
+}
+.tiles{
+    width:100%;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.tiles-header {
+    height:50px;
+    background-color:aquamarine;
+    border-bottom:1px solid #eee;
+}
+.tiles-body {
+    height: 200px;
+    font-size: 155px;
+    font-weight: bold;
+    padding: 0px;
+    padding-left: 117px;
+}
+.acceptButton {
+    font-size: 15px;
+}
+.today-assignment {
+    font-size: 15px;
+}
+
+.tiles-footer {
+    height: 50px;
+    border-top: 1px solid #eee;
+}

@@ -1,4 +1,39 @@
 ﻿@{
     Layout = "_EmployeesLayout";
 }
-EmployeesIndex
+@section Scripts {
+    <script src="~/js/Home/EmployeesIndex.js"></script>
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="tiles">
+            <div class="tiles-header">
+                Present Visit
+            </div>
+            <div class="tiles-body today-assignment">
+                Client Name:<span id="clientName"></span>
+                <br/>Address:<span id="address"></span>
+                <br/>Time:<span id="time"></span>
+            </div>
+            <div class="tiles-footer">
+                <button class="acceptButton" onclick="index.buttonclick()">Are you here?</button>
+                <button class="acceptButton" onclick="index.buttonclick()">Are you on emergency call?</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="tiles">
+            <div class="tiles-header">
+                Pending Acceptence
+            </div>
+            <div id="pendingAcceptence" class="tiles-body">
+                
+            </div>
+            <div class="tiles-footer">
+                more
+            </div>
+
+        </div>
+    </div>
+</div>

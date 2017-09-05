@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApp.Models.Home;
 using SystemFramework.Json;
 using System.Text;
+using GeoCoordinatePortable;
 
 namespace WebApp.Controllers
 {
@@ -529,12 +530,76 @@ namespace WebApp.Controllers
             return Json(new { calendarDates });
         }
         #endregion
+
+        #region Attendance
         public IActionResult AttendanceDetails()
         {
             ViewData["Message"] = "Your Attendance Details page.";
 
             return View();
         }
+
+        public IActionResult Attendance()
+        {
+            List<Models.Home.Attendance> assigns = new List<Models.Home.Attendance>();
+            var attendanceDal = _context.Attendance.ToList();
+            foreach (var atteDal in attendanceDal)
+            {
+                Models.Home.Attendance attend = new Models.Home.Attendance();
+                attend.AttendanceId = atteDal.AttendanceId;
+                attend.Latt = atteDal.Latt;
+                attend.Long = atteDal.Long;
+
+                var assignment = _context.Assignment.Find(atteDal.AssignmentId);
+
+                attend.AssignmentId = atteDal.AssignmentId;
+                attend.AssignmentDate = Convert.ToDateTime(assignment.AssignmentDate);
+                attend.ClientId = Convert.ToInt16(assignment.ClientId);
+                var client = _context.ClientDetails.Find(attend.ClientId);
+                attend.ClientName = client.ClientName;
+                attend.ClientAddress = client.ClientAddress;
+                
+                attend.UserId = assignment.UserId;
+                var user = _context.AspNetUsers.Find(assignment.UserId);
+                attend.UserName = user.UserName;
+                attend.UserEmail = user.Email;
+
+                attend.AssignmentDetail = String.Format("{2}. Client Name: {0} Client Address: {1}", client.ClientName, client.ClientAddress, atteDal.AssignmentId);
+
+                var sCoord = new GeoCoordinate(Convert.ToDouble(client.Latt), Convert.ToDouble(client.Long));
+                var eCoord = new GeoCoordinate(Convert.ToDouble(atteDal.Latt), Convert.ToDouble(atteDal.Long));
+
+                attend.Distance = sCoord.GetDistanceTo(eCoord);
+
+                attend.LogTime = Convert.ToDateTime(atteDal.CreatedOn);
+                assigns.Add(attend);
+            }
+            var jsonstring = JsonHelper.Serialize(assigns);
+            return Json(new { page = 1, records = attendanceDal.Count, rows = assigns });
+        }
+        #endregion
+
+        #region DirectorIndex
+
+        public IActionResult IndexDashBoard()
+        {
+            var assignment = _context.Assignment.ToList();
+
+            return Json(new { isAccepted = assignment.Where(x => x.IsAccepted == (true)).Count(), pendingApproval = assignment.Where(x => x.IsApproved == null).Count(), pendingAcceptence = assignment.Where(x => x.IsAccepted == null).Count() });
+        }
+        #endregion
+        #region EmployeIndex
+        public IActionResult IndexDashBoardEmployes()
+        {
+            byte[] useridB;
+            var userId = HttpContext.Session.TryGetValue("userId", out useridB);
+            
+            var assignmentsDal = _context.Assignment.ToList().Where(u => u.UserId == Encoding.ASCII.GetString(useridB)).ToList();
+            var assignment = assignmentsDal.Where(x => x.AssignmentDate == DateTime.Today).Single();
+            var client = _context.ClientDetails.Find(assignment.ClientId);
+            return Json(new { isPendingAccept = assignmentsDal.Where(x =>x.IsAccepted != true).Count(), clientName = (client.ClientName != null)? client.ClientName:string.Empty, clientAddress = client.ClientAddress, clientId = assignment.ClientId, assignmentDate = assignment.AssignmentDate });
+        }
+        #endregion
         public IActionResult UserInfo()
         {
             ViewData["Message"] = "Your User Info page.";

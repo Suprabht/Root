@@ -1,7 +1,6 @@
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainService\bin\Debug\netcoreapp1.1\DomainService.deps.json
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainService\bin\Debug\netcoreapp1.1\DomainService.dll
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainService\bin\Debug\netcoreapp1.1\DomainService.pdb
-C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainService\obj\Debug\netcoreapp1.1\DomainService.csprojResolveAssemblyReference.cache
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainService\obj\Debug\netcoreapp1.1\DomainService.AssemblyInfo.cs
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainService\obj\Debug\netcoreapp1.1\DomainService.dll
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainService\obj\Debug\netcoreapp1.1\DomainService.pdb
