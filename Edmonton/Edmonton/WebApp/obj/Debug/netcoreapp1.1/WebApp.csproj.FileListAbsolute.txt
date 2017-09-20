@@ -11,3 +11,4 @@ C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\D
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Debug\netcoreapp1.1\WebApp.AssemblyInfo.cs
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Debug\netcoreapp1.1\WebApp.dll
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Debug\netcoreapp1.1\WebApp.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Debug\netcoreapp1.1\WebApp.csproj.CoreCompileInputs.cache

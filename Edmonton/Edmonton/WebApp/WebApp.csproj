@@ -17,32 +17,6 @@
     <None Remove="Scripts\types\jqueryui\jqueryui-tests.ts" />
     <None Remove="Scripts\types\jquery\jquery-tests.ts" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="wwwroot\css\Account\Login.css" />
-    <Content Include="wwwroot\css\Home\Attendance.css" />
-    <Content Include="wwwroot\css\Home\AssignmentPlan - Copy.min.css">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\css\Home\AssignmentPlan.css" />
-    <Content Include="wwwroot\css\Home\Attendance.min.css" />
-    <Content Include="wwwroot\css\Home\Clients.css" />
-    <Content Include="wwwroot\css\Home\Clients.min.css" />
-    <Content Include="wwwroot\css\Home\LeavePlanner.css" />
-    <Content Include="wwwroot\css\Home\ProgramDetails.css" />
-    <Content Include="wwwroot\css\Home\Roles.css" />
-    <Content Include="wwwroot\css\Home\TaskAssignment.css" />
-    <Content Include="wwwroot\css\Home\TaskAssignment.min.css" />
-    <Content Include="wwwroot\css\Home\UserLevel.css" />
-    <Content Include="wwwroot\css\Home\UserLevel.min.css" />
-    <Content Include="wwwroot\js\Home\Index.min.js" />
-    <Content Include="wwwroot\js\Home\Roles.js" />
-    <Content Include="wwwroot\js\Home\tree.js" />
-    <Content Include="wwwroot\lib\Other\Splitter\Split.js" />
-    <Content Include="wwwroot\lib\Other\Splitter\Splitter.js" />
-    <Content Include="wwwroot\lib\Other\Splitter\Splitter.min.js" />
-    <Content Include="wwwroot\lib\zabuto_calendar\zabuto_calendar.css" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GeoCoordinate.NetCore" Version="1.0.0.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
@@ -60,7 +34,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.1" />
 
   </ItemGroup>
   <ItemGroup>
@@ -68,10 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TagHelper\" />
-    <Folder Include="wwwroot\js\Account\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="wwwroot\js\Home\Attendance.js" />
+    <Folder Include="wwwroot\lib\bootstrap-datetimepicker\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dal\Dal.csproj" />

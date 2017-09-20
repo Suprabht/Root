@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
       "Libuv/1.9.1": {
@@ -4202,6 +4202,12 @@
           "Microsoft.NETCore.App": "1.1.2",
           "Microsoft.VisualStudio.Web.BrowserLink": "1.1.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "1.1.0"
+        },
+        "compile": {
+          "bin/placeholder/Dal.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Dal.dll": {}
         }
       },
       "DomainModel/1.0.0": {
@@ -4210,6 +4216,12 @@
         "dependencies": {
           "EnumsAndConstants": "1.0.0",
           "Microsoft.NETCore.App": "1.1.2"
+        },
+        "compile": {
+          "bin/placeholder/DomainModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DomainModel.dll": {}
         }
       },
       "EnumsAndConstants/1.0.0": {
@@ -4217,6 +4229,12 @@
         "framework": ".NETCoreApp,Version=v1.1",
         "dependencies": {
           "Microsoft.NETCore.App": "1.1.2"
+        },
+        "compile": {
+          "bin/placeholder/EnumsAndConstants.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EnumsAndConstants.dll": {}
         }
       }
     }
@@ -10902,15 +10920,27 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
       "projectUniqueName": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\Repository\\Repository.csproj",
       "projectName": "Repository",
       "projectPath": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\Repository\\Repository.csproj",
+      "packagesPath": "C:\\Users\\Suprabhatpaul\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\Repository\\obj\\",
       "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Suprabhatpaul\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
       "originalTargetFrameworks": [
         "netcoreapp1.1"
       ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {
@@ -10935,5 +10965,16 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1202",
+      "level": "Error",
+      "message": "Package Microsoft.Composition 1.0.27 is not compatible with netcoreapp1.1 (.NETCoreApp,Version=v1.1). Package Microsoft.Composition 1.0.27 supports: portable-net45+win8+wp8+wpa81 (.NETPortable,Version=v0.0,Profile=Profile259)",
+      "libraryId": "Microsoft.Composition",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v1.1"
+      ]
+    }
+  ]
 }

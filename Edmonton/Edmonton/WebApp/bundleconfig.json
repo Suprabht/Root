@@ -146,6 +146,18 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/js/Home/EmployeeAttendance.js",
+    "inputFiles": [
+      "Scripts/Home/Roles/EmployeeAttendance.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/EmployeeAttendance.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/EmployeeAttendance.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/js/Home/ProgramDetails.min.js",
     "inputFiles": [
       "wwwroot/js/Home/ProgramDetails.js"

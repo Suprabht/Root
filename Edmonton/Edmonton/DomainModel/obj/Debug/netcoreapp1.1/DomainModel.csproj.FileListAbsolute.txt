@@ -7,3 +7,4 @@ C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\obj\Debug\netcoreapp1.1\DomainModel.AssemblyInfo.cs
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\obj\Debug\netcoreapp1.1\DomainModel.dll
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\obj\Debug\netcoreapp1.1\DomainModel.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\DomainModel\obj\Debug\netcoreapp1.1\DomainModel.csproj.CoreCompileInputs.cache

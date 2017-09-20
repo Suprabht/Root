@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
       "Libuv/1.9.1": {
@@ -7041,15 +7041,27 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
       "projectUniqueName": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\DomainService\\DomainService.csproj",
       "projectName": "DomainService",
       "projectPath": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\DomainService\\DomainService.csproj",
+      "packagesPath": "C:\\Users\\Suprabhatpaul\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Suprabhatpaul\\Documents\\GitHub\\Root\\Root\\Edmonton\\Edmonton\\DomainService\\obj\\",
       "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Suprabhatpaul\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
       "originalTargetFrameworks": [
         "netcoreapp1.1"
       ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {}

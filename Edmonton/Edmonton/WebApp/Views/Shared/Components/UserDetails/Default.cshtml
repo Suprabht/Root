@@ -2,29 +2,29 @@
 @model WebApp.Models.Home.UserDetails
 
 <div id="tabs">
-@if (!Model.AddView)
-{
-    <ul>
-        <li><a href="#tabs-1">General Details</a></li>
-        <li><a href="#tabs-2">Reset Password</a></li>
-    @if (Model.RoleName == "Employees")
+    @if (!Model.AddView)
     {
-            <li><a href="#tabs-3">Leave Planner</a></li>
-            <li><a href="#tabs-4">Attendence</a></li>
+        <ul>
+            <li><a href="#tabs-1">General Details</a></li>
+            <li><a href="#tabs-2">Reset Password</a></li>
+            @if (Model.RoleName == "Employees")
+            {
+                <li><a href="#tabs-3">Leave Planner</a></li>
+                <li><a href="#tabs-4">Attendence</a></li>
+            }
+        </ul>
     }
-    </ul>
-}
     <div id="tabs-1">
-    @if (Model.AddView)
-    {
-        <h1>Add users to @Model.RoleName</h1>
-        <input type="hidden" id="roleId" value="@Model.RoleId" />
-    }
+        @if (Model.AddView)
+        {
+            <h1>Add users to @Model.RoleName</h1>
+            <input type="hidden" id="roleId" value="@Model.RoleId" />
+        }
         <div>
             <div id="alertDiv" style="display: none" class="alert alert-success">
 
             </div>
-            <input type="hidden" id="id" value="@Model.Id"/>
+            <input type="hidden" id="id" value="@Model.Id" />
             <div class="form-group">
                 <label for="Name">Name:</label>
                 <input type="text" class="form-control" id="name" value="@Model.Name">
@@ -57,7 +57,7 @@
                 <label for="bloodGroup">Blood Group:</label>
                 <input type="text" class="form-control" id="bloodGroup" value="@Model.BloodGroup">
             </div>
-        @if (Model.AddView)
+            @if (Model.AddView)
         {
             <button class="btn btn-default" onclick="javascript: roles.addUserToDb();">Submit</button>
         }
@@ -91,7 +91,7 @@
             $(document).ready(function () {
                 $.getJSON("/Home/LeaveCalendar/@Model.Id",
                 function (data) {
-                            $("#leave-calendar").zabuto_calendar({                            
+                            $("#leave-calendar").zabuto_calendar({
                             data:data.calendarDates
                       });
                 });
@@ -99,9 +99,15 @@
             </script>
             <div id="tabs-4">
                 <div id="attendence">
+                    <div id="gridContainer"></div>
                 </div>
             </div>
-
+            <!-- set the legend for the Attendence -->
+            <script type="application/javascript">
+                $(document).ready(function () {
+                        employeeAttendance.init("@Model.Id");
+                    });
+            </script>
         }
     }
 </div>

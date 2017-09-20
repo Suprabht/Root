@@ -31,7 +31,7 @@ AssignmentPlan.prototype.loadGrid = function (data, clients, users) {
             { label: 'Latitude', name: 'latt', index: 'latt', width: "110", editable: false },
             { label: 'Longitude', name: 'long', index: 'long', width: "110", editable: false },
             { label: 'Link', name: 'link', width: "150", editable: false, formatter: assignmentPlan.methodFormatter },
-            { label: 'Edit', name: 'edit', index: 'edit', align: 'center', sortable: false, width: '40px' }
+            { label: 'Accept', name: 'accept', width: "150", editable: false, formatter: assignmentPlan.accept }
         ],
         pager: '#gridPager',
         regional: 'en',
@@ -47,7 +47,25 @@ AssignmentPlan.prototype.loadGrid = function (data, clients, users) {
 }
 AssignmentPlan.prototype.methodFormatter = function (cellValue, options, rowObject) {
 
-    return '<a href="' + rowObject.link + '" target="_blank" > Link </a>';
+    return '<a class="navigate" href="' + rowObject.link + '" target="_blank" > Link </a>';
+}
+AssignmentPlan.prototype.acceptAssignment = function (assignmentId)
+{
+    $.getJSON("/Home/AcceptAssignment/" + assignmentId,
+        function (data) {
+            alert("Assignment is update!!");
+            assignmentPlan.unLoadGrid();
+            assignmentPlan.init();
+        });  
+}
+AssignmentPlan.prototype.accept = function (cellValue, options, rowObject) {
+
+    if (rowObject.accept !== "True") {
+        return '<button class="notAccept" onClick="javascript:assignmentPlan.acceptAssignment(' + rowObject.assignmentId + ');" target="_blank" > Accept </button>';
+    }
+    else {
+        return '<span class="accept">You have already accepted</span>';
+    }
 }
 AssignmentPlan.prototype.unLoadGrid = function () {
     $('#grid').jqGrid("clearGridData");

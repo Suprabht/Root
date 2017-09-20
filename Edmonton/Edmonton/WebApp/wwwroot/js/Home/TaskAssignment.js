@@ -26,16 +26,64 @@ TaskAssignment.prototype.init = function () {
                 });
            
         });  
-};
+};/*
+TaskAssignment.prototype.fechaReg = function (el) {
+        $(el).datetimepicker({
+        dateFormat: 'yy-mm-dd',
+        timeFormat: 'hh:mm:ss',
+        changeYear: true,
+        changeMonth: true,
+        numberOfMonths: 1,
+        timeOnlyTitle: 'Seleccione Horario',
+        timeText: 'Hora seleccionada',
+        hourText: 'Hora',
+        minuteText: 'Minuto',
+        secondText: 'Segundo',
+        millisecText: 'Milisegundo',
+        currentText: 'Ahora',
+        closeText: 'Listo',
+        ampm: false
+    });
+}*/
 TaskAssignment.prototype.loadGrid = function (data, clients, users) {
 
     var grid = $("#grid");
     grid.jqGrid({
         colModel: [
             { label: 'Assignment Id', name: 'assignmentId', index: 'assignmentId', width: "110", editable: false, editrules: { required: true } },
-            { label: 'Assignment Date', name: 'assignmentDate', index: 'assignmentDate', width: "110", editable: true, editrules: { required: true }, editoptions: { dataInit: function (elem) { $(elem).datepicker(); } } },
+            //{ label: 'Assignment Date', name: 'assignmentDate', index: 'assignmentDate', width: "110", editable: true, editrules: { required: true }, editoptions: { dataInit: taskAssignment.fechaReg, readonly: 'readonly' } },
+            {
+                label: 'Assignment Date', name: 'assignmentDate', index: 'assignmentDate', width: "110", editrules: { required: true }, editable: true, editrules: { required: true }, formatter: 'date',
+                formatoptions: {
+                    srcformat: 'Y/m/d H:i',
+                    newformat: 'Y/m/d H:i'
+                }, editoptions: {
+                    dataInit: function (el) {
+                        $("div").css('position', 'relative');
+                        $(el).datetimepicker({
+                            locale: 'en-GB',
+                            widgetPositioning: {
+                                horizontal: 'auto',
+                                vertical: 'auto'
+                            },
+                            widgetParent: '#gridContainer'
+                        });
+                        // fix position of the datetimepicker
+                        $(el).bind("dp.show", function () {
+                            var $datepicker = $("#gridContainer .bootstrap-datetimepicker-widget");
+                            if ($datepicker.length > 0) {
+                                $datepicker.css("top",
+                                    this.getBoundingClientRect().top +
+                                    window.pageYOffset +
+                                    $(this).outerHeight());
+                            }
+                        });
+                    }
+                }
+            },
             { label: 'Client', name: 'clientName', index: 'clientName', width: "110", editable: true, editrules: { required: true }, edittype: 'select', editoptions: { value: clients }},
-            { label: 'User Id', name: 'userName', index: 'userName', width: "110", editable: true, editrules: { required: true }, edittype: 'select', editoptions: { value: users } }
+            { label: 'User Id', name: 'userName', index: 'userName', width: "110", editable: true, editrules: { required: true }, edittype: 'select', editoptions: { value: users } },
+            { label: 'Accepted', name: 'accept', index: 'accept', width: "210", editable: false, formatter: taskAssignment.accept }
         ],
         pager: '#gridPager',
         regional: 'en',
@@ -80,6 +128,9 @@ TaskAssignment.prototype.loadGrid = function (data, clients, users) {
             errorTextFormat: function (data1) {
                 return 'Error: ' + data1.responseText;
             }
+            //onInitializeForm : function (formid) {
+            //    alert(1);
+            //}
         },
         // options for the Add Dialog
         {
@@ -122,6 +173,33 @@ TaskAssignment.prototype.loadGrid = function (data, clients, users) {
             errorTextFormat: function (data1) {
                 return 'Error: ' + data1.responseText;
             }
+        });
+}
+TaskAssignment.prototype.accept = function (cellValue, options, rowObject) {
+    if (!(rowObject.userName === null || rowObject.userName === '')) {
+        if (rowObject.accept !== "True") {
+            return '<button class="notAccept" onClick="javascript:taskAssignment.acceptAssignment(' + rowObject.assignmentId + ');" target="_blank" > Accept on behalf of employees </button>';
+        }
+        else {
+            return '<button class="accept" onClick="javascript:taskAssignment.cancelAssignment(' + rowObject.assignmentId + ');" target="_blank" > Cancell Acceptence </button>';
+        }
+    }
+    return '<span class="notAssigned">Not yet Assigned!!</span>';
+}
+TaskAssignment.prototype.acceptAssignment = function (assignmentId) {
+    $.getJSON("/Home/AcceptAssignment/" + assignmentId,
+        function (data) {
+            alert("Assignment is update!!");
+            taskAssignment.unLoadGrid();
+            taskAssignment.init();
+        });
+}
+TaskAssignment.prototype.cancelAssignment = function (assignmentId) {
+    $.getJSON("/Home/CancelAssignment/" + assignmentId,
+        function (data) {
+            alert("Assignment is update!!");
+            taskAssignment.unLoadGrid();
+            taskAssignment.init();
         });
 }
 TaskAssignment.prototype.unLoadGrid = function () {

@@ -5,7 +5,7 @@
     <script src="~/js/Home/EmployeesIndex.js"></script>
 }
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 presentVisit">
         <div class="tiles">
             <div class="tiles-header">
                 Present Visit
@@ -16,13 +16,14 @@
                 <br/>Time:<span id="time"></span>
             </div>
             <div class="tiles-footer">
-                <button class="acceptButton" onclick="index.buttonclick()">Are you here?</button>
-                <button class="acceptButton" onclick="index.buttonclick()">Are you on emergency call?</button>
+                <button class="acceptButton sheduleCall" onclick="index.buttonclick()">Are you here? Would you like to start the clock?</button>
+                <button class="acceptButton emergencyCall" onclick="index.buttonclick()">Are you on emergency call?  Would you like to start the clock?</button>
+                <button class="acceptButton justLogin" onclick="index.justLogin()">Just Login</button>
             </div>
 
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 pendingAcceptence" >
         <div class="tiles">
             <div class="tiles-header">
                 Pending Acceptence
