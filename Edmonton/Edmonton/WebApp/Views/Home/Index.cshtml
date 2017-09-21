@@ -2,23 +2,27 @@
     ViewData["Title"] = "Home Page";
 }
 
-@section Scripts {    
+@section Scripts {
+<script src="~/lib/jqGrid/js/jquery.jqGrid.min.js"></script>
+<script src="~/lib/jqGrid/js/i18n/grid.locale-en.js"></script>
+<link href="~/lib/jqGrid/css/ui.jqgrid.css" rel="stylesheet" />
+
     <script src="~/js/Home/Index.js"></script>
 }
 <div class="row">
     <div class="col-md-4">
-       <div class="tiles">
-           <div class="tiles-header">
-               Accepted
-           </div>
-           <div id="accepted" class="tiles-body">
-               7
-           </div>
-           <div class="tiles-footer">
-               more
-           </div>
+        <div class="tiles">
+            <div class="tiles-header">
+                Accepted
+            </div>
+            <div id="accepted" class="tiles-body">
+                7
+            </div>
+            <div class="tiles-footer">
+                more
+            </div>
 
-       </div>
+        </div>
     </div>
     <div class="col-md-4">
         <div class="tiles">
@@ -47,5 +51,12 @@
             </div>
 
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1">
+        <div class="refreshDiv"><button class="refreshButton" onclick="javascript: index.refreshGrid()">Refresh</button></div>
+        <div id="gridContainer"></div>
+        <div id="gridEmergencyCall"></div>
     </div>
 </div>

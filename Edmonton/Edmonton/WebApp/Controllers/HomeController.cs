@@ -878,6 +878,86 @@ namespace WebApp.Controllers
         #endregion
 
         #region DirectorIndex
+        public IActionResult ActiveLogin()
+        {
+            try
+            {
+                List<Models.Home.Assignment> assigns = new List<Models.Home.Assignment>();
+                
+                var assignments = _context.Assignment.ToList();
+                foreach (var assignmentDal in assignments)
+                {
+                    if(assignmentDal.IsActive??false)
+                    {
+                        if(assignmentDal.AssignmentDate == DateTime.Today)
+                        {
+                            Models.Home.Assignment assignment = new Models.Home.Assignment();
+
+                            assignment.AssignmentId = assignmentDal.AssignmentId;
+                            assignment.AssignmentDate = Convert.ToDateTime(assignmentDal.AssignmentDate);
+                            assignment.ClientId = Convert.ToInt16(assignmentDal.ClientId);
+                            var client = _context.ClientDetails.Find(assignmentDal.ClientId);
+                            assignment.ClientName = client.ClientName;
+                            assignment.ClientAddress = client.ClientAddress;
+
+                            assignment.UserId = assignment.UserId;
+                            var user = _context.AspNetUsers.Find(assignmentDal.UserId);
+                            assignment.UserName = user.UserName;
+                            assignment.UserEmail = user.Email;
+                            assignment.IsActive = assignmentDal.IsActive ?? false;
+
+                            assigns.Add(assignment);
+                        }                        
+                    }
+
+                }
+                var jsonstring = JsonHelper.Serialize(assigns);
+                return Json(new { page = 1, records = assigns.Count, rows = assigns });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    Response = "Error" + ex.Message
+                });
+            }
+        }
+
+        public IActionResult ActiveEmergencyCall()
+        {
+            try
+            {
+                List<Models.Home.Assignment> assigns = new List<Models.Home.Assignment>();
+
+                var emergencyCalls = _context.EmergencyCall.ToList();
+                foreach (var emergencyCall in emergencyCalls)
+                {
+                    if (emergencyCall.IsActive ?? false)
+                    {
+                        Models.Home.Assignment assignment = new Models.Home.Assignment();                       
+
+                        assignment.UserId = emergencyCall.UserId;
+                        var user = _context.AspNetUsers.Find(emergencyCall.UserId);
+                        assignment.UserName = user.UserName;
+                        assignment.UserEmail = user.Email;
+                        assignment.IsActive = emergencyCall.IsActive ?? false;
+
+                        assigns.Add(assignment);
+                    }
+
+                }
+                var jsonstring = JsonHelper.Serialize(assigns);
+                return Json(new { page = 1, records = assigns.Count, rows = assigns });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    Response = "Error" + ex.Message
+                });
+            }
+        }
+
 
         public IActionResult IndexDashBoard()
         {
@@ -906,15 +986,84 @@ namespace WebApp.Controllers
                 var assignmentsDal = (useridB == null) ? null : _context.Assignment.ToList().Where(u => u.UserId == Encoding.ASCII.GetString(useridB)).ToList();
                 var assignment = new Dal.Models.Identity.Assignment();
                 var client = new ClientDetails();
-                assignment = assignmentsDal.Where(x => x.AssignmentDate == DateTime.Today).Single();
-                client = _context.ClientDetails.Find(assignment.ClientId);
-                return Json(new { isPendingAccept = assignmentsDal.Where(x => x.IsAccepted != true).Count(), clientName = (client.ClientName != null) ? client.ClientName : string.Empty, clientAddress = client.ClientAddress, clientId = assignment.ClientId, assignmentDate = assignment.AssignmentDate });
+                var assignmentList = assignmentsDal.Where(x => x.AssignmentDate == DateTime.Today).ToList();
+                if (assignmentList.Count > 0)
+                {
+                    assignment = assignmentList.Single();
+                    // .Single();
+                    client = _context.ClientDetails.Find(assignment.ClientId);
+                    return Json(new
+                    {
+                        isPendingAccept = assignmentsDal.Where(x => x.IsAccepted != true).Count(),
+                        clientName = (client.ClientName != null) ? client.ClientName : string.Empty,
+                        clientAddress = client.ClientAddress,
+                        clientId = assignment.ClientId,
+                        assignmentDate = assignment.AssignmentDate,
+                        assignmentId = assignment.AssignmentId
+                    });
+                }
+                return Json(new
+                {
+                    isPendingAccept = assignmentsDal.Where(x => x.IsAccepted != true).Count()
+                });
+
             }
             catch (Exception ex)
             {
                 return Json(new { Response = "Error" + ex.Message });
             }
             
+        }
+
+        public IActionResult ActivateLogin(long id)
+        {
+            try
+            {
+                if (id != 0)
+                {
+                    var assignment = _context.Assignment.Find(id);
+                    assignment.IsActive = true;
+                    _context.Assignment.Update(assignment);
+                    _context.SaveChanges();
+                    return Json(new { Response = "Success" });
+                }
+                return Json(new { Response = "Error Assignment not set" });
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+
+        }
+
+        public IActionResult EmergencyLogin()
+        {
+            try
+            {
+                HttpContext.Session.Set("EmergencyLogin", Encoding.ASCII.GetBytes(true.ToString()));
+                byte[] useridB;
+                var user = HttpContext.Session.TryGetValue("userId", out useridB);
+                string userId = Encoding.ASCII.GetString(useridB);
+
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    EmergencyCall emergencyCall = new EmergencyCall();
+                    emergencyCall.UserId = userId;
+                    emergencyCall.IsActive = true;
+                    emergencyCall.LoginTime = System.DateTime.UtcNow;
+                    _context.EmergencyCall.Add(emergencyCall);
+                    _context.SaveChanges();
+                    return Json(new { Response = "Success" });
+                }
+                return Json(new { Response = "Error Assignment not set" });
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+
         }
         #endregion
 

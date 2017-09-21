@@ -18,6 +18,7 @@ namespace Dal.Models.Identity
         public bool? IsApproved { get; set; }
         public bool? IsAccepted { get; set; }
         public int? NoOfHours { get; set; }
+        public bool? IsActive { get; set; }
 
         public virtual ICollection<Attendance> Attendance { get; set; }
         public virtual ClientDetails Client { get; set; }

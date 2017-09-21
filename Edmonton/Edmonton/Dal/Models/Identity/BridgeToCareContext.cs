@@ -16,6 +16,7 @@ namespace Dal.Models.Identity
         public virtual DbSet<Assignment> Assignment { get; set; }
         public virtual DbSet<Attendance> Attendance { get; set; }
         public virtual DbSet<ClientDetails> ClientDetails { get; set; }
+        public virtual DbSet<EmergencyCall> EmergencyCall { get; set; }
         public virtual DbSet<Leave> Leave { get; set; }
         public virtual DbSet<ProgramDetails> ProgramDetails { get; set; }
         public virtual DbSet<Tracking> Tracking { get; set; }
@@ -158,6 +159,20 @@ namespace Dal.Models.Identity
                 entity.Property(e => e.Latt).HasMaxLength(50);
 
                 entity.Property(e => e.Long).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<EmergencyCall>(entity =>
+            {
+                entity.Property(e => e.LoginTime).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.LogoutTime).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.UserId).HasMaxLength(450);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.EmergencyCall)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_EmergencyCall_AspNetUsers");
             });
 
             modelBuilder.Entity<Assignment>(entity =>

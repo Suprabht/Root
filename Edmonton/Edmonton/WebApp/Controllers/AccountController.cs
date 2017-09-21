@@ -167,6 +167,54 @@ namespace Edmonton.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult LogOff()
         {
+            try
+            {
+                byte[] useridB;
+                var userId = HttpContext.Session.TryGetValue("userId", out useridB);
+                var user = _context.AspNetUsers.Find(Encoding.ASCII.GetString(useridB));
+                var userRoll = _context.AspNetUserRoles.ToList().Where(ur => ur.UserId == user.Id).ToList()[0];
+                var roll = _context.AspNetRoles.ToList().Where(r => r.Id == userRoll.RoleId).Single();
+                if (roll.Name == "Employees")
+                {
+                    try
+                    {
+                        byte[] emgercencyB;
+                        var emgercencyEncod = HttpContext.Session.TryGetValue("EmergencyLogin", out emgercencyB);
+                        var emgercency = (string.IsNullOrEmpty(Encoding.ASCII.GetString(emgercencyB))) ? false : true;
+                        if (emgercency)
+                        {
+                            var emergencyCalls = _context.EmergencyCall.ToList().Where(a => a.UserId == user.Id).ToList();
+                            foreach (var emergencyCall in emergencyCalls)
+                            {
+                                emergencyCall.IsActive = false;
+                                emergencyCall.LogoutTime = System.DateTime.UtcNow;
+                                _context.EmergencyCall.Update(emergencyCall);
+                                _context.SaveChanges();
+                            }
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        var assignments = _context.Assignment.ToList().Where(a => a.UserId == user.Id).ToList();
+                        foreach (var assignment in assignments)
+                        {
+                            assignment.IsActive = false;
+                            _context.Assignment.Update(assignment);
+                            _context.SaveChanges();
+                        }
+
+                    }                  
+                    
+                    
+                                     
+
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
             loginManager.SignOutAsync().Wait();
             return RedirectToAction("Login", "Account");
         }

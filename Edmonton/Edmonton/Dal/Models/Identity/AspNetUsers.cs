@@ -11,6 +11,7 @@ namespace Dal.Models.Identity
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             Assignment = new HashSet<Assignment>();
+            EmergencyCall = new HashSet<EmergencyCall>();
             Leave = new HashSet<Leave>();
             Tracking = new HashSet<Tracking>();
         }
@@ -43,6 +44,7 @@ namespace Dal.Models.Identity
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<Assignment> Assignment { get; set; }
+        public virtual ICollection<EmergencyCall> EmergencyCall { get; set; }
         public virtual ICollection<Leave> Leave { get; set; }
         public virtual ICollection<Tracking> Tracking { get; set; }
         public virtual UserLevel UserLevel { get; set; }
