@@ -1,0 +1,8 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Dal\bin\Release\netcoreapp1.1\Dal.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Dal\bin\Release\netcoreapp1.1\Dal.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Dal\bin\Release\netcoreapp1.1\Dal.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Dal\obj\Release\netcoreapp1.1\Dal.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Dal\obj\Release\netcoreapp1.1\Dal.csproj.CoreCompileInputs.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Dal\obj\Release\netcoreapp1.1\Dal.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Dal\obj\Release\netcoreapp1.1\Dal.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\Dal\obj\Release\netcoreapp1.1\Dal.pdb

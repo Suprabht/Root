@@ -1,5 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Leave Planner";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
+
+@section Scripts {
+    <script src="~/lib/zabuto_calendar/zabuto_calendar.min.js"></script>
+    <link href="~/lib/zabuto_calendar/zabuto_calendar.css" rel="stylesheet" />
+    <script src="~/lib/jqGrid/js/jquery.jqGrid.min.js"></script>
+    <script src="~/lib/jqGrid/js/i18n/grid.locale-en.js"></script>
+    <link href="~/lib/jqGrid/css/ui.jqgrid.css" rel="stylesheet" />
+    <link href="~/css/Home/LeavePlanner.min.css" rel="stylesheet" />
+    <script src="~/js/Home/LeavePlanner.js"></script>
+}
+
+<div id="leave-calendar">
+</div>
+
+<div class="leavePlannerContainer">
+    <div id="gridContainer"></div>
+</div>

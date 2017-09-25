@@ -12,15 +12,57 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/Home/Roles.min.js",
-    "inputFiles": [
-      "wwwroot/js/Home/Roles.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/css/Home/Roles.min.css",
     "inputFiles": [
       "wwwroot/css/Home/Roles.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Home/Clients.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/Clients.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Home/UserLevel.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/UserLevel.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Home/TaskAssignment.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/TaskAssignment.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Home/LeavePlanner.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/LeavePlanner.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Home/AssignmentPlan.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/AssignmentPlan.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Home/Attendance.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/Attendance.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Home/ProgramDetails.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/ProgramDetails.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Roles.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/Roles.js"
     ]
   },
   {
@@ -29,6 +71,102 @@
       "Scripts/Home/Roles/file.js",
       "Scripts/Home/Roles/file1.js",
       "wwwroot/js/Home/tree.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Clients.js",
+    "inputFiles": [
+      "Scripts/Home/Clients/Clients.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Clients.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/Clients.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/UserLevel.js",
+    "inputFiles": [
+      "Scripts/Home/UserLevel/UserLevel.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/UserLevel.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/UserLevel.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/LeavePlanner.js",
+    "inputFiles": [
+      "Scripts/Home/LeavePlanner/LeavePlanner.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/LeavePlanner.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/LeavePlanner.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/TaskAssignment.js",
+    "inputFiles": [
+      "Scripts/Home/TaskAssignment/TaskAssignment.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/TaskAssignment.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/TaskAssignment.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/AssignmentPlan.js",
+    "inputFiles": [
+      "Scripts/Home/AssignmentPlan/AssignmentPlan.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/AssignmentPlan.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/AssignmentPlan.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Attendance.js",
+    "inputFiles": [
+      "Scripts/Home/Attendance/Attendance.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Attendance.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/Attendance.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/EmployeeAttendance.js",
+    "inputFiles": [
+      "Scripts/Home/Roles/EmployeeAttendance.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/EmployeeAttendance.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/EmployeeAttendance.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/ProgramDetails.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/ProgramDetails.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/ProgramDetails.js",
+    "inputFiles": [
+      "Scripts/Home/ProgramDetails/ProgramDetails.js"
     ]
   },
   {
@@ -41,6 +179,30 @@
     "outputFileName": "wwwroot/js/Account/login.min.js",
     "inputFiles": [
       "Scripts/Account/Login/login.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Index.js",
+    "inputFiles": [
+      "Scripts/Home/Index/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/Index.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/EmployeesIndex.js",
+    "inputFiles": [
+      "Scripts/Home/EmployeesIndex/EmployeesIndex.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/EmployeesIndex.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/EmployeesIndex.js"
     ]
   }
 ]

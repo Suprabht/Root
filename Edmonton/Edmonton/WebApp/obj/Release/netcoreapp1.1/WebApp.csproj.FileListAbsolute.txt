@@ -9,3 +9,6 @@ C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\R
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Release\netcoreapp1.1\WebApp.AssemblyInfo.cs
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Release\netcoreapp1.1\WebApp.dll
 C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Release\netcoreapp1.1\WebApp.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Release\netcoreapp1.1\Dal.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\bin\Release\netcoreapp1.1\Dal.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Edmonton\Edmonton\WebApp\obj\Release\netcoreapp1.1\WebApp.csproj.CoreCompileInputs.cache
