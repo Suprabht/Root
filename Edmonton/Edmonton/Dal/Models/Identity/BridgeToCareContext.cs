@@ -128,6 +128,7 @@ namespace Dal.Models.Identity
                 entity.Property(e => e.Email).HasMaxLength(256);
 
                 entity.Property(e => e.FullName).HasMaxLength(256);
+                entity.Property(e => e.SecondName).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
 

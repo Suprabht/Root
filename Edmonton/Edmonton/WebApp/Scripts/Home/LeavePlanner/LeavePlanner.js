@@ -34,6 +34,9 @@ LeavePlanner.prototype.loadGrid = function (data) {
             }
           //  { label: 'Program Description', name: 'programDescription', index: 'programDescription', width: "350", editable: true, editrules: { required: true } }
         ],
+        onSelectRow: function (id) {            
+            jQuery('#grid').jqGrid('editRow', id, true, leavePlanner.pickdates);               
+        },
         pager: '#gridPager',
         regional: 'en',
         datatype: "jsonstring",
@@ -111,7 +114,6 @@ LeavePlanner.prototype.loadGrid = function (data) {
             modal: true,
             jqModal: true,
             afterSubmit: function (response, postdata) {
-
                 leavePlanner.unLoadGrid();
                 leavePlanner.init();
                 $(".ui-icon-closethick").trigger('click');
@@ -127,6 +129,9 @@ LeavePlanner.prototype.unLoadGrid = function () {
     $('#grid').remove();
     $('#gridPager').remove();
     $('#gridContainer').empty();
+}
+LeavePlanner.prototype.pickdates = function (id) {
+    jQuery("#" + id + "_sdate", "#grid").datepicker({ dateFormat: "d/m/Y" });
 }
 var leavePlanner = new LeavePlanner();
 leavePlanner.init();

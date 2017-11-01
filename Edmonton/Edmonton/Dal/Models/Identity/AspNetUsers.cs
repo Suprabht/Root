@@ -32,6 +32,7 @@ namespace Dal.Models.Identity
         public bool TwoFactorEnabled { get; set; }
         public string UserName { get; set; }
         public string FullName { get; set; }
+        public string SecondName { get; set; }
         public DateTime? BirthDate { get; set; }
         public string AlternetEmail { get; set; }
         public string Address { get; set; }

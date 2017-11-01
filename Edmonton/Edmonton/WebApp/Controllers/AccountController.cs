@@ -46,6 +46,7 @@ namespace Edmonton.Controllers
                 user.UserName = obj.UserName;
                 user.Email = obj.Email;
                 user.FullName = obj.FullName;
+                //user.SecondName = obj.SecondName;
                 user.BirthDate = obj.BirthDate;
 
                 IdentityResult result = userManager.CreateAsync

@@ -72,6 +72,7 @@ namespace WebApp.Controllers
                         {
                             Id = user.Id,
                             Name = user.FullName,
+                            SecondName = user.SecondName,
                             Email = user.Email,
                             Address = user.Address,
                             AlternateEmail = user.AlternetEmail,
@@ -117,6 +118,7 @@ namespace WebApp.Controllers
                 {
                     Id = user.Id,
                     Name = user.FullName,
+                    SecondName = user.SecondName,
                     Email = user.Email,
                     AlternateEmail = user.AlternetEmail,
                     Address = user.Address,
@@ -170,6 +172,7 @@ namespace WebApp.Controllers
                 user.PhoneNumber = userDetails.Phone;
                 user.Email = userDetails.Email;
                 user.FullName = userDetails.Name;
+                user.SecondName = userDetails.SecondName;
                 user.AlternetEmail = userDetails.AlternateEmail;
                 user.Address = userDetails.Address;
                 user.AlternetPhone = userDetails.AlternetPhone;
@@ -192,6 +195,28 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        public IActionResult DeleteUserDetails(string id)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(id))
+                {
+                    return NotFound();
+                }
+                var userToDelete = _context.AspNetUsers.Find(id);
+                _context.Entry(userToDelete).State = EntityState.Deleted;
+                _context.SaveChanges();
+
+                return Json(new { Response = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+
+        }
+
+        [HttpPost]
         public IActionResult UpdateUserDetails(UserDetails userDetails)
         {
             try
@@ -204,6 +229,7 @@ namespace WebApp.Controllers
                 userToUpdate.PhoneNumber = userDetails.Phone;
                 userToUpdate.Email = userDetails.Email;
                 userToUpdate.FullName = userDetails.Name;
+                userToUpdate.SecondName = userDetails.SecondName;
                 userToUpdate.AlternetEmail = userDetails.AlternateEmail;
                 userToUpdate.Address = userDetails.Address;
                 userToUpdate.AlternetPhone = userDetails.AlternetPhone;

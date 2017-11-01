@@ -42,6 +42,7 @@ var Roles = (function () {
     Roles.prototype.addUserToDb = function () {
         var id = $("#id").val();
         var name = $("#name").val();
+        var secondName = $("#secondName").val();
         var email = $("#email").val();
         var phone = $("#phone").val();
         var alternateEmail = $("#alternateEmail").val();
@@ -56,6 +57,7 @@ var Roles = (function () {
             data: {
                 Id: id,
                 Name: name,
+                SecondName: secondName,
                 Email: email,
                 Phone: phone,
                 AlternateEmail: alternateEmail,
@@ -78,6 +80,7 @@ var Roles = (function () {
     Roles.prototype.updateUser = function () {
         var id = $("#id").val();
         var name = $("#name").val();
+        var secondName = $("#secondName").val();
         var email = $("#email").val();
         var phone = $("#phone").val();
         var alternateEmail = $("#alternateEmail").val();
@@ -91,6 +94,7 @@ var Roles = (function () {
             data: {
                 Id: id,
                 Name: name,
+                SecondName: secondName,
                 Email: email,
                 Phone: phone,
                 AlternateEmail: alternateEmail,
@@ -101,6 +105,35 @@ var Roles = (function () {
             cache: false,
             success: function (data) {
                 $("#alertDiv").show().html("<strong>Success!</strong> User has been updated.");
+            },
+            error: function (xhr, ajaxOptions, error) {
+                alert(xhr.status);
+                alert("Error: " + xhr.responseText);
+            }
+        });
+    };
+    Roles.prototype.deleteUser = function () {
+        var id = $("#id").val();
+        //var name = $("#name").val();
+        //var secondName = $("#secondName").val();
+        //var email = $("#email").val();
+        //var phone = $("#phone").val();
+        //var alternateEmail = $("#alternateEmail").val();
+        //var address = $("#address").val();
+        //var alternetPhone = $("#alternetPhone").val();
+        //var bloodGroup = $("#bloodGroup").val();
+        //var roleId = $("#roleId").val();
+        $.ajax({
+            type: "POST",
+            url: "/Home/DeleteUserDetails",
+            dataType: "json",
+            data: {
+                Id: id
+            },
+            cache: false,
+            success: function (data) {
+                $("#alertDiv").show().html("<strong>Success!</strong> User has been delete.");
+                roles.init("", "");
             },
             error: function (xhr, ajaxOptions, error) {
                 alert(xhr.status);

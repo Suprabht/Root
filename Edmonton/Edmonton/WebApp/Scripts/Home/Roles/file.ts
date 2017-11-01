@@ -53,6 +53,7 @@ class Roles {
     public addUserToDb(): void {
         var id = $("#id").val();
         var name = $("#name").val();
+        var secondName = $("#secondName").val();
         var email = $("#email").val();
         var phone = $("#phone").val();
         var alternateEmail = $("#alternateEmail").val();
@@ -67,6 +68,7 @@ class Roles {
             data: {
                 Id: id,
                 Name: name,
+                SecondName: secondName,
                 Email: email,
                 Phone: phone,
                 AlternateEmail: alternateEmail,
@@ -90,6 +92,7 @@ class Roles {
     public updateUser(): void {
         var id = $("#id").val();
         var name = $("#name").val();
+        var secondName = $("#secondName").val();
         var email = $("#email").val();
         var phone = $("#phone").val();
         var alternateEmail = $("#alternateEmail").val();
@@ -103,6 +106,7 @@ class Roles {
             data: {
                 Id:id,
                 Name: name,
+                SecondName: secondName,
                 Email: email,
                 Phone: phone,
                 AlternateEmail: alternateEmail,
@@ -121,7 +125,27 @@ class Roles {
             }
         });
     }
-    
+
+    public deleteUser(): void {
+        var id = $("#id").val();
+        $.ajax({
+            type: "POST",
+            url: "/Home/DeleteUserDetails",
+            dataType: "json",
+            data: {
+                Id: id
+            },
+            cache: false,
+            success(data) {
+                $("#alertDiv").show().html("<strong>Success!</strong> User has been delete.");
+                roles.init("", "");
+            },
+            error(xhr, ajaxOptions, error) {
+                alert(xhr.status);
+                alert(`Error: ${xhr.responseText}`);
+            }
+        });
+    }
 }
 var roles = Roles.getInstance();
 roles.init("","");
