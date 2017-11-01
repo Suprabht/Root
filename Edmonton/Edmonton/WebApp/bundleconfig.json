@@ -54,6 +54,12 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/css/Home/AttendanceView.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/AttendanceView.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/css/Home/ProgramDetails.min.css",
     "inputFiles": [
       "wwwroot/css/Home/ProgramDetails.css"
@@ -143,6 +149,18 @@
     "outputFileName": "wwwroot/js/Home/Attendance.min.js",
     "inputFiles": [
       "wwwroot/js/Home/Attendance.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/AttendanceView.js",
+    "inputFiles": [
+      "Scripts/Home/AttendenceView/AttendanceView.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/AttendanceView.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/AttendanceView.js"
     ]
   },
   {

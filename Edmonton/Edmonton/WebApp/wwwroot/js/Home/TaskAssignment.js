@@ -50,13 +50,13 @@ TaskAssignment.prototype.loadGrid = function (data, clients, users) {
     var grid = $("#grid");
     grid.jqGrid({
         colModel: [
-            { label: 'Assignment Id', name: 'assignmentId', index: 'assignmentId', width: "110", editable: false, editrules: { required: true } },
+            { label: 'Assignment Id', name: 'assignmentId', index: 'assignmentId', width: "110", editable: false, key: true, editrules: { required: true } },
             //{ label: 'Assignment Date', name: 'assignmentDate', index: 'assignmentDate', width: "110", editable: true, editrules: { required: true }, editoptions: { dataInit: taskAssignment.fechaReg, readonly: 'readonly' } },
             {
                 label: 'Assignment Date', name: 'assignmentDate', index: 'assignmentDate', width: "110", editrules: { required: true }, editable: true, editrules: { required: true }, formatter: 'date',
                 formatoptions: {
                     srcformat: 'Y/m/d H:i',
-                    newformat: 'Y/m/d H:i'
+                    newformat: 'd/m/Y H:i'
                 }, editoptions: {
                     dataInit: function (el) {
                         $("div").css('position', 'relative');
@@ -115,8 +115,8 @@ TaskAssignment.prototype.loadGrid = function (data, clients, users) {
                 var taskAssignmentData = {
                     assignmentId: parseInt(data.id),
                     assignmentDate: data.assignmentDate,
-                    clientId: data.clientId,
-                    userId: data.userId
+                    clientId: data.clientName,
+                    userId: data.userName
                 };
                 return taskAssignmentData;
             },

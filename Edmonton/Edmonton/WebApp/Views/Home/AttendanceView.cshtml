@@ -2,5 +2,16 @@
     Layout = "_EmployeesLayout";
     ViewData["Title"] = "Payment View";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
+@section Scripts {
+    <script src="~/lib/jqGrid/js/jquery.jqGrid.min.js"></script>
+    <script src="~/lib/jqGrid/js/i18n/grid.locale-en.js"></script>
+    <link href="~/lib/jqGrid/css/ui.jqgrid.css" rel="stylesheet" />
+    <link href="~/css/Home/AttendanceView.css" rel="stylesheet" />
+    <script src="~/js/Home/AttendanceView.js"></script>
+}
+<h1>Attendance</h1>
+<div class="attendanceContainer">
+    <div id="gridContainer"></div>
+    @*<table id="grid" cellpadding="0" cellspacing="0"></table>
+        <div id="gridPager"></div>*@
+</div>

@@ -177,16 +177,19 @@ namespace Dal.Models.Identity
 
             modelBuilder.Entity<Assignment>(entity =>
             {
-                entity.Property(e => e.AssignmentId).ValueGeneratedNever();
-
                 entity.Property(e => e.AssignmentDate).HasColumnType("datetime");
 
                 entity.Property(e => e.UserId).HasMaxLength(450);
 
+                entity.HasOne(d => d.Client)
+                    .WithMany(p => p.Assignment)
+                    .HasForeignKey(d => d.ClientId)
+                    .HasConstraintName("FK_Assignment_ClientDetails");
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Assignment)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_Assignment_ClientDetails");
+                    .HasConstraintName("FK_Assignment_AspNetUsers");
             });
 
             modelBuilder.Entity<Attendance>(entity =>

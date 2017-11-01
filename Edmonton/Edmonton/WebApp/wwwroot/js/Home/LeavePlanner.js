@@ -1,6 +1,6 @@
 LeavePlanner = function () { };
 LeavePlanner.prototype.init = function () {
-    $.getJSON("/Home/LeaveCalendar/",
+    $.getJSON("/Home/LeaveCalendar/?t=" + Math.random(),
         function (data) {
             $("#leave-calendar").zabuto_calendar({
                 data: data.calendarDates
@@ -12,7 +12,7 @@ LeavePlanner.prototype.init = function () {
             var div = document.createElement('div');
             div.id = 'gridPager';
             $('#gridContainer').append(div);
-            $.getJSON("/Home/Leave",
+            $.getJSON("/Home/Leave?t=" + Math.random(),
                 function (data) {
                     leavePlanner.loadGrid(data);
                 });
@@ -25,7 +25,13 @@ LeavePlanner.prototype.loadGrid = function (data) {
     grid.jqGrid({
         colModel: [
             { label: 'Leave Id', name: 'leaveId', index: 'leaveId', width: "110", editable: false, editrules: { required: true }, key: true, hidden: true },
-            { label: 'Leave Date', name: 'leaveDate', index: 'leaveDate', width: "210", editable: true, editrules: { required: true } },
+            {
+                label: 'Leave Date', name: 'leaveDate', index: 'leaveDate', width: "210", editable: true, editrules: { required: true }, formatter: 'date',
+                formatoptions: {
+                    srcformat: 'Y/m/d H:i',
+                    newformat: 'd/m/Y'
+                }
+            }
           //  { label: 'Program Description', name: 'programDescription', index: 'programDescription', width: "350", editable: true, editrules: { required: true } }
         ],
         pager: '#gridPager',

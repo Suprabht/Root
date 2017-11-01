@@ -245,6 +245,13 @@ namespace WebApp.Controllers
         {
             try
             {
+                if(string.IsNullOrEmpty(id))
+                {
+                    byte[] useridB;
+                    var userId = HttpContext.Session.TryGetValue("userId", out useridB);
+                    id =  Encoding.ASCII.GetString(useridB);
+                }
+
                 List<Models.Home.Attendance> assigns = new List<Models.Home.Attendance>();
                 var attendanceDal = _context.Attendance.ToList();
                 foreach (var atteDal in attendanceDal)
@@ -532,17 +539,20 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult TaskAssignment(int id, Models.Home.Assignment programDetails)
+        public IActionResult TaskAssignment(int id, Models.Home.Assignment assignment)
         {
             try
             {
-                //var assignment = _context.Assignment.Find(id);
-                //if (assignment != null)
-                //{
-                //    assignment.IsAccepted = true;
-                //    _context.Assignment.Update(assignment);
-                //    _context.SaveChanges();
-                //}
+                var assign = _context.Assignment.Find(assignment.AssignmentId);
+                if (assignment != null)
+                {
+                    assign.ClientId = Convert.ToInt32(assignment.ClientId);
+                    assign.UserId = assignment.UserId;
+                    assign.IsAccepted = null;
+                    assign.AssignmentDate = assignment.AssignmentDate;
+                    _context.Assignment.Update(assign);
+                    _context.SaveChanges();
+                }
                 return Json(new { Response = "Success" });
             }
             catch (Exception ex)
@@ -552,16 +562,45 @@ namespace WebApp.Controllers
         }
 
         [HttpPut]
-        public IActionResult TaskAssignment(ProgramDetails programDetails)
+        public IActionResult TaskAssignment(Models.Home.Assignment assignment)
         {
-            
-            return Json(new { Response = "Success" });
+            try
+            {
+                var assign = new Dal.Models.Identity.Assignment()
+                {
+                    ClientId = Convert.ToInt32( assignment.ClientName),
+                    UserId = assignment.UserName,
+                    AssignmentDate = assignment.AssignmentDate,
+                    IsAccepted = false
+                    //AssignmentId = DBNull.Value
+                };
+                _context.Assignment.Add(assign);
+                _context.SaveChanges();
+                return Json(new { Response = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
         }
 
         [HttpDelete]
-        public IActionResult TaskAssignment(int id)
+        public IActionResult TaskAssignment(long id)
         {
-            return Json(new { Response = "Success" });
+            try
+            {
+                var assignment = _context.Assignment.Find(id);
+                if (assignment != null)
+                {
+                    _context.Entry(assignment).State = EntityState.Deleted;
+                    _context.SaveChanges();
+                }
+                return Json(new { Response = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
         }
         #endregion
 
@@ -770,7 +809,8 @@ namespace WebApp.Controllers
             {
                 byte[] useridB;
                 var userId = HttpContext.Session.TryGetValue("userId", out useridB);
-                var leaves = _context.Leave.ToList().Where(u => u.UserId == Encoding.ASCII.GetString(useridB)).ToList();
+                var user = Encoding.ASCII.GetString(useridB);
+                var leaves = _context.Leave.ToList().Where(u => u.UserId == user).ToList();
                 List<Models.Home.Leave> leavesModel = new List<Models.Home.Leave>();
                 foreach (var leave in leaves)
                 {
@@ -790,7 +830,51 @@ namespace WebApp.Controllers
             
         }
 
-       
+        [HttpPut]
+        public IActionResult Leave(Dal.Models.Identity.Leave leave)
+        {
+            try
+            {
+                //if (ModelState.IsValid)
+                //{
+                byte[] useridB;
+                var userIdb = HttpContext.Session.TryGetValue("userId", out useridB);
+                var userId = Encoding.ASCII.GetString(useridB);
+                leave.UserId = userId;
+                _context.Leave.Add(leave);
+                _context.SaveChanges();
+                return Json(new { Response = "Success" });
+                //}
+                //return Json(new { Response = "Error: User Level is not valid." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+
+        }
+
+        [HttpDelete]
+        public IActionResult Leave(long id)
+        {
+            try
+            {
+                var leave = _context.Leave.Find(id);
+                if (leave != null)
+                {
+                    _context.Entry(leave).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+                    _context.SaveChanges();
+                }
+
+                return Json(new { Response = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+
+        }
+
         public IActionResult LeaveCalendar(string id)
         {
             try
@@ -874,6 +958,15 @@ namespace WebApp.Controllers
                 return Json(new { Response = "Error" + ex.Message });
             }
             
+        }
+        #endregion
+
+        #region AttendanceView
+        public IActionResult AttendanceView()
+        {
+            ViewData["Message"] = "Your Attendance Details page.";
+
+            return View();
         }
         #endregion
 
