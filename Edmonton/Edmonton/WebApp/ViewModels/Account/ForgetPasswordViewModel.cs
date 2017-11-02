@@ -13,6 +13,9 @@ namespace WebApp.ViewModels.Account
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        
+        [Required]
+        [DataType(DataType.Password)]
+        public string CurrentPassword { get; set; }
+
     }
 }

@@ -127,24 +127,51 @@ class Roles {
     }
 
     public deleteUser(): void {
-        var id = $("#id").val();
-        $.ajax({
-            type: "POST",
-            url: "/Home/DeleteUserDetails",
-            dataType: "json",
-            data: {
-                Id: id
-            },
-            cache: false,
-            success(data) {
-                $("#alertDiv").show().html("<strong>Success!</strong> User has been delete.");
-                roles.init("", "");
-            },
-            error(xhr, ajaxOptions, error) {
-                alert(xhr.status);
-                alert(`Error: ${xhr.responseText}`);
-            }
-        });
+        var conf = confirm("Are you sure you want to delete!");
+        if (conf == true) {
+            var id = $("#id").val();
+            $.ajax({
+                type: "POST",
+                url: "/Home/DeleteUserDetails",
+                dataType: "json",
+                data: {
+                    Id: id
+                },
+                cache: false,
+                success(data) {
+                    $("#alertDiv").show().html("<strong>Success!</strong> User has been delete.");
+                    roles.init("", "");
+                },
+                error(xhr, ajaxOptions, error) {
+                    alert(xhr.status);
+                    alert(`Error: ${xhr.responseText}`);
+                }
+            });
+        }         
+    }
+
+    public resetPassword(email: string): void {
+        var conf = confirm("Do you want to reset Password!");
+        if (conf == true) {
+           
+            $.ajax({
+                type: "POST",
+                url: "/Account/ForgetPasswordByUserEmail",
+                dataType: "json",
+                data: {
+                    userEmail: email
+                },
+                cache: false,
+                success(data) {
+                    $("#alertDiv").show().html("<strong>Success!</strong> User has been sent mail.");
+                   // roles.init("", "");
+                },
+                error(xhr, ajaxOptions, error) {
+                    alert(xhr.status);
+                    alert(`Error: ${xhr.responseText}`);
+                }
+            });
+        }
     }
 }
 var roles = Roles.getInstance();

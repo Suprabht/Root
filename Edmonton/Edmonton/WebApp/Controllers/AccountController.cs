@@ -7,6 +7,12 @@ using System.Text;
 using Dal.Models.Identity;
 using System.Linq;
 using System;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,6 +36,73 @@ namespace Edmonton.Controllers
             _context = context;
         }
         #region Register
+
+        public bool sendSms(string body, string mobileNo)
+        {
+            try
+            {
+                // Find your Account Sid and Auth Token at twilio.com/console
+                const string accountSid = "ACca1d39f7527d36dde86a25e5cdfb2e2a";
+                const string authToken = "c7a59dd2199c25d423b10fdcf4ef8559";
+                TwilioClient.Init(accountSid, authToken);
+
+                mobileNo = "+918904007370";
+                var to = new PhoneNumber(mobileNo);
+                var message = MessageResource.Create(
+                    to,
+                    from: new PhoneNumber("+18183346907"),
+                    body: body );
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            
+        }
+
+        public bool sendMail(MimeMessage message)
+        {
+            try
+            {
+                /*
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Joey Tribbiani", "joey@friends.com"));
+                message.To.Add(new MailboxAddress("Mrs. Chanandler Bong", "chandler@friends.com"));
+                message.Subject = "How you doin'?";
+
+                message.Body = new TextPart("plain")
+                {
+                    Text = @"Hey Chandler, I just wanted to let you know that Monica and I were going to go play some paintball, you in? -- Joey"
+                };
+                */
+                using (var client = new SmtpClient())
+                {
+                    // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
+                    client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                    client.Connect("smtp.friends.com", 587, false);
+
+                    // Note: since we don't have an OAuth2 token, disable
+                    // the XOAUTH2 authentication mechanism.
+                    client.AuthenticationMechanisms.Remove("XOAUTH2");
+
+                    // Note: only needed if the SMTP server requires authentication
+                    client.Authenticate("joey", "password");
+
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
+                
+            }
+            catch (Exception exception)
+            {
+                return false;
+            }
+            return true;
+        }
         // GET: /<controller>/
         public IActionResult Register()
         {
@@ -226,6 +299,58 @@ namespace Edmonton.Controllers
         {
             return View();
         }
+        [HttpPost]
+       // [ValidateAntiForgeryToken]
+        public IActionResult ForgetPasswordByUserEmail(string userEmail)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return NotFound();
+                }
+                const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                StringBuilder res = new StringBuilder();
+                Random rnd = new Random();
+                int length = 7;
+                while (0 < length--)
+                {
+                    res.Append(valid[rnd.Next(valid.Length)]);
+                }
+                var password = res.ToString() + "123!";
+                var userforNo =_context.AspNetUsers.ToList().Where(n => n.Email == userEmail).ToList()[0];
+
+                if (sendSms("Your password is: " + password, userforNo.PhoneNumber))
+                {
+                    //var userById = _context.AspNetUsers.Find(userId);
+                    ForgetPasswordViewModel obj = new ForgetPasswordViewModel
+                    {
+                        EmailId = userEmail,
+                        Password = password
+                    };
+
+                    var user = userManager.FindByEmailAsync(userEmail);
+                    if (user.Result != null)
+                    {
+                        var token = userManager.GeneratePasswordResetTokenAsync(user.Result).Result;
+                        if (!string.IsNullOrEmpty(token))
+                        {
+                            IdentityResult result = userManager.ResetPasswordAsync(user.Result, token, obj.Password).Result;
+                            if (result.Succeeded)
+                            {
+                                return Json(new { Response = "Success" });
+                            }
+                        }
+
+                    }
+                }
+                return Json(new { Response = "Failed!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -236,17 +361,24 @@ namespace Edmonton.Controllers
                 var user = userManager.FindByEmailAsync(obj.EmailId);
                 if (user.Result != null)
                 {
-                    var token = userManager.GeneratePasswordResetTokenAsync(user.Result).Result;
-                    if (!string.IsNullOrEmpty(token))
+                    var result = loginManager.PasswordSignInAsync
+                                    (user.Result, obj.CurrentPassword,
+                                      false, false).Result;
+
+                    if (result.Succeeded)
                     {
-                        IdentityResult result = userManager.ResetPasswordAsync(user.Result, token, obj.Password).Result;
-                        if (result.Succeeded)
+                        var token = userManager.GeneratePasswordResetTokenAsync(user.Result).Result;
+                        if (!string.IsNullOrEmpty(token))
                         {
-                            return RedirectToAction("Login", "Account");
+                            IdentityResult resultPasswordReset = userManager.ResetPasswordAsync(user.Result, token, obj.Password).Result;
+                            if (resultPasswordReset.Succeeded)
+                            {
+                                return RedirectToAction("Login", "Account");
+                            }
                         }
                     }
-                    
                 }
+                        
             }
 
             return View(); ;

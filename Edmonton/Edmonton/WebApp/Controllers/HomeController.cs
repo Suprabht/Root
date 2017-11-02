@@ -16,12 +16,14 @@ using WebApp.Models.Home;
 using SystemFramework.Json;
 using System.Text;
 using GeoCoordinatePortable;
+using WebApp.ViewModels.Account;
 
 namespace WebApp.Controllers
 {
     [WhitespaceFilter]
     public class HomeController : Controller
     {
+      //  private readonly UserManager<AppIdentityUser> userManager;
         private Appsettings _configuration;
         private readonly BridgeToCareContext _context;
         private readonly UserManager<AppIdentityUser> _userManager;
@@ -339,6 +341,56 @@ namespace WebApp.Controllers
                 return Json(new { Response = "Error" + ex.Message });
             }
         }
+        /*
+        [HttpPost]
+       // [ValidateAntiForgeryToken]
+        public IActionResult ForgetPasswordByUserEmail(string userEmail)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return NotFound();
+                }
+                const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                StringBuilder res = new StringBuilder();
+                Random rnd = new Random();
+                int length = 7;
+                while (0 < length--)
+                {
+                    res.Append(valid[rnd.Next(valid.Length)]);
+                }
+                var password = res.ToString() + "123!";
+
+                //var userById = _context.AspNetUsers.Find(userId);
+                ForgetPasswordViewModel obj = new ForgetPasswordViewModel
+                {
+                    EmailId = userEmail,
+                    Password = password
+                };
+
+                var user = userManager.FindByEmailAsync(userEmail);
+                if (user.Result != null)
+                {
+                    var token = userManager.GeneratePasswordResetTokenAsync(user.Result).Result;
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        IdentityResult result = userManager.ResetPasswordAsync(user.Result, token, obj.Password).Result;
+                        if (result.Succeeded)
+                        {
+                            return Json(new { Response = "Success" });
+                        }
+                    }
+
+                }
+                return Json(new { Response = "Failed!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+        }
+        */
         #endregion
 
         #region ProgramDetails

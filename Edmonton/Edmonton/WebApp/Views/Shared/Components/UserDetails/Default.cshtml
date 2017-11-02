@@ -80,7 +80,7 @@
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" readonly="readonly" value="@Model.Email">
             </div>
-            <button class="btn btn-default">Send password reset email</button>
+            <button class="btn btn-default" onclick="javascript: roles.resetPassword('@Model.Email');">Send password reset email</button>
         </div>
     }
     @if (!Model.AddView)
