@@ -468,7 +468,160 @@ namespace WebApp.Controllers
             return Json(new { Response = "Success" });
         }
         #endregion
+        #region Programs
+        public IActionResult Program1()
+        {
+            try
+            {
+                var programsDal = _context.Program.ToList();
+                List<Models.Home.Program> programs = new List<Models.Home.Program>();
+                foreach (var programDal in programsDal)
+                {
+                    var program = new Models.Home.Program();
+                    program.ProgramId = programDal.ProgramId;
+                    program.ProgramCode = programDal.ProgramCode;
+                    program.ProgramName = programDal.ProgramName;
+                    program.ProgramCategoryId = programDal.ProgramCategoryId;
+                    var programCategory = _context.ProgramCategory.ToList().Where(x => x.ProgramCategoryId == program.ProgramCategoryId).Single();
+                    programDal.ProgramCategory = programCategory;
+                    program.ProgramCategoryCode = programDal.ProgramCategory.ProgramCategoryCode;
+                    program.ProgramCategoryName = programDal.ProgramCategory.ProgramCategoryName;
+                    program.ProgramCategoryAbbreviation = programDal.ProgramCategory.ProgramCategoryAbbreviation;
+                    programs.Add(program);
+                }
+                return Json(new { page = 1, records = programs.Count, rows = programs });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+        }
+        [HttpPost]
+        public IActionResult Program1(int id, Models.Home.Program program)
+        {
+            try
+            {
+                if (program == null)
+                {
+                    return NotFound();
+                }
+                var programToUpdate = _context.Program.Find(program.ProgramId);
+                programToUpdate.ProgramName = program.ProgramName;
+                programToUpdate.ProgramDescription = program.ProgramDescription;
+                programToUpdate.ProgramCategoryId = program.ProgramCategoryId;
+                _context.Program.Update(programToUpdate);
+                _context.SaveChanges();
+                return Json(new { Response = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
 
+        }
+
+        [HttpPut]
+        public IActionResult Program1(Models.Home.Program program)
+        {
+            try
+            {
+                if (program == null)
+                {
+                    return NotFound();
+                }
+                var programDal = new Dal.Models.Identity.Program();
+                programDal.ProgramName = program.ProgramName;
+                programDal.ProgramDescription = program.ProgramDescription;
+                programDal.ProgramCategoryId = program.ProgramCategoryId;
+                _context.Program.Add(programDal);
+                _context.SaveChanges();
+                return Json(new { Response = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+
+        }
+        [HttpDelete]
+        public IActionResult Program1(int id)
+        {
+            var program = _context.Program.Find(id);
+            if (program != null)
+            {
+                _context.Entry(program).State = EntityState.Deleted;
+                _context.SaveChanges();
+            }
+            return Json(new { Response = "Success" });
+        }
+        #endregion
+        #region ProgramCategory
+        [HttpGet]
+        public IActionResult ProgramCategory()
+        {
+            try
+            {
+                var programsCategorys = _context.ProgramCategory.ToList();
+                return Json(new { page = 1, records = programsCategorys.Count, rows = programsCategorys });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+
+        }
+        [HttpPost]
+        public IActionResult ProgramCategory(int id, ProgramCategory programCategory)
+        {
+            try
+            {
+                if (programCategory == null)
+                {
+                    return NotFound();
+                }
+                var programCategoryToUpdate = _context.ProgramCategory.Find(programCategory.ProgramCategoryId);
+                programCategoryToUpdate.ProgramCategoryName = programCategory.ProgramCategoryName;
+                programCategoryToUpdate.ProgramCategoryDescription = programCategory.ProgramCategoryDescription;
+                programCategoryToUpdate.ProgramCategoryAbbreviation = programCategory.ProgramCategoryAbbreviation;
+                programCategoryToUpdate.ProgramCategoryCode = programCategory.ProgramCategoryCode;
+                _context.ProgramCategory.Update(programCategoryToUpdate);
+                _context.SaveChanges();
+                return Json(new { Response = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+
+        }
+
+        [HttpPut]
+        public IActionResult ProgramCategory(ProgramCategory programCategory)
+        {
+            try
+            {
+                _context.ProgramCategory.Add(programCategory);
+                _context.SaveChanges();
+                return Json(new { Response = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+
+        }
+        [HttpDelete]
+        public IActionResult ProgramCategory(int id)
+        {
+            var programCategory = _context.ProgramCategory.Find(id);
+            if (programCategory != null)
+            {
+                _context.Entry(programCategory).State = EntityState.Deleted;
+                _context.SaveChanges();
+            }
+            return Json(new { Response = "Success" });
+        }
+        #endregion
         #region Clients
         [Authorize]
         public IActionResult Clients()
@@ -493,6 +646,18 @@ namespace WebApp.Controllers
                     client.Latt = clientDal.Latt;
                     client.Long = clientDal.Long;
                     client.Link = string.Format("http://maps.google.com/maps?q={0},{1}", clientDal.Latt, clientDal.Long);
+                    var program = _context.Program.ToList().Where(x => x.ProgramId == clientDal.ProgramId).Single();
+                    clientDal.Program = program;
+                    var programCategory = _context.ProgramCategory.ToList().Where(x => x.ProgramCategoryId == program.ProgramCategoryId).Single();
+                    clientDal.Program.ProgramCategory = programCategory;
+                    client.ProgramId = clientDal.Program.ProgramId;
+                    client.ProgramCode = clientDal.Program.ProgramCode;
+                    client.ProgramName = clientDal.Program.ProgramName;
+                    client.ProgramCategoryId = clientDal.Program.ProgramCategory.ProgramCategoryId;
+                    client.ProgramCategoryCode = clientDal.Program.ProgramCategory.ProgramCategoryCode;
+                    client.ProgramCategoryName = clientDal.Program.ProgramCategory.ProgramCategoryName;
+                    client.ProgramCategoryAbbreviation = clientDal.Program.ProgramCategory.ProgramCategoryAbbreviation;
+                    //client.Program = string.Format("{0}:{1} - {2}:{3}", clientDal.ProgramId, clientDal.Program.ProgramName, clientDal.Program.ProgramCategoryId, clientDal.Program.ProgramCategory.ProgramCategoryName);
                     clients.Add(client);
                 }
                 return Json(new { page = 1, records = clients.Count, rows = clients });
@@ -514,6 +679,7 @@ namespace WebApp.Controllers
                 clientToUpdate.ClientName = client.ClientName;
                 clientToUpdate.Latt = client.Latt;
                 clientToUpdate.Long = client.Long;
+                clientToUpdate.ProgramId = client.ProgramId;
                 _context.ClientDetails.Update(clientToUpdate);
                 _context.SaveChanges();
                 return Json(new { Response = "Success" });

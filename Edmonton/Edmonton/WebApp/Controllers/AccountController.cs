@@ -42,8 +42,8 @@ namespace Edmonton.Controllers
             try
             {
                 // Find your Account Sid and Auth Token at twilio.com/console
-                const string accountSid = "";
-                const string authToken = "";
+                const string accountSid = "ACca1d39f7527d36dde86a25e5cdfb2e2a";
+                const string authToken = "c7a59dd2199c25d423b10fdcf4ef8559";
                 TwilioClient.Init(accountSid, authToken);
 
                 mobileNo = "+918904007370";
