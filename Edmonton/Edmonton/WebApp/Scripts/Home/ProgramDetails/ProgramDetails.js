@@ -1,4 +1,4 @@
-Programs = function () { };
+﻿Programs = function () { };
 Programs.prototype.init = function () {
     var table = document.createElement('table');
     table.id = 'grid';

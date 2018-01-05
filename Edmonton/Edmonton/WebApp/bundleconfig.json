@@ -188,6 +188,18 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/js/Home/ProgramCategorys.js",
+    "inputFiles": [
+      "Scripts/Home/ProgramCategorys/ProgramCategorys.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/ProgramCategorys.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/ProgramCategorys.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/css/Account/Login.min.css",
     "inputFiles": [
       "wwwroot/css/Account/Login.css"

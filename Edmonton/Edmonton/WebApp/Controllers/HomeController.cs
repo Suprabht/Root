@@ -468,6 +468,7 @@ namespace WebApp.Controllers
             return Json(new { Response = "Success" });
         }
         #endregion
+
         #region Programs
         public IActionResult Program1()
         {
@@ -555,7 +556,16 @@ namespace WebApp.Controllers
             return Json(new { Response = "Success" });
         }
         #endregion
+
         #region ProgramCategory
+        [Authorize]
+        public IActionResult ProgramCategorys()
+        {
+            ViewData["Message"] = "Your Program Details page.";
+
+            return View();
+        }
+
         [HttpGet]
         public IActionResult ProgramCategory()
         {
@@ -622,6 +632,7 @@ namespace WebApp.Controllers
             return Json(new { Response = "Success" });
         }
         #endregion
+
         #region Clients
         [Authorize]
         public IActionResult Clients()
@@ -1410,16 +1421,24 @@ namespace WebApp.Controllers
 
             return View();
         }
-
+        #region DataBackup
+        [Authorize]
         public IActionResult DataBackup()
         {
             ViewData["Message"] = "Your Data Backup page.";
-
             return View();
         }
+        //[HttpGet]
+        //public FileContentResult ExportToExcel()
+        //{
+        //   // List<ExportData> exportDatas = StaticData.Technologies;
+        //    //string[] columns = { "Name", "Project", "Developer" };
+        //    //byte[] filecontent = ExcelExportHelper.ExportExcel(technologies, "Technology", true, columns);
+        //    //return File(filecontent, ExcelExportHelper.ExcelContentType, "Technologies.xlsx");
+        //}
+        #endregion
 
 
-        
         public IActionResult PaymentView()
         {
             ViewData["Message"] = "Your Payment View page.";

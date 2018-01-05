@@ -1,35 +1,27 @@
-Programs = function () { };
-Programs.prototype.init = function () {
+﻿ProgramCategorys = function () { };
+ProgramCategorys.prototype.init = function () {
     var table = document.createElement('table');
     table.id = 'grid';
     $('#gridContainer').append(table);
     var div = document.createElement('div');
     div.id = 'gridPager';
     $('#gridContainer').append(div);
-    var programCatagory = {};
     $.getJSON("/Home/ProgramCategory",
         function (data) {
-            for (i = 0; i < data.rows.length; i++) {
-                for (i = 0; i < data.rows.length; i++) {
-                    programCatagory[data.rows[i].programCategoryId] = data.rows[i].programCategoryAbbreviation + " : " + data.rows[i].programCategoryName;
-                };
-            };
-            $.getJSON("/Home/Program1",
-                function (clientData) {
-                    programs.loadGrid(clientData, programCatagory);
-                });
-        });
+            programCategorys.loadGrid(data);
+               
+    });
 };
-Programs.prototype.loadGrid = function (data, programCatagory) {
+ProgramCategorys.prototype.loadGrid = function (data) {
     var grid = $("#grid");
     //http://www.google.com/maps/place/49.46800006494457,17.11514008755796
     grid.jqGrid({
         colModel: [
-            { label: 'Program Id', name: 'programId', index: 'programId', width: "110", editable: false, editrules: { required: true }, key: true },
-            { label: 'Program Name', name: 'programName', index: 'programName', width: "210", editable: true, editrules: { required: true } },
-            { label: 'Program Description', name: 'programDescription', index: 'programDescription', width: "210", editable: true, editrules: { required: true } },
-            { label: 'Program Code', name: 'programCode', index: 'programCode', width: "150", editable: true, editrules: { required: true } },
-            { label: 'Program Category Id', name: 'programCategoryId', index: 'programCategoryId', width: "150", editable: true, editrules: { required: true }, edittype: 'select', editoptions: { value: programCatagory } }
+            { label: 'Program Category Id', name: 'programCategoryId', index: 'programCategoryId', width: "150", editable: true, editrules: { required: true } },
+            { label: 'Program Category Name', name: 'programCategoryName', index: 'programCategoryName', width: "210", editable: true, editrules: { required: true } },
+            { label: 'Program Category Description', name: 'programCategoryDescription', index: 'programCategoryDescription', width: "210", editable: true, editrules: { required: true } },
+            { label: 'Program Category Code', name: 'programCategoryCode', index: 'programCategoryCode', width: "150", editable: true, editrules: { required: true } },
+            { label: 'Program Category Abbreviation', name: 'programCategoryAbbreviation', index: 'programCategoryAbbreviation', width: "150", editable: true, editrules: { required: true } }
         ],
         pager: '#gridPager',
         regional: 'en',
@@ -38,7 +30,7 @@ Programs.prototype.loadGrid = function (data, programCatagory) {
         jsonReader: { repeatitems: false },
         rowNum: data.records,
         viewrecords: true,
-        caption: "Program",
+        caption: "Program Category",
         height: "auto",
         ignoreCase: true
     });
@@ -47,7 +39,7 @@ Programs.prototype.loadGrid = function (data, programCatagory) {
         { edit: true, add: true, del: true, search: false, refresh: false, view: false, position: "left", cloneToTop: false },
         // options for the Edit Dialog
         {
-            url: "/Home/Program1",
+            url: "/Home/ProgramCategory",
             editCaption: "The Edit Dialog",
             recreateForm: true,
             checkOnUpdate: false,
@@ -58,18 +50,18 @@ Programs.prototype.loadGrid = function (data, programCatagory) {
             modal: true,
             jqModal: true,
             serializeEditData: function (data) {
-                var program = {
-                    programId: parseInt(data.id),
-                    programName: data.programName,
-                    programDescription: data.programDescription,
-                    programCode: data.programCode,
-                    programCategoryId: data.programCategoryId
+                var programCategory = {
+                    programCategoryId: parseInt(data.id),
+                    programCategoryCode: data.programCategoryCode,
+                    programCategoryAbbreviation: data.programCategoryAbbreviation,
+                    programCategoryName: data.programCategoryName,
+                    programCategoryDescription: data.programCategoryDescription
                 };
-                return program;
+                return programCategory;
             },
             afterSubmit: function (response, postdata) {
-                programs.unLoadGrid();
-                programs.init();
+                programCategorys.unLoadGrid();
+                programCategorys.init();
                 return true;
             },
             errorTextFormat: function (data1) {
@@ -78,7 +70,7 @@ Programs.prototype.loadGrid = function (data, programCatagory) {
         },
         // options for the Add Dialog
         {
-            url: "/Home/Program1",
+            url: "/Home/ProgramCategory",
             closeAfterAdd: true,
             recreateForm: true,
             mtype: "PUT",
@@ -87,8 +79,8 @@ Programs.prototype.loadGrid = function (data, programCatagory) {
             clearAfterAdd: true,
             reloadAfterSubmit: false,
             afterSubmit: function (response, postdata) {
-                programs.unLoadGrid();
-                programs.init();
+                programCategorys.unLoadGrid();
+                programCategorys.init();
                 $(".ui-icon-closethick").trigger('click');
                 return true;
             },
@@ -98,7 +90,7 @@ Programs.prototype.loadGrid = function (data, programCatagory) {
         },
         // options for the Delete Dailog
         {
-            url: "/Home/Program1",
+            url: "/Home/ProgramCategory",
             mtype: "DELETE",
             editCaption: "The Edit Dialog",
             recreateForm: true,
@@ -109,8 +101,8 @@ Programs.prototype.loadGrid = function (data, programCatagory) {
             modal: true,
             jqModal: true,
             afterSubmit: function (response, postdata) {
-                programs.unLoadGrid();
-                programs.init();
+                programCategorys.unLoadGrid();
+                programCategorys.init();
                 $(".ui-icon-closethick").trigger('click');
                 return true;
             },
@@ -119,12 +111,12 @@ Programs.prototype.loadGrid = function (data, programCatagory) {
             }
         });
 }
-Programs.prototype.unLoadGrid = function () {
+ProgramCategorys.prototype.unLoadGrid = function () {
     $('#grid').jqGrid("clearGridData");
     $('#grid').remove();
     $('#gridPager').remove();
     $('#gridContainer').empty();
 }
 
-var programs = new Programs();
-programs.init();
+var programCategorys = new ProgramCategorys();
+programCategorys.init();

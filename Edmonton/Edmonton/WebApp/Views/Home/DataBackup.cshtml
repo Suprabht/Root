@@ -1,5 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "Data Backup";
+    ViewData["Title"] = "Export Backup";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
+<div class="panel-heading">
+    <a href="@Url.Action("ExportToExcel")" class="btn btn-primary">Export</a>
+</div>
