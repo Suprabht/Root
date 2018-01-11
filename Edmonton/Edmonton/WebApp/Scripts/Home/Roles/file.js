@@ -50,6 +50,11 @@ var Roles = (function () {
         var alternetPhone = $("#alternetPhone").val();
         var bloodGroup = $("#bloodGroup").val();
         var roleId = $("#roleId").val();
+        var middleName = $("#middleName").val();
+        var employeeNumber = $("#employeeNumber").val();
+        var code = $("#code").val();
+        var compensationType = $("#compensationType").val();
+        var rate = $("#rate").val();
         $.ajax({
             type: "POST",
             url: "/Home/AddUserDetails",
@@ -64,7 +69,12 @@ var Roles = (function () {
                 Address: address,
                 AlternetPhone: alternetPhone,
                 BloodGroup: bloodGroup,
-                RoleId: roleId
+                RoleId: roleId,
+                MiddleName: middleName,
+                EmployeeNumber: employeeNumber,
+                Code: code,
+                CompensationType: compensationType,
+                Rate: rate
             },
             cache: false,
             success: function (data) {
@@ -87,6 +97,11 @@ var Roles = (function () {
         var address = $("#address").val();
         var alternetPhone = $("#alternetPhone").val();
         var bloodGroup = $("#bloodGroup").val();
+        var middleName = $("#middleName").val();
+        var employeeNumber = $("#employeeNumber").val();
+        var code = $("#code").val();
+        var compensationType = $("#compensationType").val();
+        var rate = $("#rate").val();
         $.ajax({
             type: "POST",
             url: "/Home/UpdateUserDetails",
@@ -100,7 +115,12 @@ var Roles = (function () {
                 AlternateEmail: alternateEmail,
                 Address: address,
                 AlternetPhone: alternetPhone,
-                BloodGroup: bloodGroup
+                BloodGroup: bloodGroup,
+                MiddleName: middleName,
+                EmployeeNumber: employeeNumber,
+                Code: code,
+                CompensationType: compensationType,
+                Rate: rate
             },
             cache: false,
             success: function (data) {

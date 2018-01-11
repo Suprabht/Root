@@ -17,6 +17,11 @@ using SystemFramework.Json;
 using System.Text;
 using GeoCoordinatePortable;
 using WebApp.ViewModels.Account;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using System.Net.Http.Headers;
+using OfficeOpenXml;
+using System.Globalization;
 
 namespace WebApp.Controllers
 {
@@ -27,11 +32,14 @@ namespace WebApp.Controllers
         private Appsettings _configuration;
         private readonly BridgeToCareContext _context;
         private readonly UserManager<AppIdentityUser> _userManager;
-        public HomeController(UserManager<AppIdentityUser> userManager, IOptions<Appsettings> configuration, BridgeToCareContext context)
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+        public HomeController(UserManager<AppIdentityUser> userManager, IOptions<Appsettings> configuration, BridgeToCareContext context, IHostingEnvironment hostingEnvironment)
         {
             _configuration = configuration.Value;
             _context = context;
             _userManager = userManager;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult Index()
@@ -80,7 +88,12 @@ namespace WebApp.Controllers
                             AlternateEmail = user.AlternetEmail,
                             AlternetPhone = user.AlternetPhone,
                             BloodGroup = user.BloodGroup,
-                            Phone = user.PhoneNumber
+                            Phone = user.PhoneNumber,
+                            MiddleName = user.MiddleName,
+                            EmployeeNumber = user.EmployeeNumber,
+                            Code = user.Code,
+                            CompensationType = user.CompensationType,
+                            Rate = user.Rate
                         });
                     }
                 }
@@ -128,7 +141,12 @@ namespace WebApp.Controllers
                     AlternetPhone = user.AlternetPhone,
                     BloodGroup = user.BloodGroup,
                     RoleId = roll.Id,
-                    RoleName = roll.Name
+                    RoleName = roll.Name,
+                    MiddleName = user.MiddleName,
+                    EmployeeNumber = user.EmployeeNumber,
+                    Code = user.Code,
+                    CompensationType = user.CompensationType,
+                    Rate = user.Rate
                 };
 
                 return ViewComponent("UserDetails", userDetails);
@@ -179,6 +197,12 @@ namespace WebApp.Controllers
                 user.Address = userDetails.Address;
                 user.AlternetPhone = userDetails.AlternetPhone;
                 user.BloodGroup = userDetails.BloodGroup;
+
+                user.MiddleName = userDetails.MiddleName;
+                user.EmployeeNumber = userDetails.EmployeeNumber;
+                user.Code = userDetails.Code;
+                user.CompensationType = userDetails.CompensationType;
+                user.Rate = userDetails.Rate;
                 IdentityResult result = _userManager.CreateAsync
                     (user, "Password123!").Result;
                 if (result.Succeeded)
@@ -236,6 +260,11 @@ namespace WebApp.Controllers
                 userToUpdate.Address = userDetails.Address;
                 userToUpdate.AlternetPhone = userDetails.AlternetPhone;
                 userToUpdate.BloodGroup = userDetails.BloodGroup;
+                userToUpdate.MiddleName = userDetails.MiddleName;
+                userToUpdate.EmployeeNumber = userDetails.EmployeeNumber;
+                userToUpdate.Code = userDetails.Code;
+                userToUpdate.CompensationType = userDetails.CompensationType;
+                userToUpdate.Rate = userDetails.Rate;
                 _context.AspNetUsers.Update(userToUpdate);
                 _context.SaveChanges();
 
@@ -1426,16 +1455,90 @@ namespace WebApp.Controllers
         public IActionResult DataBackup()
         {
             ViewData["Message"] = "Your Data Backup page.";
+            ViewData["Test"] = false;
             return View();
         }
-        //[HttpGet]
-        //public FileContentResult ExportToExcel()
-        //{
-        //   // List<ExportData> exportDatas = StaticData.Technologies;
-        //    //string[] columns = { "Name", "Project", "Developer" };
-        //    //byte[] filecontent = ExcelExportHelper.ExportExcel(technologies, "Technology", true, columns);
-        //    //return File(filecontent, ExcelExportHelper.ExcelContentType, "Technologies.xlsx");
-        //}
+        [HttpGet]
+        public IActionResult ExportToExcel()
+        {
+            string sWebRootFolder = _hostingEnvironment.WebRootPath;
+            string sFileName = @"data.xlsx";
+            string URL = string.Format("{0}://{1}/wwwroot/{2}", Request.Scheme, Request.Host, sFileName);
+            FileInfo file = new FileInfo(Path.Combine(sWebRootFolder, sFileName));
+            if (file.Exists)
+            {
+                file.Delete();
+                file = new FileInfo(Path.Combine(sWebRootFolder, sFileName));
+            }
+            
+            using (ExcelPackage package = new ExcelPackage(file))
+            {
+                // add a new worksheet to the empty workbook
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Employee");
+                //First add the headers
+                worksheet.Cells[1, 1].Value = "First Name";
+                worksheet.Cells[1, 2].Value = "Middle Initial";
+                worksheet.Cells[1, 3].Value = "Last Name";
+                worksheet.Cells[1, 4].Value = "Employee Number";
+                worksheet.Cells[1, 5].Value = "Code";
+                worksheet.Cells[1, 6].Value = "Type";
+                worksheet.Cells[1, 7].Value = "Name";
+                worksheet.Cells[1, 8].Value = "Payment No";
+                worksheet.Cells[1, 9].Value = "Compensation Type";
+                worksheet.Cells[1, 10].Value = "Attribute 1";
+                worksheet.Cells[1, 11].Value = "Value 1";
+                worksheet.Cells[1, 12].Value = "Attribute 2";
+                worksheet.Cells[1, 13].Value = "Value 2";
+                worksheet.Cells[1, 14].Value = "Attribute 3";
+                worksheet.Cells[1, 15].Value = "Value 3";
+                worksheet.Cells[1, 16].Value = "Tax Frequency";
+
+                var userRolls = _context.AspNetUserRoles.ToList().Where(ur => ur.RoleId == "105e66c8-4495-48f3-98e6-7b9178537168").ToList();
+                var row = 2;
+                foreach (var userRoll in userRolls)
+                {
+                    var user = _context.AspNetUsers.Where(u => u.Id == userRoll.UserId).Single();
+                    if (user.Id != "7b081709-6e73-4cba-8950-d3ae92a8a387")
+                    {
+                        String strDate = DateTime.Now.ToString("MM/yyyy");
+                        DateTime fromDate = DateTime.ParseExact(("26-" + strDate).Replace('-', '/'), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        fromDate = fromDate.AddMonths(-1);
+
+                        var assignments = _context.Assignment.Where(a => a.UserId == user.Id).Where(a => a.IsApproved == true).Where(a => a.AssignmentDate >= fromDate).ToList();
+                        var totalHours = 0;
+                        foreach (var assignment in assignments)
+                        {
+                            totalHours = totalHours + (assignment.NoOfHours) ?? 0;
+                        }
+
+                        worksheet.Cells[row, 1].Value = user.FullName;
+                        worksheet.Cells[row, 2].Value = user.MiddleName;
+                        worksheet.Cells[row, 3].Value = user.SecondName;
+                        worksheet.Cells[row, 4].Value = user.EmployeeNumber;
+                        worksheet.Cells[row, 5].Value = user.Code;
+                        worksheet.Cells[row, 6].Value = "Earning";
+                        worksheet.Cells[row, 7].Value = "Regular";
+                        worksheet.Cells[row, 8].Value = "1";
+                        worksheet.Cells[row, 9].Value = user.CompensationType;
+                        worksheet.Cells[row, 10].Value = "Hours";
+                        worksheet.Cells[row, 11].Value = totalHours.ToString();
+                        worksheet.Cells[row, 12].Value = "Rate";
+                        worksheet.Cells[row, 13].Value = user.Rate;
+                        worksheet.Cells[row, 14].Value = "Amount";
+                        worksheet.Cells[row, 15].Value = (user.Rate * totalHours).ToString();
+                        worksheet.Cells[row, 16].Value = "26 - Bi-Weekly";
+                        row++;
+                    }
+                    
+
+                }
+                
+                package.Save(); //Save the workbook.
+            }
+            
+            ViewData["Test"] = true;
+            return View("DataBackup");
+        }
         #endregion
 
 

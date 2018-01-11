@@ -15,5 +15,11 @@ namespace WebApp.Models.Identity
         public string Address { get; set; }
         public string AlternetPhone { get; set; }
         public string BloodGroup { get; set; }
+        public int? UserLevelId { get; set; }
+        public string MiddleName { get; set; }
+        public string EmployeeNumber { get; set; }
+        public string Code { get; set; }
+        public string CompensationType { get; set; }
+        public int? Rate { get; set; }
     }
 }

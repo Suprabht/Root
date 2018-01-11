@@ -61,6 +61,12 @@ class Roles {
         var alternetPhone = $("#alternetPhone").val();
         var bloodGroup = $("#bloodGroup").val();
         var roleId = $("#roleId").val();
+
+        var middleName = $("#middleName").val();
+        var employeeNumber = $("#employeeNumber").val();
+        var code = $("#code").val();
+        var compensationType = $("#compensationType").val();
+        var rate = $("#rate").val();
         $.ajax({
             type: "POST",
             url: "/Home/AddUserDetails",
@@ -75,7 +81,13 @@ class Roles {
                 Address: address,
                 AlternetPhone: alternetPhone,
                 BloodGroup: bloodGroup,
-                RoleId: roleId
+                RoleId: roleId,
+
+                MiddleName: middleName,                
+                EmployeeNumber: employeeNumber,
+                Code: code,
+                CompensationType: compensationType,
+                Rate: rate
             },
             cache: false,
             success(data) {
@@ -99,6 +111,12 @@ class Roles {
         var address = $("#address").val();
         var alternetPhone = $("#alternetPhone").val();
         var bloodGroup = $("#bloodGroup").val();
+
+        var middleName = $("#middleName").val();
+        var employeeNumber = $("#employeeNumber").val();
+        var code = $("#code").val();
+        var compensationType = $("#compensationType").val();
+        var rate = $("#rate").val();
         $.ajax({
             type: "POST",
             url: "/Home/UpdateUserDetails",
@@ -112,7 +130,13 @@ class Roles {
                 AlternateEmail: alternateEmail,
                 Address: address,
                 AlternetPhone: alternetPhone,
-                BloodGroup: bloodGroup
+                BloodGroup: bloodGroup,
+
+                MiddleName: middleName,
+                EmployeeNumber: employeeNumber,
+                Code: code,
+                CompensationType: compensationType,
+                Rate: rate
             },
             cache: false,
             success(data) {

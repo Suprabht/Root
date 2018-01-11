@@ -2,5 +2,10 @@
     ViewData["Title"] = "Export Backup";
 }
 <div class="panel-heading">
-    <a href="@Url.Action("ExportToExcel")" class="btn btn-primary">Export</a>
+    <a href="@Url.Action("ExportToExcel")" class="btn btn-primary">Export</a><br />
+    @if ((bool)ViewData["Test"] == true)
+    {
+        <a href="/data.xlsx">Download Excell</a>
+    }
+   
 </div>
