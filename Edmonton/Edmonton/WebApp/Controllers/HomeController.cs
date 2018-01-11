@@ -22,6 +22,9 @@ using System.IO;
 using System.Net.Http.Headers;
 using OfficeOpenXml;
 using System.Globalization;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace WebApp.Controllers
 {
@@ -40,6 +43,31 @@ namespace WebApp.Controllers
             _context = context;
             _userManager = userManager;
             _hostingEnvironment = hostingEnvironment;
+        }
+
+        public bool sendSms(string body, string mobileNo)
+        {
+            try
+            {
+                // Find your Account Sid and Auth Token at twilio.com/console
+                string accountSid = _configuration.SMSaccountSid ;
+                string authToken = _configuration.SMSauthToken;
+                TwilioClient.Init(accountSid, authToken);
+                //mobileNo = "+918904007370";
+                var to = new PhoneNumber(mobileNo);
+                var message = MessageResource.Create(
+                    to,
+                    from: new PhoneNumber("+15874003767"),
+                    body: body);
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
         }
 
         public IActionResult Index()
@@ -676,10 +704,10 @@ namespace WebApp.Controllers
             try
             {
                 var clientsDal = _context.ClientDetails.ToList();
-                List<Client> clients = new List<Client>();
+                List<Models.Home.Client> clients = new List<Models.Home.Client>();
                 foreach (var clientDal in clientsDal)
                 {
-                    var client = new Client();
+                    var client = new Models.Home.Client();
                     client.ClientAddress = clientDal.ClientAddress;
                     client.ClientId = clientDal.ClientId;
                     client.ClientName = clientDal.ClientName;
@@ -709,7 +737,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Client(int id, Client client)
+        public IActionResult Client(int id, Models.Home.Client client)
         {
             try
             {
@@ -731,7 +759,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPut]
-        public IActionResult Client(Client client)
+        public IActionResult Client(Models.Home.Client client)
         {
             try
             {
@@ -836,6 +864,10 @@ namespace WebApp.Controllers
                     assign.AssignmentDate = assignment.AssignmentDate;
                     _context.Assignment.Update(assign);
                     _context.SaveChanges();
+                    var client = _context.ClientDetails.Find(Convert.ToInt32(assignment.ClientId));
+                    var user = _context.AspNetUsers.Find(assignment.UserId);
+                    if(user.PhoneNumber != null)
+                        sendSms("Your assignment has been updated Client Name:" + client.ClientName +", Address:"+ client.ClientAddress + ", Date:" + assignment.AssignmentDate, user.PhoneNumber);
                 }
                 return Json(new { Response = "Success" });
             }
@@ -860,6 +892,10 @@ namespace WebApp.Controllers
                 };
                 _context.Assignment.Add(assign);
                 _context.SaveChanges();
+                var client = _context.ClientDetails.Find(Convert.ToInt32(assignment.ClientName));
+                var user = _context.AspNetUsers.Find(assignment.UserId);
+                if (user.PhoneNumber != null)
+                    sendSms("Your assignment has been Added Client Name:" + client.ClientName + ", Address:" + client.ClientAddress + ", Date:" + assignment.AssignmentDate, user.PhoneNumber);
                 return Json(new { Response = "Success" });
             }
             catch (Exception ex)
@@ -948,6 +984,10 @@ namespace WebApp.Controllers
                     assignment.IsAccepted = true;
                     _context.Assignment.Update(assignment);
                     _context.SaveChanges();
+                    var client = _context.ClientDetails.Find(Convert.ToInt32(assignment.ClientId));
+                    var user = _context.AspNetUsers.Find(assignment.UserId);
+                    if (user.PhoneNumber != null)
+                        sendSms("Your have accept assignment Client Name:" + client.ClientName + ", Address:" + client.ClientAddress + ", Date:" + assignment.AssignmentDate, user.PhoneNumber);
                 }
                 return Json(new { Response = "Success" });
             }
@@ -969,6 +1009,10 @@ namespace WebApp.Controllers
                     assignment.IsAccepted = false;
                     _context.Assignment.Update(assignment);
                     _context.SaveChanges();
+                    var client = _context.ClientDetails.Find(Convert.ToInt32(assignment.ClientId));
+                    var user = _context.AspNetUsers.Find(assignment.UserId);
+                    if (user.PhoneNumber != null)
+                        sendSms(user.UserName + " has rejected assignment Client Name:" + client.ClientName, "+5876793536");
                 }
                 return Json(new { Response = "Success" });
             }

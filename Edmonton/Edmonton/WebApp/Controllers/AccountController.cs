@@ -13,6 +13,8 @@ using MimeKit;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
+using Microsoft.Extensions.Options;
+using SystemFrameWork.WebHelper;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,6 +23,7 @@ namespace Edmonton.Controllers
     [WhitespaceFilter]
     public class AccountController : Controller
     {
+        private Appsettings _configuration;
         private readonly UserManager<AppIdentityUser> userManager;
         private readonly SignInManager<AppIdentityUser> loginManager;
         private readonly RoleManager<AppIdentityRole> roleManager;
@@ -28,11 +31,14 @@ namespace Edmonton.Controllers
 
         public AccountController(UserManager<AppIdentityUser> userManager,
            SignInManager<AppIdentityUser> loginManager,
-           RoleManager<AppIdentityRole> roleManager, BridgeToCareContext context)
+           RoleManager<AppIdentityRole> roleManager, 
+           IOptions<Appsettings> configuration, 
+           BridgeToCareContext context)
         {
             this.userManager = userManager;
             this.loginManager = loginManager;
             this.roleManager = roleManager;
+            _configuration = configuration.Value;
             _context = context;
         }
         #region Register
@@ -42,15 +48,14 @@ namespace Edmonton.Controllers
             try
             {
                 // Find your Account Sid and Auth Token at twilio.com/console
-                const string accountSid = "#";
-                const string authToken = "";
+                string accountSid = _configuration.SMSaccountSid;
+                string authToken = _configuration.SMSauthToken;
                 TwilioClient.Init(accountSid, authToken);
-
-                mobileNo = "+918904007370";
+                //mobileNo = "+918904007370";
                 var to = new PhoneNumber(mobileNo);
                 var message = MessageResource.Create(
                     to,
-                    from: new PhoneNumber("+18183346907"),
+                    from: new PhoneNumber("+15874003767"),
                     body: body );
                 return true;
 

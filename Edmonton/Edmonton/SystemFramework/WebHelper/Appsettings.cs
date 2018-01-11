@@ -20,5 +20,18 @@ namespace SystemFrameWork.WebHelper
 
             set;
         }
+
+        public string SMSaccountSid
+        {
+            get;
+
+            set;
+        }
+        public string SMSauthToken
+        {
+            get;
+
+            set;
+        }
     }
 }

@@ -42,6 +42,8 @@ namespace WebApp
             services.Configure<Appsettings>(appsettings =>
             {
                 appsettings.ApplicationName = Configuration.GetSection("ApplicationName").Value;
+                appsettings.SMSaccountSid = Configuration.GetSection("SMSaccountSid").Value;
+                appsettings.SMSauthToken = Configuration.GetSection("SMSauthToken").Value;
                 appsettings.Version = "1.0";
             });
             // Add framework services.
