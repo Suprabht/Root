@@ -539,6 +539,7 @@ namespace WebApp.Controllers
                     program.ProgramId = programDal.ProgramId;
                     program.ProgramCode = programDal.ProgramCode;
                     program.ProgramName = programDal.ProgramName;
+                    program.ProgramDescription = programDal.ProgramDescription;
                     program.ProgramCategoryId = programDal.ProgramCategoryId;
                     var programCategory = _context.ProgramCategory.ToList().Where(x => x.ProgramCategoryId == program.ProgramCategoryId).Single();
                     programDal.ProgramCategory = programCategory;
@@ -565,6 +566,7 @@ namespace WebApp.Controllers
                 }
                 var programToUpdate = _context.Program.Find(program.ProgramId);
                 programToUpdate.ProgramName = program.ProgramName;
+                programToUpdate.ProgramCode = program.ProgramCode;
                 programToUpdate.ProgramDescription = program.ProgramDescription;
                 programToUpdate.ProgramCategoryId = program.ProgramCategoryId;
                 _context.Program.Update(programToUpdate);
@@ -589,6 +591,7 @@ namespace WebApp.Controllers
                 }
                 var programDal = new Dal.Models.Identity.Program();
                 programDal.ProgramName = program.ProgramName;
+                programDal.ProgramCode = program.ProgramCode;
                 programDal.ProgramDescription = program.ProgramDescription;
                 programDal.ProgramCategoryId = program.ProgramCategoryId;
                 _context.Program.Add(programDal);
@@ -823,6 +826,7 @@ namespace WebApp.Controllers
                     assign.AssignmentId = assignmentDal.AssignmentId;
                     assign.AssignmentDate = Convert.ToDateTime(assignmentDal.AssignmentDate);
                     assign.Accept = Convert.ToString(assignmentDal.IsAccepted);
+                    //var client = new ClientDetails();
                     if (assignmentDal.ClientId != null)
                     {
                         assign.ClientId = Convert.ToInt16(assignmentDal.ClientId);
@@ -836,7 +840,7 @@ namespace WebApp.Controllers
                     {
                         var user = _context.AspNetUsers.Find(assign.UserId);
                         assign.UserName = user.UserName;
-                        assign.UserEmail = user.Email;
+                        assign.UserEmail = user.Email;                        
                     }                    
                     assigns.Add(assign);
                 }
@@ -864,7 +868,7 @@ namespace WebApp.Controllers
                     assign.AssignmentDate = assignment.AssignmentDate;
                     _context.Assignment.Update(assign);
                     _context.SaveChanges();
-                    var client = _context.ClientDetails.Find(Convert.ToInt32(assignment.ClientId));
+                    var client = _context.ClientDetails.Where(x => x.ClientId == (Convert.ToInt32(assignment.ClientId))).Single();
                     var user = _context.AspNetUsers.Find(assignment.UserId);
                     if(user.PhoneNumber != null)
                         sendSms("Your assignment has been updated Client Name:" + client.ClientName +", Address:"+ client.ClientAddress + ", Date:" + assignment.AssignmentDate, user.PhoneNumber);
@@ -892,8 +896,8 @@ namespace WebApp.Controllers
                 };
                 _context.Assignment.Add(assign);
                 _context.SaveChanges();
-                var client = _context.ClientDetails.Find(Convert.ToInt32(assignment.ClientName));
-                var user = _context.AspNetUsers.Find(assignment.UserId);
+                var client = _context.ClientDetails.Where(x=>x.ClientId == (Convert.ToInt32(assignment.ClientName))).Single();
+                var user = _context.AspNetUsers.Find(assignment.UserName);
                 if (user.PhoneNumber != null)
                     sendSms("Your assignment has been Added Client Name:" + client.ClientName + ", Address:" + client.ClientAddress + ", Date:" + assignment.AssignmentDate, user.PhoneNumber);
                 return Json(new { Response = "Success" });
@@ -1012,7 +1016,7 @@ namespace WebApp.Controllers
                     var client = _context.ClientDetails.Find(Convert.ToInt32(assignment.ClientId));
                     var user = _context.AspNetUsers.Find(assignment.UserId);
                     if (user.PhoneNumber != null)
-                        sendSms(user.UserName + " has rejected assignment Client Name:" + client.ClientName, "+5876793536");
+                        sendSms(user.UserName + " has rejected assignment Client Name:" + client.ClientName, "+15876793536");
                 }
                 return Json(new { Response = "Success" });
             }

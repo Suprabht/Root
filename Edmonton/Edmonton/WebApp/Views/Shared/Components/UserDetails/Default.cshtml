@@ -42,7 +42,7 @@
                 <input type="email" class="form-control" id="email" value="@Model.Email">
             </div>
             <div class="form-group">
-                <label for="alternateEmail">Alternet Email:</label>
+                <label for="alternateEmail">Alternative Email:</label>
                 <input type="email" class="form-control" id="alternateEmail" value="@Model.AlternateEmail">
             </div>
             <div style="display: none" class="checkbox">
@@ -75,8 +75,13 @@
                 <input type="number" class="form-control" id="code" value="@Model.Code">
             </div>
             <div class="form-group">
-                <label for="compensationType">Compensation Type:</label>
-                <input type="text" class="form-control" id="compensationType" value="@Model.CompensationType">
+                <label for="compensationType">Compensation Type:</label>&nbsp;
+                <input type="hidden" class="form-control" id="compensationType" value="@Model.CompensationType">
+                <select id="compensationTypeSelect">
+                    <option value="Salaried">Salaried</option>
+                    <option value="Hourly">Hourly</option>
+                    <option value="Other">Other</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="rate">Rate:</label>
@@ -96,6 +101,7 @@
     </div>
     @if (!Model.AddView)
     {
+        
         <div id="tabs-2">
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -115,6 +121,7 @@
         <!-- set the legend for the calendar -->
             <script type="application/javascript">
             $(document).ready(function () {
+                $('#compensationTypeSelect').val($('#compensationType').val());
                 $.getJSON("/Home/LeaveCalendar/@Model.Id",
                 function (data) {
                             $("#leave-calendar").zabuto_calendar({

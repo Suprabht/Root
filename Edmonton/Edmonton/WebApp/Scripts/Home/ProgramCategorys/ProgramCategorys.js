@@ -17,7 +17,7 @@ ProgramCategorys.prototype.loadGrid = function (data) {
     //http://www.google.com/maps/place/49.46800006494457,17.11514008755796
     grid.jqGrid({
         colModel: [
-            { label: 'Program Category Id', name: 'programCategoryId', index: 'programCategoryId', width: "150", editable: true, editrules: { required: true } },
+            { label: 'Program Category Id', name: 'programCategoryId', index: 'programCategoryId', width: "150", editable: false, editrules: { required: false } },
             { label: 'Program Category Name', name: 'programCategoryName', index: 'programCategoryName', width: "210", editable: true, editrules: { required: true } },
             { label: 'Program Category Description', name: 'programCategoryDescription', index: 'programCategoryDescription', width: "210", editable: true, editrules: { required: true } },
             { label: 'Program Category Code', name: 'programCategoryCode', index: 'programCategoryCode', width: "150", editable: true, editrules: { required: true } },

@@ -23,7 +23,7 @@ namespace WebApp.TagHelper
             {
                 // jsonString += "<li onclick=\"javascript:roles.addUser(\'" + role.Id + "\');\">";
                 jsonString += "<li class='roleli' roleId ='" + role.Id + "'>";
-                jsonString +=  role.Name ;
+                jsonString +=  (role.Name.Equals("Hr"))? "Human Resources" : role.Name ;
                 jsonString += "<ul>";
                 foreach (var userRoles in _context.AspNetUserRoles.ToList().Where(n => n.RoleId == role.Id).ToList())
                 {

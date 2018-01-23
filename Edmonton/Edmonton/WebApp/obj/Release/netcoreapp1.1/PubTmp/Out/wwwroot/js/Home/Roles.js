@@ -42,6 +42,7 @@ var Roles = (function () {
     Roles.prototype.addUserToDb = function () {
         var id = $("#id").val();
         var name = $("#name").val();
+        var secondName = $("#secondName").val();
         var email = $("#email").val();
         var phone = $("#phone").val();
         var alternateEmail = $("#alternateEmail").val();
@@ -49,6 +50,11 @@ var Roles = (function () {
         var alternetPhone = $("#alternetPhone").val();
         var bloodGroup = $("#bloodGroup").val();
         var roleId = $("#roleId").val();
+        var middleName = $("#middleName").val();
+        var employeeNumber = $("#employeeNumber").val();
+        var code = $("#code").val();
+        var compensationType = $("#compensationTypeSelect").val();
+        var rate = $("#rate").val();
         $.ajax({
             type: "POST",
             url: "/Home/AddUserDetails",
@@ -56,13 +62,19 @@ var Roles = (function () {
             data: {
                 Id: id,
                 Name: name,
+                SecondName: secondName,
                 Email: email,
                 Phone: phone,
                 AlternateEmail: alternateEmail,
                 Address: address,
                 AlternetPhone: alternetPhone,
                 BloodGroup: bloodGroup,
-                RoleId: roleId
+                RoleId: roleId,
+                MiddleName: middleName,
+                EmployeeNumber: employeeNumber,
+                Code: code,
+                CompensationType: compensationType,
+                Rate: rate
             },
             cache: false,
             success: function (data) {
@@ -78,12 +90,18 @@ var Roles = (function () {
     Roles.prototype.updateUser = function () {
         var id = $("#id").val();
         var name = $("#name").val();
+        var secondName = $("#secondName").val();
         var email = $("#email").val();
         var phone = $("#phone").val();
         var alternateEmail = $("#alternateEmail").val();
         var address = $("#address").val();
         var alternetPhone = $("#alternetPhone").val();
         var bloodGroup = $("#bloodGroup").val();
+        var middleName = $("#middleName").val();
+        var employeeNumber = $("#employeeNumber").val();
+        var code = $("#code").val();
+        var compensationType = $("#compensationTypeSelect").val();
+        var rate = $("#rate").val();
         $.ajax({
             type: "POST",
             url: "/Home/UpdateUserDetails",
@@ -91,12 +109,18 @@ var Roles = (function () {
             data: {
                 Id: id,
                 Name: name,
+                SecondName: secondName,
                 Email: email,
                 Phone: phone,
                 AlternateEmail: alternateEmail,
                 Address: address,
                 AlternetPhone: alternetPhone,
-                BloodGroup: bloodGroup
+                BloodGroup: bloodGroup,
+                MiddleName: middleName,
+                EmployeeNumber: employeeNumber,
+                Code: code,
+                CompensationType: compensationType,
+                Rate: rate
             },
             cache: false,
             success: function (data) {
@@ -107,6 +131,51 @@ var Roles = (function () {
                 alert("Error: " + xhr.responseText);
             }
         });
+    };
+    Roles.prototype.deleteUser = function () {
+        var conf = confirm("Are you sure you want to delete!");
+        if (conf == true) {
+            var id = $("#id").val();
+            $.ajax({
+                type: "POST",
+                url: "/Home/DeleteUserDetails",
+                dataType: "json",
+                data: {
+                    Id: id
+                },
+                cache: false,
+                success: function (data) {
+                    $("#alertDiv").show().html("<strong>Success!</strong> User has been delete.");
+                    roles.init("", "");
+                },
+                error: function (xhr, ajaxOptions, error) {
+                    alert(xhr.status);
+                    alert("Error: " + xhr.responseText);
+                }
+            });
+        }
+    };
+    Roles.prototype.resetPassword = function (email) {
+        var conf = confirm("Do you want to reset Password!");
+        if (conf == true) {
+            $.ajax({
+                type: "POST",
+                url: "/Account/ForgetPasswordByUserEmail",
+                dataType: "json",
+                data: {
+                    userEmail: email
+                },
+                cache: false,
+                success: function (data) {
+                    $("#alertDiv").show().html("<strong>Success!</strong> User has been sent mail.");
+                    // roles.init("", "");
+                },
+                error: function (xhr, ajaxOptions, error) {
+                    alert(xhr.status);
+                    alert("Error: " + xhr.responseText);
+                }
+            });
+        }
     };
     return Roles;
 }());

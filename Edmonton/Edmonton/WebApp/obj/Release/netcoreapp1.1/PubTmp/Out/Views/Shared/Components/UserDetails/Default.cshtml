@@ -26,15 +26,23 @@
             </div>
             <input type="hidden" id="id" value="@Model.Id" />
             <div class="form-group">
-                <label for="Name">Name:</label>
+                <label for="Name">First Name:</label>
                 <input type="text" class="form-control" id="name" value="@Model.Name">
+            </div>
+            <div class="form-group">
+                <label for="middleName">Middle Name:</label>
+                <input type="text" class="form-control" id="middleName" value="@Model.MiddleName">
+            </div>
+            <div class="form-group">
+                <label for="Name">Last Name:</label>
+                <input type="text" class="form-control" id="secondName" value="@Model.SecondName">
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" id="email" value="@Model.Email">
             </div>
             <div class="form-group">
-                <label for="alternateEmail">Alternet Email:</label>
+                <label for="alternateEmail">Alternative Email:</label>
                 <input type="email" class="form-control" id="alternateEmail" value="@Model.AlternateEmail">
             </div>
             <div style="display: none" class="checkbox">
@@ -57,6 +65,28 @@
                 <label for="bloodGroup">Blood Group:</label>
                 <input type="text" class="form-control" id="bloodGroup" value="@Model.BloodGroup">
             </div>
+            
+            <div class="form-group">
+                <label for="employeeNumber">Employee Number:</label>
+                <input type="number" class="form-control" id="employeeNumber" value="@Model.EmployeeNumber">
+            </div>
+            <div class="form-group">
+                <label for="code">Code:</label>
+                <input type="number" class="form-control" id="code" value="@Model.Code">
+            </div>
+            <div class="form-group">
+                <label for="compensationType">Compensation Type:</label>&nbsp;
+                <input type="hidden" class="form-control" id="compensationType" value="@Model.CompensationType">
+                <select id="compensationTypeSelect">
+                    <option value="Salaried">Salaried</option>
+                    <option value="Hourly">Hourly</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="rate">Rate:</label>
+                <input type="number" class="form-control" id="rate" value="@Model.Rate">
+            </div>
             @if (Model.AddView)
         {
             <button class="btn btn-default" onclick="javascript: roles.addUserToDb();">Submit</button>
@@ -64,18 +94,20 @@
         else
         {
             <button class="btn btn-default" onclick="javascript: roles.updateUser();">Submit</button>
-        }
+            <button class="btn btn-default" onclick="javascript: roles.deleteUser();">Delete</button>
+            }
         </div>
 
     </div>
     @if (!Model.AddView)
     {
+        
         <div id="tabs-2">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" readonly="readonly" value="@Model.Email">
             </div>
-            <button class="btn btn-default">Send password reset email</button>
+            <button class="btn btn-default" onclick="javascript: roles.resetPassword('@Model.Email');">Send password reset email</button>
         </div>
     }
     @if (!Model.AddView)
@@ -89,6 +121,7 @@
         <!-- set the legend for the calendar -->
             <script type="application/javascript">
             $(document).ready(function () {
+                $('#compensationTypeSelect').val($('#compensationType').val());
                 $.getJSON("/Home/LeaveCalendar/@Model.Id",
                 function (data) {
                             $("#leave-calendar").zabuto_calendar({

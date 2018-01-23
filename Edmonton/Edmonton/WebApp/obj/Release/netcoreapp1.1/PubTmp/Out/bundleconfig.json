@@ -54,6 +54,12 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/css/Home/AttendanceView.min.css",
+    "inputFiles": [
+      "wwwroot/css/Home/AttendanceView.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/css/Home/ProgramDetails.min.css",
     "inputFiles": [
       "wwwroot/css/Home/ProgramDetails.css"
@@ -146,6 +152,18 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/js/Home/AttendanceView.js",
+    "inputFiles": [
+      "Scripts/Home/AttendenceView/AttendanceView.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/AttendanceView.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/AttendanceView.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/js/Home/EmployeeAttendance.js",
     "inputFiles": [
       "Scripts/Home/Roles/EmployeeAttendance.js"
@@ -167,6 +185,18 @@
     "outputFileName": "wwwroot/js/Home/ProgramDetails.js",
     "inputFiles": [
       "Scripts/Home/ProgramDetails/ProgramDetails.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/ProgramCategorys.js",
+    "inputFiles": [
+      "Scripts/Home/ProgramCategorys/ProgramCategorys.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/ProgramCategorys.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/ProgramCategorys.js"
     ]
   },
   {

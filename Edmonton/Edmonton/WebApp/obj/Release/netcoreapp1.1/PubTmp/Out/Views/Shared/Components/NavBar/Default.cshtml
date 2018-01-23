@@ -13,6 +13,7 @@
             }
             @if (Model.IsProgramDetails)
             {
+                <li><a asp-area="" asp-controller="Home" asp-action="ProgramCategorys">Program Categorys</a></li>
                 <li><a asp-area="" asp-controller="Home" asp-action="ProgramDetails">Program Details</a></li>
             }
             @if (Model.IsClients)
@@ -29,7 +30,7 @@
             }
             @if (Model.IsDataBackup)
             {
-                <li><a asp-area="" asp-controller="Home" asp-action="DataBackup">Data Backup</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="DataBackup">Generate Excell</a></li>
             }
             @if (Model.IsTaskAssignment)
             {

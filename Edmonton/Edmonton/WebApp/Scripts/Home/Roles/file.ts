@@ -65,7 +65,7 @@ class Roles {
         var middleName = $("#middleName").val();
         var employeeNumber = $("#employeeNumber").val();
         var code = $("#code").val();
-        var compensationType = $("#compensationType").val();
+        var compensationType = $("#compensationTypeSelect").val();
         var rate = $("#rate").val();
         $.ajax({
             type: "POST",
@@ -115,7 +115,7 @@ class Roles {
         var middleName = $("#middleName").val();
         var employeeNumber = $("#employeeNumber").val();
         var code = $("#code").val();
-        var compensationType = $("#compensationType").val();
+        var compensationType = $("#compensationTypeSelect").val();
         var rate = $("#rate").val();
         $.ajax({
             type: "POST",
