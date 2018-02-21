@@ -92,6 +92,18 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/js/Home/DataBackup.js",
+    "inputFiles": [
+      "Scripts/Home/DataBackup/DataBackup.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Home/DataBackup.min.js",
+    "inputFiles": [
+      "wwwroot/js/Home/DataBackup.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/js/Home/UserLevel.js",
     "inputFiles": [
       "Scripts/Home/UserLevel/UserLevel.js"

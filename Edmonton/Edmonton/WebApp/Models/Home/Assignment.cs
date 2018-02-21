@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,7 +9,8 @@ namespace WebApp.Models.Home
     public class Assignment
     {
         public long AssignmentId { get; set; }
-        public DateTime AssignmentDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime? AssignmentDate { get; set; }
         public int ClientId { get; set; }
         public string ClientName { get; set; }
         public string ClientAddress { get; set; }

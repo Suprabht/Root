@@ -88,14 +88,14 @@ namespace Edmonton.Controllers
                     // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                    client.Connect("smtp.friends.com", 587, false);
+                    client.Connect("mail.bridgetocare.info", 25, false);
 
                     // Note: since we don't have an OAuth2 token, disable
                     // the XOAUTH2 authentication mechanism.
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
 
                     // Note: only needed if the SMTP server requires authentication
-                    client.Authenticate("joey", "password");
+                    client.Authenticate("system", "Password123!");
 
                     client.Send(message);
                     client.Disconnect(true);
@@ -177,6 +177,21 @@ namespace Edmonton.Controllers
                         }
                     }
 
+                    if (!roleManager.RoleExistsAsync("Scheduler").Result)
+                    {
+                        AppIdentityRole role = new AppIdentityRole();
+                        role.Name = "Scheduler";
+                        role.Description = "Perform view only.";
+                        IdentityResult roleResult = roleManager.
+                        CreateAsync(role).Result;
+                        if (!roleResult.Succeeded)
+                        {
+                            ModelState.AddModelError("",
+                             "Error while creating role!");
+                            return View(obj);
+                        }
+                    }
+                    
                     userManager.AddToRoleAsync(user,
                                  obj.Role).Wait();
                     return RedirectToAction("Login", "Account");

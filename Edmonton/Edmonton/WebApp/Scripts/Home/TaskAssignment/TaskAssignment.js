@@ -56,12 +56,13 @@ TaskAssignment.prototype.loadGrid = function (data, clients, users) {
                 label: 'Assignment Date', name: 'assignmentDate', index: 'assignmentDate', width: "110", editrules: { required: true }, editable: true, editrules: { required: true }, formatter: 'date',
                 formatoptions: {
                     srcformat: 'Y/m/d H:i',
-                    newformat: 'd/m/Y H:i'
-                }, editoptions: {
+                    newformat: 'Y/m/d H:i'
+                },
+                editoptions: {
                     dataInit: function (el) {
                         $("div").css('position', 'relative');
                         $(el).datetimepicker({
-                            locale: 'en-GB',
+                           locale: 'en-US',
                             widgetPositioning: {
                                 horizontal: 'auto',
                                 vertical: 'auto'

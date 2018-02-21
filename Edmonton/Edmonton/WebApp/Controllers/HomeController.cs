@@ -25,10 +25,12 @@ using System.Globalization;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace WebApp.Controllers
 {
-    [WhitespaceFilter]
+   // [WhitespaceFilter]
     public class HomeController : Controller
     {
       //  private readonly UserManager<AppIdentityUser> userManager;
@@ -70,6 +72,45 @@ namespace WebApp.Controllers
 
         }
 
+        public bool sendMail(MailboxAddress toMail, string subject, string body )
+        {
+            try
+            {
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("System", "system@bridgetocare.com"));
+                message.To.Add(toMail);
+                message.To.Add(new MailboxAddress("Mr. Suprabhat Paul", "suprabhatpaul@gmail.com"));
+                message.Subject = subject;
+
+                message.Body = new TextPart("plain")
+                {
+                    Text = body
+                };
+                using (var client = new SmtpClient())
+                {
+                    // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
+                    client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                    client.Connect("mail.bridgetocare.info", 25, false);
+
+                    // Note: since we don't have an OAuth2 token, disable
+                    // the XOAUTH2 authentication mechanism.
+                    client.AuthenticationMechanisms.Remove("XOAUTH2");
+
+                    // Note: only needed if the SMTP server requires authentication
+                    client.Authenticate("system", "Password123!");
+
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
+
+            }
+            catch (Exception exception)
+            {
+                return false;
+            }
+            return true;
+        }
         public IActionResult Index()
         {
             return View();
@@ -824,7 +865,8 @@ namespace WebApp.Controllers
                 {
                     Models.Home.Assignment assign = new Models.Home.Assignment();
                     assign.AssignmentId = assignmentDal.AssignmentId;
-                    assign.AssignmentDate = Convert.ToDateTime(assignmentDal.AssignmentDate);
+                   
+                    assign.AssignmentDate = assignmentDal.AssignmentDate;
                     assign.Accept = Convert.ToString(assignmentDal.IsAccepted);
                     //var client = new ClientDetails();
                     if (assignmentDal.ClientId != null)
@@ -871,13 +913,18 @@ namespace WebApp.Controllers
                     var client = _context.ClientDetails.Where(x => x.ClientId == (Convert.ToInt32(assignment.ClientId))).Single();
                     var user = _context.AspNetUsers.Find(assignment.UserId);
                     if(user.PhoneNumber != null)
-                        sendSms("Your assignment has been updated Client Name:" + client.ClientName +", Address:"+ client.ClientAddress + ", Date:" + assignment.AssignmentDate, user.PhoneNumber);
+                        sendSms("Your assignment has been updated Client Name:" + client.ClientName +", Address:"+ client.ClientAddress + ", Date:" + assignment.AssignmentDate.ToString(), user.PhoneNumber);
+                    if(user.Email != null)
+                    {
+                        sendMail(new MailboxAddress(user.FullName, user.Email), "Assignmrnt : Updated", "Your assignment has been updated Client Name:" + client.ClientName + ", Address:" + client.ClientAddress + ", Date:" + assignment.AssignmentDate);
+                        
+                    }
                 }
                 return Json(new { Response = "Success" });
             }
             catch (Exception ex)
             {
-                return Json(new { Response = "Error" + ex.Message });
+                return Json(new { Response = "Error: " + ex.InnerException.ToString() + "::" + ex.InnerException.Message.ToString() + " :: " + assignment.AssignmentDate.ToString()});
             }
         }
 
@@ -890,7 +937,7 @@ namespace WebApp.Controllers
                 {
                     ClientId = Convert.ToInt32( assignment.ClientName),
                     UserId = assignment.UserName,
-                    AssignmentDate = assignment.AssignmentDate,
+                    AssignmentDate = Convert.ToDateTime(assignment.AssignmentDate),
                     IsAccepted = false
                     //AssignmentId = DBNull.Value
                 };
@@ -900,11 +947,16 @@ namespace WebApp.Controllers
                 var user = _context.AspNetUsers.Find(assignment.UserName);
                 if (user.PhoneNumber != null)
                     sendSms("Your assignment has been Added Client Name:" + client.ClientName + ", Address:" + client.ClientAddress + ", Date:" + assignment.AssignmentDate, user.PhoneNumber);
+                if (user.Email != null)
+                {
+                    sendMail(new MailboxAddress(user.FullName, user.Email), "Assignmrnt : Added", "Your assignment has been Added Client Name:" + client.ClientName + ", Address:" + client.ClientAddress + ", Date:" + assignment.AssignmentDate);
+
+                }
                 return Json(new { Response = "Success" });
             }
             catch (Exception ex)
             {
-                return Json(new { Response = "Error" + ex.Message });
+                return Json(new { Response = "Error: " + ex.InnerException.ToString() + "::" + ex.InnerException.Message.ToString() + " :: " + assignment.AssignmentDate.ToString() });
             }
         }
 
@@ -949,7 +1001,7 @@ namespace WebApp.Controllers
                 {
                     Models.Home.Assignment assign = new Models.Home.Assignment();
                     assign.AssignmentId = assignmentDal.AssignmentId;
-                    assign.AssignmentDate = Convert.ToDateTime(assignmentDal.AssignmentDate);
+                    assign.AssignmentDate = assignmentDal.AssignmentDate;
                     assign.Accept = Convert.ToString(assignmentDal.IsAccepted);
 
                     assign.ClientId = Convert.ToInt16(assignmentDal.ClientId);
@@ -992,6 +1044,11 @@ namespace WebApp.Controllers
                     var user = _context.AspNetUsers.Find(assignment.UserId);
                     if (user.PhoneNumber != null)
                         sendSms("Your have accept assignment Client Name:" + client.ClientName + ", Address:" + client.ClientAddress + ", Date:" + assignment.AssignmentDate, user.PhoneNumber);
+                    if (user.Email != null)
+                    {
+                        sendMail(new MailboxAddress(user.FullName, user.Email), "Assignmrnt : Accepted", "Your have accept assignment Client Name:" + client.ClientName + ", Address:" + client.ClientAddress + ", Date:" + assignment.AssignmentDate);
+
+                    }
                 }
                 return Json(new { Response = "Success" });
             }
@@ -1017,6 +1074,12 @@ namespace WebApp.Controllers
                     var user = _context.AspNetUsers.Find(assignment.UserId);
                     if (user.PhoneNumber != null)
                         sendSms(user.UserName + " has rejected assignment Client Name:" + client.ClientName, "+15876793536");
+                    if (user.Email != null)
+                    {
+                        sendMail(new MailboxAddress(user.FullName, user.Email), "Assignmrnt : Rejected", user.UserName + " has rejected assignment Client Name:" + client.ClientName);
+
+                    }
+
                 }
                 return Json(new { Response = "Success" });
             }
@@ -1319,7 +1382,7 @@ namespace WebApp.Controllers
                             Models.Home.Assignment assignment = new Models.Home.Assignment();
 
                             assignment.AssignmentId = assignmentDal.AssignmentId;
-                            assignment.AssignmentDate = Convert.ToDateTime(assignmentDal.AssignmentDate);
+                            assignment.AssignmentDate = assignmentDal.AssignmentDate;
                             assignment.ClientId = Convert.ToInt16(assignmentDal.ClientId);
                             var client = _context.ClientDetails.Find(assignmentDal.ClientId);
                             assignment.ClientName = client.ClientName;
@@ -1506,8 +1569,9 @@ namespace WebApp.Controllers
             ViewData["Test"] = false;
             return View();
         }
-        [HttpGet]
-        public IActionResult ExportToExcel()
+
+        [HttpPost]
+        public IActionResult ExportToExcel(long id)
         {
             string sWebRootFolder = _hostingEnvironment.WebRootPath;
             string sFileName = @"data.xlsx";
@@ -1553,6 +1617,7 @@ namespace WebApp.Controllers
                         fromDate = fromDate.AddMonths(-1);
 
                         var assignments = _context.Assignment.Where(a => a.UserId == user.Id).Where(a => a.IsApproved == true).Where(a => a.AssignmentDate >= fromDate).ToList();
+                        
                         var totalHours = 0;
                         foreach (var assignment in assignments)
                         {
@@ -1583,9 +1648,9 @@ namespace WebApp.Controllers
                 
                 package.Save(); //Save the workbook.
             }
-            
-            ViewData["Test"] = true;
-            return View("DataBackup");
+
+            //ViewData["Test"] = true;
+            return Json(new { Response = "Success" });
         }
         #endregion
 

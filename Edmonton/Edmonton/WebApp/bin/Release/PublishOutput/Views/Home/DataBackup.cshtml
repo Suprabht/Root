@@ -1,11 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Export Backup";
 }
-<div class="panel-heading">
-    <a href="@Url.Action("ExportToExcel")" class="btn btn-primary">Export</a><br />
-    @if ((bool)ViewData["Test"] == true)
-    {
-        <a href="/data.xlsx">Download Excell</a>
+@section Scripts {
+<script src="~/js/Home/DataBackup.js"></script>
+
+
     }
+<div class="panel-heading">
+    <div id="divdropdownCatagory">
+    </div>
+   @* <a href="@Url.Action("ExportToExcel")" class="btn btn-primary">Export</a><br />*@
+    <a id="createExcell" href="#"onclick="javascript: dataBackup.submitExcell();">Create Excell</a>
+
+    @*@if ((bool)ViewData["Test"] == true)
+    {*@
+        <a id="downloadLink" style="display:none;" href="/data.xlsx">Download Excell</a>
+   @* }*@
    
 </div>

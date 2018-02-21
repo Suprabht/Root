@@ -49,6 +49,19 @@ namespace WebApp.ViewComponents
                     menu.IsAttendanceView = true;
                     menu.IsLeavePlanner = true;
                 }
+
+                if (roles[0].Value.Equals("Scheduler"))
+                {
+                    //menu.IsRoles = true;
+                    //menu.IsClients = true;
+                    //menu.IsUserInfo = true;
+                    menu.IsTaskAssignment = true;
+                    menu.IsAttendanceDetails = true;
+                    menu.IsProgramDetails = true;
+                    //menu.IsDataBackup = true;
+                    //menu.IsUserLevelDetail = true;
+
+                }
             }
             
             return View(menu);

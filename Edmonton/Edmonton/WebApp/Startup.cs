@@ -7,6 +7,8 @@ using WebApp.Models.Identity;
 using Microsoft.EntityFrameworkCore;
 using SystemFrameWork.WebHelper;
 using Dal.Models.Identity;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace WebApp
 {
@@ -46,6 +48,14 @@ namespace WebApp
                 appsettings.SMSauthToken = Configuration.GetSection("SMSauthToken").Value;
                 appsettings.Version = "1.0";
             });
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-GB");
+                options.SupportedCultures = new List<CultureInfo> { new CultureInfo("en-GB") };
+                options.RequestCultureProviders.Clear();
+            });
+
             // Add framework services.
             services.AddMvc();
             services.AddSession();
