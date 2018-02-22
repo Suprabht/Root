@@ -77,9 +77,9 @@ namespace WebApp.Controllers
             try
             {
                 var message = new MimeMessage();
-                message.From.Add(new MailboxAddress("System", "system@bridgetocare.com"));
+                message.From.Add(new MailboxAddress("System", "system@bridgetocare.info"));
                 message.To.Add(toMail);
-                message.To.Add(new MailboxAddress("Mr. Suprabhat Paul", "suprabhatpaul@gmail.com"));
+                message.To.Add(new MailboxAddress("Mr.Suprabhat Paul", "suprabhatpaul@gmail.com"));
                 message.Subject = subject;
 
                 message.Body = new TextPart("plain")
@@ -98,7 +98,7 @@ namespace WebApp.Controllers
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
 
                     // Note: only needed if the SMTP server requires authentication
-                    client.Authenticate("system", "Password123!");
+                    client.Authenticate("system@bridgetocare.info", "Password123!");
 
                     client.Send(message);
                     client.Disconnect(true);
