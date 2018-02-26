@@ -56,9 +56,9 @@ nav ul li ul li {
 #fourth-block p {
 	color: #fff;
 }
-#first-block, #second-block, #third-block, #fourth-block {
-	text-align: center;
-	padding: 4.5rem 0;
+#first-block, #second-block, #third-block, #fourth-block, #fifth-block {
+    text-align: center;
+    padding: 4.5rem 0;
 }
 #carousel {
 	background: #fff;
@@ -69,8 +69,8 @@ nav ul li ul li {
 #second-block {
 	background: none repeat scroll 0 0 rgba(0, 30, 34, 0.85);
 }
-#third-block {
-	background: #fff;
+#third-block, #fifth-block {
+    background: #fff;
 }
 #fourth-block {
 	background: rgb(0, 30, 34);
