@@ -95,7 +95,7 @@ namespace Edmonton.Controllers
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
 
                     // Note: only needed if the SMTP server requires authentication
-                    client.Authenticate("system", "Password123!");
+                    client.Authenticate("system", "Passxxx");
 
                     client.Send(message);
                     client.Disconnect(true);

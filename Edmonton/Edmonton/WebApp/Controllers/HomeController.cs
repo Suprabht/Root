@@ -98,7 +98,7 @@ namespace WebApp.Controllers
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
 
                     // Note: only needed if the SMTP server requires authentication
-                    client.Authenticate("system@bridgetocare.info", "Password123!");
+                    client.Authenticate("system@bridgetocare.info", "Passwoxxx");
 
                     client.Send(message);
                     client.Disconnect(true);
