@@ -6,21 +6,21 @@ Clients.prototype.init = function () {
     var div = document.createElement('div');
     div.id = 'gridPager';
     $('#gridContainer').append(div);
-    var programs = {};
-    $.getJSON("/Home/Program1",
-        function (data) {
-            for (i = 0; i < data.rows.length; i++) {
-                for (i = 0; i < data.rows.length; i++) {
-                    programs[data.rows[i].programId] = data.rows[i].programCode + " : " + data.rows[i].programName + " - " + data.rows[i].programCategoryAbbreviation + " : " + data.rows[i].programCategoryName;
-                };
-            };
+   // var programs = {};
+    //$.getJSON("/Home/Program1",
+    //    function (data) {
+    //        for (i = 0; i < data.rows.length; i++) {
+    //            for (i = 0; i < data.rows.length; i++) {
+    //                programs[data.rows[i].programId] = data.rows[i].programCode + " : " + data.rows[i].programName + " - " + data.rows[i].programCategoryAbbreviation + " : " + data.rows[i].programCategoryName;
+    //            };
+    //        };
             $.getJSON("/Home/Client",
                 function (clientData) {                    
-                    clients.loadGrid(clientData, programs);
+                    clients.loadGrid(clientData);
                 });
-        });
+        //});
 };
-Clients.prototype.loadGrid = function (data, programs) {
+Clients.prototype.loadGrid = function (data) {
     var grid = $("#grid");
     //http://www.google.com/maps/place/49.46800006494457,17.11514008755796
     grid.jqGrid({
@@ -30,7 +30,7 @@ Clients.prototype.loadGrid = function (data, programs) {
             { label: 'Client Address', name: 'clientAddress', index: 'clientAddress', width: "350", editable: true, editrules: { required: true } },
             { label: 'Longitude', name: 'long', index: 'long', width: "150", editable: true, editrules: { required: true } },
             { label: 'Latitude', name: 'latt', index: 'latt', width: "150", editable: true, editrules: { required: true } },
-            { label: 'Program', name: 'programId', index: 'programId', width: "150", editable: true, editrules: { required: true }, edittype: 'select', editoptions: { value: programs } },
+            //{ label: 'Program', name: 'programId', index: 'programId', width: "150", editable: true, editrules: { required: true }, edittype: 'select', editoptions: { value: programs } },
             { label: 'Link', name: 'link', width: "150", editable: false, formatter: clients.methodFormatter }
         ],
         pager: '#gridPager',

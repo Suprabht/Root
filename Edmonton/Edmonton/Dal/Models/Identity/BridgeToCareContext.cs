@@ -16,6 +16,7 @@ namespace Dal.Models.Identity
         public virtual DbSet<Assignment> Assignment { get; set; }
         public virtual DbSet<Attendance> Attendance { get; set; }
         public virtual DbSet<ClientDetails> ClientDetails { get; set; }
+        public virtual DbSet<ClientDetailsPrograms> ClientDetailsPrograms { get; set; }
         public virtual DbSet<EmergencyCall> EmergencyCall { get; set; }
         public virtual DbSet<Leave> Leave { get; set; }
         public virtual DbSet<Program> Program { get; set; }
@@ -205,12 +206,21 @@ namespace Dal.Models.Identity
                 entity.Property(e => e.Long)
                     .IsRequired()
                     .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<ClientDetailsPrograms>(entity =>
+            {
+                entity.HasOne(d => d.Client)
+                    .WithMany(p => p.ClientDetailsPrograms)
+                    .HasForeignKey(d => d.ClientId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_ClientDetailsPrograms_ClientDetailsPrograms");
 
                 entity.HasOne(d => d.Program)
-                    .WithMany(p => p.ClientDetails)
+                    .WithMany(p => p.ClientDetailsPrograms)
                     .HasForeignKey(d => d.ProgramId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK_ClientDetails_Program");
+                    .HasConstraintName("FK_ClientDetailsPrograms_Program");
             });
 
             modelBuilder.Entity<EmergencyCall>(entity =>

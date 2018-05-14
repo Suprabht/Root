@@ -758,17 +758,17 @@ namespace WebApp.Controllers
                     client.Latt = clientDal.Latt;
                     client.Long = clientDal.Long;
                     client.Link = string.Format("http://maps.google.com/maps?q={0},{1}", clientDal.Latt, clientDal.Long);
-                    var program = _context.Program.ToList().Where(x => x.ProgramId == clientDal.ProgramId).Single();
-                    clientDal.Program = program;
-                    var programCategory = _context.ProgramCategory.ToList().Where(x => x.ProgramCategoryId == program.ProgramCategoryId).Single();
-                    clientDal.Program.ProgramCategory = programCategory;
-                    client.ProgramId = clientDal.Program.ProgramId;
-                    client.ProgramCode = clientDal.Program.ProgramCode;
-                    client.ProgramName = clientDal.Program.ProgramName;
-                    client.ProgramCategoryId = clientDal.Program.ProgramCategory.ProgramCategoryId;
-                    client.ProgramCategoryCode = clientDal.Program.ProgramCategory.ProgramCategoryCode;
-                    client.ProgramCategoryName = clientDal.Program.ProgramCategory.ProgramCategoryName;
-                    client.ProgramCategoryAbbreviation = clientDal.Program.ProgramCategory.ProgramCategoryAbbreviation;
+                    //var program = _context.Program.ToList().Where(x => x.ProgramId == clientDal.ProgramId).Single();
+                    //clientDal.Program = program;
+                    //var programCategory = _context.ProgramCategory.ToList().Where(x => x.ProgramCategoryId == program.ProgramCategoryId).Single();
+                    //clientDal.Program.ProgramCategory = programCategory;
+                    //client.ProgramId = clientDal.Program.ProgramId;
+                    //client.ProgramCode = clientDal.Program.ProgramCode;
+                    //client.ProgramName = clientDal.Program.ProgramName;
+                    //client.ProgramCategoryId = clientDal.Program.ProgramCategory.ProgramCategoryId;
+                    //client.ProgramCategoryCode = clientDal.Program.ProgramCategory.ProgramCategoryCode;
+                    //client.ProgramCategoryName = clientDal.Program.ProgramCategory.ProgramCategoryName;
+                    //client.ProgramCategoryAbbreviation = clientDal.Program.ProgramCategory.ProgramCategoryAbbreviation;
                     //client.Program = string.Format("{0}:{1} - {2}:{3}", clientDal.ProgramId, clientDal.Program.ProgramName, clientDal.Program.ProgramCategoryId, clientDal.Program.ProgramCategory.ProgramCategoryName);
                     clients.Add(client);
                 }
@@ -791,7 +791,7 @@ namespace WebApp.Controllers
                 clientToUpdate.ClientName = client.ClientName;
                 clientToUpdate.Latt = client.Latt;
                 clientToUpdate.Long = client.Long;
-                clientToUpdate.ProgramId = client.ProgramId;
+                //clientToUpdate.ProgramId = client.ProgramId;
                 _context.ClientDetails.Update(clientToUpdate);
                 _context.SaveChanges();
                 return Json(new { Response = "Success" });
@@ -832,6 +832,106 @@ namespace WebApp.Controllers
             try
             {
                 var clientDetails = _context.ClientDetails.Find(id);
+                if (clientDetails != null)
+                {
+                    _context.Entry(clientDetails).State = EntityState.Deleted;
+                    _context.SaveChanges();
+                }
+                return Json(new { Response = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+        }
+        #endregion
+
+        #region ClientsProgram
+        [Authorize]
+        public IActionResult ClientsProgram()
+        {
+            ViewData["Message"] = "Your Client Programs page.";
+
+            return View();
+        }
+        [HttpGet]
+        public IActionResult ClientsPrograms()
+        {
+            try
+            {
+                var clientDetailsPrograms = _context.ClientDetailsPrograms.ToList();
+                List<Models.Home.ClientDetailsPrograms> clients = new List<Models.Home.ClientDetailsPrograms>();
+                int i = 1;
+                foreach (var clientProgram in clientDetailsPrograms)
+                {
+                    var client = _context.ClientDetails.Find(clientProgram.ClientId);
+                    var program = _context.Program.Find(clientProgram.ClientDetailsProgramsId);
+                    var clientProgra = new Models.Home.ClientDetailsPrograms();
+                    clientProgra.ClientDetailsProgramsId = clientProgram.ClientDetailsProgramsId;
+                    clientProgra.ClientId = clientProgram.ClientId;
+                    clientProgra.ProgramId = clientProgram.ProgramId;
+                    clientProgra.ClientName = client.ClientName;
+                    clientProgra.ProgramName = program.ProgramName;
+                    clients.Add(clientProgra);
+                    i++;
+                    if (i == 10)
+                        break;
+                }
+                var jsonstring = JsonHelper.Serialize(clients);
+                return Json(new { page = 1, records = clientDetailsPrograms.Count, rows = clients });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+           
+        }
+
+        [HttpPost]
+        public IActionResult ClientsPrograms(int id, Dal.Models.Identity.ClientDetailsPrograms clientDetailsPrograms)
+        {
+            try
+            {
+                var clientDetailsProgramsToUpdate = _context.ClientDetailsPrograms.Find(clientDetailsPrograms.ClientDetailsProgramsId);
+
+                clientDetailsProgramsToUpdate.ClientId = clientDetailsPrograms.ClientId;
+                clientDetailsProgramsToUpdate.ProgramId = clientDetailsPrograms.ProgramId;
+                _context.ClientDetailsPrograms.Update(clientDetailsProgramsToUpdate);
+                _context.SaveChanges();
+                return Json(new { Response = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+        }
+
+        [HttpPut]
+        public IActionResult ClientsPrograms(Dal.Models.Identity.ClientDetailsPrograms client)
+        {
+            try
+            {
+                var ClientDetailsPrograms = new Dal.Models.Identity.ClientDetailsPrograms()
+                {
+                    ClientId = client.ClientId,
+                    ProgramId = client.ProgramId
+                };
+                _context.ClientDetailsPrograms.Add(ClientDetailsPrograms);
+                _context.SaveChanges();
+                return Json(new { Response = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Response = "Error" + ex.Message });
+            }
+
+        }
+
+        [HttpDelete]
+        public IActionResult ClientsPrograms(int id) {
+            try
+            {
+                var clientDetails = _context.ClientDetailsPrograms.Find(id);
                 if (clientDetails != null)
                 {
                     _context.Entry(clientDetails).State = EntityState.Deleted;

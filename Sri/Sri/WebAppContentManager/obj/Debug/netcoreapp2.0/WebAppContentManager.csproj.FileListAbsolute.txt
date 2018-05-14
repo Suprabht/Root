@@ -1,0 +1,11 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppContentManager\bin\Debug\netcoreapp2.0\WebAppContentManager.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppContentManager\bin\Debug\netcoreapp2.0\WebAppContentManager.runtimeconfig.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppContentManager\bin\Debug\netcoreapp2.0\WebAppContentManager.runtimeconfig.dev.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppContentManager\bin\Debug\netcoreapp2.0\WebAppContentManager.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppContentManager\obj\Debug\netcoreapp2.0\WebAppContentManager.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppContentManager\obj\Debug\netcoreapp2.0\WebAppContentManager.csproj.CoreCompileInputs.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppContentManager\obj\Debug\netcoreapp2.0\WebAppContentManager.AssemblyInfoInputs.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppContentManager\obj\Debug\netcoreapp2.0\WebAppContentManager.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppContentManager\bin\Debug\netcoreapp2.0\WebAppContentManager.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppContentManager\obj\Debug\netcoreapp2.0\WebAppContentManager.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppContentManager\obj\Debug\netcoreapp2.0\WebAppContentManager.pdb

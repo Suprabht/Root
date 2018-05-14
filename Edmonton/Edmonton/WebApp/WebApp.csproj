@@ -51,6 +51,9 @@
     <ProjectReference Include="..\SystemFramework\SystemFramework.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="wwwroot\css\Home\ClientsProgram.min.css">
+      <DependentUpon>ClientsProgram.css</DependentUpon>
+    </Content>
     <Content Update="wwwroot\css\Home\ProgramCategorys.min.css">
       <DependentUpon>ProgramCategorys.css</DependentUpon>
     </Content>

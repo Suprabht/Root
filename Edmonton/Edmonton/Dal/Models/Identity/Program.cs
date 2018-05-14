@@ -7,7 +7,7 @@ namespace Dal.Models.Identity
     {
         public Program()
         {
-            ClientDetails = new HashSet<ClientDetails>();
+            ClientDetailsPrograms = new HashSet<ClientDetailsPrograms>();
         }
 
         public int ProgramId { get; set; }
@@ -16,7 +16,7 @@ namespace Dal.Models.Identity
         public string ProgramDescription { get; set; }
         public int ProgramCategoryId { get; set; }
 
-        public virtual ICollection<ClientDetails> ClientDetails { get; set; }
+        public virtual ICollection<ClientDetailsPrograms> ClientDetailsPrograms { get; set; }
         public virtual ProgramCategory ProgramCategory { get; set; }
     }
 }

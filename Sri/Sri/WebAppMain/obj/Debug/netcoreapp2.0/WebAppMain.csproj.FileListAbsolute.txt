@@ -1,0 +1,11 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppMain\bin\Debug\netcoreapp2.0\WebAppMain.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppMain\bin\Debug\netcoreapp2.0\WebAppMain.runtimeconfig.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppMain\bin\Debug\netcoreapp2.0\WebAppMain.runtimeconfig.dev.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppMain\bin\Debug\netcoreapp2.0\WebAppMain.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppMain\bin\Debug\netcoreapp2.0\WebAppMain.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppMain\obj\Debug\netcoreapp2.0\WebAppMain.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppMain\obj\Debug\netcoreapp2.0\WebAppMain.csproj.CoreCompileInputs.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppMain\obj\Debug\netcoreapp2.0\WebAppMain.AssemblyInfoInputs.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppMain\obj\Debug\netcoreapp2.0\WebAppMain.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppMain\obj\Debug\netcoreapp2.0\WebAppMain.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppMain\obj\Debug\netcoreapp2.0\WebAppMain.pdb

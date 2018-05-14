@@ -1,0 +1,11 @@
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppImageManager\bin\Debug\netcoreapp2.0\WebAppImageManager.deps.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppImageManager\bin\Debug\netcoreapp2.0\WebAppImageManager.runtimeconfig.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppImageManager\bin\Debug\netcoreapp2.0\WebAppImageManager.runtimeconfig.dev.json
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppImageManager\bin\Debug\netcoreapp2.0\WebAppImageManager.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppImageManager\bin\Debug\netcoreapp2.0\WebAppImageManager.pdb
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppImageManager\obj\Debug\netcoreapp2.0\WebAppImageManager.csprojResolveAssemblyReference.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppImageManager\obj\Debug\netcoreapp2.0\WebAppImageManager.csproj.CoreCompileInputs.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppImageManager\obj\Debug\netcoreapp2.0\WebAppImageManager.AssemblyInfoInputs.cache
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppImageManager\obj\Debug\netcoreapp2.0\WebAppImageManager.AssemblyInfo.cs
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppImageManager\obj\Debug\netcoreapp2.0\WebAppImageManager.dll
+C:\Users\Suprabhatpaul\Documents\GitHub\Root\Root\Sri\Sri\WebAppImageManager\obj\Debug\netcoreapp2.0\WebAppImageManager.pdb
