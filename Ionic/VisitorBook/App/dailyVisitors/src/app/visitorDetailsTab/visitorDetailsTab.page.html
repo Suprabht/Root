@@ -1,0 +1,134 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-button slot="end">
+      <ion-icon name="print-sharp"></ion-icon>
+    </ion-button>
+    <ion-buttons>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+    <form [formGroup] ="form">
+    <!--<ion-segment color="secondary">
+      <ion-segment-button value="visitors" checked>Visitors</ion-segment-button>
+      <ion-segment-button value="employee">SDL Employee</ion-segment-button>
+    </ion-segment>-->
+    <ion-grid>
+      <ion-row>
+        <ion-col size-md="6" offset-md="1">
+          <ion-item style="border: solid 1px #22AA51; margin: 2px;  border-radius: 10px;">
+            <ion-label color="primary" position ="floating">VisitorsName</ion-label>
+            <ion-input autocapitalize inputmode="text" required name="visitorName" formControlName="visitorName" ></ion-input>
+          </ion-item>
+        <div *ngFor="let error of errorMessages.visitorName">
+          <ng-container *ngIf="visitorName.hasError(error.type) && (visitorName.dirty || visitorName.touched)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+          <ion-item style="border: solid 1px #22AA51; border-radius: 10px;">
+            <ion-label color="primary" position ="floating">Email</ion-label>
+            <ion-input inputmode="email" type="email" name="visitorsName" formControlName ="email"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.email">
+            <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+            <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+          <ion-item style="border: solid 1px #22AA51; margin: 2px;  border-radius: 10px;">
+            <ion-label color="primary" position ="floating">Mobile Number</ion-label>
+            <ion-input inputmode="tel" name="Mobile Number"  formControlName ="mobileNumber"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.mobileNumber">
+            <ng-container *ngIf="mobileNumber.hasError(error.type) && (mobileNumber.dirty || mobileNumber.touched)">
+            <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+          <ion-item style="border: solid 1px #22AA51; margin: 2px;  border-radius: 10px;">
+            <ion-label color="primary" position ="floating">Address</ion-label>
+            <ion-input autocapitalize inputmode="text"  name="Address" formControlName ="adress"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.adress">
+            <ng-container *ngIf="adress.hasError(error.type) && (adress.dirty || adress.touched)">
+            <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+          <ion-item style="border: solid 1px #22AA51; margin: 2px;  border-radius: 10px;">
+            <ion-label color="primary" position ="floating">From Place Name</ion-label>
+            <ion-input autocapitalize inputmode="text"  name="FromPlace" formControlName ="fromPlace"></ion-input>
+          </ion-item> 
+          <div *ngFor="let error of errorMessages.fromPlace">
+            <ng-container *ngIf="fromPlace.hasError(error.type) && (fromPlace.dirty || fromPlace.touched)">
+            <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>       
+        </ion-col>
+        <ion-col>
+          <ion-row>
+            <ion-col>
+              <div style=" margin: 50px; width: 200px; height: 200px; border: 1px solid #c8c9c2;  float:right; border-radius: 1px; border-color:#22AA51;">
+                <ion-item  *ngFor="let photo of photos; index as position">
+                    <ion-img style="object-fit:cover; height: 200px; width: 200px; border: 1px solid"  src="{{ photo.webviewPath }}" (click)="photoService.addNewToGallery()"
+                      alt="Your Photo" alt="Missing image" onerror="this.onerror=null" this.src="../../assets/Camera.jpg">
+                    </ion-img>
+                  </ion-item>
+              </div>
+              <ion-button style=" position:absolute;
+              bottom:0;
+              right:0; margin-right: 50px;" (click)="photoService.addNewToGallery()" >Picture</ion-button>
+            </ion-col>
+          </ion-row>
+      </ion-col>
+      </ion-row>
+    <ion-row>
+      <ion-col size-md="6" offset-md="1">
+          <div style="border: 1px solid #ccc; width: 300px; height:180px;
+          border-radius: 10px; border-color:#22AA51;
+            ">
+            <ion-item>
+              <signature-pad #signatureCanvas [options]="signaturePadOptions" id="signatureCanvas" (onBeginEvent)="drawStart()"
+              (onEndEvent)="drawComplete()" >
+            </signature-pad>
+            </ion-item>
+            <ion-item>
+              <ion-button  [disabled]="!this.signatureImage" (click)="drawClear()" >Clear</ion-button>
+            </ion-item>
+            
+          </div>        
+      </ion-col>
+    
+    </ion-row>
+    
+      <!-- <ion-col size-md="6" offset-md="1">
+        <div>
+          <ion-button style=" position:absolute;
+            bottom:0;
+            right:0; margin-right: 50px;" [disabled]="!this.signatureImage" (click)="drawClear()" >Cleareee</ion-button>
+        </div>      
+      </ion-col> -->
+    
+    
+    <ion-row>
+      <ion-col>
+        <ion-button style="float:right; width: 20%; height: 20;" (click)="drawClear(form)" >Reset</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" [disabled]="!form.valid" style="float:right; width: 20%; height: 20;" (click) ="onSubmit(form)" >Submit</ion-button>
+        <ion-button style="float:right; width: 20%; height: 20;" (click) ="downloadPDF()" >Download</ion-button>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
+    </form>
+    <div style="display:none">
+      <div id="div1">Test Download</div>
+    </div>
+    
+</ion-content>
+

@@ -1,0 +1,7 @@
+{
+  "name": "dailyVisitors",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

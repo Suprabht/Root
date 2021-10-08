@@ -1,0 +1,53 @@
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>
+          DailyVisitors
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/tabs/visitorDetailsTab">
+            <ion-icon name="albums"></ion-icon>
+              <ion-label color="primary">
+                Visitors Details
+              </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/tabs/visitorListingTab">
+            <ion-icon name="list-outline"></ion-icon>
+              <ion-label color="primary">
+                Visitors List
+              </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/tabs/reportsTab">
+            <ion-icon name="analytics-outline"></ion-icon>
+              <ion-label color="primary">
+                Report
+              </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/auth">
+            <ion-icon name="log-out-outline"></ion-icon>
+              <ion-label color="primary">
+                Logout
+              </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-title>SDL Copyright@2020</ion-title>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet  id="main"></ion-router-outlet>
+</ion-app>

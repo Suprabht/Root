@@ -1,0 +1,3 @@
+DevAzure:-
+•	https://dev.azure.com/sdl/VisitorsBook
+•	https://dev.azure.com/sdl/Timesheet
