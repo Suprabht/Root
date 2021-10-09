@@ -82,6 +82,7 @@ namespace DailyVisitors.WebApi.Controllers
                 visitorDetails.Picture = SaveImage(visitorDetails.Picture);
                 visitorDetails.LoginDateTime = DateTime.UtcNow;
                 visitorDetails.LogoutDateTime = null;
+                visitorDetails.IsDeleted = false;
                 _context.VisitorDetails.Add(visitorDetails);
                 await _context.SaveChangesAsync();
                 return CreatedAtAction("GetVisitorDetails", new { id = visitorDetails.VisitorId }, visitorDetails);
@@ -95,18 +96,33 @@ namespace DailyVisitors.WebApi.Controllers
 
         // DELETE: api/VisitorDetail/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<VisitorDetails>> DeleteVisitorDetails(long id)
+        public async Task<ActionResult<IEnumerable<VisitorDetails>>> DeleteVisitorDetails(long id)
         {
-            var visitorDetails = await _context.VisitorDetails.FindAsync(id);
-            if (visitorDetails == null)
+            var visitorDetails = _context.VisitorDetails.FirstOrDefault(visitor => visitor.VisitorId == id);
+            if (id != visitorDetails.VisitorId)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            _context.VisitorDetails.Remove(visitorDetails);
-            await _context.SaveChangesAsync();
+            _context.Entry(visitorDetails).State = EntityState.Modified;
+            visitorDetails.IsDeleted = true;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!VisitorDetailsExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            return visitorDetails;
+            return await _context.VisitorDetails.Where(x=>x.IsDeleted==false).ToListAsync();
         }
 
         //api/VisitorDetails/logoutById?id=1
@@ -137,7 +153,7 @@ namespace DailyVisitors.WebApi.Controllers
                 }
             }
 
-            return await _context.VisitorDetails.ToListAsync();
+            return await _context.VisitorDetails.Where(x=>x.IsDeleted==false).ToListAsync();
         }
 
         private bool VisitorDetailsExists(long id)

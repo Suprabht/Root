@@ -2,6 +2,7 @@ export class Visitor  {
     visitorId: number;
     visitorName:string
     email: string;
+    company:string;
     mobileNumber: number;
     adress: string;
     fromPlace: string;
@@ -19,6 +20,7 @@ export class Visitor  {
         this.visitorId = object && object.visitorId || null;
         this.visitorName = object && object.visitorName || "";
         this.email = object && object.visitorEmailId || "";
+        this.company = object && object.company || "";
         this.mobileNumber = object && object.mobileNumber || null;
         this.adress = object && object.adress || "";
         this.fromPlace = object && object.fromPlace || null;

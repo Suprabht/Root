@@ -17,7 +17,7 @@ namespace DailyVisitors.DAL.Models
         public string Signature { get; set; }
         public string Company { get; set; }
         public int? UserId { get; set; }
-
+        public bool? IsDeleted { get; set; }
         public virtual Users User { get; set; }
     }
 }

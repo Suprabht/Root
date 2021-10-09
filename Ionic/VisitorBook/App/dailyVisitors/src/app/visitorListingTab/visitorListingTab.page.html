@@ -3,11 +3,161 @@
         <ion-title style="text-align: center;">Welcome To SDL VisitorsBook</ion-title>
         <ion-buttons>
             <ion-menu-button></ion-menu-button>
-          </ion-buttons>
+        </ion-buttons>
     </ion-toolbar>
   </ion-header>
   <ion-content>
-<table style="border: solid 1px;width: 100%; height: 100%;">
+    <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
+        <ion-fab-button *ngIf="this.detailList.length == 0" color="danger">
+            <ion-icon name="hourglass-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button *ngIf="this.detailList.length > 0" color="secondary" (click)="refresh()">
+            <ion-icon name="refresh-circle-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+      <!--
+    <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>#100023</ion-card-subtitle>
+          <ion-card-title>Suprabhat Paul</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="visitorDetailCardContent">
+            <IonContent class="visitorDetailContent">
+                <ion-chip>
+                    <ion-icon color="success" name="mail"></ion-icon>
+                    <ion-label>suprabhatpaul@sdl.com</ion-label>
+                </ion-chip>
+                <ion-chip>
+                    <ion-icon color="success" name="call"></ion-icon>
+                    <ion-label>(+91) 890407370</ion-label>
+                </ion-chip>
+                <ion-text color="secondary">
+                    <h1>
+                        Address
+                    </h1>
+                </ion-text>
+                <ion-icon color="primary" name="home-outline"></ion-icon>
+                <ion-text>&nbsp;132, Yemalur Main Rd, Kadubeesanahalli, Bengaluru, Karnataka 560037
+                </ion-text><br/><br/>
+
+                <ion-icon color="primary" name="location-outline"></ion-icon>
+                <ion-text><strong>&nbsp;Coming From: </strong></ion-text>
+                <ion-text>Bangalore</ion-text><br/>
+
+                <ion-icon color="primary" name="globe-outline"></ion-icon>
+                <ion-text><strong>&nbsp;Company: </strong></ion-text>
+                <ion-text>Google Inc.</ion-text><br/><br/>
+
+                <ion-icon color="primary" name="log-in-outline"></ion-icon>
+                <ion-text><strong>&nbsp;Login Date and Time : </strong></ion-text>
+                <ion-text>2021/10/05 20:57:44</ion-text><br/>
+                <ion-icon color="primary" name="log-out-outline"></ion-icon>
+                <ion-text><strong>&nbsp;Logout Date and Time: </strong></ion-text>
+                <ion-text>2021/10/05 22:43:12</ion-text><br/><br/>
+                
+                <ion-button disabled="true" shape="round" color="tertiary">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                </ion-button>
+
+                <ion-button shape="round" color="danger">
+                    <ion-icon name="trash"></ion-icon>
+                </ion-button>
+            </IonContent>
+              <br/>
+              <br/>
+        </ion-card-content>
+        <ion-card class="photoCard">
+            <ion-card-header>
+                Photo
+            </ion-card-header>
+            <ion-card-content>
+                <img style="width:260px; height: 180px;" src="http://localhost:5000/StaticFiles/Images/132782302263578700.png" />
+            </ion-card-content>
+        </ion-card>
+        <ion-card class="photoSignature">
+            <ion-card-header>
+                Signature
+            </ion-card-header>
+            <ion-card-content>
+                <img style="width:260px; height: 180px;" src="http://localhost:5000/StaticFiles/Images/132782302263537750.png" />
+            </ion-card-content>
+        </ion-card>
+    </ion-card>
+-->
+    <ion-card *ngFor ="let detail of this.detailList">
+        <ion-card-header>
+          <ion-card-subtitle>#{{detail.visitorId}}</ion-card-subtitle>
+          <ion-card-title>{{detail.visitorName}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="visitorDetailCardContent">
+            <IonContent class="visitorDetailContent">
+                <ion-chip>
+                    <ion-icon color="success" name="mail"></ion-icon>
+                    <ion-label>{{detail.email | lowercase}}</ion-label>
+                </ion-chip>
+                <ion-chip>
+                    <ion-icon color="success" name="call"></ion-icon>
+                    <ion-label>{{detail.mobileNumber}}</ion-label>
+                </ion-chip>
+                <ion-text color="secondary">
+                    <h1>
+                        Address
+                    </h1>
+                </ion-text>
+                <ion-icon color="primary" name="home-outline"></ion-icon>
+                <ion-text>&nbsp;{{detail.adress}}
+                </ion-text><br/><br/>
+
+                <ion-icon color="primary" name="location-outline"></ion-icon>
+                <ion-text><strong>&nbsp;Coming From: </strong></ion-text>
+                <ion-text>{{detail.fromPlace}}</ion-text><br/>
+
+                <ion-icon color="primary" name="globe-outline"></ion-icon>
+                <ion-text><strong>&nbsp;Company: </strong></ion-text>
+                <ion-text>{{detail.company}}</ion-text><br/><br/>
+
+                <ion-icon color="primary" name="log-in-outline"></ion-icon>
+                <ion-text><strong>&nbsp;Login Date and Time : </strong></ion-text>
+                <ion-text>{{detail.loginDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text><br/>
+                <ion-icon color="primary" name="log-out-outline"></ion-icon>
+                <ion-text><strong>&nbsp;Logout Date and Time: </strong></ion-text>
+                <ion-text *ngIf="detail.logoutDateTime != undefined">{{detail.logoutDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text>
+                <ion-text *ngIf="detail.logoutDateTime == undefined"><italic>Still not logged out</italic></ion-text><br/><br/>
+
+                <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="tertiary" (click) ="logout(detail.visitorId)">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                </ion-button>
+
+                <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="secondary">
+                    <ion-icon name="print-outline"></ion-icon>
+                </ion-button>
+
+                <ion-button shape="round" color="danger" (click) ="showConfirmAlert(detail.visitorId)">
+                    <ion-icon name="trash"></ion-icon>
+                </ion-button>
+            </IonContent>
+              <br/>
+              <br/>
+        </ion-card-content>
+        <ion-card class="photoCard">
+            <ion-card-header>
+                Photo
+            </ion-card-header>
+            <ion-card-content>
+                <img style="width:260px; height: 180px;" src="http://localhost:5000/StaticFiles/Images/132782302263578700.png" />
+            </ion-card-content>
+        </ion-card>
+        <ion-card class="photoSignature">
+            <ion-card-header>
+                Signature
+            </ion-card-header>
+            <ion-card-content>
+                <img style="width:260px; height: 180px;" src="{{this.imageUrl}}/{{detail.signature}}" />
+            </ion-card-content>
+        </ion-card>
+    </ion-card>
+
+<!--<table style="border: solid 1px;width: 100%; height: 100%;">
     <thead>
         <tr style="color: darkgreen;">
             <th>VisitorId</th>
@@ -35,5 +185,5 @@
             <td style="text-align: center;"><button ion-button (click) ="showConfirmAlert(detail.visitorId)"><ion-icon color="danger" name="trash"></ion-icon></button></td>
         </tr>
     </tbody>
-</table>
+</table>-->
 </ion-content>

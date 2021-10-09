@@ -1,0 +1,10 @@
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/EnumConstants/bin/Debug/netstandard2.0/EnumConstants.deps.json
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/EnumConstants/bin/Debug/netstandard2.0/EnumConstants.dll
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/EnumConstants/bin/Debug/netstandard2.0/EnumConstants.pdb
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/EnumConstants/obj/Debug/netstandard2.0/EnumConstants.csproj.AssemblyReference.cache
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/EnumConstants/obj/Debug/netstandard2.0/EnumConstants.GeneratedMSBuildEditorConfig.editorconfig
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/EnumConstants/obj/Debug/netstandard2.0/EnumConstants.AssemblyInfoInputs.cache
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/EnumConstants/obj/Debug/netstandard2.0/EnumConstants.AssemblyInfo.cs
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/EnumConstants/obj/Debug/netstandard2.0/EnumConstants.csproj.CoreCompileInputs.cache
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/EnumConstants/obj/Debug/netstandard2.0/EnumConstants.dll
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/EnumConstants/obj/Debug/netstandard2.0/EnumConstants.pdb

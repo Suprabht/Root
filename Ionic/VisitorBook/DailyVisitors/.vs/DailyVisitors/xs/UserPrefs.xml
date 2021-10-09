@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{AFCEAE52-3D68-43F7-B067-BD620163D50B}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DAL/Models/VisitorDetails.cs">
+    <Files>
+      <File FileName="WebApi/appsettings.json" Line="11" Column="189" />
+      <File FileName="WebApi/Controllers/VisitorDetailsController.cs" Line="35" Column="64" />
+      <File FileName="DAL/Models/VisitorDetails.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="DailyVisitors" expanded="True">
+            <Node name="DAL" expanded="True">
+              <Node name="Models" expanded="True">
+                <Node name="VisitorDetails.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="WebApi" expanded="True">
+              <Node name="Controllers" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.WebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

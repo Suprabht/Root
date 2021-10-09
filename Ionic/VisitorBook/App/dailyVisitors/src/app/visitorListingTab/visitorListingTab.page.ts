@@ -16,8 +16,8 @@ export class VisitorListingTabPage implements OnInit {
   rows = [];
   loadingIndicator = true;
   reorderable = true;
-  sigImage:string;
-  abc = '';
+  imageUrl:string;
+  //abc = '';
   visitorDetailsData : Visitor[];
   list:Visitor[];
   li:any;
@@ -33,6 +33,7 @@ export class VisitorListingTabPage implements OnInit {
   }
  
   ngOnInit() {
+    this.imageUrl = settings.rootURL.replace("/api","");
     this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
       this.detailList = res as Visitor[];
      /* this.detailList.forEach(e =>{
@@ -41,7 +42,11 @@ export class VisitorListingTabPage implements OnInit {
       */
     });    
   }
-
+  refresh()
+  {
+    this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
+      this.detailList = res as Visitor[];});    
+  }
   logout(id:number)
   {    
     this.visitorService.logout(id, settings.rootURL).subscribe(response => {

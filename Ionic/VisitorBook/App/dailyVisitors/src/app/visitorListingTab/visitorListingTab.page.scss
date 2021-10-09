@@ -2,3 +2,17 @@ ion-col{
     border: 1px solid #22AA51;
 }
 tr:hover {background-color:lightblue;}
+#logoutBtn {
+    /*--border-radius: 5px;
+    width: 10px;*/
+  }
+
+.visitorDetailCardContent{
+    float: left;
+}
+    .photoCard{
+        float: right;
+    }
+    .photoSignature{
+        float: right;
+    }
