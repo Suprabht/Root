@@ -1,12 +1,12 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="primary">
-        <ion-title style="text-align: center;">Welcome To SDL VisitorsBook</ion-title>
+        <ion-title style="text-align: center;">Visitors Listings</ion-title>
         <ion-buttons>
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
     </ion-toolbar>
-  </ion-header>
-  <ion-content>
+</ion-header>
+<ion-content>
     <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
         <ion-fab-button *ngIf="this.detailList.length == 0" color="danger">
             <ion-icon name="hourglass-outline"></ion-icon>
@@ -15,75 +15,6 @@
             <ion-icon name="refresh-circle-outline"></ion-icon>
         </ion-fab-button>
     </ion-fab>
-      <!--
-    <ion-card>
-        <ion-card-header>
-          <ion-card-subtitle>#100023</ion-card-subtitle>
-          <ion-card-title>Suprabhat Paul</ion-card-title>
-        </ion-card-header>
-        <ion-card-content class="visitorDetailCardContent">
-            <IonContent class="visitorDetailContent">
-                <ion-chip>
-                    <ion-icon color="success" name="mail"></ion-icon>
-                    <ion-label>suprabhatpaul@sdl.com</ion-label>
-                </ion-chip>
-                <ion-chip>
-                    <ion-icon color="success" name="call"></ion-icon>
-                    <ion-label>(+91) 890407370</ion-label>
-                </ion-chip>
-                <ion-text color="secondary">
-                    <h1>
-                        Address
-                    </h1>
-                </ion-text>
-                <ion-icon color="primary" name="home-outline"></ion-icon>
-                <ion-text>&nbsp;132, Yemalur Main Rd, Kadubeesanahalli, Bengaluru, Karnataka 560037
-                </ion-text><br/><br/>
-
-                <ion-icon color="primary" name="location-outline"></ion-icon>
-                <ion-text><strong>&nbsp;Coming From: </strong></ion-text>
-                <ion-text>Bangalore</ion-text><br/>
-
-                <ion-icon color="primary" name="globe-outline"></ion-icon>
-                <ion-text><strong>&nbsp;Company: </strong></ion-text>
-                <ion-text>Google Inc.</ion-text><br/><br/>
-
-                <ion-icon color="primary" name="log-in-outline"></ion-icon>
-                <ion-text><strong>&nbsp;Login Date and Time : </strong></ion-text>
-                <ion-text>2021/10/05 20:57:44</ion-text><br/>
-                <ion-icon color="primary" name="log-out-outline"></ion-icon>
-                <ion-text><strong>&nbsp;Logout Date and Time: </strong></ion-text>
-                <ion-text>2021/10/05 22:43:12</ion-text><br/><br/>
-                
-                <ion-button disabled="true" shape="round" color="tertiary">
-                    <ion-icon name="log-out-outline"></ion-icon>
-                </ion-button>
-
-                <ion-button shape="round" color="danger">
-                    <ion-icon name="trash"></ion-icon>
-                </ion-button>
-            </IonContent>
-              <br/>
-              <br/>
-        </ion-card-content>
-        <ion-card class="photoCard">
-            <ion-card-header>
-                Photo
-            </ion-card-header>
-            <ion-card-content>
-                <img style="width:260px; height: 180px;" src="http://localhost:5000/StaticFiles/Images/132782302263578700.png" />
-            </ion-card-content>
-        </ion-card>
-        <ion-card class="photoSignature">
-            <ion-card-header>
-                Signature
-            </ion-card-header>
-            <ion-card-content>
-                <img style="width:260px; height: 180px;" src="http://localhost:5000/StaticFiles/Images/132782302263537750.png" />
-            </ion-card-content>
-        </ion-card>
-    </ion-card>
--->
     <ion-card *ngFor ="let detail of this.detailList">
         <ion-card-header>
           <ion-card-subtitle>#{{detail.visitorId}}</ion-card-subtitle>
@@ -124,27 +55,25 @@
                 <ion-text *ngIf="detail.logoutDateTime != undefined">{{detail.logoutDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text>
                 <ion-text *ngIf="detail.logoutDateTime == undefined"><italic>Still not logged out</italic></ion-text><br/><br/>
 
-                <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="tertiary" (click) ="logout(detail.visitorId)">
-                    <ion-icon name="log-out-outline"></ion-icon>
+                <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="secondary" (click)="printBadge(detail)">
+                    <ion-icon name="print-outline"></ion-icon>
                 </ion-button>
 
-                <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="secondary">
-                    <ion-icon name="print-outline"></ion-icon>
+                <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="warning" (click) ="logout(detail.visitorId)">
+                    <ion-icon name="log-out-outline"></ion-icon>
                 </ion-button>
 
                 <ion-button shape="round" color="danger" (click) ="showConfirmAlert(detail.visitorId)">
                     <ion-icon name="trash"></ion-icon>
                 </ion-button>
             </IonContent>
-              <br/>
-              <br/>
         </ion-card-content>
         <ion-card class="photoCard">
             <ion-card-header>
                 Photo
             </ion-card-header>
             <ion-card-content>
-                <img style="width:260px; height: 180px;" src="http://localhost:5000/StaticFiles/Images/132782302263578700.png" />
+                <img style="width:260px; height: 180px;" src="{{this.imageUrl}}/{{detail.picture}}" />
             </ion-card-content>
         </ion-card>
         <ion-card class="photoSignature">
@@ -156,34 +85,44 @@
             </ion-card-content>
         </ion-card>
     </ion-card>
-
-<!--<table style="border: solid 1px;width: 100%; height: 100%;">
-    <thead>
-        <tr style="color: darkgreen;">
-            <th>VisitorId</th>
-            <th>VisitorName</th>
-            <th>Email</th>
-            <th>MobileNumber</th>
-            <th>Address</th>
-            <th>From Place Name</th>
-            <th>LoginDateTime</th>
-            <th>IsLogoutVisible</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor ="let detail of this.detailList">
-            <td style="text-align:center">{{detail.visitorId}}</td>
-            <td (click)="showDetails(detail)" style="text-align:center">{{detail.visitorName}}</td>
-            <td style="text-align:center">{{detail.email}}</td>
-            <td style="text-align:center">{{detail.mobileNumber}}</td>
-            <td style="text-align:center">{{detail.adress}}</td>
-            <td style="text-align:center">{{detail.fromPlace}}</td>
-            <td style="text-align:center">{{detail.loginDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</td>
-            <td *ngIf="detail.logoutDateTime == undefined"><ion-button size="small"  (click) ="logout(detail.visitorId)" >Logout</ion-button></td>
-            <td *ngIf="detail.logoutDateTime != undefined">{{detail.logoutDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</td>
-            <td style="text-align: center;"><button ion-button (click) ="showConfirmAlert(detail.visitorId)"><ion-icon color="danger" name="trash"></ion-icon></button></td>
-        </tr>
-    </tbody>
-</table>-->
+    <div style="display:none">
+        <div id="printDiv">
+            <table cellpadding=0 style="font-size:11px; border:#000 solid 2px;">
+                <tr>
+                  <td style="width:410px; padding: 5px; border-right:#000 solid 2px;">
+                    <table cellpadding=0 style="font-size:11px; width:100%">
+                        <tr>
+                            <td style="width: 50%; height: 40px;">&nbsp;</td>
+                            <td style="text-align: right; width: 50%;"><strong>Badge&nbsp;&nbsp;</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="height: 40px;"><strong>Name:- </strong></td>
+                            <td>{{this.selectedVisitor.visitorName}}</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 40px;"><strong>Company Name:- </strong></td>
+                            <td>{{this.selectedVisitor.company}}</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 40px;"><strong>Person Visiting in RWS:- </strong></td>
+                            <td>{{this.selectedVisitor.visitorName}}</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 40px;"><strong>Date:- </strong></td>
+                            <td>{{this.selectedVisitor.loginDateTime | date: "yyyy/MM/dd"}}</td>
+                        </tr>
+                    </table>
+                  </td>
+                  <td style="width:410px; padding: 5px;">
+                    <strong>THROUGHOUT YOUR VISIT YOUR PERSONAL SAFETY IS OUR CONCERN<br/>-WE THERFORE REQUEST THAT YOU ABIDE BY THE FOLLOWING:</strong><br/><br/>
+                    <strong>HEALTH & SAFETY -</strong> All visitors are subject to the Health & Safety at Work Act 1974, Management of Health & Safety at work Regulations 1999 and Company Regulations whilst on the premises.<br/>
+                    <strong>SMOKING -</strong> Please observe the No Smoking policy.<br/>
+                    <strong>FIRE/EMERGENCY -</strong> In the event of an emergency, all visitors must leave the premises immediatly via the nearest safe exit and report to the designated assembly point. Do not re-enter the premises until you are advised it is safe to do so.<br/>
+                    <strong>CONTRACTORS -</strong> Must ensure that any necessary Permit to work documenttion is completed before commencing work.
+                    <strong>ACCIDENTS/INCIDENTS -</strong> All accidents, injures and near misses must be immediately reported.
+                 </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </ion-content>

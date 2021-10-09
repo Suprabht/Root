@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Visitor } from '../models/visitor';
 import { settings } from '../models/settings';
 import { AlertController} from '@ionic/angular';
+declare var html2pdf;
 
 @Component({
   selector: 'app-visitorListingTab',
@@ -17,11 +18,11 @@ export class VisitorListingTabPage implements OnInit {
   loadingIndicator = true;
   reorderable = true;
   imageUrl:string;
-  //abc = '';
-  visitorDetailsData : Visitor[];
-  list:Visitor[];
-  li:any;
-  lis = [];
+  selectedVisitor:Visitor;
+  //visitorDetailsData : Visitor[];
+  //list:Visitor[];
+  //li:any;
+  //lis = [];
   detailList = [];
   constructor(public visitorService:VisitorsdetailsService,
      private visitorDetailsTab:VisitorDetailsTabPage,
@@ -29,21 +30,23 @@ export class VisitorListingTabPage implements OnInit {
      private router:Router, 
      private activatedRouter:ActivatedRoute,
      private alertController: AlertController) {
-     this.visitorDetailsData = new Array<Visitor>();
+     //this.visitorDetailsData = new Array<Visitor>();
   }
  
   ngOnInit() {
+    this.selectedVisitor = new Visitor();
     this.imageUrl = settings.rootURL.replace("/api","");
     this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
       this.detailList = res as Visitor[];
-     /* this.detailList.forEach(e =>{
+      /*this.detailList.forEach(e =>{
         console.log("testing"+e.loginDateTime);
-      });
-      */
-    });    
+      });*/ 
+      
+    });   
   }
   refresh()
   {
+    this.detailList = [];
     this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
       this.detailList = res as Visitor[];});    
   }
@@ -69,10 +72,23 @@ export class VisitorListingTabPage implements OnInit {
     this.visitorService.showVisitorDetails(visitor,settings.rootURL);
   }
 
+  printBadge(visitor:Visitor){
+    this.selectedVisitor = visitor;
+    const div = document.getElementById("printDiv");
+    try{
+      var option={
+        margin:1,
+        filename:Date.now().toString()+".pdf"
+      }
+      html2pdf().set(option).from(div).save();
+    }
+    catch(e){}
+  }
+
   showConfirmAlert(id:number) {
     let alertConfirm = this.alertController.create({
       header: 'Delete Items',
-      message: 'Are You Sure to delete this itemss?',
+      message: 'Are You Sure to delete this visitor entry?',
       buttons: [
         {
           text: 'No',
