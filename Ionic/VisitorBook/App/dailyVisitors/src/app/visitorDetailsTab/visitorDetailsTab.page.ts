@@ -24,6 +24,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
   photos = this.photoService.photos;
   visitor :Visitor; 
   visitorList:Visitor[];
+  signatureMaskHidden = false;
   public errorMessages = {
     visitorName: [
       {type:"required", message:"Name is required"},
@@ -89,8 +90,8 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
   public signaturePadOptions: Object = { 
     'maxwidth':1,
     'minWidth': 1,
-    'canvasWidth': 260,
-    'canvasHeight': 180
+    'canvasWidth': 330,
+    'canvasHeight': 230
   };
 
   drawStart() {}
@@ -100,19 +101,23 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     this.signatureImage = this.signaturePad.toDataURL();
     this.visitor.signature=this.signatureImage;  
   }
+  hideImage()
+  {
+    this.signatureMaskHidden = true;
+  }
   drawClear(form:NgForm):void
   {
     this.signaturePad.clear();
-    this.resetForm(form);
-    this.photoService.photos.pop();
+    this.signatureMaskHidden = false;
   }
 
   resetForm(form?:NgForm){
+    this.signatureMaskHidden = false;
     this.signaturePad.clear();
+    this.photoService.photos.pop();
     if(form!=null)
       form.reset();
   }
-
   getCamera()
   {
     this.camera.getPicture({

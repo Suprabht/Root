@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Home
+      Visitor Entry
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -82,6 +82,28 @@
               </ng-container>
             </div>
             <!--From Place:End-->
+            <!--From Place:Start-->
+            <ion-item>
+              <ion-label color="primary" position ="floating">Company</ion-label>
+              <ion-input autocapitalize inputmode="text"  name="FromPlace" formControlName ="fromPlace"></ion-input>
+            </ion-item> 
+            <div *ngFor="let error of errorMessages.fromPlace">
+              <ng-container *ngIf="fromPlace.hasError(error.type) && (fromPlace.dirty || fromPlace.touched)">
+              <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+            <!--From Place:End-->
+            <!--From Place:Start-->
+            <ion-item>
+              <ion-label color="primary" position ="floating">Person visiting in RWS</ion-label>
+              <ion-input autocapitalize inputmode="text"  name="FromPlace" formControlName ="fromPlace"></ion-input>
+            </ion-item> 
+            <div *ngFor="let error of errorMessages.fromPlace">
+              <ng-container *ngIf="fromPlace.hasError(error.type) && (fromPlace.dirty || fromPlace.touched)">
+              <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+            <!--From Place:End-->
           </Ioncontent>
         </ion-card-content>
       </ion-card>
@@ -99,13 +121,10 @@
               </ion-item>
             </div>
             <ion-fab horizontal="end" vertical="center" slot="fixed">
-              <ion-fab-button color="secondary" (click)="opencamera()">
+              <ion-fab-button color="tertiary" (click)="opencamera()">
                   <ion-icon name="camera-outline"></ion-icon>
               </ion-fab-button>
-          </ion-fab>
-            <!--<ion-button (click)="photoService.addNewToGallery()" >
-              <ion-icon name="camera-outline"></ion-icon>
-            </ion-button>-->
+             </ion-fab>
             <!--Photo:End-->
           </Ioncontent>
         </ion-card-content>
@@ -114,24 +133,33 @@
         <ion-card-content>
           <Ioncontent>
             <!--Signature:Start-->
-            <div style="border: 1px solid #ccc; width: 300px; height:180px;border-radius: 10px; border-color:#22AA51;">
+            <div class="signatureDiv">
+              <img src="../../assets/signature.png" [hidden]="this.signatureMaskHidden" (mouseover)="hideImage()" (mousedown)="hideImage()" (click)="hideImage()">
               <ion-item>
                 <signature-pad #signatureCanvas [options]="signaturePadOptions" id="signatureCanvas" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()" >
-              </signature-pad>
-              </ion-item>
-              <ion-item>
-                <ion-button  [disabled]="!this.signatureImage" (click)="drawClear()" >Clear</ion-button>
+                </signature-pad>
               </ion-item>
             </div>
+            <ion-fab horizontal="end" vertical="center" slot="fixed">
+              <ion-fab-button color="danger" [disabled]="!this.signatureImage" (click)="drawClear()">
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </ion-fab-button>
+             </ion-fab>
             <!--Signature:End-->
           </Ioncontent>
         </ion-card-content>
       </ion-card>
-    </div>
-    <div>
-      <ion-button (click)="drawClear(form)" >Reset</ion-button>
-      <ion-button type="submit" [disabled]="!form.valid" (click) ="onSubmit(form)" >Submit</ion-button>
-    </div>
+      <div class="buttons">
+        <ion-button color="danger" (click)="drawClear(form)" >
+          <ion-icon name="refresh-circle-outline"></ion-icon>
+          &nbsp;&nbsp;Reset
+        </ion-button><br/>
+        <ion-button color="tertiary" type="submit" [disabled]="!form.valid" (click) ="onSubmit(form)" >
+          <ion-icon name="save-outline"></ion-icon>
+          &nbsp;&nbsp;Submit
+        </ion-button>
+      </div>
+    </div>    
   </form>
 </ion-content>
 
