@@ -124,6 +124,12 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
   ngOnDestroy() {}
   ngAfterViewInit(){}
 
+  opencamera()
+  {
+    this.photoService.photos.pop();
+    this.photoService.addNewToGallery()
+  }
+
   onSubmit(form?:NgForm){ 
     if(this.signatureImage == undefined)
     {

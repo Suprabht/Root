@@ -1,3 +1,21 @@
 .error-message{
     color: var(--ion-color-danger);
 }
+.leftContent
+{
+    float: left;
+    width: 60%;
+}
+.rightContent
+{
+    float: right;
+    width: 39%;
+    .photoDiv{
+        width: 400px; 
+        height: 210px;
+        background-image: url(../../assets/Camera.jpg);
+        background-repeat: no-repeat;
+    }
+    
+    
+}
