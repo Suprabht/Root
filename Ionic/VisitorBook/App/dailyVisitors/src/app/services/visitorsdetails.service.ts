@@ -62,7 +62,10 @@ export class VisitorsdetailsService implements OnDestroy {
   {
     return this.http.delete(rootURL+'/VisitorDetails/' + id);
   }
-
+  sendEmailOfVisitorDetails(id:number, rootURL)
+  {
+    return this.http.get(rootURL+'/VisitorDetails/emailDetails?id=' + id);
+  }
   async showVisitorDetails(visitor:Visitor, url:String){
     url = url.replace("/api","");
     var message =`<table cellpadding=0 border=0>

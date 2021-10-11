@@ -36,7 +36,6 @@ export class VisitorListingTabPage implements OnInit {
   ngOnInit() {
     this.selectedVisitor = new Visitor();
     this.imageUrl = settings.rootURL.replace("/api","");
-    //this.detailList = this.visitorService.getVisitorDetails(settings.rootURL);
     this.visitorService.getVisitorDetailsSingleDay(settings.rootURL).subscribe(res => {
       this.detailList = res as Visitor[];
      /* this.detailList.forEach(e =>{
@@ -48,7 +47,6 @@ export class VisitorListingTabPage implements OnInit {
   refresh()
   {
     this.detailList = [];
-    //this.detailList = this.visitorService.getVisitorDetails(settings.rootURL);
     this.visitorService.getVisitorDetailsSingleDay(settings.rootURL).subscribe(res => {
       this.detailList = res as Visitor[];});   
   }

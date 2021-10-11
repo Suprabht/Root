@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Visitor } from '../models/visitor';
 import { settings } from '../models/settings';
 import { VisitorsdetailsService } from '../services/visitorsdetails.service';
+declare var html2pdf;
 
 @Component({
   selector: 'app-reportsTab',
@@ -93,5 +94,22 @@ export class ReportsTabPage {
       this.detailList = this.visitorService.getVisitorDetails(settings.rootURL) as Visitor[];
     }
   }
-
+  printVisitorDetails(visitor:Visitor){
+    this.selectedVisitor = visitor;
+    
+    const div = document.getElementById("printVisitorDetails");
+    try{
+      var option={
+        margin:10,
+        filename:Date.now().toString()+".pdf"
+      }
+      html2pdf().set(option).from(div).save();
+    }
+    catch(e){}
+  }
+  sendEmailOfVisitorDetails(id:number){
+    this.visitorService.sendEmailOfVisitorDetails(id, settings.rootURL).subscribe(response => {
+      this.detailList = response as Visitor[];
+    });
+  }
 }

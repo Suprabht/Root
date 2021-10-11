@@ -80,6 +80,7 @@
   </ion-card>
   <div class="listingDiv">
     <ion-card *ngFor ="let detail of this.detailList">
+      <div></div>
       <ion-card-header>
         <ion-card-subtitle>#{{detail.visitorId}}</ion-card-subtitle>
         <ion-card-title>{{detail.visitorName}}</ion-card-title>
@@ -88,11 +89,11 @@
           <IonContent class="visitorDetailContent">
               <ion-chip>
                   <ion-icon color="success" name="mail"></ion-icon>
-                  <ion-label>{{detail.email | lowercase}}</ion-label>
+                  <ion-label><a href="mailto:{{detail.email | lowercase}}" style="text-decoration: none; color:#000; cursor: pointer;">{{detail.email | lowercase}}</a></ion-label>
               </ion-chip>
               <ion-chip>
                   <ion-icon color="success" name="call"></ion-icon>
-                  <ion-label>{{detail.mobileNumber}}</ion-label>
+                  <ion-label><a href="tel:{{detail.mobileNumber}}" style="text-decoration: none; color:#000; cursor: pointer;">{{detail.mobileNumber}}</a></ion-label>
               </ion-chip>
               <ion-text color="secondary">
                   <h1>
@@ -119,16 +120,12 @@
               <ion-text *ngIf="detail.logoutDateTime != undefined">{{detail.logoutDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text>
               <ion-text *ngIf="detail.logoutDateTime == undefined"><italic>Still not logged out</italic></ion-text><br/><br/>
 
-              <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="secondary" (click)="printBadge(detail)">
+              <ion-button shape="round" color="secondary" (click)="printVisitorDetails(detail)">
                   <ion-icon name="print-outline"></ion-icon>
               </ion-button>
 
-              <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="warning" (click) ="logout(detail.visitorId)">
-                  <ion-icon name="log-out-outline"></ion-icon>
-              </ion-button>
-
-              <ion-button shape="round" color="danger" (click) ="showConfirmAlert(detail.visitorId)">
-                  <ion-icon name="trash"></ion-icon>
+              <ion-button shape="round" color="tertiary" (click) ="sendEmailOfVisitorDetails(detail.visitorId)">
+                <ion-icon name="mail-outline"></ion-icon>
               </ion-button>
           </IonContent>
       </ion-card-content>
@@ -149,5 +146,57 @@
           </ion-card-content>
       </ion-card>
     </ion-card>
+  </div>
+  <div style="display: none;">
+    <div id="printVisitorDetails" style="border: 1px solid #000; padding:10px;">
+      <table cellpadding=0 width="100%">
+        <tr>
+          <td style="padding-right: 10px;">
+            <table cellpadding=0 style="font-size:11px; width:100%">
+              <tr>
+                <td style="height: 40px;"><strong>Id:- </strong></td>
+                <td>#{{this.selectedVisitor.visitorId}}</td>
+              </tr>
+              <tr>
+                  <td style="height: 40px;"><strong>Name:- </strong></td>
+                  <td>{{this.selectedVisitor.visitorName}}</td>
+              </tr>
+              <tr>
+                <td style="height: 40px;"><strong>Email:- </strong></td>
+                <td>{{this.selectedVisitor.email}}</td>
+              </tr>
+              <tr>
+                <td style="height: 40px;"><strong>Mobile No:- </strong></td>
+                <td>{{this.selectedVisitor.mobileNumber}}</td>
+              </tr>
+              <tr>
+                <td style="height: 40px;"><strong>Address:- </strong></td>
+                <td>{{this.selectedVisitor.adress}}</td>
+              </tr>
+            </table>
+          </td>
+          <td style="padding-right: 10px;">
+            <table cellpadding=0 style="font-size:11px; width:100%">
+              <tr>
+                  <td style="height: 40px;"><strong>Company Name:- </strong></td>
+                  <td>{{this.selectedVisitor.company}}</td>
+              </tr>
+              <tr>
+                  <td style="height: 40px;"><strong>Person Visiting in RWS:- </strong></td>
+                  <td>{{this.selectedVisitor.visitorName}}</td>
+              </tr>
+              <tr>
+                  <td style="height: 40px;"><strong>Login Date:- </strong></td>
+                  <td>{{this.selectedVisitor.loginDateTime | date: "yyyy/MM/dd"}}</td>
+              </tr>
+              <tr>
+                <td style="height: 40px;"><strong>Log out Date:- </strong></td>
+                <td>{{this.selectedVisitor.logoutDateTime | date: "yyyy/MM/dd"}}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </ion-content>

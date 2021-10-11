@@ -49,6 +49,12 @@ namespace DailyVisitors.WebApi
 			});
 			services.AddControllers();
 			Settings.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+			Settings.SmtpHost = Configuration.GetValue<string>("Smtp:SmtpHost");
+			Settings.SmtpPort = Configuration.GetValue<int>("Smtp:SmtpPort");
+			Settings.SmtpPass = Configuration.GetValue<string>("Smtp:SmtpPass");
+			Settings.SmtpUser = Configuration.GetValue<string>("Smtp:SmtpUser");
+			Settings.From = Configuration.GetValue<string>("Smtp:From");
+
 			services.AddDbContext<VisitorsBookContext>(options =>
 			options.UseSqlServer(Settings.ConnectionString));
 		}

@@ -24,11 +24,11 @@
             <IonContent class="visitorDetailContent">
                 <ion-chip>
                     <ion-icon color="success" name="mail"></ion-icon>
-                    <ion-label>{{detail.email | lowercase}}</ion-label>
+                    <ion-label><a href="mailto:{{detail.email | lowercase}}" style="text-decoration: none; color:#000; cursor: pointer;">{{detail.email | lowercase}}</a></ion-label>
                 </ion-chip>
                 <ion-chip>
                     <ion-icon color="success" name="call"></ion-icon>
-                    <ion-label>{{detail.mobileNumber}}</ion-label>
+                    <ion-label><a href="tel:{{detail.mobileNumber}}" style="text-decoration: none; color:#000; cursor: pointer;">{{detail.mobileNumber}}</a></ion-label>
                 </ion-chip>
                 <ion-text color="secondary">
                     <h1>

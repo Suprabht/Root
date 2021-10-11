@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DailyVisitors.DAL.Models;
 using System.IO;
+using DailyVisitors.WebApi.Services;
 
 namespace DailyVisitors.WebApi.Controllers
 {
@@ -25,7 +26,7 @@ namespace DailyVisitors.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VisitorDetails>>> GetVisitorDetails()
         {
-            return await _context.VisitorDetails.ToListAsync();
+            return await _context.VisitorDetails.Where(x => x.IsDeleted == false).ToListAsync();
         }
 
 		//GET: api/VisitorDetail/5
@@ -57,7 +58,7 @@ namespace DailyVisitors.WebApi.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException exception)
             {
                 if (!VisitorDetailsExists(id))
                 {
@@ -65,7 +66,7 @@ namespace DailyVisitors.WebApi.Controllers
                 }
                 else
                 {
-                    throw;
+                    return Ok("Exception" + exception.Message);
                 }
             }
 
@@ -154,6 +155,97 @@ namespace DailyVisitors.WebApi.Controllers
             }
 
             return await _context.VisitorDetails.Where(x=>x.IsDeleted==false).ToListAsync();
+        }
+
+        [HttpGet("emailDetails")]
+        public async Task<IActionResult> EmailDetails(long id)
+        {
+            
+            try
+            {
+                var visitorDetails = _context.VisitorDetails.FirstOrDefault(visitor => visitor.VisitorId == id);
+                var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
+                var pictureUrl = url + visitorDetails.Picture;
+                var signatureUrl = url + visitorDetails.Signature;
+                /*
+                var html = string.Format("@<table cellpadding=0 >" +
+                    "<tr><td><table cellpadding=0 style='font-size:11px; width:100%'><tr><td style='height: 40px;'><strong>Id:- </strong></td><td>#{0}</td></tr> <tr><td style='height: 40px;'><strong>Name:- </strong></td><td>{1}</td></tr><tr><td style='height: 40px;'><strong>Email:- </strong></td><td>{2}</td></tr><tr><td style='height: 40px;'><strong>Mobile No:- </strong></td><td>{3}</td></tr><tr><td style='height: 40px;'><strong>Address:- </strong></td><td>{4}</td></tr><tr><td style='height: 40px;'><strong>Company Name:- </strong></td><td>{5}</td></tr><tr><td style='height: 40px;'><strong>Person Visiting in RWS:- </strong></td><td>{6}</td></tr><tr><td style='height: 40px;'><strong>Login Date:- </strong></td><td>{7}</td></tr><tr><td style='height: 40px;'><strong>Log out Date:- </strong></td><td>{8}</td></tr></table></td><td style='padding-right: 10px;'><img style=‘width:330px; height:230px’ src=‘{9}’ /><br/><img style=‘width:330px; height:230px’ src=‘{10}’ /></td></tr></table>");
+                */
+                var html = string.Format(@"<table cellpadding=0 ><tr><td>
+                    <table cellpadding=0 style='font-size:11px; width:100%'>
+	                    <tr>
+	                    <td style='height: 40px;'>
+		                    <strong>Id:- </strong></td>
+                                    <td>#{0}</td>
+                                  </tr>
+                                  <tr>
+                                      <td style='height: 40px;'><strong>Name:- </strong></td>
+                                      <td>{1}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style='height: 40px;'><strong>Email:- </strong></td>
+                                    <td>{2}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style='height: 40px;'><strong>Mobile No:- </strong></td>
+                                    <td>{3}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style='height: 40px;'><strong>Address:- </strong></td>
+                                    <td>{4}</td>
+                                  </tr><tr>
+                                      <td style='height: 40px;'><strong>Company Name:- </strong></td>
+                                      <td>{5}</td>
+                                  </tr>
+                                  <tr>
+                                      <td style='height: 40px;'><strong>Person Visiting in RWS:- </strong></td>
+                                      <td>{6}</td>
+                                  </tr>
+                                  <tr>
+                                      <td style='height: 40px;'><strong>Login Date:- </strong></td>
+                                      <td>{7}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style='height: 40px;'><strong>Log out Date:- </strong></td>
+                                    <td>{8}</td>
+                                  </tr>
+                                </table>
+                              </td>
+                              <td style='padding-right: 10px;'>
+                                <img style='width:330px; height:230px' src='{9}' /><br/>
+		                        <img style='width:330px; height:230px' src='{10}' />
+                              </td>
+                            </tr>
+                          </table>",
+                          visitorDetails.VisitorId,
+                          visitorDetails.VisitorName,
+                          visitorDetails.Email,
+                          visitorDetails.MobileNumber,
+                          visitorDetails.Adress,
+                          visitorDetails.Company,
+                          visitorDetails.VisitorName,
+                          visitorDetails.LoginDateTime.ToString(),
+                          visitorDetails.LogoutDateTime,
+                          pictureUrl,
+                          signatureUrl);
+                var result = (new EmailService()).Send("suprabhatpaul@sdl.com","Details of Visitor #" + visitorDetails.VisitorId, html);
+                if (result.Contains("Success"))
+                    return Ok("Email send successfully");
+                else
+                    return Ok("Mail Server not responding");
+            }
+            catch (DbUpdateConcurrencyException exception)
+            {
+                if (!VisitorDetailsExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok("Exception" + exception.Message);
+                }
+            }
+
         }
 
         private bool VisitorDetailsExists(long id)
