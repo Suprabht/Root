@@ -9,8 +9,137 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+        <IonContent>
+            <div class="leftDiv">
+              <ion-card>
+                <ion-card-content>
+                    <IonContent>
+                      <ion-item >
+                        <ion-label color="primary" position ="floating">Visitors name</ion-label>
+                        <ion-input autocapitalize inputmode="text" [(ngModel)]="this.visitor.visitorName" (input)="keyPressSearch($event,'visitorName')"></ion-input>
+                      </ion-item>
+                      <ion-item >
+                        <ion-label color="primary" position ="floating">Email</ion-label>
+                        <ion-input autocapitalize inputmode="text" [(ngModel)]="this.visitor.email" (input)="keyPressSearch($event,'email')"></ion-input>
+                      </ion-item>
+                      <ion-item >
+                        <ion-label color="primary" position ="floating">Mobile</ion-label>
+                        <ion-input autocapitalize inputmode="text" [(ngModel)]="this.visitor.mobileNumber" (input)="keyPressSearch($event,'mobileNumber')"></ion-input>
+                      </ion-item>
+                      <ion-item >
+                        <ion-label color="primary" position ="floating">Login Date</ion-label>
+                        <ion-input autocapitalize inputmode="text" [(ngModel)]="this.visitor.loginDateTime" (input)="keyPressSearch($event,'loginDateTime')"></ion-input>
+                      </ion-item>
+                    </IonContent>
+                </ion-card-content>
+              </ion-card>
+            </div>
+            <div class="rightDiv">
+              <ion-card>
+                <ion-card-content>
+                    <IonContent>
+                      <ion-item >
+                        <ion-label color="primary" position ="floating">From Place Name</ion-label>
+                        <ion-input autocapitalize inputmode="text" [(ngModel)]="this.visitor.fromPlace" (input)="keyPressSearch($event,'fromPlace')"></ion-input>
+                      </ion-item>
+                      <ion-item >
+                        <ion-label color="primary" position ="floating">Company</ion-label>
+                        <ion-input autocapitalize inputmode="text" [(ngModel)]="this.visitor.company" (input)="keyPressSearch($event,'company')"></ion-input>
+                      </ion-item>
+                      <ion-item >
+                        <ion-label color="primary" position ="floating">Person visiting in RWS</ion-label>
+                        <ion-input autocapitalize inputmode="text" [(ngModel)]="this.visitor.personVisitingInRWS" (input)="keyPressSearch($event,'personVisitingInRWS')"></ion-input>
+                      </ion-item>
+                      <div class="buttons">
+                        <ion-button color="danger" (click)="reset()">
+                          <ion-icon name="refresh-circle-outline"></ion-icon>
+                          &nbsp;&nbsp;Reset
+                        </ion-button>
+                        <ion-button color="tertiary" type="submit" >
+                          <ion-icon name="save-outline"></ion-icon>
+                          &nbsp;&nbsp;Submit
+                        </ion-button>
+                      </div>
+                    </IonContent>
+                </ion-card-content>
+              </ion-card>
+            </div>
+        </IonContent>
+    </ion-card-content>
+  </ion-card>
+  <div class="listingDiv">
+    <ion-card *ngFor ="let detail of this.detailList">
+      <ion-card-header>
+        <ion-card-subtitle>#{{detail.visitorId}}</ion-card-subtitle>
+        <ion-card-title>{{detail.visitorName}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="visitorDetailCardContent">
+          <IonContent class="visitorDetailContent">
+              <ion-chip>
+                  <ion-icon color="success" name="mail"></ion-icon>
+                  <ion-label>{{detail.email | lowercase}}</ion-label>
+              </ion-chip>
+              <ion-chip>
+                  <ion-icon color="success" name="call"></ion-icon>
+                  <ion-label>{{detail.mobileNumber}}</ion-label>
+              </ion-chip>
+              <ion-text color="secondary">
+                  <h1>
+                      Address
+                  </h1>
+              </ion-text>
+              <ion-icon color="primary" name="home-outline"></ion-icon>
+              <ion-text>&nbsp;{{detail.adress}}
+              </ion-text><br/><br/>
 
-  <!-- <app-explore-container name="Tab 3 page"></app-explore-container> -->
+              <ion-icon color="primary" name="location-outline"></ion-icon>
+              <ion-text><strong>&nbsp;Coming From: </strong></ion-text>
+              <ion-text>{{detail.fromPlace}}</ion-text><br/>
+
+              <ion-icon color="primary" name="globe-outline"></ion-icon>
+              <ion-text><strong>&nbsp;Company: </strong></ion-text>
+              <ion-text>{{detail.company}}</ion-text><br/><br/>
+
+              <ion-icon color="primary" name="log-in-outline"></ion-icon>
+              <ion-text><strong>&nbsp;Login Date and Time : </strong></ion-text>
+              <ion-text>{{detail.loginDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text><br/>
+              <ion-icon color="primary" name="log-out-outline"></ion-icon>
+              <ion-text><strong>&nbsp;Logout Date and Time: </strong></ion-text>
+              <ion-text *ngIf="detail.logoutDateTime != undefined">{{detail.logoutDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text>
+              <ion-text *ngIf="detail.logoutDateTime == undefined"><italic>Still not logged out</italic></ion-text><br/><br/>
+
+              <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="secondary" (click)="printBadge(detail)">
+                  <ion-icon name="print-outline"></ion-icon>
+              </ion-button>
+
+              <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="warning" (click) ="logout(detail.visitorId)">
+                  <ion-icon name="log-out-outline"></ion-icon>
+              </ion-button>
+
+              <ion-button shape="round" color="danger" (click) ="showConfirmAlert(detail.visitorId)">
+                  <ion-icon name="trash"></ion-icon>
+              </ion-button>
+          </IonContent>
+      </ion-card-content>
+      <ion-card class="photoCard">
+          <ion-card-header>
+              Photo
+          </ion-card-header>
+          <ion-card-content>
+              <img style="width:260px; height: 180px;" src="{{this.imageUrl}}/{{detail.picture}}" />
+          </ion-card-content>
+      </ion-card>
+      <ion-card class="photoSignature">
+          <ion-card-header>
+              Signature
+          </ion-card-header>
+          <ion-card-content>
+              <img style="width:260px; height: 180px;" src="{{this.imageUrl}}/{{detail.signature}}" />
+          </ion-card-content>
+      </ion-card>
+    </ion-card>
+  </div>
 </ion-content>

@@ -6,6 +6,7 @@ export class Visitor  {
     mobileNumber: number;
     adress: string;
     fromPlace: string;
+    personVisitingInRWS: string;
     signature: string;
     picture:string;
     loginDateTime?:Date;
@@ -24,6 +25,7 @@ export class Visitor  {
         this.mobileNumber = object && object.mobileNumber || null;
         this.adress = object && object.adress || "";
         this.fromPlace = object && object.fromPlace || null;
+        this.personVisitingInRWS = object && object.personVisitingInRWS || "";
         this.signature = object && object.signature || "";
         this.loginDateTime = object && object.loginDateTime || null;
         this.logoutDateTime = object && object.logoutDateTime || null;

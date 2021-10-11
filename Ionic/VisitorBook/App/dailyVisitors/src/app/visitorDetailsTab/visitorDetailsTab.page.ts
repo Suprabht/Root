@@ -46,6 +46,14 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
       {type:"required", message:"Place is required"},
       {type:"maxlength", message:"Place can not be more than 100 charecter"}
     ],
+    company: [
+      {type:"required", message:"Company is required"},
+      {type:"maxlength", message:"Place can not be more than 100 charecter"}
+    ],
+    personVisitingInRWS: [
+      {type:"required", message:"Person's name to be visited in RWS is required"},
+      {type:"maxlength", message:"Place can not be more than 100 charecter"}
+    ]
   }
   get visitorName(){
     return this.form.get("visitorName");
@@ -62,13 +70,21 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
   get fromPlace(){
     return this.form.get("fromPlace");
   }
+  get company(){
+    return this.form.get("company");
+  }
+  get personVisitingInRWS(){
+    return this.form.get("personVisitingInRWS");
+  }
 
   form = this.formBuilder.group({
         visitorName: ["",[Validators.required, Validators.maxLength(100)]],
         email: ["",[Validators.required, Validators.email]],
         mobileNumber: ["",[Validators.required, Validators.pattern("[0-9]{10}")]],
         adress: ["",[Validators.required, Validators.maxLength(100)]],
-        fromPlace: ["",[Validators.required, Validators.maxLength(100)]]
+        fromPlace: ["",[Validators.required, Validators.maxLength(100)]],
+        company: ["",[Validators.required, Validators.maxLength(100)]],
+        personVisitingInRWS: ["",[Validators.required, Validators.maxLength(100)]]
   });
 
   constructor(public visitorService:VisitorsdetailsService, 

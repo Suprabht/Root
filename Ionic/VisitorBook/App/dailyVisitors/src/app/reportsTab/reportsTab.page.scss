@@ -1,0 +1,24 @@
+.leftDiv{
+    float: left;
+    width: 50%;
+}
+.rightDiv{
+    float: right;
+    width: 50%;
+    .buttons{
+        float: right;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+.listingDiv{
+    .visitorDetailCardContent{
+        float: left;
+    }
+        .photoCard{
+            float: right;
+        }
+        .photoSignature{
+            float: right;
+        }
+}

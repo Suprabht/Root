@@ -17,7 +17,7 @@
             <IonContent>
               <!--Name:Start-->
               <ion-item >
-                <ion-label color="primary" position ="floating">VisitorsName</ion-label>
+                <ion-label color="primary" position ="floating">Visitors name</ion-label>
                 <ion-input autocapitalize inputmode="text" required name="visitorName" formControlName="visitorName" ></ion-input>
               </ion-item>
               <div *ngFor="let error of errorMessages.visitorName">
@@ -85,10 +85,10 @@
             <!--From Place:Start-->
             <ion-item>
               <ion-label color="primary" position ="floating">Company</ion-label>
-              <ion-input autocapitalize inputmode="text"  name="FromPlace" formControlName ="fromPlace"></ion-input>
+              <ion-input autocapitalize inputmode="text"  name="Company" formControlName ="company"></ion-input>
             </ion-item> 
-            <div *ngFor="let error of errorMessages.fromPlace">
-              <ng-container *ngIf="fromPlace.hasError(error.type) && (fromPlace.dirty || fromPlace.touched)">
+            <div *ngFor="let error of errorMessages.Company">
+              <ng-container *ngIf="company.hasError(error.type) && (company.dirty || company.touched)">
               <small class="error-message">{{error.message}}</small>
               </ng-container>
             </div>
@@ -96,10 +96,10 @@
             <!--From Place:Start-->
             <ion-item>
               <ion-label color="primary" position ="floating">Person visiting in RWS</ion-label>
-              <ion-input autocapitalize inputmode="text"  name="FromPlace" formControlName ="fromPlace"></ion-input>
+              <ion-input autocapitalize inputmode="text"  name="PersonVisitingInRWS" formControlName ="personVisitingInRWS"></ion-input>
             </ion-item> 
-            <div *ngFor="let error of errorMessages.fromPlace">
-              <ng-container *ngIf="fromPlace.hasError(error.type) && (fromPlace.dirty || fromPlace.touched)">
+            <div *ngFor="let error of errorMessages.personVisitingInRWS">
+              <ng-container *ngIf="personVisitingInRWS.hasError(error.type) && (personVisitingInRWS.dirty || personVisitingInRWS.touched)">
               <small class="error-message">{{error.message}}</small>
               </ng-container>
             </div>
