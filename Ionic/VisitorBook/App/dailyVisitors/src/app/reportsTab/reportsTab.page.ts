@@ -85,4 +85,13 @@ export class ReportsTabPage {
       );
   }
 
+  refresh()
+  {
+    this.selectedVisitor = new Visitor();
+    if(!this.visitorService.fetchingAllRecords)
+    {
+      this.detailList = this.visitorService.getVisitorDetails(settings.rootURL) as Visitor[];
+    }
+  }
+
 }
