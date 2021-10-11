@@ -9,19 +9,21 @@
     <ion-card class="card-center" >
       <ion-card-content>
         <div class="loginDiv">
-          <ion-item>
-            <ion-label color="primary">E-Mail</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label color="primary">Password</ion-label>
-            <ion-input type="password"></ion-input>
-          </ion-item><br/>
-          <div class="loginButton">
-            <ion-button color="tertiary" (click) ="onLogin()" >
-              <ion-icon name="log-in-outline"></ion-icon>&nbsp;&nbsp;Login
-            </ion-button>
-          </div>
+          <form >
+            <ion-item>
+              <ion-label color="primary" position ="floating">Email</ion-label>
+              <ion-input autocapitalize inputmode="text" required name=""  ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label color="primary" position ="floating">Password</ion-label>
+              <ion-input autocapitalize inputmode="text" required name="" ></ion-input>
+            </ion-item><br/>
+            <div class="loginButton">
+              <ion-button color="tertiary" (click) ="onLogin()" >
+                <ion-icon name="log-in-outline"></ion-icon>&nbsp;&nbsp;Login
+              </ion-button>
+            </div>
+          </form>
           <br/><br/>
         </div>
       </ion-card-content>
@@ -31,6 +33,6 @@
     </div>
   </div>
   <div class="wellcomeText">
-    <ion-text><h1>Wellcome to Visitor's book!</h1></ion-text>
+    <ion-text><h1>Wellcome to RWS Visitor's book!</h1></ion-text>
   </div>
 </ion-content>
