@@ -9,11 +9,16 @@ import { AlertController} from '@ionic/angular';
   providedIn: 'root'
 })
 export class VisitorsdetailsService implements OnDestroy {
+  allVisitorList = [];
+  fetchingAllRecords = false;
+  public observableVisitorList = new Subject<Visitor[]>();
   constructor( private http:HttpClient,
     private alertController: AlertController) {}
-  ngOnDestroy(): void {
+  
+    ngOnDestroy(): void {
     throw new Error('Method not implemented.');
   }
+
   postVisitorDetails(formData, signature:string, photoBase64String:string, rootURL){
     var visitor = new Visitor();
     visitor.visitorId = formData.visitorId ;
@@ -31,7 +36,20 @@ export class VisitorsdetailsService implements OnDestroy {
    return this.http.post(rootURL+'/VisitorDetails', visitor);
   }
 
-  getVisitorDetails(rootURL){
+   getVisitorDetails(rootURL):Visitor[]{
+    //console.log("Start");
+    this.fetchingAllRecords = true;
+    this.http.get(rootURL+'/VisitorDetails').subscribe((response) => {
+      console.log(response);
+      this.allVisitorList = response as Visitor[];
+      this.fetchingAllRecords= false;
+      this.observableVisitorList.next(response as Visitor[]);
+      return this.allVisitorList;
+    });
+    return this.allVisitorList;
+  }
+
+  getVisitorDetailsSingleDay(rootURL){
     return this.http.get(rootURL+'/VisitorDetails');
   }
 

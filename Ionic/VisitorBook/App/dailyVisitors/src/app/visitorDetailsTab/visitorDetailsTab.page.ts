@@ -141,7 +141,12 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
       destinationType:this.camera.DestinationType.FILE_URI
     }).then((res)=>{}).catch(e=>{})
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.visitorService.getVisitorDetails(settings.rootURL);
+    /*this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
+      this.visitorService.allVisitorList = res as Visitor[];
+    });   */
+  }
   ngOnDestroy() {}
   ngAfterViewInit(){}
 

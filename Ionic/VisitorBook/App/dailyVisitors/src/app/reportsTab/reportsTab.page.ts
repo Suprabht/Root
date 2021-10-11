@@ -10,68 +10,71 @@ import { VisitorsdetailsService } from '../services/visitorsdetails.service';
 })
 export class ReportsTabPage {
   visitor:Visitor;
-  allVisitorList = [];
-  detailList = [];
+  detailList: Visitor[];
   imageUrl:string;
   selectedVisitor:Visitor;
   constructor(public visitorService:VisitorsdetailsService,) {
     this.visitor = new Visitor();
+    this.visitorService.observableVisitorList.subscribe(visitor => {
+      console.log("changed....");
+      this.detailList = visitor;
+    })
   }
   ngOnInit() {
     this.selectedVisitor = new Visitor();
     this.imageUrl = settings.rootURL.replace("/api","");
-    this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
-      this.allVisitorList = res as Visitor[];
-      this.detailList = this.allVisitorList;
-      console.log(this.detailList.length);
-    });   
+    if(!this.visitorService.fetchingAllRecords)
+    {
+      this.detailList = this.visitorService.getVisitorDetails(settings.rootURL) as Visitor[];
+    }
   }
   keyPressSearch(event, controlName:string)
   {
     //console.log(event);
-    this.detailList = this.allVisitorList;
+    this.detailList = this.visitorService.allVisitorList;
     var valueToTest = event.target.value.toLowerCase();
     if(controlName === "visitorName")
     {
-      this.detailList = this.allVisitorList.filter(visitor => visitor.visitorName.toLowerCase().includes(valueToTest));
+      this.detailList = this.visitorService.allVisitorList.filter(visitor => visitor.visitorName.toLowerCase().includes(valueToTest));
     }
     if(controlName === "email")
     {
-      this.detailList = this.allVisitorList.filter(visitor => visitor.email.toLowerCase().includes(valueToTest));
+      this.detailList = this.visitorService.allVisitorList.filter(visitor => visitor.email.toLowerCase().includes(valueToTest));
     }
     if(controlName === "mobileNumber")
     {
-      this.detailList = this.allVisitorList.filter(visitor => visitor.mobileNumber.toLowerCase().includes(valueToTest));
+      this.detailList = this.visitorService.allVisitorList.filter(visitor => visitor.mobileNumber.toLowerCase().includes(valueToTest));
     }
     if(controlName === "loginDateTime")
     {
-      this.detailList = this.allVisitorList.filter(visitor => visitor.loginDateTime.toLowerCase().includes(valueToTest));
+      this.detailList = this.visitorService.allVisitorList.filter(visitor => visitor.loginDateTime.toLowerCase().includes(valueToTest));
     }
     if(controlName === "fromPlace")
     {
-      this.detailList = this.allVisitorList.filter(visitor => visitor.fromPlace.toLowerCase().includes(valueToTest));
+      this.detailList = this.visitorService.allVisitorList.filter(visitor => visitor.fromPlace.toLowerCase().includes(valueToTest));
     }
     if(controlName === "company")
     {
-      this.detailList = this.allVisitorList.filter(visitor => visitor.company.toLowerCase().includes(valueToTest));
+      this.detailList = this.visitorService.allVisitorList.filter(visitor => visitor.company.toLowerCase().includes(valueToTest));
     }
     if(controlName === "personVisitingInRWS")
     {
-      this.detailList = this.allVisitorList.filter(visitor => visitor.personVisitingInRWS.toLowerCase().includes(valueToTest));
+      this.detailList = this.visitorService.allVisitorList.filter(visitor => visitor.personVisitingInRWS.toLowerCase().includes(valueToTest));
     }
     //console.log(event, event.keyCode, event.keyIdentifier);
     //console.log(this.visitor);
+    console.log(this.detailList.length);
   }
 
   reset()
   {
     this.visitor = new Visitor();
-    this.detailList = this.allVisitorList;
+    this.detailList = this.visitorService.allVisitorList;
   }
   
   submit()
   {
-    this.detailList = this.allVisitorList.filter(visitor => 
+    this.detailList = this.visitorService.allVisitorList.filter(visitor => 
       visitor.visitorName.toLowerCase().includes(this.visitor.visitorName) &&
       visitor.email.toLowerCase().includes(this.visitor.email) &&
       visitor.mobileNumber.toLowerCase().includes(this.visitor.mobileNumber) &&
