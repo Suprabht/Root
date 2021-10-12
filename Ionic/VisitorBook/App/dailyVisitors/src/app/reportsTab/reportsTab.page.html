@@ -78,6 +78,20 @@
         </IonContent>
     </ion-card-content>
   </ion-card>
+  <div class="reportingButton">
+    <ion-button shape="round" color="secondary" (click)="reset()">
+      <ion-icon name="print-outline"></ion-icon>
+      &nbsp;&nbsp;PDF Download
+    </ion-button>
+    <ion-button shape="round" color="success" type="submit" >
+      <ion-icon name="documents-outline"></ion-icon>
+      &nbsp;&nbsp;Excel Download
+    </ion-button>
+    <ion-button shape="round" color="tertiary" (click) ="sendEmailOfVisitorDetails(detail.visitorId)">
+      <ion-icon name="mail-outline"></ion-icon>
+      &nbsp;&nbsp;Email Report
+    </ion-button>
+  </div>
   <div class="listingDiv">
     <ion-card *ngFor ="let detail of this.detailList">
       <div></div>

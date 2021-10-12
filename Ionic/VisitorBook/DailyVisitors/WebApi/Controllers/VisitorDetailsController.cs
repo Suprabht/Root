@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DailyVisitors.DAL.Models;
 using System.IO;
 using DailyVisitors.WebApi.Services;
+using System.Text;
 
 namespace DailyVisitors.WebApi.Controllers
 {
@@ -416,6 +417,52 @@ namespace DailyVisitors.WebApi.Controllers
 
             return File(pdfFile,
             "application/octet-stream", "badgePDF.pdf");
+        }
+
+        //api/VisitorDetails/downloadExcel?id=1
+        [HttpGet("downloadExcel")]
+        public IActionResult downloadExcel()
+        {
+            var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
+            //List<VisitorDetails> obj = new List<VisitorDetails>();
+            var obj = _context.VisitorDetails.Where(x => x.IsDeleted == false).ToList<VisitorDetails>();
+            StringBuilder str = new StringBuilder();
+            str.Append("<table border=`" + "1px" + "`b>");
+            str.Append("<tr>");
+            str.Append("<td><b><font face=Arial Narrow size=3>Id</font></b></td>");
+            str.Append("<td><b><font face=Arial Narrow size=3>Name</font></b></td>");
+            str.Append("<td><b><font face=Arial Narrow size=3>Email</font></b></td>");
+            str.Append("<td><b><font face=Arial Narrow size=3>Mobile No</font></b></td>");
+            str.Append("<td><b><font face=Arial Narrow size=3>Address</font></b></td>");
+            str.Append("<td><b><font face=Arial Narrow size=3>Company</font></b></td>");
+            str.Append("<td><b><font face=Arial Narrow size=3>Person to Visit</font></b></td>");
+            str.Append("<td><b><font face=Arial Narrow size=3>Login Date Time</font></b></td>");
+            str.Append("<td><b><font face=Arial Narrow size=3>Logout Date Time</font></b></td>");
+            str.Append("<td><b><font face=Arial Narrow size=3>Photo</font></b></td>");
+            str.Append("<td><b><font face=Arial Narrow size=3>Signature</font></b></td>");
+            str.Append("</tr>");
+            foreach (VisitorDetails visitor in obj)
+            {
+                str.Append("<tr>");
+                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + visitor.VisitorId.ToString() + "</font></td>");
+                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + visitor.VisitorName.ToString() + "</font></td>");
+                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + visitor.Email.ToString() + "</font></td>");
+                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + visitor.MobileNumber.ToString() + "</font></td>");
+                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + visitor.Adress.ToString() + "</font></td>");
+                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + visitor.Company.ToString() + "</font></td>");
+                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + visitor.VisitorName.ToString() + "</font></td>");
+                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + visitor.LoginDateTime.ToString("dd/MM/yyyy HH:mm:ss") + "</font></td>");
+                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + visitor.LogoutDateTime?.ToString("dd/MM/yyyy HH:mm:ss") + "</font></td>");
+                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + url + visitor.Picture.ToString() + "</font></td>");
+                str.Append("<td><font face=Arial Narrow size=" + "14px" + ">" + url + visitor.Signature.ToString() + "</font></td>");
+
+                str.Append("</tr>");
+            }
+            str.Append("</table>");
+            Response.Headers.Add("content-disposition", "attachment; filename=Information" + DateTime.Now.Year.ToString() + ".xls");
+            this.Response.ContentType = "application/vnd.ms-excel";
+            byte[] temp = System.Text.Encoding.UTF8.GetBytes(str.ToString());
+            return File(temp, "application/vnd.ms-excel");
         }
 
         private bool VisitorDetailsExists(long id)
