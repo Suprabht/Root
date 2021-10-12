@@ -64,7 +64,22 @@ export class VisitorsdetailsService implements OnDestroy {
   }
   sendEmailOfVisitorDetails(id:number, rootURL)
   {
+    
     return this.http.get(rootURL+'/VisitorDetails/emailDetails?id=' + id);
+  }
+  downloadPDFVisitorDetails(id:number, rootURL){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+  });
+    return this.http.get(rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });
+  }
+  printBadgePDF(id:number, rootURL){
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+      });
+      return this.http.get(rootURL+'/VisitorDetails/badgePDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });
   }
   async showVisitorDetails(visitor:Visitor, url:String){
     url = url.replace("/api","");

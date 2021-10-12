@@ -17,6 +17,9 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using DailyVisitors.EnumConstants;
+using DinkToPdf.Contracts;
+using DinkToPdf;
+using DailyVisitors.WebApi.Services;
 
 namespace DailyVisitors.WebApi
 {
@@ -47,6 +50,9 @@ namespace DailyVisitors.WebApi
 				o.MultipartBodyLengthLimit = int.MaxValue;
 				o.MemoryBufferThreshold = int.MaxValue;
 			});
+
+			services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+			services.AddScoped<IReportService, ReportService>();
 			services.AddControllers();
 			Settings.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
 			Settings.SmtpHost = Configuration.GetValue<string>("Smtp:SmtpHost");

@@ -6,7 +6,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Visitor } from '../models/visitor';
 import { settings } from '../models/settings';
 import { AlertController} from '@ionic/angular';
-declare var html2pdf;
 
 @Component({
   selector: 'app-visitorListingTab',
@@ -19,10 +18,6 @@ export class VisitorListingTabPage implements OnInit {
   reorderable = true;
   imageUrl:string;
   selectedVisitor:Visitor;
-  //visitorDetailsData : Visitor[];
-  //list:Visitor[];
-  //li:any;
-  //lis = [];
   detailList = [];
   constructor(public visitorService:VisitorsdetailsService,
      private visitorDetailsTab:VisitorDetailsTabPage,
@@ -30,7 +25,6 @@ export class VisitorListingTabPage implements OnInit {
      private router:Router, 
      private activatedRouter:ActivatedRoute,
      private alertController: AlertController) {
-     //this.visitorDetailsData = new Array<Visitor>();
   }
  
   ngOnInit() {
@@ -71,18 +65,24 @@ export class VisitorListingTabPage implements OnInit {
   showDetails(visitor:Visitor){
     this.visitorService.showVisitorDetails(visitor,settings.rootURL);
   }
-
-  printBadge(visitor:Visitor){
-    this.selectedVisitor = visitor;
-    const div = document.getElementById("printDiv");
-    try{
-      var option={
-        margin:1,
-        filename:Date.now().toString()+".pdf"
+  
+  printBadgePDF(visitor:Visitor){
+    this.visitorService.printBadgePDF(visitor.visitorId, settings.rootURL).subscribe((data: Blob) => {
+        var file = new Blob([data], { type: 'application/pdf' })
+        var fileURL = URL.createObjectURL(file);
+        // if you want to open PDF in new tab
+        window.open(fileURL); 
+        var a         = document.createElement('a');
+        a.href        = fileURL; 
+        a.target      = '_blank';
+        a.download    = 'visitorBadge.pdf';
+        document.body.appendChild(a);
+        a.click();
+      },
+      (error) => {
+        console.log('getPDF error: ',error);
       }
-      html2pdf().set(option).from(div).save();
-    }
-    catch(e){}
+    );
   }
 
   showConfirmAlert(id:number) {

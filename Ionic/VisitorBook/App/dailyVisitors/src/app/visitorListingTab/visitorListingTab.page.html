@@ -55,7 +55,7 @@
                 <ion-text *ngIf="detail.logoutDateTime != undefined">{{detail.logoutDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text>
                 <ion-text *ngIf="detail.logoutDateTime == undefined"><italic>Still not logged out</italic></ion-text><br/><br/>
 
-                <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="secondary" (click)="printBadge(detail)">
+                <ion-button *ngIf="detail.logoutDateTime == undefined" shape="round" color="secondary" (click)="printBadgePDF(detail)">
                     <ion-icon name="print-outline"></ion-icon>
                 </ion-button>
 
