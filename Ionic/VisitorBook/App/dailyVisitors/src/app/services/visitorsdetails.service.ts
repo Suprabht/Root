@@ -81,6 +81,22 @@ export class VisitorsdetailsService implements OnDestroy {
       });
       return this.http.get(rootURL+'/VisitorDetails/badgePDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });
   }
+
+  downloadExcel(ids:number[], rootURL){
+      //let headers = new Map<string, string>();
+      //headers.set('Accept','application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet');
+      // here you can append your custom headers with the help of header object
+      //let queryString= ""; // here you can insert your queries 
+     // const options = new RequestOptions({headers: headers, responseType: ArrayBuffer}//this is the imp line
+    //);
+    const headers = new HttpHeaders({
+      'Content-Type': 'text/csv',
+      'Accept': 'text/csv',
+      });
+
+    return this.http.get(rootURL+'/VisitorDetails/downloadCSV', {headers: headers, responseType: 'blob'});
+  }
+
   async showVisitorDetails(visitor:Visitor, url:String){
     url = url.replace("/api","");
     var message =`<table cellpadding=0 border=0>

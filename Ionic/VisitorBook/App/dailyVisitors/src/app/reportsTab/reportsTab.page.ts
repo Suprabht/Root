@@ -100,6 +100,7 @@ export class ReportsTabPage {
       this.detailList = response as Visitor[];
     });
   }
+
   downloadPDFVisitorDetails(visitor:Visitor){
     this.visitorService.downloadPDFVisitorDetails(visitor.visitorId, settings.rootURL).subscribe((data: Blob) => {
         var file = new Blob([data], { type: 'application/pdf' })
@@ -108,7 +109,7 @@ export class ReportsTabPage {
         window.open(fileURL); 
         var a         = document.createElement('a');
         a.href        = fileURL; 
-        a.target      = '_blank';
+        //a.target      = '_blank';
         a.download    = 'visitorDetails.pdf';
         document.body.appendChild(a);
         a.click();
@@ -117,5 +118,25 @@ export class ReportsTabPage {
         console.log('getPDF error: ',error);
       }
     );
+  }
+
+  downloadExcel(){
+      this.visitorService.downloadExcel([1,2,3], settings.rootURL).subscribe((response) => {
+        debugger;
+        // @ts-ignore
+        let myBlob = new Blob([response], {type: 'text/csv'});
+        let downloadUrl = URL.createObjectURL(myBlob);
+    
+        let a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = 'report.csv';// you can take a custom name as well as provide by server
+    
+        // start download
+        a.click();
+    // after certain amount of time remove this object!!!
+    setTimeout( ()=> {
+            URL.revokeObjectURL(downloadUrl);
+        }, 100);
+    });
   }
 }

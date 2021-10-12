@@ -459,8 +459,51 @@ namespace DailyVisitors.WebApi.Controllers
                 str.Append("</tr>");
             }
             str.Append("</table>");
-            Response.Headers.Add("content-disposition", "attachment; filename=Information" + DateTime.Now.Year.ToString() + ".xls");
-            this.Response.ContentType = "application/vnd.ms-excel";
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.Headers.Add("content-disposition", "attachment; filename=Report" + DateTime.Now.Year.ToString() + ".xls");
+            byte[] temp = System.Text.Encoding.UTF8.GetBytes(str.ToString());
+            return File(temp, "application/vnd.ms-excel");
+        }
+
+        //api/VisitorDetails/downloadCSV
+        [HttpGet("downloadCSV")]
+        public IActionResult downloadCSV()
+        {
+            var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
+            var obj = _context.VisitorDetails.Where(x => x.IsDeleted == false).ToList<VisitorDetails>();
+            StringBuilder str = new StringBuilder();
+            
+            str.Append("Id,");
+            str.Append("Name,");
+            str.Append("Email,");
+            str.Append("Mobile No,");
+            str.Append("Address,");
+            str.Append("Company,");
+            str.Append("Person to Visit,");
+            str.Append("Login Date Time,");
+            str.Append("Logout Date Time,");
+            str.Append("Photo,");
+            str.Append("Signature,");
+            str.Append("\r\n");
+            foreach (VisitorDetails visitor in obj)
+            {
+                str.Append(visitor.VisitorId.ToString() + ",");
+                str.Append(visitor.VisitorName.ToString() + ",");
+                str.Append(visitor.Email.ToString() + ",");
+                str.Append(visitor.MobileNumber.ToString() + ",");
+                str.Append(visitor.Adress.Replace(",","\"").ToString() + ",");
+                str.Append(visitor.Company.ToString() + ",");
+                str.Append(visitor.VisitorName.ToString() + ",");
+                str.Append(visitor.LoginDateTime.ToString("dd/MM/yyyy HH:mm:ss") + ",");
+                str.Append(visitor.LogoutDateTime?.ToString("dd/MM/yyyy HH:mm:ss") + ",");
+                str.Append(url + visitor.Picture.ToString() + ",");
+                str.Append(url + visitor.Signature.ToString() + ",");
+                str.Append("\r\n");
+            }
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.Headers.Add("content-disposition", "attachment; filename=Report" + DateTime.Now.Year.ToString() + ".csv");
             byte[] temp = System.Text.Encoding.UTF8.GetBytes(str.ToString());
             return File(temp, "application/vnd.ms-excel");
         }

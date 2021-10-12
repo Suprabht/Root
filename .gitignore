@@ -50,3 +50,8 @@ Ionic/VisitorBook/DailyVisitors/WebApi/appsettings.json
 Ionic/VisitorBook/DailyVisitors/WebApi/appsettings.json
 Ionic/VisitorBook/DailyVisitors/WebApi/appsettings.json
 Ionic/VisitorBook/DailyVisitors/WebApi/appsettings.json
+*.json
+Ionic/VisitorBook/DailyVisitors/WebApi/appsettings.json
+*.json
+*.dll
+*.pdb

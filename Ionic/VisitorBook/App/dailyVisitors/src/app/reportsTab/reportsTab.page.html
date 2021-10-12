@@ -83,9 +83,9 @@
       <ion-icon name="print-outline"></ion-icon>
       &nbsp;&nbsp;PDF Download
     </ion-button>
-    <ion-button shape="round" color="success" type="submit" >
+    <ion-button shape="round" color="success" (click)="downloadExcel()">
       <ion-icon name="documents-outline"></ion-icon>
-      &nbsp;&nbsp;Excel Download
+      &nbsp;&nbsp;CSV Download
     </ion-button>
     <ion-button shape="round" color="tertiary" (click) ="sendEmailOfVisitorDetails(detail.visitorId)">
       <ion-icon name="mail-outline"></ion-icon>
