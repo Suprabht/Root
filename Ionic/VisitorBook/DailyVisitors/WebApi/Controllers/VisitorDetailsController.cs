@@ -162,7 +162,7 @@ namespace DailyVisitors.WebApi.Controllers
 
         //api/VisitorDetails/emailDetails?id=1
         [HttpGet("emailDetails")]
-        public async Task<IActionResult> EmailDetails(long id)
+        public IActionResult EmailDetails(long id)
         {
             
             try
@@ -234,9 +234,9 @@ namespace DailyVisitors.WebApi.Controllers
                           signatureUrl);
                 var result = (new EmailService()).Send("suprabhatpaul@sdl.com","Details of Visitor #" + visitorDetails.VisitorId, html);
                 if (result.Contains("Success"))
-                    return Ok("Email send successfully");
+                    return Ok(new { Message = "Success: Email send successfully." });
                 else
-                    return Ok("Mail Server not responding");
+                    return Ok(new { Message = "Error: Email server not responding." });
             }
             catch (DbUpdateConcurrencyException exception)
             {
@@ -246,7 +246,7 @@ namespace DailyVisitors.WebApi.Controllers
                 }
                 else
                 {
-                    return Ok("Exception" + exception.Message);
+                    return Ok(new { Message = "Error:" + exception.Message });
                 }
             }
 
@@ -466,12 +466,110 @@ namespace DailyVisitors.WebApi.Controllers
             return File(temp, "application/vnd.ms-excel");
         }
 
-        //api/VisitorDetails/downloadCSV
-        [HttpGet("downloadCSV")]
-        public IActionResult downloadCSV()
+        //api/VisitorDetails/emailReport?visitorIds=1&visitorIds=23&visitorIds=89
+        [HttpGet("emailReport")]
+        public IActionResult emailReport([FromQuery] List<long> visitorIds)
+        {
+            try
+            {
+                var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
+                var obj = _context.VisitorDetails.Where(x => x.IsDeleted == false).Where(x => visitorIds.Contains(x.VisitorId)).ToList<VisitorDetails>();
+                StringBuilder str = new StringBuilder();
+                str.Append("<!DOCTYPE html><html lang=\"en\"><body style=\"font-family:'Ariel'; font-size:11px;\">");
+                str.Append("<table style='width:100%'>");
+                str.Append("<tr>");
+                str.Append("<td style='padding:5px; border-bottom:1px solid #000; background-color:#DAF7A6'><b>Id</b></td>");
+                str.Append("<td style='border-bottom:1px solid #000; background-color:#DAF7A6'><b>Name</b></td>");
+                str.Append("<td style='border-bottom:1px solid #000; background-color:#DAF7A6'><b>Email</b></td>");
+                str.Append("<td style='border-bottom:1px solid #000; background-color:#DAF7A6'><b>Mobile No</b></td>");
+                str.Append("<td style='border-bottom:1px solid #000; background-color:#DAF7A6'><b>Company</b></td>");
+                str.Append("<td style='border-bottom:1px solid #000; background-color:#DAF7A6'><b>Person to Visit</b></td>");
+                str.Append("</tr>");
+                foreach (VisitorDetails visitor in obj)
+                {
+                    str.Append("<tr>");
+                    str.Append("<td style='padding:5px'>#" + visitor.VisitorId.ToString() + "</td>");
+                    str.Append("<td>" + visitor.VisitorName.ToString() + "</td>");
+                    str.Append("<td>" + visitor.Email.ToString() + "</td>");
+                    str.Append("<td>" + visitor.MobileNumber.ToString() + "</td>");
+                    str.Append("<td>" + visitor.Company.ToString() + "</td>");
+                    str.Append("<td>" + visitor.VisitorName.ToString() + "</td>");
+                    str.Append("</tr><tr>");
+                    str.Append("<td colspan=\"6\" style='padding:5px'><table tyle='width:100%'><tr><td><img style='width:330px; height:230px' src='" + url + visitor.Picture.ToString() + "'/></td><td><img style='width:330px; height:230px' src='" + url + visitor.Signature.ToString() + "'/></td></tr></table></td>");
+                    str.Append("</tr><tr>");
+                    str.Append("<td colspan=\"6\" style='padding:5px'><table tyle='width:100%'><tr><td style='width:50%'><strong>Address:-<br/></strong>" + visitor.Adress.ToString() + "</td><td><strong>Login Time:- </strong>" + visitor.LoginDateTime.ToString("dd/MM/yyyy HH:mm:ss") + "<br/><strong>Logout Time:- " + visitor.LogoutDateTime?.ToString("dd/MM/yyyy HH:mm:ss") + "</strong></td></tr></table></td>");
+                    str.Append("</tr><tr>");
+                    str.Append("<td colspan=\"6\"style='padding:5px; border-top:1px solid #000;'>&nbsp;</td>");
+                    str.Append("</tr>");
+                }
+                str.Append("</table></body>");
+                var result = (new EmailService()).Send("suprabhatpaul@sdl.com", "Details of Report ", str.ToString());
+                if (result.Contains("Success"))
+                    return Ok(new { Message = "Success: Email send successfully" });
+                else
+                    return Ok(new { Message = "Error: Email server not responding." });
+            }
+            catch (Exception exception )
+            {
+                return Ok(new { Message = "Error: " + exception.Message });
+
+            }
+
+        }
+
+        //api/VisitorDetails/downloadPDF?visitorIds=1&visitorIds=23&visitorIds=89
+        [HttpGet("downloadPDF")]
+        public IActionResult downloadPDF([FromQuery] List<long> visitorIds)
         {
             var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
-            var obj = _context.VisitorDetails.Where(x => x.IsDeleted == false).ToList<VisitorDetails>();
+            var obj = _context.VisitorDetails.Where(x => x.IsDeleted == false).Where(x => visitorIds.Contains(x.VisitorId)).ToList<VisitorDetails>();
+            StringBuilder str = new StringBuilder();
+            str.Append("<!DOCTYPE html><html lang=\"en\"><head><meta charset = \"UTF-8\"><title>Visitor Details</title></head><body style=\"font-family:'Ariel'; font-size:60px;\">");
+            str.Append("<table style='width:2900px'>");
+            str.Append("<tr>");
+            str.Append("<td style='padding:20px; border-bottom:1px solid #000; background-color:#DAF7A6'><b>Id</b></td>");
+            str.Append("<td style='border-bottom:1px solid #000; background-color:#DAF7A6'><b>Name</b></td>");
+            str.Append("<td style='border-bottom:1px solid #000; background-color:#DAF7A6'><b>Email</b></td>");
+            str.Append("<td style='border-bottom:1px solid #000; background-color:#DAF7A6'><b>Mobile No</b></td>");
+            str.Append("<td style='border-bottom:1px solid #000; background-color:#DAF7A6'><b>Company</b></td>");
+            str.Append("<td style='border-bottom:1px solid #000; background-color:#DAF7A6'><b>Person to Visit</b></td>");
+            str.Append("</tr>");
+            foreach (VisitorDetails visitor in obj)
+            {
+                str.Append("<tr>");
+                str.Append("<td style='padding:20px'>#" + visitor.VisitorId.ToString() + "</td>");
+                str.Append("<td>" + visitor.VisitorName.ToString() + "</td>");
+                str.Append("<td>" + visitor.Email.ToString() + "</td>");
+                str.Append("<td>" + visitor.MobileNumber.ToString() + "</td>");
+                str.Append("<td>" + visitor.Company.ToString() + "</td>");
+                str.Append("<td>" + visitor.VisitorName.ToString() + "</td>");
+                str.Append("</tr><tr>");
+                str.Append("<td colspan=\"6\" style='padding:20px'><strong>Picture:- </strong>" + url + visitor.Picture.ToString() + "</td>");
+                str.Append("</tr><tr>");
+                str.Append("<td colspan=\"6\" style='padding:20px'><strong>Signature:- </strong>" + url + visitor.Signature.ToString() + "</td>");
+                str.Append("</tr><tr>");
+                str.Append("<td colspan=\"6\" style='padding:20px'><strong>Address:- </strong>" + visitor. Adress.ToString() + "</td>");
+                str.Append("</tr><tr>");
+                str.Append("<td colspan=\"6\" style='padding:20px'><strong>Login date and time:- </strong>" + visitor.LoginDateTime.ToString("dd/MM/yyyy HH:mm:ss") + "</td>");
+                str.Append("</tr><tr>");
+                str.Append("<td colspan=\"6\" style='padding:20px'><strong>Logout date and time:- </strong>" + visitor.LogoutDateTime?.ToString("dd/MM/yyyy HH:mm:ss") + "</td>");
+                str.Append("</tr><tr>");
+                str.Append("<td colspan=\"6\"style='padding:20px; border-top:1px solid #000;'>&nbsp;</td>");
+                str.Append("</tr>");
+            }
+            str.Append("</table></body>");
+            var pdfFile = _reportService.GeneratePdfReport(str.ToString());
+
+            return File(pdfFile,
+            "application/octet-stream", "badgePDF.pdf");
+        }
+
+        //api/VisitorDetails/downloadCSV?visitorIds=1&visitorIds=23&visitorIds=89
+        [HttpGet("downloadCSV")]
+        public IActionResult downloadCSV([FromQuery] List<long> visitorIds)
+        {
+            var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
+            var obj = _context.VisitorDetails.Where(x => x.IsDeleted == false).Where(x=>visitorIds.Contains(x.VisitorId)).ToList<VisitorDetails>();
             StringBuilder str = new StringBuilder();
             
             str.Append("Id,");

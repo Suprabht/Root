@@ -97,7 +97,8 @@ export class ReportsTabPage {
   sendEmailOfVisitorDetails(id:number){
     //this.visitorService.sendEmailOfVisitorDetails(id, settings.rootURL);
     this.visitorService.sendEmailOfVisitorDetails(id, settings.rootURL).subscribe(response => {
-      this.detailList = response as Visitor[];
+      //this.detailList = response as Visitor[];
+      console.log(response);
     });
   }
 
@@ -110,7 +111,7 @@ export class ReportsTabPage {
         var a         = document.createElement('a');
         a.href        = fileURL; 
         //a.target      = '_blank';
-        a.download    = 'visitorDetails.pdf';
+        a.download    = 'visitorDetails_'+Date.now()+'.pdf';
         document.body.appendChild(a);
         a.click();
       },
@@ -121,15 +122,17 @@ export class ReportsTabPage {
   }
 
   downloadExcel(){
-      this.visitorService.downloadExcel([1,2,3], settings.rootURL).subscribe((response) => {
-        debugger;
+      let visitorIds = new Array<number>();
+      this.detailList.forEach(element => {
+        visitorIds.push(element.visitorId);
+      });
+      this.visitorService.downloadExcel(visitorIds, settings.rootURL).subscribe((response) => {
         // @ts-ignore
-        let myBlob = new Blob([response], {type: 'text/csv'});
-        let downloadUrl = URL.createObjectURL(myBlob);
-    
+        let file = new Blob([response], {type: 'text/csv'});
+        let downloadUrl = URL.createObjectURL(file);
         let a = document.createElement('a');
         a.href = downloadUrl;
-        a.download = 'report.csv';// you can take a custom name as well as provide by server
+        a.download = 'report_'+Date.now()+'.csv';// you can take a custom name as well as provide by server
     
         // start download
         a.click();
@@ -137,6 +140,38 @@ export class ReportsTabPage {
     setTimeout( ()=> {
             URL.revokeObjectURL(downloadUrl);
         }, 100);
+    });
+  }
+
+  downloadPDF(){
+      let visitorIds = new Array<number>();
+      this.detailList.forEach(element => {
+        visitorIds.push(element.visitorId);
+      });
+      this.visitorService.downloadPDF(visitorIds, settings.rootURL).subscribe((response) => {
+        // @ts-ignore
+        let file = new Blob([response], {type: 'application/pdf'});
+        let downloadUrl = URL.createObjectURL(file);
+        let a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = 'reportPDF_'+Date.now()+'.pdf';// you can take a custom name as well as provide by server
+    
+        // start download
+        a.click();
+    // after certain amount of time remove this object!!!
+    setTimeout( ()=> {
+            URL.revokeObjectURL(downloadUrl);
+        }, 100);
+    });
+  }
+
+  emailReport(){
+    let visitorIds = new Array<number>();
+      this.detailList.forEach(element => {
+        visitorIds.push(element.visitorId);
+      });
+    this.visitorService.emailReport(visitorIds, settings.rootURL).subscribe(response => {
+      console.log(response);
     });
   }
 }

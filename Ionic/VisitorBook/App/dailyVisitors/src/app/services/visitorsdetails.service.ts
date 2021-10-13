@@ -3,8 +3,9 @@ import { Form, FormGroup, NgForm } from '@angular/forms';
 import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { map, catchError} from 'rxjs/operators'
 import { Visitor } from '../models/visitor';
-import {HttpClient, HttpHeaders} from "@angular/common/http"
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http"
 import { AlertController} from '@ionic/angular';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -63,8 +64,7 @@ export class VisitorsdetailsService implements OnDestroy {
     return this.http.delete(rootURL+'/VisitorDetails/' + id);
   }
   sendEmailOfVisitorDetails(id:number, rootURL)
-  {
-    
+  { 
     return this.http.get(rootURL+'/VisitorDetails/emailDetails?id=' + id);
   }
   downloadPDFVisitorDetails(id:number, rootURL){
@@ -82,19 +82,28 @@ export class VisitorsdetailsService implements OnDestroy {
       return this.http.get(rootURL+'/VisitorDetails/badgePDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });
   }
 
+  downloadPDF(ids:number[], rootURL){
+    var str = ids.toString().split(",").join("&visitorIds="); 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+          'Accept': 'application/json',
+      });
+    return this.http.get(rootURL+'/VisitorDetails/downloadPDF?visitorIds='+ str, {headers: headers, responseType: 'blob'  as 'json' });
+  }
+
   downloadExcel(ids:number[], rootURL){
-      //let headers = new Map<string, string>();
-      //headers.set('Accept','application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet');
-      // here you can append your custom headers with the help of header object
-      //let queryString= ""; // here you can insert your queries 
-     // const options = new RequestOptions({headers: headers, responseType: ArrayBuffer}//this is the imp line
-    //);
+    var str = ids.toString().split(",").join("&visitorIds="); 
     const headers = new HttpHeaders({
       'Content-Type': 'text/csv',
       'Accept': 'text/csv',
       });
+    return this.http.get(rootURL+'/VisitorDetails/downloadCSV?visitorIds='+ str, {headers: headers, responseType: 'blob'});
+  }
 
-    return this.http.get(rootURL+'/VisitorDetails/downloadCSV', {headers: headers, responseType: 'blob'});
+  emailReport(ids:number[], rootURL)
+  {
+    var str = ids.toString().split(",").join("&visitorIds="); 
+    return this.http.get(rootURL+'/VisitorDetails/emailReport?visitorIds='+ str);
   }
 
   async showVisitorDetails(visitor:Visitor, url:String){
