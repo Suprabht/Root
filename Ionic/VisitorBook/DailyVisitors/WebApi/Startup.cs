@@ -20,6 +20,11 @@ using DailyVisitors.EnumConstants;
 using DinkToPdf.Contracts;
 using DinkToPdf;
 using DailyVisitors.WebApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using DailyVisitors.WebApi.Authentication;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
+using System.Text;
 
 namespace DailyVisitors.WebApi
 {
@@ -61,8 +66,36 @@ namespace DailyVisitors.WebApi
 			Settings.SmtpUser = Configuration.GetValue<string>("Smtp:SmtpUser");
 			Settings.From = Configuration.GetValue<string>("Smtp:From");
 
-			services.AddDbContext<VisitorsBookContext>(options =>
-			options.UseSqlServer(Settings.ConnectionString));
+			services.AddDbContext<VisitorsBookContext>(options => options.UseSqlServer(Settings.ConnectionString));
+			// Entity Framework
+			services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+			// For identity
+			services.AddIdentity<ApplicationUser, IdentityRole>()
+				.AddEntityFrameworkStores<ApplicationDbContext>()
+				.AddDefaultTokenProviders();
+			// Adding Authintication
+			services.AddAuthentication(option =>
+			{
+				option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+				option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+				option.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+			})
+			// Adding Jwt Bearer
+			.AddJwtBearer(option =>
+			{
+				option.SaveToken = true;
+				option.RequireHttpsMetadata = false;
+				option.TokenValidationParameters = new TokenValidationParameters()
+				{
+					ValidateIssuer = true,
+					ValidateAudience = true,
+					ValidAudience = Configuration["JWT:ValidAudiance"],
+					ValidIssuer = Configuration["JWT:ValidIssuer"],
+					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
+
+				};
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,6 +117,7 @@ namespace DailyVisitors.WebApi
 			});
 			app.UseRouting();
 			app.UseCors("CorsPolicy");
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>

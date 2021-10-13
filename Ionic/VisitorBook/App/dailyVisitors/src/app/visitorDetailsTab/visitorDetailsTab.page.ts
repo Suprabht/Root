@@ -179,7 +179,6 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
             res => {
               this.resetForm(form);
               var details = res as Visitor;
-              //this.visitorService.showVisitorDetails(details,settings.rootURL);
               this.visitorService.selectedVisitor = details;
               this.openModal();
             },

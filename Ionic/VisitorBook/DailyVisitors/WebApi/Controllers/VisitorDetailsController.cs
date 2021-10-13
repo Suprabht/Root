@@ -9,10 +9,12 @@ using DailyVisitors.DAL.Models;
 using System.IO;
 using DailyVisitors.WebApi.Services;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DailyVisitors.WebApi.Controllers
 {
     [Route("api/[controller]")]
+   // [Authorize]
     [ApiController]
     public class VisitorDetailsController : ControllerBase
     {
@@ -25,6 +27,7 @@ namespace DailyVisitors.WebApi.Controllers
             _reportService = reportService;
         }
 
+        [Authorize]
         // GET: api/VisitorDetails
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VisitorDetails>>> GetVisitorDetails()
