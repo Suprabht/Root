@@ -23,6 +23,10 @@ const routes: Routes = [
     path:'visitorDetailsTab',
     loadChildren:() =>import('./visitorDetailsTab/visitorDetailsTab.module').then(m=>m.VisitorDetailsTabPageModule),
     canLoad:[AuthGuard]
+  },
+  {
+    path: 'visitor-details',
+    loadChildren: () => import('./modals/visitor-details/visitor-details.module').then( m => m.VisitorDetailsPageModule)
   }
 ];
 @NgModule({

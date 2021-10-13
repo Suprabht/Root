@@ -55,3 +55,9 @@ Ionic/VisitorBook/DailyVisitors/WebApi/appsettings.json
 *.json
 *.dll
 *.pdb
+Ionic/VisitorBook/DailyVisitors/.vs/DailyVisitors/xs/project-cache/WebApi-Debug.json
+Ionic/VisitorBook/DailyVisitors/.vs/DailyVisitors/xs/project-cache/WebApi-Debug.json
+Ionic/VisitorBook/DailyVisitors/.vs/DailyVisitors/xs/UserPrefs.xml
+Ionic/VisitorBook/DailyVisitors/DAL/bin/Debug/netcoreapp3.1/DAL.dll
+Ionic/VisitorBook/DailyVisitors/DAL/bin/Debug/netcoreapp3.1/DAL.pdb
+Ionic/VisitorBook/DailyVisitors/WebApi/appsettings.json

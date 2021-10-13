@@ -12,6 +12,7 @@ import { AlertController} from '@ionic/angular';
 export class VisitorsdetailsService implements OnDestroy {
   allVisitorList = [];
   fetchingAllRecords = false;
+  selectedVisitor:Visitor;
   public observableVisitorList = new Subject<Visitor[]>();
   constructor( private http:HttpClient,
     private alertController: AlertController) {}
@@ -63,10 +64,12 @@ export class VisitorsdetailsService implements OnDestroy {
   {
     return this.http.delete(rootURL+'/VisitorDetails/' + id);
   }
+
   sendEmailOfVisitorDetails(id:number, rootURL)
   { 
     return this.http.get(rootURL+'/VisitorDetails/emailDetails?id=' + id);
   }
+
   downloadPDFVisitorDetails(id:number, rootURL){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -74,6 +77,7 @@ export class VisitorsdetailsService implements OnDestroy {
   });
     return this.http.get(rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });
   }
+
   printBadgePDF(id:number, rootURL){
         const headers = new HttpHeaders({
           'Content-Type': 'application/json',

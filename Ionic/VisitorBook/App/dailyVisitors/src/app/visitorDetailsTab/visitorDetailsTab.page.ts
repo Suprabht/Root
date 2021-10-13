@@ -5,13 +5,14 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad'
 import { PhotoService } from '../services/photo.service';
 import { Camera,} from '@ionic-native/camera/ngx';
 import { empty } from 'rxjs';
-import { NavParams, NavController, AlertController} from '@ionic/angular';
+import { NavParams, NavController, AlertController, ModalController} from '@ionic/angular';
 import { VisitorListingTabPage } from '../visitorListingTab/visitorListingTab.page';
 import { Form, FormControl, FormGroup, NgForm, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import { settings } from '../models/settings';
+import { VisitorDetailsPage } from '../modals/visitor-details/visitor-details.page';
 declare var html2pdf;
 
 @Component({
@@ -94,6 +95,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     public navParams: NavParams,
     public navCtrl:NavController,
     private router:Router, 
+    public modalController: ModalController,
     private activatedRouter:ActivatedRoute,
     private formBuilder:FormBuilder,
     private alertController: AlertController) {
@@ -117,10 +119,12 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     this.signatureImage = this.signaturePad.toDataURL();
     this.visitor.signature=this.signatureImage;  
   }
+
   hideImage()
   {
     this.signatureMaskHidden = true;
   }
+
   drawClear(form:NgForm):void
   {
     this.signaturePad.clear();
@@ -134,6 +138,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     if(form!=null)
       form.reset();
   }
+
   getCamera()
   {
     this.camera.getPicture({
@@ -141,13 +146,16 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
       destinationType:this.camera.DestinationType.FILE_URI
     }).then((res)=>{}).catch(e=>{})
   }
+
   ngOnInit() {
     this.visitorService.getVisitorDetails(settings.rootURL);
     /*this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
       this.visitorService.allVisitorList = res as Visitor[];
     });   */
   }
+
   ngOnDestroy() {}
+
   ngAfterViewInit(){}
 
   opencamera()
@@ -171,7 +179,9 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
             res => {
               this.resetForm(form);
               var details = res as Visitor;
-              this.visitorService.showVisitorDetails(details,settings.rootURL);
+              //this.visitorService.showVisitorDetails(details,settings.rootURL);
+              this.visitorService.selectedVisitor = details;
+              this.openModal();
             },
             err=>{console.log(err)}
           );
@@ -184,6 +194,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
       }      
     }    
   }
+
   getBase64ImageFromURL(url: string) {
     return Observable.create((observer: Observer<string>) => {
       let img = new Image();
@@ -203,6 +214,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
       }
     });
   }
+
   getBase64Image(img: HTMLImageElement) {
     var canvas = document.createElement("canvas");
     canvas.width = img.width;
@@ -235,5 +247,20 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     catch(e){}
   }
 
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: VisitorDetailsPage,
+      componentProps: {}
+    });
+
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned !== null) {
+        //this.dataReturned = dataReturned.data;
+        //alert('Modal Sent Data :'+ dataReturned);
+      }
+    });
+
+    return await modal.present();
+  }
 }
 

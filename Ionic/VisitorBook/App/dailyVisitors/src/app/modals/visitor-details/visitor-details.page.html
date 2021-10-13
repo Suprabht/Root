@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Visitor Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
+        <ion-fab-button color="danger" (click)="closeModal()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>#{{visitorService.selectedVisitor.visitorId}}</ion-card-subtitle>
+        <ion-card-title>{{visitorService.selectedVisitor.visitorName}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="visitorDetailCardContent">
+          <IonContent class="visitorDetailContent">
+              <ion-chip>
+                  <ion-icon color="success" name="mail"></ion-icon>
+                  <ion-label><a href="mailto:{{visitorService.selectedVisitor.email | lowercase}}" style="text-decoration: none; color:#000; cursor: pointer;">{{visitorService.selectedVisitor.email | lowercase}}</a></ion-label>
+              </ion-chip>
+              <ion-chip>
+                  <ion-icon color="success" name="call"></ion-icon>
+                  <ion-label><a href="tel:{{visitorService.selectedVisitor.mobileNumber}}" style="text-decoration: none; color:#000; cursor: pointer;">{{visitorService.selectedVisitor.mobileNumber}}</a></ion-label>
+              </ion-chip>
+              <ion-text color="secondary">
+                  <h1>
+                      Address
+                  </h1>
+              </ion-text>
+              <ion-icon color="primary" name="home-outline"></ion-icon>
+              <ion-text>&nbsp;{{visitorService.selectedVisitor.adress}}
+              </ion-text><br/><br/>
+
+              <ion-icon color="primary" name="location-outline"></ion-icon>
+              <ion-text><strong>&nbsp;Coming From: </strong></ion-text>
+              <ion-text>{{visitorService.selectedVisitor.fromPlace}}</ion-text><br/>
+
+              <ion-icon color="primary" name="globe-outline"></ion-icon>
+              <ion-text><strong>&nbsp;Company: </strong></ion-text>
+              <ion-text>{{visitorService.selectedVisitor.company}}</ion-text><br/><br/>
+
+              <ion-icon color="primary" name="log-in-outline"></ion-icon>
+              <ion-text><strong>&nbsp;Login Date and Time : </strong></ion-text>
+              <ion-text>{{visitorService.selectedVisitor.loginDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text><br/>
+              <ion-icon color="primary" name="log-out-outline"></ion-icon>
+              <ion-text><strong>&nbsp;Logout Date and Time: </strong></ion-text>
+              <ion-text *ngIf="visitorService.selectedVisitor.logoutDateTime != undefined">{{visitorService.selectedVisitor.logoutDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text>
+              <ion-text *ngIf="visitorService.selectedVisitor.logoutDateTime == undefined"><italic>Still not logged out</italic></ion-text><br/><br/>
+
+              <ion-button *ngIf="visitorService.selectedVisitor.logoutDateTime == undefined" shape="round" color="secondary" (click)="printBadgePDF(visitorService.selectedVisitor)">
+                  <ion-icon name="print-outline"></ion-icon>
+              </ion-button>
+
+              <ion-button *ngIf="visitorService.selectedVisitor.logoutDateTime == undefined" shape="round" color="warning" (click) ="logout(visitorService.selectedVisitor.visitorId)">
+                  <ion-icon name="log-out-outline"></ion-icon>
+              </ion-button>
+
+              <ion-button shape="round" color="danger" (click) ="showConfirmAlert(visitorService.selectedVisitor.visitorId)">
+                  <ion-icon name="trash"></ion-icon>
+              </ion-button>
+          </IonContent>
+      </ion-card-content>
+      <ion-card class="photoCard">
+          <ion-card-header>
+              Photo
+          </ion-card-header>
+          <ion-card-content>
+              <img style="width:260px; height: 180px;" src="{{this.imageUrl}}/{{visitorService.selectedVisitor.picture}}" />
+          </ion-card-content>
+      </ion-card>
+      <ion-card class="photoSignature">
+          <ion-card-header>
+              Signature
+          </ion-card-header>
+          <ion-card-content>
+              <img style="width:260px; height: 180px;" src="{{this.imageUrl}}/{{visitorService.selectedVisitor.signature}}" />
+          </ion-card-content>
+      </ion-card>
+  </ion-card>
+</ion-content>
