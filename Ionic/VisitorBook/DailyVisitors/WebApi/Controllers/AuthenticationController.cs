@@ -112,5 +112,18 @@ namespace DailyVisitors.WebApi.Controllers
             }
             return Unauthorized();
         }
+
+        public async Task<IActionResult> ChangePassword(ChangePasswordModel usermodel)
+        {
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var user = await userManager.FindByIdAsync(userId);
+            var user = await userManager.FindByNameAsync(usermodel.UserName);
+            var result = await userManager.ChangePasswordAsync(user, usermodel.OldPassword, usermodel.NewPassword);
+            if (!result.Succeeded)
+            {
+                //throw exception......
+            }
+            return Ok();
+        }
     }
 }
