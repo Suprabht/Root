@@ -29,12 +29,14 @@ export class VisitorsdetailsService implements OnDestroy {
     visitor.mobileNumber = Number(formData.mobileNumber);
     visitor.adress = formData.adress;
     visitor.fromPlace = formData.fromPlace;
+    visitor.company = formData.company
     visitor.signature = signature;
     visitor.picture = photoBase64String;
     visitor.loginDateTime = formData.loginDateTime;
     visitor.logoutDateTime = formData.logoutDateTime;
     visitor.isLogoutVisible = false;
     visitor.isDeleted = false;
+    visitor.personInSdl = formData.personInSdl;
    return this.http.post(rootURL+'/VisitorDetails', visitor);
   }
 

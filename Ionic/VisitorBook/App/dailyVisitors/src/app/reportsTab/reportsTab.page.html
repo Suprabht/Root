@@ -59,7 +59,7 @@
                       </ion-item>
                       <ion-item >
                         <ion-label color="primary" position ="floating">Person visiting in RWS</ion-label>
-                        <ion-input autocapitalize inputmode="text" [(ngModel)]="this.visitor.personVisitingInRWS" (input)="keyPressSearch($event,'personVisitingInRWS')"></ion-input>
+                        <ion-input autocapitalize inputmode="text" [(ngModel)]="this.visitor.personInSdl" (input)="keyPressSearch($event,'personInSdl')"></ion-input>
                       </ion-item>
                       <div class="buttons">
                         <ion-button color="danger" (click)="reset()">
@@ -124,7 +124,11 @@
 
               <ion-icon color="primary" name="globe-outline"></ion-icon>
               <ion-text><strong>&nbsp;Company: </strong></ion-text>
-              <ion-text>{{detail.company}}</ion-text><br/><br/>
+              <ion-text>{{detail.company}}</ion-text><br/>
+
+              <ion-icon color="primary" name="body-outline"></ion-icon>
+              <ion-text ><strong>&nbsp;Person visiting in RWS: </strong></ion-text>
+              <ion-text >{{detail.personInSdl}}</ion-text><br/><br/>
 
               <ion-icon color="primary" name="log-in-outline"></ion-icon>
               <ion-text><strong>&nbsp;Login Date and Time : </strong></ion-text>

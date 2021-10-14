@@ -74,8 +74,8 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
   get company(){
     return this.form.get("company");
   }
-  get personVisitingInRWS(){
-    return this.form.get("personVisitingInRWS");
+  get personInSdl(){
+    return this.form.get("personInSdl");
   }
 
   form = this.formBuilder.group({
@@ -85,7 +85,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
         adress: ["",[Validators.required, Validators.maxLength(100)]],
         fromPlace: ["",[Validators.required, Validators.maxLength(100)]],
         company: ["",[Validators.required, Validators.maxLength(100)]],
-        personVisitingInRWS: ["",[Validators.required, Validators.maxLength(100)]]
+        personInSdl: ["",[Validators.required, Validators.maxLength(100)]]
   });
 
   constructor(public visitorService:VisitorsdetailsService, 
@@ -179,6 +179,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
             res => {
               this.resetForm(form);
               var details = res as Visitor;
+              debugger;
               this.visitorService.selectedVisitor = details;
               this.openModal();
             },

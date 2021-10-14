@@ -96,10 +96,10 @@
             <!--From Place:Start-->
             <ion-item>
               <ion-label color="primary" position ="floating">Person visiting in RWS</ion-label>
-              <ion-input autocapitalize inputmode="text"  name="PersonVisitingInRWS" formControlName ="personVisitingInRWS"></ion-input>
+              <ion-input autocapitalize inputmode="text"  name="PersonInSdl" formControlName ="personInSdl"></ion-input>
             </ion-item> 
-            <div *ngFor="let error of errorMessages.personVisitingInRWS">
-              <ng-container *ngIf="personVisitingInRWS.hasError(error.type) && (personVisitingInRWS.dirty || personVisitingInRWS.touched)">
+            <div *ngFor="let error of errorMessages.personInSdl">
+              <ng-container *ngIf="personInSdl.hasError(error.type) && (personInSdl.dirty || personInSdl.touched)">
               <small class="error-message">{{error.message}}</small>
               </ng-container>
             </div>

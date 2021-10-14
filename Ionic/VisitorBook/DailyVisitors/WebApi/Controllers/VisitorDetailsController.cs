@@ -27,7 +27,7 @@ namespace DailyVisitors.WebApi.Controllers
             _reportService = reportService;
         }
 
-        [Authorize]
+        //[Authorize]
         // GET: api/VisitorDetails
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VisitorDetails>>> GetVisitorDetails()
@@ -92,6 +92,7 @@ namespace DailyVisitors.WebApi.Controllers
                 visitorDetails.IsDeleted = false;
                 _context.VisitorDetails.Add(visitorDetails);
                 await _context.SaveChangesAsync();
+                //var visitorDetailsTosend = await _context.VisitorDetails.FindAsync(visitorDetails.VisitorId);
                 return CreatedAtAction("GetVisitorDetails", new { id = visitorDetails.VisitorId }, visitorDetails);
             }
             catch(Exception ex)

@@ -81,7 +81,7 @@ export class ReportsTabPage {
       visitor.loginDateTime.toLowerCase().includes(this.visitor.loginDateTime) &&
       visitor.fromPlace.toLowerCase().includes(this.visitor.fromPlace) &&
       visitor.company.toLowerCase().includes(this.visitor.company) &&
-      visitor.personVisitingInRWS.toLowerCase().includes(this.visitor.personVisitingInRWS)
+      visitor.personInSdl.toLowerCase().includes(this.visitor.personInSdl)
       );
   }
 
