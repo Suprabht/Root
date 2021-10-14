@@ -44,7 +44,7 @@ export class VisitorsdetailsService implements OnDestroy {
     //console.log("Start");
     this.fetchingAllRecords = true;
     this.http.get(rootURL+'/VisitorDetails').subscribe((response) => {
-      console.log(response);
+      //console.log(response);
       this.allVisitorList = response as Visitor[];
       this.fetchingAllRecords= false;
       this.observableVisitorList.next(response as Visitor[]);

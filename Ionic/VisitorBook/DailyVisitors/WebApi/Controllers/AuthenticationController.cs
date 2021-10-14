@@ -84,7 +84,8 @@ namespace DailyVisitors.WebApi.Controllers
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var user = await userManager.FindByNameAsync(model.UserName);
+            var user = await userManager.FindByEmailAsync(model.Email);
+            //var user = await userManager.FindByNameAsync(model.UserName);
             if (user! != null && await userManager.CheckPasswordAsync(user, model.Password))
             {
                 var userRoles = await userManager.GetRolesAsync(user);
@@ -117,7 +118,7 @@ namespace DailyVisitors.WebApi.Controllers
         {
             //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             //var user = await userManager.FindByIdAsync(userId);
-            var user = await userManager.FindByNameAsync(usermodel.UserName);
+            var user = await userManager.FindByEmailAsync(usermodel.Email);
             var result = await userManager.ChangePasswordAsync(user, usermodel.OldPassword, usermodel.NewPassword);
             if (!result.Succeeded)
             {

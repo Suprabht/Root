@@ -124,12 +124,12 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
   {
     this.signatureMaskHidden = true;
   }
-
+/*
   drawClear(form:NgForm):void
   {
     this.signaturePad.clear();
     this.signatureMaskHidden = false;
-  }
+  }*/
 
   resetForm(form?:NgForm){
     this.signatureMaskHidden = false;
@@ -179,7 +179,6 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
             res => {
               this.resetForm(form);
               var details = res as Visitor;
-              debugger;
               this.visitorService.selectedVisitor = details;
               this.openModal();
             },
