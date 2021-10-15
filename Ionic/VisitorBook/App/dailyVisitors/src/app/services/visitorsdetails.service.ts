@@ -67,9 +67,9 @@ export class VisitorsdetailsService implements OnDestroy {
     return this.http.delete(rootURL+'/VisitorDetails/' + id);
   }
 
-  sendEmailOfVisitorDetails(id:number, rootURL)
+  sendEmailOfVisitorDetails(id:number, rootURL, emailId)
   { 
-    return this.http.get(rootURL+'/VisitorDetails/emailDetails?id=' + id);
+    return this.http.get(rootURL+'/VisitorDetails/emailDetails?id=' + id + '&emailId=' + emailId);
   }
 
   downloadPDFVisitorDetails(id:number, rootURL){
@@ -106,10 +106,10 @@ export class VisitorsdetailsService implements OnDestroy {
     return this.http.get(rootURL+'/VisitorDetails/downloadCSV?visitorIds='+ str, {headers: headers, responseType: 'blob'});
   }
 
-  emailReport(ids:number[], rootURL)
+  emailReport(ids:number[], rootURL, emailId)
   {
     var str = ids.toString().split(",").join("&visitorIds="); 
-    return this.http.get(rootURL+'/VisitorDetails/emailReport?visitorIds='+ str);
+    return this.http.get(rootURL+'/VisitorDetails/emailReport?visitorIds=' + str + '&emailId=' + emailId);
   }
 
   async showVisitorDetails(visitor:Visitor, url:String){

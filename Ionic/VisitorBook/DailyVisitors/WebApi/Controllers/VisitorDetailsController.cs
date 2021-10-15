@@ -166,7 +166,7 @@ namespace DailyVisitors.WebApi.Controllers
 
         //api/VisitorDetails/emailDetails?id=1
         [HttpGet("emailDetails")]
-        public IActionResult EmailDetails(long id)
+        public IActionResult EmailDetails(long id, string emailId)
         {
             
             try
@@ -236,7 +236,7 @@ namespace DailyVisitors.WebApi.Controllers
                           visitorDetails.LogoutDateTime,
                           pictureUrl,
                           signatureUrl);
-                var result = (new EmailService()).Send("suprabhatpaul@sdl.com","Details of Visitor #" + visitorDetails.VisitorId, html);
+                var result = (new EmailService()).Send(emailId, "Details of Visitor #" + visitorDetails.VisitorId, html);
                 if (result.Contains("Success"))
                     return Ok(new { Message = "Success: Email send successfully." });
                 else
@@ -472,7 +472,7 @@ namespace DailyVisitors.WebApi.Controllers
 
         //api/VisitorDetails/emailReport?visitorIds=1&visitorIds=23&visitorIds=89
         [HttpGet("emailReport")]
-        public IActionResult emailReport([FromQuery] List<long> visitorIds)
+        public IActionResult emailReport([FromQuery] List<long> visitorIds, string emailId)
         {
             try
             {
@@ -507,7 +507,7 @@ namespace DailyVisitors.WebApi.Controllers
                     str.Append("</tr>");
                 }
                 str.Append("</table></body>");
-                var result = (new EmailService()).Send("suprabhatpaul@sdl.com", "Details of Report ", str.ToString());
+                var result = (new EmailService()).Send(emailId, "Details of Report ", str.ToString());
                 if (result.Contains("Success"))
                     return Ok(new { Message = "Success: Email send successfully" });
                 else

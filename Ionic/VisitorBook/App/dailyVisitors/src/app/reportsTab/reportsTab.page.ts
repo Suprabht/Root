@@ -99,7 +99,7 @@ export class ReportsTabPage {
 
   sendEmailOfVisitorDetails(id:number){
     //this.visitorService.sendEmailOfVisitorDetails(id, settings.rootURL);
-    this.visitorService.sendEmailOfVisitorDetails(id, settings.rootURL).subscribe(response => {
+    this.visitorService.sendEmailOfVisitorDetails(id, settings.rootURL, settings.userEmail).subscribe(response => {
       //this.detailList = response as Visitor[];
       console.log(response);
     });
@@ -173,7 +173,7 @@ export class ReportsTabPage {
       this.detailList.forEach(element => {
         visitorIds.push(element.visitorId);
       });
-    this.visitorService.emailReport(visitorIds, settings.rootURL).subscribe(response => {
+    this.visitorService.emailReport(visitorIds, settings.rootURL, settings.userEmail).subscribe(response => {
       console.log(response);
     });
   }
