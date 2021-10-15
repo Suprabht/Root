@@ -20,7 +20,7 @@
     "WebApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/VisitorDetails",
+      "launchUrl": "api/VisitorDetails/testService",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

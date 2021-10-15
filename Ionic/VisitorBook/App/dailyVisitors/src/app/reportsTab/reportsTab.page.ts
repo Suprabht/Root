@@ -99,14 +99,14 @@ export class ReportsTabPage {
 
   sendEmailOfVisitorDetails(id:number){
     //this.visitorService.sendEmailOfVisitorDetails(id, settings.rootURL);
-    this.visitorService.sendEmailOfVisitorDetails(id, settings.rootURL, settings.userEmail).subscribe(response => {
+    this.visitorService.sendEmailOfVisitorDetails(id, settings.rootURL, settings.userEmail, settings.token).subscribe(response => {
       //this.detailList = response as Visitor[];
       console.log(response);
     });
   }
 
   downloadPDFVisitorDetails(visitor:Visitor){
-    this.visitorService.downloadPDFVisitorDetails(visitor.visitorId, settings.rootURL).subscribe((data: Blob) => {
+    this.visitorService.downloadPDFVisitorDetails(visitor.visitorId, settings.rootURL, settings.token).subscribe((data: Blob) => {
         var file = new Blob([data], { type: 'application/pdf' })
         var fileURL = URL.createObjectURL(file);
         // if you want to open PDF in new tab
@@ -129,7 +129,7 @@ export class ReportsTabPage {
       this.detailList.forEach(element => {
         visitorIds.push(element.visitorId);
       });
-      this.visitorService.downloadExcel(visitorIds, settings.rootURL).subscribe((response) => {
+      this.visitorService.downloadExcel(visitorIds, settings.rootURL, settings.token).subscribe((response) => {
         // @ts-ignore
         let file = new Blob([response], {type: 'text/csv'});
         let downloadUrl = URL.createObjectURL(file);
@@ -151,7 +151,7 @@ export class ReportsTabPage {
       this.detailList.forEach(element => {
         visitorIds.push(element.visitorId);
       });
-      this.visitorService.downloadPDF(visitorIds, settings.rootURL).subscribe((response) => {
+      this.visitorService.downloadPDF(visitorIds, settings.rootURL, settings.token).subscribe((response) => {
         // @ts-ignore
         let file = new Blob([response], {type: 'application/pdf'});
         let downloadUrl = URL.createObjectURL(file);
@@ -173,7 +173,7 @@ export class ReportsTabPage {
       this.detailList.forEach(element => {
         visitorIds.push(element.visitorId);
       });
-    this.visitorService.emailReport(visitorIds, settings.rootURL, settings.userEmail).subscribe(response => {
+    this.visitorService.emailReport(visitorIds, settings.rootURL, settings.userEmail, settings.token).subscribe(response => {
       console.log(response);
     });
   }

@@ -27,6 +27,13 @@ namespace DailyVisitors.WebApi.Controllers
             _reportService = reportService;
         }
 
+        // GET: api/VisitorDetails/testService
+        [HttpGet("TestService")]
+        public IActionResult TestService()
+        {
+            return Ok(new { Message = "Success: Server is running properly." });
+        }
+
         [Authorize]
         // GET: api/VisitorDetails
         [HttpGet]
@@ -35,7 +42,8 @@ namespace DailyVisitors.WebApi.Controllers
             return await _context.VisitorDetails.Where(x => x.IsDeleted == false).ToListAsync();
         }
 
-		//GET: api/VisitorDetail/5
+        [Authorize]
+        //GET: api/VisitorDetail/5
         [HttpGet("{id}")]
 		public async Task<ActionResult<VisitorDetails>> GetVisitorDetails(long id)
 		{
@@ -49,8 +57,9 @@ namespace DailyVisitors.WebApi.Controllers
 			return visitorDetails;
 		}
 
-		// PUT: api/VisitorDetail/5
-		[HttpPut("{id}")]
+        [Authorize]
+        // PUT: api/VisitorDetail/5
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutVisitorDetails(long id, VisitorDetails visitorDetails)
         {
             if (id != visitorDetails.VisitorId)
@@ -79,6 +88,7 @@ namespace DailyVisitors.WebApi.Controllers
             return NoContent();
         }
 
+        [Authorize]
         // POST: api/VisitorDetail
         [HttpPost]
         public async Task<ActionResult<VisitorDetails>> PostVisitorDetails(VisitorDetails visitorDetails)
@@ -102,6 +112,7 @@ namespace DailyVisitors.WebApi.Controllers
            
         }
 
+        [Authorize]
         // DELETE: api/VisitorDetail/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<IEnumerable<VisitorDetails>>> DeleteVisitorDetails(long id)
@@ -133,6 +144,7 @@ namespace DailyVisitors.WebApi.Controllers
             return await _context.VisitorDetails.Where(x=>x.IsDeleted==false).ToListAsync();
         }
 
+        [Authorize]
         //api/VisitorDetails/logoutById?id=1
         [HttpGet("logoutById")]
         public async Task<ActionResult<IEnumerable<VisitorDetails>>> Get(int id)
@@ -164,6 +176,7 @@ namespace DailyVisitors.WebApi.Controllers
             return await _context.VisitorDetails.Where(x=>x.IsDeleted==false).ToListAsync();
         }
 
+        [Authorize]
         //api/VisitorDetails/emailDetails?id=1
         [HttpGet("emailDetails")]
         public IActionResult EmailDetails(long id, string emailId)
@@ -256,9 +269,10 @@ namespace DailyVisitors.WebApi.Controllers
 
         }
 
+        [Authorize]
         //api/VisitorDetails/visitorDetailsPDF?id=1
         [HttpGet("visitorDetailsPDF")]
-        public IActionResult visitorDetailsPDF(long id)
+        public IActionResult VisitorDetailsPDF(long id)
         {
             var visitorDetails = _context.VisitorDetails.FirstOrDefault(visitor => visitor.VisitorId == id);
             var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
@@ -340,9 +354,10 @@ namespace DailyVisitors.WebApi.Controllers
             "application/octet-stream", "visitorDetailsPDF.pdf");
         }
 
+        [Authorize]
         //api/VisitorDetails/badgePDF?id=1
         [HttpGet("badgePDF")]
-        public IActionResult badgePDF(long id)
+        public IActionResult BadgePDF(long id)
         {
             var visitorDetails = _context.VisitorDetails.FirstOrDefault(visitor => visitor.VisitorId == id);
             var html = string.Format(@"<!DOCTYPE html>
@@ -423,9 +438,10 @@ namespace DailyVisitors.WebApi.Controllers
             "application/octet-stream", "badgePDF.pdf");
         }
 
+        [Authorize]
         //api/VisitorDetails/downloadExcel?id=1
         [HttpGet("downloadExcel")]
-        public IActionResult downloadExcel()
+        public IActionResult DownloadExcel()
         {
             var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
             //List<VisitorDetails> obj = new List<VisitorDetails>();
@@ -470,9 +486,10 @@ namespace DailyVisitors.WebApi.Controllers
             return File(temp, "application/vnd.ms-excel");
         }
 
+        [Authorize]
         //api/VisitorDetails/emailReport?visitorIds=1&visitorIds=23&visitorIds=89
         [HttpGet("emailReport")]
-        public IActionResult emailReport([FromQuery] List<long> visitorIds, string emailId)
+        public IActionResult EmailReport([FromQuery] List<long> visitorIds, string emailId)
         {
             try
             {
@@ -521,9 +538,10 @@ namespace DailyVisitors.WebApi.Controllers
 
         }
 
+        [Authorize]
         //api/VisitorDetails/downloadPDF?visitorIds=1&visitorIds=23&visitorIds=89
         [HttpGet("downloadPDF")]
-        public IActionResult downloadPDF([FromQuery] List<long> visitorIds)
+        public IActionResult DownloadPDF([FromQuery] List<long> visitorIds)
         {
             var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
             var obj = _context.VisitorDetails.Where(x => x.IsDeleted == false).Where(x => visitorIds.Contains(x.VisitorId)).ToList<VisitorDetails>();
@@ -568,9 +586,10 @@ namespace DailyVisitors.WebApi.Controllers
             "application/octet-stream", "badgePDF.pdf");
         }
 
+        [Authorize]
         //api/VisitorDetails/downloadCSV?visitorIds=1&visitorIds=23&visitorIds=89
         [HttpGet("downloadCSV")]
-        public IActionResult downloadCSV([FromQuery] List<long> visitorIds)
+        public IActionResult DownloadCSV([FromQuery] List<long> visitorIds)
         {
             var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
             var obj = _context.VisitorDetails.Where(x => x.IsDeleted == false).Where(x=>visitorIds.Contains(x.VisitorId)).ToList<VisitorDetails>();

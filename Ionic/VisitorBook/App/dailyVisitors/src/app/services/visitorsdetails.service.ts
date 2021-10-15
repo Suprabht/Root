@@ -21,7 +21,8 @@ export class VisitorsdetailsService implements OnDestroy {
     throw new Error('Method not implemented.');
   }
 
-  postVisitorDetails(formData, signature:string, photoBase64String:string, rootURL){
+  postVisitorDetails(formData, signature:string, photoBase64String:string, rootURL, token){
+    var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
     var visitor = new Visitor();
     visitor.visitorId = formData.visitorId ;
     visitor.visitorName = formData.visitorName;
@@ -37,14 +38,13 @@ export class VisitorsdetailsService implements OnDestroy {
     visitor.isLogoutVisible = false;
     visitor.isDeleted = false;
     visitor.personInSdl = formData.personInSdl;
-   return this.http.post(rootURL+'/VisitorDetails', visitor);
+   return this.http.post(rootURL+'/VisitorDetails', visitor, {headers:requestHeaders});
   }
 
   getVisitorDetails(rootURL, token):Visitor[]{
     //console.log("Start");
     this.fetchingAllRecords = true;
     var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
-    //return this.http.get(this.rootUrl+'/api/Notifications',{headers:requestHeaders});
     this.http.get(rootURL+'/VisitorDetails', {headers:requestHeaders}).subscribe((response) => {
       //console.log(response);
       this.allVisitorList = response as Visitor[];
@@ -55,63 +55,72 @@ export class VisitorsdetailsService implements OnDestroy {
     return this.allVisitorList;
   }
 
-  getVisitorDetailsSingleDay(rootURL){
-    return this.http.get(rootURL+'/VisitorDetails');
+  getVisitorDetailsSingleDay(rootURL, token){
+    var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
+    return this.http.get(rootURL+'/VisitorDetails', {headers:requestHeaders});
   }
 
-  logout(id:number, rootURL)
+  logout(id:number, rootURL, token)
   {
-    return this.http.get(rootURL+'/VisitorDetails/logoutById?id=' + id);
+    var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
+    return this.http.get(rootURL+'/VisitorDetails/logoutById?id=' + id, {headers:requestHeaders});
   }
 
-  delete(id:number, rootURL)
+  delete(id:number, rootURL, token)
   {
-    return this.http.delete(rootURL+'/VisitorDetails/' + id);
+    var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
+    return this.http.delete(rootURL+'/VisitorDetails/' + id, {headers:requestHeaders});
   }
 
-  sendEmailOfVisitorDetails(id:number, rootURL, emailId)
+  sendEmailOfVisitorDetails(id:number, rootURL, emailId, token)
   { 
-    return this.http.get(rootURL+'/VisitorDetails/emailDetails?id=' + id + '&emailId=' + emailId);
+    var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
+    return this.http.get(rootURL+'/VisitorDetails/emailDetails?id=' + id + '&emailId=' + emailId, {headers:requestHeaders});
   }
 
-  downloadPDFVisitorDetails(id:number, rootURL){
+  downloadPDFVisitorDetails(id:number, rootURL, token){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
+      'Authorization':'Bearer ' + token
   });
     return this.http.get(rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });
   }
 
-  printBadgePDF(id:number, rootURL){
+  printBadgePDF(id:number, rootURL, token){
         const headers = new HttpHeaders({
           'Content-Type': 'application/json',
           'Accept': 'application/json',
+          'Authorization':'Bearer ' + token
       });
       return this.http.get(rootURL+'/VisitorDetails/badgePDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });
   }
 
-  downloadPDF(ids:number[], rootURL){
+  downloadPDF(ids:number[], rootURL, token){
     var str = ids.toString().split(",").join("&visitorIds="); 
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
           'Accept': 'application/json',
+          'Authorization':'Bearer ' + token
       });
     return this.http.get(rootURL+'/VisitorDetails/downloadPDF?visitorIds='+ str, {headers: headers, responseType: 'blob'  as 'json' });
   }
 
-  downloadExcel(ids:number[], rootURL){
+  downloadExcel(ids:number[], rootURL, token){
     var str = ids.toString().split(",").join("&visitorIds="); 
     const headers = new HttpHeaders({
       'Content-Type': 'text/csv',
       'Accept': 'text/csv',
+      'Authorization':'Bearer ' + token
       });
     return this.http.get(rootURL+'/VisitorDetails/downloadCSV?visitorIds='+ str, {headers: headers, responseType: 'blob'});
   }
 
-  emailReport(ids:number[], rootURL, emailId)
+  emailReport(ids:number[], rootURL, emailId, token)
   {
+    var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
     var str = ids.toString().split(",").join("&visitorIds="); 
-    return this.http.get(rootURL+'/VisitorDetails/emailReport?visitorIds=' + str + '&emailId=' + emailId);
+    return this.http.get(rootURL+'/VisitorDetails/emailReport?visitorIds=' + str + '&emailId=' + emailId, {headers:requestHeaders});
   }
 
   async showVisitorDetails(visitor:Visitor, url:String){

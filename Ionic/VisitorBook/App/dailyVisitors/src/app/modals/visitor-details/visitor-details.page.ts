@@ -18,7 +18,7 @@ export class VisitorDetailsPage implements OnInit {
 
   logout(id:number)
   {    
-    this.visitorService.logout(id, settings.rootURL).subscribe(response => {
+    this.visitorService.logout(id, settings.rootURL,settings.token).subscribe(response => {
       var detailList = response as Visitor[];
       if(detailList.length>0)
       {
@@ -58,7 +58,7 @@ export class VisitorDetailsPage implements OnInit {
 
   delete(id:number)
   {    
-    this.visitorService.delete(id, settings.rootURL).subscribe(response => {
+    this.visitorService.delete(id, settings.rootURL, settings.token).subscribe(response => {
       var detailList = response as Visitor[];
       if(detailList.length>0)
       {
@@ -69,7 +69,7 @@ export class VisitorDetailsPage implements OnInit {
   }
 
   printBadgePDF(visitor:Visitor){
-    this.visitorService.printBadgePDF(visitor.visitorId, settings.rootURL).subscribe((data: Blob) => {
+    this.visitorService.printBadgePDF(visitor.visitorId, settings.rootURL, settings.token).subscribe((data: Blob) => {
         var file = new Blob([data], { type: 'application/pdf' })
         var fileURL = URL.createObjectURL(file);
         // if you want to open PDF in new tab

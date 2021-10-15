@@ -32,7 +32,7 @@ export class VisitorListingTabPage implements OnInit {
     this.selectedVisitor = new Visitor();
     this.imageUrl = settings.rootURL.replace("/api","");
     this.userName = settings.userName;
-    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL).subscribe(res => {
+    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token).subscribe(res => {
       this.detailList = res as Visitor[];
      /* this.detailList.forEach(e =>{
         console.log("testing"+e.loginDateTime);
@@ -43,25 +43,25 @@ export class VisitorListingTabPage implements OnInit {
   refresh()
   {
     this.detailList = [];
-    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL).subscribe(res => {
+    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token).subscribe(res => {
       this.detailList = res as Visitor[];});   
   }
   logout(id:number)
   {    
-    this.visitorService.logout(id, settings.rootURL).subscribe(response => {
+    this.visitorService.logout(id, settings.rootURL, settings.token).subscribe(response => {
       this.detailList = response as Visitor[];
     });
   }
 
   delete(id:number)
   {    
-    this.visitorService.delete(id, settings.rootURL).subscribe(response => {
+    this.visitorService.delete(id, settings.rootURL, settings.token).subscribe(response => {
       this.detailList = response as Visitor[];
     });
   }
 
   getDetails(){
-    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL);
+    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token);
   }
 
   showDetails(visitor:Visitor){
@@ -69,7 +69,7 @@ export class VisitorListingTabPage implements OnInit {
   }
   
   printBadgePDF(visitor:Visitor){
-    this.visitorService.printBadgePDF(visitor.visitorId, settings.rootURL).subscribe((data: Blob) => {
+    this.visitorService.printBadgePDF(visitor.visitorId, settings.rootURL, settings.token).subscribe((data: Blob) => {
         var file = new Blob([data], { type: 'application/pdf' })
         var fileURL = URL.createObjectURL(file);
         // if you want to open PDF in new tab
