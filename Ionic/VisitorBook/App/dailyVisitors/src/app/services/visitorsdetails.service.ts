@@ -17,7 +17,7 @@ export class VisitorsdetailsService implements OnDestroy {
   constructor( private http:HttpClient,
     private alertController: AlertController) {}
   
-    ngOnDestroy(): void {
+  ngOnDestroy(): void {
     throw new Error('Method not implemented.');
   }
 
@@ -40,7 +40,7 @@ export class VisitorsdetailsService implements OnDestroy {
    return this.http.post(rootURL+'/VisitorDetails', visitor);
   }
 
-   getVisitorDetails(rootURL):Visitor[]{
+  getVisitorDetails(rootURL):Visitor[]{
     //console.log("Start");
     this.fetchingAllRecords = true;
     this.http.get(rootURL+'/VisitorDetails').subscribe((response) => {

@@ -13,6 +13,7 @@ export class ReportsTabPage {
   detailList: Visitor[];
   imageUrl:string;
   selectedVisitor:Visitor;
+  userName = "";
   constructor(public visitorService:VisitorsdetailsService,) {
     this.visitor = new Visitor();
     this.visitorService.observableVisitorList.subscribe(visitor => {
@@ -27,7 +28,9 @@ export class ReportsTabPage {
     {
       this.detailList = this.visitorService.getVisitorDetails(settings.rootURL) as Visitor[];
     }
+    this.userName = settings.userName;
   }
+
   keyPressSearch(event, controlName:string)
   {
     //console.log(event);

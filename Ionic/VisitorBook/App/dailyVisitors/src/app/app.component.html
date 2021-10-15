@@ -3,7 +3,7 @@
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>
-          DailyVisitors
+          Welcome!
         </ion-title>
       </ion-toolbar>
     </ion-header>
@@ -34,7 +34,7 @@
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item lines="none" routerLink="/auth">
+          <ion-item lines="none" (click)="logout()">
             <ion-icon name="log-out-outline"></ion-icon>
               <ion-label color="primary">
                 Logout

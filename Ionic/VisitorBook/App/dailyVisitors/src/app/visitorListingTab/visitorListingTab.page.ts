@@ -19,6 +19,7 @@ export class VisitorListingTabPage implements OnInit {
   imageUrl:string;
   selectedVisitor:Visitor;
   detailList = [];
+  userName = "";
   constructor(public visitorService:VisitorsdetailsService,
      private visitorDetailsTab:VisitorDetailsTabPage,
      private photoService:PhotoService,
@@ -30,6 +31,7 @@ export class VisitorListingTabPage implements OnInit {
   ngOnInit() {
     this.selectedVisitor = new Visitor();
     this.imageUrl = settings.rootURL.replace("/api","");
+    this.userName = settings.userName;
     this.visitorService.getVisitorDetailsSingleDay(settings.rootURL).subscribe(res => {
       this.detailList = res as Visitor[];
      /* this.detailList.forEach(e =>{

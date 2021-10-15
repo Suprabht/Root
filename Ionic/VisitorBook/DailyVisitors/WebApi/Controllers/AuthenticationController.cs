@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using DailyVisitors.DAL.Models;
 using DailyVisitors.WebApi.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -18,22 +19,29 @@ namespace DailyVisitors.WebApi.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
+        private readonly VisitorsBookContext _context;
+
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration _configuration;
 
-        public AuthenticationController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public AuthenticationController(UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            IConfiguration configuration,
+            VisitorsBookContext context)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             _configuration = configuration;
+            _context = context;
         }
 
         [HttpPost]
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            var userExist = await userManager.FindByNameAsync(model.UserName);
+            var userExist = await userManager.FindByEmailAsync(model.Email);
+            //var userExist = await userManager.FindByNameAsync(model.UserName);
             if (userExist! != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Massage = "User Already Exist" });
             ApplicationUser user = new ApplicationUser()
@@ -54,7 +62,8 @@ namespace DailyVisitors.WebApi.Controllers
         [Route("RegisterApprover")]
         public async Task<IActionResult> RegisterApprover([FromBody] RegisterModel model)
         {
-            var userExist = await userManager.FindByNameAsync(model.UserName);
+            //var userExist = await userManager.FindByNameAsync(model.UserName);
+            var userExist = await userManager.FindByEmailAsync(model.Email);
             if (userExist! != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Massage = "User Already Exist" });
             ApplicationUser user = new ApplicationUser()
@@ -106,14 +115,30 @@ namespace DailyVisitors.WebApi.Controllers
                     claims: authClames,
                     signingCredentials: new SigningCredentials(authSighKey, SecurityAlgorithms.HmacSha256)
                     );
+
+                //var Users = _context.Users.FirstOrDefault(user => user.Email == model.Email);
+
+                var Users = new Users
+                {
+                    UserId = 1,
+                    FirstName = "Suprabhat",
+                    Email = "suprabhatpaul@sdl.com",
+                    LastName = "Paul",
+                    DisplayName = "suprabhatpaul"
+                };
+
                 return Ok(new
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token)
+                    token = new JwtSecurityTokenHandler().WriteToken(token),
+                    userEmail = Users.Email,
+                    userName = Users.DisplayName
                 });
             }
             return Unauthorized();
         }
 
+        [HttpPost]
+        [Route("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordModel usermodel)
         {
             //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

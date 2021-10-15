@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { settings } from '../models/settings';
 
 @Component({
   selector: 'app-auth',
@@ -9,14 +9,22 @@ import { AuthService } from './auth.service';
 })
 export class AuthPage implements OnInit {
 
-  constructor(private authService:AuthService, private router: Router) { }
+  constructor(private authService:AuthService) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+  ngAfterViewInit(){}
+  ionViewWillEnter()
+  {
+    this.authService.userEmail = "";
+    this.authService.userPassword = "";
+    settings.token = "";
+    settings.userEmail = "";
+    settings.userName = "";
   }
-
+  ionViewDidEnter()
+  {}
   onLogin(){
-    this.authService.login();
-    this.router.navigateByUrl('/tabs/visitorDetailsTab');
+    this.authService.login(settings.rootURL);
   }
 
 }

@@ -26,6 +26,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
   visitor :Visitor; 
   visitorList:Visitor[];
   signatureMaskHidden = false;
+  userName = "";
   public errorMessages = {
     visitorName: [
       {type:"required", message:"Name is required"},
@@ -149,6 +150,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
 
   ngOnInit() {
     this.visitorService.getVisitorDetails(settings.rootURL);
+    this.userName = settings.userName;
     /*this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
       this.visitorService.allVisitorList = res as Visitor[];
     });   */
