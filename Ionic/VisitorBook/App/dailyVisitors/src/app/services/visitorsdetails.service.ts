@@ -40,10 +40,12 @@ export class VisitorsdetailsService implements OnDestroy {
    return this.http.post(rootURL+'/VisitorDetails', visitor);
   }
 
-  getVisitorDetails(rootURL):Visitor[]{
+  getVisitorDetails(rootURL, token):Visitor[]{
     //console.log("Start");
     this.fetchingAllRecords = true;
-    this.http.get(rootURL+'/VisitorDetails').subscribe((response) => {
+    var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
+    //return this.http.get(this.rootUrl+'/api/Notifications',{headers:requestHeaders});
+    this.http.get(rootURL+'/VisitorDetails', {headers:requestHeaders}).subscribe((response) => {
       //console.log(response);
       this.allVisitorList = response as Visitor[];
       this.fetchingAllRecords= false;

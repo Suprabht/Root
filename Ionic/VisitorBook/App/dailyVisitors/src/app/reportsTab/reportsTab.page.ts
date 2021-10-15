@@ -26,7 +26,7 @@ export class ReportsTabPage {
     this.imageUrl = settings.rootURL.replace("/api","");
     if(!this.visitorService.fetchingAllRecords)
     {
-      this.detailList = this.visitorService.getVisitorDetails(settings.rootURL) as Visitor[];
+      this.detailList = this.visitorService.getVisitorDetails(settings.rootURL, settings.token) as Visitor[];
     }
     this.userName = settings.userName;
   }
@@ -93,7 +93,7 @@ export class ReportsTabPage {
     this.selectedVisitor = new Visitor();
     if(!this.visitorService.fetchingAllRecords)
     {
-      this.detailList = this.visitorService.getVisitorDetails(settings.rootURL) as Visitor[];
+      this.detailList = this.visitorService.getVisitorDetails(settings.rootURL, settings.token) as Visitor[];
     }
   }
 

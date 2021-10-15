@@ -27,7 +27,7 @@ namespace DailyVisitors.WebApi.Controllers
             _reportService = reportService;
         }
 
-        //[Authorize]
+        [Authorize]
         // GET: api/VisitorDetails
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VisitorDetails>>> GetVisitorDetails()

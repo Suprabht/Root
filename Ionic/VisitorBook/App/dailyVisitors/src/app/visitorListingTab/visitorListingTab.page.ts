@@ -61,7 +61,7 @@ export class VisitorListingTabPage implements OnInit {
   }
 
   getDetails(){
-    this.visitorService.getVisitorDetails(settings.rootURL);
+    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL);
   }
 
   showDetails(visitor:Visitor){
