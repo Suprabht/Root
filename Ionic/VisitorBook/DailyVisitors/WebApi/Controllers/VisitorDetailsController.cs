@@ -666,6 +666,12 @@ namespace DailyVisitors.WebApi.Controllers
             var folderName = Path.Combine("StaticFiles", "Images");
             var filedir = Path.Combine(Directory.GetCurrentDirectory(), folderName);
             var file = Path.Combine(filedir, fileName);
+            if (!System.IO.File.Exists(file))
+            {
+                file = Path.Combine(filedir, "imageNotFound.png");
+                var noImageFound = System.IO.File.OpenRead(file);
+                return File(noImageFound, "image/png");
+            }
             var image = System.IO.File.OpenRead(file);
             return File(image, "image/png");
         }
