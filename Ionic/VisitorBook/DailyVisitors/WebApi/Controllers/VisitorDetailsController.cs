@@ -185,7 +185,7 @@ namespace DailyVisitors.WebApi.Controllers
             try
             {
                 var visitorDetails = _context.VisitorDetails.FirstOrDefault(visitor => visitor.VisitorId == id);
-                var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
+                var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/api/";
                 var pictureUrl = url + visitorDetails.Picture;
                 var signatureUrl = url + visitorDetails.Signature;
                 /*
@@ -285,7 +285,7 @@ namespace DailyVisitors.WebApi.Controllers
                     <meta charset = ""UTF-8"">
                        <title>Visitor Details</title>
                    </head>
-                  <body style=""font-family:'Ariel'; font-size:70px;"">
+                  <body style=""font-family:'Ariel'; font-size:16px;"">
                     <table>
                         <tr>
                         <td>
@@ -366,10 +366,10 @@ namespace DailyVisitors.WebApi.Controllers
                     <meta charset = ""UTF-8"">
                        <title>Visitor Details</title>
                    </head>
-                  <body style=""font-family:'Ariel'; font-size:60px;"">
+                  <body style=""font-family:'Ariel'; font-size:16px;"">
             <table cellpadding=0 style="" border:#000 solid 2px;"">
                 <tr>
-                  <td style=""padding:30px; border-right:#000 solid 2px; width:1400px; vertical-align:top;"">
+                  <td style=""padding:30px; border-right:#000 solid 2px; width:700px; vertical-align:top;"">
  
                      <table cellpadding = 0>
     
@@ -377,26 +377,26 @@ namespace DailyVisitors.WebApi.Controllers
     
                                 <td style="""" > &nbsp;</td>
          
-                                     <td style=""text-align:right;height:300px"" ><strong> Badge &nbsp; &nbsp;</strong ></td >
+                                     <td style=""text-align:right;height:50px"" ><strong> Badge &nbsp; &nbsp;</strong ></td >
                    
                                            </tr>
                    
                                            <tr>
                    
-                                               <td style=""height:200px""><strong> Name:- </strong></td>
+                                               <td style=""height:30px""><strong> Name:- </strong></td>
                           
                                                       <td>{0}</td>
                                
                                                        </tr>
                                
                                                        <tr>
-                                                        <td style=""height:200px"">
+                                                        <td style=""height:30px"">
                                                                 <strong> Company Name: -</strong>
                                                         </td>
                                                         <td>{1}</td>
                                                         </tr><tr>
                                             
-                                                                <td style=""height:200px"" ><strong> Person Visiting in RWS: - </strong></td>
+                                                                <td style=""height:30px"" ><strong> Person Visiting in RWS: - &nbsp;</strong></td>
                                                     
                                                                                 <td>{2}</td>
                                                          
@@ -404,7 +404,7 @@ namespace DailyVisitors.WebApi.Controllers
                                                          
                                                                                  <tr>
                                                          
-                                                                                     <td style=""height:200px"" ><strong> Date:- </strong></td>
+                                                                                     <td style=""height:30px"" ><strong> Date:- </strong></td>
                                                                 
                                                                                             <td>{3}</td>
                                                                      
@@ -414,7 +414,7 @@ namespace DailyVisitors.WebApi.Controllers
                                                                      
                                                                                        </td>
                                                                      
-                                                                                       <td style="" padding: 30px;width:1400px;"" >
+                                                                                       <td style="" padding: 30px;width:700px;"" >
                                                                       
                                                                                           <strong> THROUGHOUT YOUR VISIT YOUR PERSONAL SAFETY IS OUR CONCERN<br/> -WE THERFORE REQUEST THAT YOU ABIDE BY THE FOLLOWING:</strong><br/><br/>
                                                                           
@@ -493,7 +493,7 @@ namespace DailyVisitors.WebApi.Controllers
         {
             try
             {
-                var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
+                var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/api/";
                 var obj = _context.VisitorDetails.Where(x => x.IsDeleted == false).Where(x => visitorIds.Contains(x.VisitorId)).ToList<VisitorDetails>();
                 StringBuilder str = new StringBuilder();
                 str.Append("<!DOCTYPE html><html lang=\"en\"><body style=\"font-family:'Ariel'; font-size:11px;\">");
@@ -546,7 +546,7 @@ namespace DailyVisitors.WebApi.Controllers
             var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/";
             var obj = _context.VisitorDetails.Where(x => x.IsDeleted == false).Where(x => visitorIds.Contains(x.VisitorId)).ToList<VisitorDetails>();
             StringBuilder str = new StringBuilder();
-            str.Append("<!DOCTYPE html><html lang=\"en\"><head><meta charset = \"UTF-8\"><title>Visitor Details</title></head><body style=\"font-family:'Ariel'; font-size:60px;\">");
+            str.Append("<!DOCTYPE html><html lang=\"en\"><head><meta charset = \"UTF-8\"><title>Visitor Details</title></head><body style=\"font-family:'Ariel'; font-size:30px;\">");
             str.Append("<table style='width:2900px'>");
             str.Append("<tr>");
             str.Append("<td style='padding:20px; border-bottom:1px solid #000; background-color:#DAF7A6'><b>Id</b></td>");
@@ -636,8 +636,9 @@ namespace DailyVisitors.WebApi.Controllers
 
         public string SaveImage(string base64image)
         {
-            var bytes = Convert.FromBase64String(base64image);      
+            var bytes = Convert.FromBase64String(base64image);
             var folderName = Path.Combine("StaticFiles", "Images");
+            //var folderName = "Images";
             var filedir = Path.Combine(Directory.GetCurrentDirectory(), folderName);
             if (!Directory.Exists(filedir))
             {
@@ -654,7 +655,19 @@ namespace DailyVisitors.WebApi.Controllers
                     stream.Flush();
                 }
             }
-            return Path.Combine(folderName, fileName);
+            //return Path.Combine(folderName, fileName);
+            return "VisitorDetails/GetImage?fileName=" + fileName;
+        }
+
+        //api/VisitorDetails/getImage?fileName=
+        [HttpGet("getImage")]
+        public async Task<IActionResult> GetImage(string fileName)
+        {
+            var folderName = Path.Combine("StaticFiles", "Images");
+            var filedir = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            var file = Path.Combine(filedir, fileName);
+            var image = System.IO.File.OpenRead(file);
+            return File(image, "image/png");
         }
     }
 }

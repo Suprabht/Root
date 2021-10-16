@@ -30,10 +30,6 @@
     <ProjectReference Include="..\EnumConstants\EnumConstants.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="StaticFiles\Images\" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <None Remove="Microsoft.Azure.Services.AppAuthentication" />
@@ -47,5 +43,23 @@
     <None Remove="Microsoft.Extensions.DependencyInjection" />
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Microsoft.Extensions.Logging" />
+    <None Remove="StaticFiles1\" />
+    <None Remove="StaticFiles\" />
+    <None Remove="StaticFiles\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="libwkhtmltox.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="libwkhtmltox.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="libwkhtmltox.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="StaticFiles\" />
+    <Folder Include="StaticFiles\Images\" />
   </ItemGroup>
 </Project>

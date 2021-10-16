@@ -23,7 +23,8 @@ export class ReportsTabPage {
   }
   ngOnInit() {
     this.selectedVisitor = new Visitor();
-    this.imageUrl = settings.rootURL.replace("/api","");
+    //this.imageUrl = settings.rootURL.replace("/api","");
+    this.imageUrl = settings.rootURL;
     if(!this.visitorService.fetchingAllRecords)
     {
       this.detailList = this.visitorService.getVisitorDetails(settings.rootURL, settings.token) as Visitor[];

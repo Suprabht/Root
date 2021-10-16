@@ -124,7 +124,7 @@ export class VisitorsdetailsService implements OnDestroy {
   }
 
   async showVisitorDetails(visitor:Visitor, url:String){
-    url = url.replace("/api","");
+    //url = url.replace("/api","");
     var message =`<table cellpadding=0 border=0>
       <tr>
         <td>Visitor Name</td>

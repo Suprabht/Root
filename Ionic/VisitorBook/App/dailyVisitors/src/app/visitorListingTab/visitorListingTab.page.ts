@@ -30,7 +30,8 @@ export class VisitorListingTabPage implements OnInit {
  
   ngOnInit() {
     this.selectedVisitor = new Visitor();
-    this.imageUrl = settings.rootURL.replace("/api","");
+   // this.imageUrl = settings.rootURL.replace("/api","");
+    this.imageUrl = settings.rootURL;
     this.userName = settings.userName;
     this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token).subscribe(res => {
       this.detailList = res as Visitor[];

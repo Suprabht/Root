@@ -88,7 +88,8 @@ export class VisitorDetailsPage implements OnInit {
   }
   
   ngOnInit() {
-    this.imageUrl = settings.rootURL.replace("/api","");
+    //this.imageUrl = settings.rootURL.replace("/api","");
+    this.imageUrl = settings.rootURL;
   }
 
   async openToast(message:string) {
