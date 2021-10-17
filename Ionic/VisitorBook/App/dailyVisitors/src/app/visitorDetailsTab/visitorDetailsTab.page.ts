@@ -187,7 +187,6 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
             err=>{console.log(err)}
           );
         });
-        
       }
       else
       {
