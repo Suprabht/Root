@@ -24,21 +24,21 @@ export class VisitorsdetailsService implements OnDestroy {
     private files: File
 ) {}
   
-downloadPDFVisitorDetails(id:number, rootURL, token){
-   const url = rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id;
-   this.fileTransfer = FileTransfer.create(); 
-  this.fileTransfer.download(url, this.files.externalRootDirectory + 'visitorDetails_'+Date.now()+'.pdf', true).then((entry) => {
-  console.log('download complete: ' + entry.toURL());
-}, (error) => {
-  // handle error
-});
-/*  const headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Authorization':'Bearer ' + token
-});
-  return this.http.get(rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });*/
-}
+  downloadPDFVisitorDetails(id:number, rootURL, token){
+   /*  const url = rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id;
+    this.fileTransfer = FileTransfer.create(); 
+    this.fileTransfer.download(url, this.files.externalRootDirectory + 'visitorDetails_'+Date.now()+'.pdf', true).then((entry) => {
+    console.log('download complete: ' + entry.toURL());
+  }, (error) => {
+    // handle error
+  });*/
+   const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization':'Bearer ' + token
+  });
+    return this.http.get(rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });
+  }
   ngOnDestroy(): void {
     throw new Error('Method not implemented.');
   }

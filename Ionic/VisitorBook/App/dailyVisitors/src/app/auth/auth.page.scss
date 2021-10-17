@@ -17,7 +17,8 @@
     height: calc(100% - 60px);
     .card-center{
         transform: translateX(-50%) translateY(-50%);
-        top: 45%;
+        /*top: 45%;*/
+        top:480px;
         left: 50%;
         position: absolute;
         .loginDiv{
@@ -40,7 +41,7 @@
     }
 }
 .wellcomeText{
-    top: 25%;
+    top:250px;
     position: absolute;
     width: 100%;
     color: #fff;
