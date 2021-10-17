@@ -14,7 +14,8 @@ import { VisitorDetailsTabPage } from './visitorDetailsTab/visitorDetailsTab.pag
 import { from } from 'rxjs';
 import { ReactiveFormsModule,ControlValueAccessor } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
-
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';  
+import { File } from '@ionic-native/file/ngx';
 /* 
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import {Ng2OrderModule} from 'ng2-order-pipe'
@@ -39,7 +40,9 @@ import { NgxPaginationModule} from 'ngx-pagination'; */
     SplashScreen,
     Camera,
     NavParams,
-    VisitorDetailsTabPage,
+    VisitorDetailsTabPage, 
+    FileTransferObject,
+    File,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

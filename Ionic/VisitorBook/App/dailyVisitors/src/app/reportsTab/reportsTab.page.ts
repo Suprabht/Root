@@ -14,7 +14,7 @@ export class ReportsTabPage {
   imageUrl:string;
   selectedVisitor:Visitor;
   userName = "";
-  constructor(public visitorService:VisitorsdetailsService,) {
+  constructor(public visitorService:VisitorsdetailsService) {
     this.visitor = new Visitor();
     this.visitorService.observableVisitorList.subscribe(visitor => {
       console.log("changed....");
@@ -107,7 +107,8 @@ export class ReportsTabPage {
   }
 
   downloadPDFVisitorDetails(visitor:Visitor){
-    this.visitorService.downloadPDFVisitorDetails(visitor.visitorId, settings.rootURL, settings.token).subscribe((data: Blob) => {
+    this.visitorService.downloadPDFVisitorDetails(visitor.visitorId, settings.rootURL, settings.token);
+    /*this.visitorService.downloadPDFVisitorDetails(visitor.visitorId, settings.rootURL, settings.token).subscribe((data: Blob) => {
         var file = new Blob([data], { type: 'application/pdf' })
         var fileURL = URL.createObjectURL(file);
         // if you want to open PDF in new tab
@@ -122,7 +123,7 @@ export class ReportsTabPage {
       (error) => {
         console.log('getPDF error: ',error);
       }
-    );
+    );*/
   }
 
   downloadExcel(){

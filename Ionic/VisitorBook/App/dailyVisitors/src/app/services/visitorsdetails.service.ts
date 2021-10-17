@@ -5,6 +5,8 @@ import { map, catchError} from 'rxjs/operators'
 import { Visitor } from '../models/visitor';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http"
 import { AlertController} from '@ionic/angular';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +16,29 @@ export class VisitorsdetailsService implements OnDestroy {
   fetchingAllRecords = false;
   selectedVisitor:Visitor;
   public observableVisitorList = new Subject<Visitor[]>();
-  constructor( private http:HttpClient,
-    private alertController: AlertController) {}
+  private fileTransfer: FileTransferObject; 
+
+  constructor( private http:HttpClient, 
+    private alertController: AlertController, 
+    //private transfer: FileTransfer, 
+    private files: File
+) {}
   
+downloadPDFVisitorDetails(id:number, rootURL, token){
+   const url = rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id;
+   this.fileTransfer = FileTransfer.create(); 
+  this.fileTransfer.download(url, this.files.externalRootDirectory + 'visitorDetails_'+Date.now()+'.pdf', true).then((entry) => {
+  console.log('download complete: ' + entry.toURL());
+}, (error) => {
+  // handle error
+});
+/*  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Authorization':'Bearer ' + token
+});
+  return this.http.get(rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });*/
+}
   ngOnDestroy(): void {
     throw new Error('Method not implemented.');
   }
@@ -76,15 +98,6 @@ export class VisitorsdetailsService implements OnDestroy {
   { 
     var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
     return this.http.get(rootURL+'/VisitorDetails/emailDetails?id=' + id + '&emailId=' + emailId, {headers:requestHeaders});
-  }
-
-  downloadPDFVisitorDetails(id:number, rootURL, token){
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization':'Bearer ' + token
-  });
-    return this.http.get(rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });
   }
 
   printBadgePDF(id:number, rootURL, token){
