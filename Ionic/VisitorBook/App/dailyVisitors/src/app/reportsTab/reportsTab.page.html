@@ -38,7 +38,7 @@
                         <ion-input autocapitalize inputmode="text" [(ngModel)]="this.visitor.mobileNumber" (input)="keyPressSearch($event,'mobileNumber')"></ion-input>
                       </ion-item>
                       <ion-item >
-                        <ion-label color="primary" position ="floating">Login Date</ion-label>
+                        <ion-label color="primary" position ="floating">Check In Date</ion-label>
                         <ion-input autocapitalize inputmode="text" [(ngModel)]="this.visitor.loginDateTime" (input)="keyPressSearch($event,'loginDateTime')"></ion-input>
                       </ion-item>
                     </IonContent>
@@ -131,10 +131,10 @@
               <ion-text >{{detail.personInSdl}}</ion-text><br/><br/>
 
               <ion-icon color="primary" name="log-in-outline"></ion-icon>
-              <ion-text><strong>&nbsp;Login Date and Time : </strong></ion-text>
+              <ion-text><strong>&nbsp;Check In Date and Time : </strong></ion-text>
               <ion-text>{{detail.loginDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text><br/>
               <ion-icon color="primary" name="log-out-outline"></ion-icon>
-              <ion-text><strong>&nbsp;Logout Date and Time: </strong></ion-text>
+              <ion-text><strong>&nbsp;Check Out Date and Time: </strong></ion-text>
               <ion-text *ngIf="detail.logoutDateTime != undefined">{{detail.logoutDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text>
               <ion-text *ngIf="detail.logoutDateTime == undefined"><italic>Still not logged out</italic></ion-text><br/><br/>
 

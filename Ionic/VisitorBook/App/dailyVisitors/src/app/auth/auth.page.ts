@@ -15,8 +15,8 @@ export class AuthPage implements OnInit {
   ngAfterViewInit(){}
   ionViewWillEnter()
   {
-    this.authService.userEmail = "";
-    this.authService.userPassword = "";
+    this.authService.userEmail = "suprabhatpaul@sdl.com";
+    this.authService.userPassword = "Welcome@1234";
     settings.token = "";
     settings.userEmail = "";
     settings.userName = "";

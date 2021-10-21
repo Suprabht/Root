@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import { settings } from '../models/settings';
 import { VisitorDetailsPage } from '../modals/visitor-details/visitor-details.page';
+import { User } from '../models/user';
 declare var html2pdf;
 
 @Component({
@@ -26,7 +27,34 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
   visitor :Visitor; 
   visitorList:Visitor[];
   signatureMaskHidden = false;
+  isEmployee = false;
   userName = "";
+  usersList: User[];
+  selectedUser: User;
+  isEmployeeDropDownVisible = false;
+  //#region properties
+  get visitorName(){
+    return this.form.get("visitorName");
+  }
+  get email(){
+    return this.form.get("email");
+  }
+  get mobileNumber(){
+    return this.form.get("mobileNumber");
+  }
+  get adress(){
+    return this.form.get("adress");
+  }
+  get fromPlace(){
+    return this.form.get("fromPlace");
+  }
+  get company(){
+    return this.form.get("company");
+  }
+  get personInSdl(){
+    return this.form.get("personInSdl");
+  }
+  //#endregion
   public errorMessages = {
     visitorName: [
       {type:"required", message:"Name is required"},
@@ -57,27 +85,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
       {type:"maxlength", message:"Place can not be more than 100 charecter"}
     ]
   }
-  get visitorName(){
-    return this.form.get("visitorName");
-  }
-  get email(){
-    return this.form.get("email");
-  }
-  get mobileNumber(){
-    return this.form.get("mobileNumber");
-  }
-  get adress(){
-    return this.form.get("adress");
-  }
-  get fromPlace(){
-    return this.form.get("fromPlace");
-  }
-  get company(){
-    return this.form.get("company");
-  }
-  get personInSdl(){
-    return this.form.get("personInSdl");
-  }
+  
 
   form = this.formBuilder.group({
         visitorName: ["",[Validators.required, Validators.maxLength(100)]],
@@ -100,10 +108,14 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     private activatedRouter:ActivatedRoute,
     private formBuilder:FormBuilder,
     private alertController: AlertController) {
-
+    this.isEmployeeDropDownVisible = false
     this.visitor = new Visitor();
+    this.selectedUser = new User();
+    this.visitorService.observableUserList.subscribe(users => {
+      this.usersList = users;
+    })
   }
-  
+
   public signatureImage:string;
 
   public signaturePadOptions: Object = { 
@@ -113,6 +125,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     'canvasHeight': 230
   };
 
+//#region methords
   drawStart() {}
  
   drawComplete() {
@@ -154,6 +167,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     /*this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
       this.visitorService.allVisitorList = res as Visitor[];
     });   */
+    this.visitorService.getUsers(settings.rootURL, settings.token);
   }
 
   ngOnDestroy() {}
@@ -247,6 +261,19 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     catch(e){}
   }
 
+  segmentChanged(event){
+    if(event.detail.value == "true")
+    {
+      this.isEmployee = true;
+      this.isEmployeeDropDownVisible = false;
+      this.selectedUser = new User();
+    }
+    else{
+      this.isEmployee = false;
+    }
+    //console.log(this.isEmployee);
+  }
+
   async openModal() {
     const modal = await this.modalController.create({
       component: VisitorDetailsPage,
@@ -261,6 +288,52 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     });
 
     return await modal.present();
+  }
+//#endregion  
+loginUser(){
+  var visitorUser= new Visitor;
+  visitorUser.visitorId = undefined;
+  visitorUser.visitorName = this.selectedUser.displayName;
+  visitorUser.email = this.selectedUser.email;
+  visitorUser.mobileNumber = Number("0000000000");
+  visitorUser.adress = "RWS";
+  visitorUser.fromPlace = "N/A";
+  visitorUser.company = "RWS"
+  visitorUser.signature = "None";
+  visitorUser.picture = "None";
+  visitorUser.loginDateTime = undefined;
+  visitorUser.logoutDateTime = undefined;
+  visitorUser.personInSdl = "N/A";
+  this.visitorService.postVisitorDetails(visitorUser, "None", "None", settings.rootURL, settings.token).subscribe(
+    res => {
+      var details = res as Visitor;
+      this.visitorService.selectedVisitor = details;
+      this.isEmployeeDropDownVisible = false;
+      this.selectedUser = new User();
+      this.openModal();
+    },
+    err=>{console.log(err)}
+  );
+}
+selectVal(user:User){
+  this.selectedUser = user;
+  this.isEmployeeDropDownVisible = false;
+  console.log(this.selectedUser);
+}
+
+  filterUserData(event){
+    this.usersList = this.visitorService.allUserList;
+    this.selectedUser = new User;
+    const val = event.target.value;
+    if(val && val.trim() != '' && val.length>0)
+    {
+      this.isEmployeeDropDownVisible = true;
+      this.usersList = this.usersList.filter((item:User)=>{
+        return (item.displayName.toLowerCase().indexOf(val.toLowerCase())>-1);
+      })
+    }else{
+      this.isEmployeeDropDownVisible = false;
+    }
   }
 }
 

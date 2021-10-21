@@ -636,6 +636,10 @@ namespace DailyVisitors.WebApi.Controllers
 
         public string SaveImage(string base64image)
         {
+            if(base64image.ToLower().Equals("none"))
+            {
+                return "VisitorDetails/GetImage?fileName=imageNotFound.png";
+            }
             var bytes = Convert.FromBase64String(base64image);
             var folderName = Path.Combine("StaticFiles", "Images");
             //var folderName = "Images";

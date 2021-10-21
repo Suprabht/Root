@@ -17,7 +17,7 @@ export class ReportsTabPage {
   constructor(public visitorService:VisitorsdetailsService) {
     this.visitor = new Visitor();
     this.visitorService.observableVisitorList.subscribe(visitor => {
-      console.log("changed....");
+      //console.log("changed....");
       this.detailList = visitor;
     })
   }

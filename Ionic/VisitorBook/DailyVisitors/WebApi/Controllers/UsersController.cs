@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DailyVisitors.DAL.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DailyVisitors.WebApi.Controllers
 {
@@ -21,10 +22,12 @@ namespace DailyVisitors.WebApi.Controllers
         }
 
         // GET: api/Users
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            //return await _context.Users.ToListAsync();
+            return await _context.Users.Where(x => x.Active == true).ToListAsync();
         }
 
         // GET: api/Users/5

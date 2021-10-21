@@ -10,157 +10,181 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup] ="form">
-    <div class="leftContent">
-      <ion-card>
-        <ion-card-content>
-            <IonContent>
-              <!--Name:Start-->
-              <ion-item >
-                <ion-label color="primary" position ="floating">Visitors name</ion-label>
-                <ion-input autocapitalize inputmode="text" required name="visitorName" formControlName="visitorName" ></ion-input>
-              </ion-item>
-              <div *ngFor="let error of errorMessages.visitorName">
-                <ng-container *ngIf="visitorName.hasError(error.type) && (visitorName.dirty || visitorName.touched)">
+  <ion-segment class="segment" (ionChange)="segmentChanged($event)" value="false">
+    <ion-segment-button value="false">
+      <nobr>
+        <ion-icon class="segmentText" name="people-circle-outline" color="warning"></ion-icon>&nbsp;&nbsp;<ion-label class="segmentText" color="tertiary">Visitor</ion-label>
+      </nobr>
+      </ion-segment-button>
+    <ion-segment-button value="true">
+      <nobr>
+        <ion-icon class="segmentText" name="person-add-outline" color="warning"></ion-icon>&nbsp;&nbsp;<ion-label class="segmentText" color="tertiary">Employee</ion-label>
+      </nobr>
+      </ion-segment-button>
+  </ion-segment>
+  <form  [formGroup] ="form">
+    <div id="visitorDetailEntry" [ngClass]="{'show':!this.isEmployee, 'hide':this.isEmployee }">
+      <div class="leftContent">
+        <ion-card>
+          <ion-card-content>
+              <IonContent>
+                <!--Name:Start-->
+                <ion-item >
+                  <ion-label color="primary" position ="floating">Visitors name</ion-label>
+                  <ion-input autocapitalize inputmode="text" required name="visitorName" formControlName="visitorName" ></ion-input>
+                </ion-item>
+                <div *ngFor="let error of errorMessages.visitorName">
+                  <ng-container *ngIf="visitorName.hasError(error.type) && (visitorName.dirty || visitorName.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                  </ng-container>
+                </div>
+                <!--Name:End-->
+                <!--Email:Start-->
+                <ion-item >
+                  <ion-label color="primary" position ="floating">Email</ion-label>
+                  <ion-input inputmode="email" type="email" name="visitorsName" formControlName ="email"></ion-input>
+                </ion-item>
+                <div *ngFor="let error of errorMessages.email">
+                  <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
                   <small class="error-message">{{error.message}}</small>
-                </ng-container>
-              </div>
-              <!--Name:End-->
-              <!--Email:Start-->
-              <ion-item >
-                <ion-label color="primary" position ="floating">Email</ion-label>
-                <ion-input inputmode="email" type="email" name="visitorsName" formControlName ="email"></ion-input>
-              </ion-item>
-              <div *ngFor="let error of errorMessages.email">
-                <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
-                <small class="error-message">{{error.message}}</small>
-                </ng-container>
-              </div>
-              <!--Email:End-->
-              <!--Mobile:Start-->
-              <ion-item >
-                <ion-label color="primary" position ="floating">Mobile Number</ion-label>
-                <ion-input inputmode="tel" name="Mobile Number"  formControlName ="mobileNumber"></ion-input>
-              </ion-item>
-              <div *ngFor="let error of errorMessages.mobileNumber">
-                <ng-container *ngIf="mobileNumber.hasError(error.type) && (mobileNumber.dirty || mobileNumber.touched)">
-                <small class="error-message">{{error.message}}</small>
-                </ng-container>
-              </div>
-              <!--Mobile:End-->
-            </IonContent>
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-card-content>
-          <Ioncontent>
-            <!--Address:Start-->
-            <ion-item>
-              <ion-label color="primary" position ="floating">Address</ion-label>
-              <ion-textarea autocapitalize inputmode="text"  name="Address" formControlName ="adress"></ion-textarea>
-            </ion-item>
-            <div *ngFor="let error of errorMessages.adress">
-              <ng-container *ngIf="adress.hasError(error.type) && (adress.dirty || adress.touched)">
-              <small class="error-message">{{error.message}}</small>
-              </ng-container>
-            </div>
-            <!--Address:End-->
-          </Ioncontent>
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-card-content>
-          <Ioncontent>
-            <!--From Place:Start-->
-            <ion-item>
-              <ion-label color="primary" position ="floating">From Place Name</ion-label>
-              <ion-input autocapitalize inputmode="text"  name="FromPlace" formControlName ="fromPlace"></ion-input>
-            </ion-item> 
-            <div *ngFor="let error of errorMessages.fromPlace">
-              <ng-container *ngIf="fromPlace.hasError(error.type) && (fromPlace.dirty || fromPlace.touched)">
-              <small class="error-message">{{error.message}}</small>
-              </ng-container>
-            </div>
-            <!--From Place:End-->
-            <!--From Place:Start-->
-            <ion-item>
-              <ion-label color="primary" position ="floating">Company</ion-label>
-              <ion-input autocapitalize inputmode="text"  name="Company" formControlName ="company"></ion-input>
-            </ion-item> 
-            <div *ngFor="let error of errorMessages.Company">
-              <ng-container *ngIf="company.hasError(error.type) && (company.dirty || company.touched)">
-              <small class="error-message">{{error.message}}</small>
-              </ng-container>
-            </div>
-            <!--From Place:End-->
-            <!--From Place:Start-->
-            <ion-item>
-              <ion-label color="primary" position ="floating">Person visiting in RWS</ion-label>
-              <ion-input autocapitalize inputmode="text"  name="PersonInSdl" formControlName ="personInSdl"></ion-input>
-            </ion-item> 
-            <div *ngFor="let error of errorMessages.personInSdl">
-              <ng-container *ngIf="personInSdl.hasError(error.type) && (personInSdl.dirty || personInSdl.touched)">
-              <small class="error-message">{{error.message}}</small>
-              </ng-container>
-            </div>
-            <!--From Place:End-->
-          </Ioncontent>
-        </ion-card-content>
-      </ion-card>
-    </div>
-    <div class="rightContent">
-      <ion-card>
-        <ion-card-content>
-          <Ioncontent>
-            <!--Photo:Start-->
-            <div class="photoDiv" (click)="opencamera()">
-              <ion-item *ngFor="let photo of photos; index as position">
-                  <ion-img src="{{ photo.webviewPath }}" (click)="opencamera()"
-                    alt="Your Photo" alt="Missing image" onerror="this.onerror=null" this.src="../../assets/Camera.jpg">
-                  </ion-img>
-              </ion-item>
-            </div>
-            <ion-fab horizontal="end" vertical="center" slot="fixed">
-              <ion-fab-button color="tertiary" (click)="opencamera()">
-                  <ion-icon name="camera-outline"></ion-icon>
-              </ion-fab-button>
-             </ion-fab>
-            <!--Photo:End-->
-          </Ioncontent>
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-card-content>
-          <Ioncontent>
-            <!--Signature:Start-->
-            <div class="signatureDiv">
-              <img src="../../assets/signature.png" [hidden]="this.signatureMaskHidden" (mouseover)="hideImage()" (mousedown)="hideImage()" (click)="hideImage()">
+                  </ng-container>
+                </div>
+                <!--Email:End-->
+                <!--Mobile:Start-->
+                <ion-item >
+                  <ion-label color="primary" position ="floating">Mobile Number</ion-label>
+                  <ion-input inputmode="tel" name="Mobile Number"  formControlName ="mobileNumber"></ion-input>
+                </ion-item>
+                <div *ngFor="let error of errorMessages.mobileNumber">
+                  <ng-container *ngIf="mobileNumber.hasError(error.type) && (mobileNumber.dirty || mobileNumber.touched)">
+                  <small class="error-message">{{error.message}}</small>
+                  </ng-container>
+                </div>
+                <!--Mobile:End-->
+              </IonContent>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <Ioncontent>
+              <!--Address:Start-->
               <ion-item>
-                <signature-pad #signatureCanvas [options]="signaturePadOptions" id="signatureCanvas" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()" >
-                </signature-pad>
+                <ion-label color="primary" position ="floating">Address</ion-label>
+                <ion-textarea autocapitalize inputmode="text"  name="Address" formControlName ="adress"></ion-textarea>
               </ion-item>
-            </div>
-            <ion-fab horizontal="end" vertical="center" slot="fixed">
-              <ion-fab-button color="danger" [disabled]="!this.signatureImage" (click)="drawClear()">
-                <ion-icon name="close-circle-outline"></ion-icon>
-              </ion-fab-button>
-             </ion-fab>
-            <!--Signature:End-->
-          </Ioncontent>
-        </ion-card-content>
-      </ion-card>
-      <div class="buttons">
-        <ion-button color="danger" (click)="resetForm(form)" >
-          <ion-icon name="refresh-circle-outline"></ion-icon>
-          &nbsp;&nbsp;Reset
-        </ion-button><br/>
-        <ion-button color="tertiary" type="submit" [disabled]="!form.valid" (click) ="onSubmit(form)" >
-          <ion-icon name="save-outline"></ion-icon>
-          &nbsp;&nbsp;Submit
-        </ion-button>
+              <div *ngFor="let error of errorMessages.adress">
+                <ng-container *ngIf="adress.hasError(error.type) && (adress.dirty || adress.touched)">
+                <small class="error-message">{{error.message}}</small>
+                </ng-container>
+              </div>
+              <!--Address:End-->
+            </Ioncontent>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <Ioncontent>
+              <!--From Place:Start-->
+              <ion-item>
+                <ion-label color="primary" position ="floating">From Place Name</ion-label>
+                <ion-input autocapitalize inputmode="text"  name="FromPlace" formControlName ="fromPlace"></ion-input>
+              </ion-item> 
+              <div *ngFor="let error of errorMessages.fromPlace">
+                <ng-container *ngIf="fromPlace.hasError(error.type) && (fromPlace.dirty || fromPlace.touched)">
+                <small class="error-message">{{error.message}}</small>
+                </ng-container>
+              </div>
+              <!--From Place:End-->
+              <!--From Place:Start-->
+              <ion-item>
+                <ion-label color="primary" position ="floating">Company</ion-label>
+                <ion-input autocapitalize inputmode="text"  name="Company" formControlName ="company"></ion-input>
+              </ion-item> 
+              <div *ngFor="let error of errorMessages.Company">
+                <ng-container *ngIf="company.hasError(error.type) && (company.dirty || company.touched)">
+                <small class="error-message">{{error.message}}</small>
+                </ng-container>
+              </div>
+              <!--From Place:End-->
+              <!--From Place:Start-->
+              <ion-item>
+                <ion-label color="primary" position ="floating">Person visiting in RWS</ion-label>
+                <ion-input autocapitalize inputmode="text"  name="PersonInSdl" formControlName ="personInSdl"></ion-input>
+              </ion-item> 
+              <div *ngFor="let error of errorMessages.personInSdl">
+                <ng-container *ngIf="personInSdl.hasError(error.type) && (personInSdl.dirty || personInSdl.touched)">
+                <small class="error-message">{{error.message}}</small>
+                </ng-container>
+              </div>
+              <!--From Place:End-->
+            </Ioncontent>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div class="rightContent">
+        <ion-card>
+          <ion-card-content>
+            <Ioncontent>
+              <!--Photo:Start-->
+              <div class="photoDiv" (click)="opencamera()">
+                <ion-item *ngFor="let photo of photos; index as position">
+                    <ion-img src="{{ photo.webviewPath }}" (click)="opencamera()"
+                      alt="Your Photo" alt="Missing image" onerror="this.onerror=null" this.src="../../assets/Camera.jpg">
+                    </ion-img>
+                </ion-item>
+              </div>
+              <ion-fab horizontal="end" vertical="center" slot="fixed">
+                <ion-fab-button color="tertiary" (click)="opencamera()">
+                    <ion-icon name="camera-outline"></ion-icon>
+                </ion-fab-button>
+               </ion-fab>
+              <!--Photo:End-->
+            </Ioncontent>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <Ioncontent>
+              <!--Signature:Start-->
+              <div class="signatureDiv">
+                <img src="../../assets/signature.png" [hidden]="this.signatureMaskHidden" (mouseover)="hideImage()" (mousedown)="hideImage()" (click)="hideImage()">
+                <ion-item>
+                  <signature-pad #signatureCanvas [options]="signaturePadOptions" id="signatureCanvas" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()" >
+                  </signature-pad>
+                </ion-item>
+              </div>
+              <ion-fab horizontal="end" vertical="center" slot="fixed">
+                <ion-fab-button color="danger" [disabled]="!this.signatureImage" (click)="drawClear()">
+                  <ion-icon name="close-circle-outline"></ion-icon>
+                </ion-fab-button>
+               </ion-fab>
+              <!--Signature:End-->
+            </Ioncontent>
+          </ion-card-content>
+        </ion-card>
+        <div class="buttons">
+          <ion-button color="danger" (click)="resetForm(form)" >
+            <ion-icon name="refresh-circle-outline"></ion-icon>
+            &nbsp;&nbsp;Reset
+          </ion-button><br/>
+          <ion-button color="tertiary" type="submit" [disabled]="!form.valid" (click) ="onSubmit(form)" >
+            <ion-icon name="save-outline"></ion-icon>
+            &nbsp;&nbsp;Check In
+          </ion-button>
+        </div>
       </div>
     </div>
-    
   </form>
+  <div id="employeeDetailEntry" [ngClass]="{'show':this.isEmployee, 'hide':!this.isEmployee }">
+    <ion-searchbar (ionInput)="filterUserData($event)" value="{{this.selectedUser.displayName}}"></ion-searchbar>
+    &nbsp;&nbsp;<ion-text color="success" *ngIf="this.selectedUser.displayName!=''">Selected User: {{this.selectedUser.displayName}} {{this.selectedUser.email}}</ion-text>
+    &nbsp;&nbsp;<ion-button *ngIf="this.selectedUser.displayName!=''" color="tertiary" type="submit" (click) ="loginUser()" >
+      <ion-icon name="save-outline"></ion-icon>
+      &nbsp;&nbsp;Check In
+    </ion-button>
+    <ion-list *ngIf="isEmployeeDropDownVisible">
+      <ion-item (click)="selectVal(item)" *ngFor="let item of usersList">{{item.displayName}}, {{item.email}}</ion-item>
+    </ion-list>
+  </div>
 </ion-content>
 

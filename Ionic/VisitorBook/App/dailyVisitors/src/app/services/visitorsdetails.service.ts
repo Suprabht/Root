@@ -3,6 +3,7 @@ import { Form, FormGroup, NgForm } from '@angular/forms';
 import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { map, catchError} from 'rxjs/operators'
 import { Visitor } from '../models/visitor';
+import { User } from '../models/user';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http"
 import { AlertController} from '@ionic/angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
@@ -13,16 +14,20 @@ import { File } from '@ionic-native/file/ngx';
 })
 export class VisitorsdetailsService implements OnDestroy {
   allVisitorList = [];
+  allUserList = [];
+
   fetchingAllRecords = false;
   selectedVisitor:Visitor;
+  
   public observableVisitorList = new Subject<Visitor[]>();
+  public observableUserList  = new Subject<User[]>();
   private fileTransfer: FileTransferObject; 
 
   constructor( private http:HttpClient, 
     private alertController: AlertController, 
     //private transfer: FileTransfer, 
     private files: File
-) {}
+  ) {}
   
   downloadPDFVisitorDetails(id:number, rootURL, token){
    /*  const url = rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id;
@@ -39,6 +44,7 @@ export class VisitorsdetailsService implements OnDestroy {
   });
     return this.http.get(rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });
   }
+
   ngOnDestroy(): void {
     throw new Error('Method not implemented.');
   }
@@ -61,6 +67,19 @@ export class VisitorsdetailsService implements OnDestroy {
     visitor.isDeleted = false;
     visitor.personInSdl = formData.personInSdl;
    return this.http.post(rootURL+'/VisitorDetails', visitor, {headers:requestHeaders});
+  }
+
+  getUsers(rootURL, token):User[]{
+    //this.fetchingAllRecords = true;
+    var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
+    this.http.get(rootURL+'/Users', {headers:requestHeaders}).subscribe((response) => {
+      //console.log(response);
+      this.allUserList = response as User[];
+      //this.fetchingAllRecords= false;
+      this.observableUserList.next(response as User[]);
+      return this.allUserList;
+    });
+    return this.allUserList;
   }
 
   getVisitorDetails(rootURL, token):Visitor[]{

@@ -47,10 +47,10 @@
               <ion-text >{{visitorService.selectedVisitor.personInSdl}}</ion-text><br/><br/>
 
               <ion-icon color="primary" name="log-in-outline"></ion-icon>
-              <ion-text><strong>&nbsp;Login Date and Time : </strong></ion-text>
+              <ion-text><strong>&nbsp;Check In Date and Time : </strong></ion-text>
               <ion-text>{{visitorService.selectedVisitor.loginDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text><br/>
               <ion-icon color="primary" name="log-out-outline"></ion-icon>
-              <ion-text><strong>&nbsp;Logout Date and Time: </strong></ion-text>
+              <ion-text><strong>&nbsp;Check Out Date and Time: </strong></ion-text>
               <ion-text *ngIf="visitorService.selectedVisitor.logoutDateTime != undefined">{{visitorService.selectedVisitor.logoutDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text>
               <ion-text *ngIf="visitorService.selectedVisitor.logoutDateTime == undefined"><italic>Still not logged out</italic></ion-text><br/><br/>
 
@@ -61,10 +61,10 @@
               <ion-button *ngIf="visitorService.selectedVisitor.logoutDateTime == undefined" shape="round" color="warning" (click) ="logout(visitorService.selectedVisitor.visitorId)">
                   <ion-icon name="log-out-outline"></ion-icon>
               </ion-button>
-
+              <!--
               <ion-button shape="round" color="danger" (click) ="showConfirmAlert(visitorService.selectedVisitor.visitorId)">
                   <ion-icon name="trash"></ion-icon>
-              </ion-button>
+              </ion-button>-->
           </IonContent>
       </ion-card-content>
       <ion-card class="photoCard">
