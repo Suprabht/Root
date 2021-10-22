@@ -30,7 +30,8 @@ const routes: Routes = [
   },
   {
     path: 'changepassword',
-    loadChildren: () => import('./changepassword/changepassword.module').then( m => m.ChangepasswordPageModule)
+    loadChildren: () => import('./changepassword/changepassword.module').then( m => m.ChangepasswordPageModule),
+    canLoad:[AuthGuard]
   },
   {
     path: 'searchuser',

@@ -17,6 +17,7 @@ export class AuthPage implements OnInit {
   {
     this.authService.userEmail = "suprabhatpaul@sdl.com";
     this.authService.userPassword = "Welcome@1234";
+    this.authService.errorMessage = "";
     settings.token = "";
     settings.userEmail = "";
     settings.userName = "";

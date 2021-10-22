@@ -93,53 +93,56 @@ namespace DailyVisitors.WebApi.Controllers
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var user = await userManager.FindByEmailAsync(model.Email);
-            //var user = await userManager.FindByNameAsync(model.UserName);
-            if (user! != null && await userManager.CheckPasswordAsync(user, model.Password))
+            var empUser = _context.Users.FirstOrDefault(user => user.Email == model.Email);
+            if( Convert.ToBoolean(empUser.Active))
             {
-                var userRoles = await userManager.GetRolesAsync(user);
-                var authClames = new List<Claim>
+                var user = await userManager.FindByEmailAsync(model.Email);
+                if (user! != null && await userManager.CheckPasswordAsync(user, model.Password))
+                {
+                    var userRoles = await userManager.GetRolesAsync(user);
+                    var authClames = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
-                foreach (var userRole in userRoles)
-                {
-                    authClames.Add(new Claim(ClaimTypes.Role, userRole));
+                    foreach (var userRole in userRoles)
+                    {
+                        authClames.Add(new Claim(ClaimTypes.Role, userRole));
+                    }
+                    var authSighKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+                    var token = new JwtSecurityToken(
+                        issuer: _configuration["JWT:ValidIssuer"],
+                        audience: _configuration["JWT:ValidAudiance"],
+                        expires: DateTime.Now.AddHours(2),
+                        claims: authClames,
+                        signingCredentials: new SigningCredentials(authSighKey, SecurityAlgorithms.HmacSha256)
+                        );
+
+                    //var Users = _context.Users.FirstOrDefault(user => user.Email == model.Email);
+
+                    var Users = new Users
+                    {
+                        UserId = 1,
+                        FirstName = "Suprabhat",
+                        Email = "suprabhatpaul@sdl.com",
+                        LastName = "Paul",
+                        DisplayName = "suprabhatpaul"
+                    };
+
+                    return Ok(new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(token),
+                        userEmail = Users.Email,
+                        userName = Users.DisplayName
+                    });
                 }
-                var authSighKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-                var token = new JwtSecurityToken(
-                    issuer: _configuration["JWT:ValidIssuer"],
-                    audience: _configuration["JWT:ValidAudiance"],
-                    expires: DateTime.Now.AddHours(2),
-                    claims: authClames,
-                    signingCredentials: new SigningCredentials(authSighKey, SecurityAlgorithms.HmacSha256)
-                    );
-
-                //var Users = _context.Users.FirstOrDefault(user => user.Email == model.Email);
-
-                var Users = new Users
-                {
-                    UserId = 1,
-                    FirstName = "Suprabhat",
-                    Email = "suprabhatpaul@sdl.com",
-                    LastName = "Paul",
-                    DisplayName = "suprabhatpaul"
-                };
-
-                return Ok(new
-                {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    userEmail = Users.Email,
-                    userName = Users.DisplayName
-                });
             }
             return Unauthorized();
         }
 
         [HttpPost]
         [Route("ChangePassword")]
-        public async Task<IActionResult> ChangePassword(ChangePasswordModel usermodel)
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordModel usermodel)
         {
             //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             //var user = await userManager.FindByIdAsync(userId);
@@ -147,9 +150,17 @@ namespace DailyVisitors.WebApi.Controllers
             var result = await userManager.ChangePasswordAsync(user, usermodel.OldPassword, usermodel.NewPassword);
             if (!result.Succeeded)
             {
-                //throw exception......
+                return Ok(new
+                {
+                    result = "Error",
+                    text = result.Errors.First().Description.ToString()
+                });
             }
-            return Ok();
+            return Ok(new
+            {
+                result = "Succeeded",
+                text = "Your password has been changed successfully"
+            });
         }
     }
 }
