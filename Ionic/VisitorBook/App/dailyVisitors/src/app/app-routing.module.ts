@@ -36,6 +36,10 @@ const routes: Routes = [
   {
     path: 'searchuser',
     loadChildren: () => import('./modals/searchuser/searchuser.module').then( m => m.SearchuserPageModule)
+  },
+  {
+    path: 'registeruser',
+    loadChildren: () => import('./registeruser/registeruser.module').then( m => m.RegisteruserPageModule)
   }
 ];
 @NgModule({

@@ -44,6 +44,13 @@ namespace DailyVisitors.WebApi.Controllers
             //var userExist = await userManager.FindByNameAsync(model.UserName);
             if (userExist! != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Massage = "User Already Exist" });
+            var empUser = new Users();
+            empUser.DisplayName = model.UserName;
+            empUser.Email = model.Email;
+            empUser.Active = false;
+            _context.Users.Add(empUser);
+            await _context.SaveChangesAsync();
+
             ApplicationUser user = new ApplicationUser()
             {
                 Email = model.Email,

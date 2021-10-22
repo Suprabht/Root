@@ -1,0 +1,45 @@
+<ion-content>
+  <div class="topHeader">
+    <div class="logoDiv">
+      <img src="../../assets/logo.svg" alt="RWS.com" />
+    </div>
+  </div>
+  <div class="ion-content">
+    <ion-card class="card-center" >
+      <ion-card-content>
+        <div class="registerUserDiv">
+            <ion-item>
+              <ion-label color="primary" position ="floating">Name</ion-label>
+              <ion-input inputmode="password" type="password"required name="" [(ngModel)]="this.registeruserService.userName"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label color="primary" position ="floating">Email</ion-label>
+              <ion-input inputmode="password" type="password"required name="" [(ngModel)]="this.registeruserService.email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label color="primary" position ="floating">Password</ion-label>
+              <ion-input inputmode="password" type="password"required name="" [(ngModel)]="this.registeruserService.password"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label color="primary" position ="floating">Confirm Password</ion-label>
+              <ion-input inputmode="password" type="password"required name="" [(ngModel)]="this.registeruserService.confirmPassword"></ion-input>
+            </ion-item><br/>
+            <ion-text color="danger">
+              {{this.registeruserService.errorMessage}}
+            </ion-text>
+            <div class="registerUserButton">
+              <ion-button color="tertiary" (click) ="registeruser()" >
+                <ion-icon name="people-outline"></ion-icon>&nbsp;&nbsp;Register User
+              </ion-button>
+            </div>
+          
+          <br/><br/>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <div class="footer">
+      Designed and maintained by Solution Delivery. <a href="/auth">Login</a>
+    </div>
+ 
+  </div>
+</ion-content>
