@@ -5,7 +5,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad'
 import { PhotoService } from '../services/photo.service';
 import { Camera,} from '@ionic-native/camera/ngx';
 import { empty } from 'rxjs';
-import { NavParams, NavController, AlertController, ModalController} from '@ionic/angular';
+import { NavParams, NavController, AlertController, ModalController, PopoverController} from '@ionic/angular';
 import { VisitorListingTabPage } from '../visitorListingTab/visitorListingTab.page';
 import { Form, FormControl, FormGroup, NgForm, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +13,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import { settings } from '../models/settings';
 import { VisitorDetailsPage } from '../modals/visitor-details/visitor-details.page';
+import { SearchuserPage } from '../modals/searchuser/searchuser.page';
 import { User } from '../models/user';
+
+
 declare var html2pdf;
 
 @Component({
@@ -107,7 +110,8 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     public modalController: ModalController,
     private activatedRouter:ActivatedRoute,
     private formBuilder:FormBuilder,
-    private alertController: AlertController) {
+    private alertController: AlertController,
+    private popover:PopoverController) {
     this.isEmployeeDropDownVisible = false
     this.visitor = new Visitor();
     this.selectedUser = new User();
@@ -289,37 +293,53 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
 
     return await modal.present();
   }
+
+  async openSelectUser() {
+    const modal = await this.modalController.create({
+      component: SearchuserPage,
+      componentProps: {}
+    });
+
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned !== null) {
+        //this.dataReturned = dataReturned.data;
+        //alert('Modal Sent Data :'+ dataReturned);
+      }
+    });
+
+    return await modal.present();
+  }
 //#endregion  
-loginUser(){
-  var visitorUser= new Visitor;
-  visitorUser.visitorId = undefined;
-  visitorUser.visitorName = this.selectedUser.displayName;
-  visitorUser.email = this.selectedUser.email;
-  visitorUser.mobileNumber = Number("0000000000");
-  visitorUser.adress = "RWS";
-  visitorUser.fromPlace = "N/A";
-  visitorUser.company = "RWS"
-  visitorUser.signature = "None";
-  visitorUser.picture = "None";
-  visitorUser.loginDateTime = undefined;
-  visitorUser.logoutDateTime = undefined;
-  visitorUser.personInSdl = "N/A";
-  this.visitorService.postVisitorDetails(visitorUser, "None", "None", settings.rootURL, settings.token).subscribe(
-    res => {
-      var details = res as Visitor;
-      this.visitorService.selectedVisitor = details;
-      this.isEmployeeDropDownVisible = false;
-      this.selectedUser = new User();
-      this.openModal();
-    },
-    err=>{console.log(err)}
-  );
-}
-selectVal(user:User){
-  this.selectedUser = user;
-  this.isEmployeeDropDownVisible = false;
-  console.log(this.selectedUser);
-}
+  loginUser(){
+    var visitorUser= new Visitor;
+    visitorUser.visitorId = undefined;
+    visitorUser.visitorName = this.selectedUser.displayName;
+    visitorUser.email = this.selectedUser.email;
+    visitorUser.mobileNumber = Number("0000000000");
+    visitorUser.adress = "RWS";
+    visitorUser.fromPlace = "N/A";
+    visitorUser.company = "RWS"
+    visitorUser.signature = "None";
+    visitorUser.picture = "None";
+    visitorUser.loginDateTime = undefined;
+    visitorUser.logoutDateTime = undefined;
+    visitorUser.personInSdl = "N/A";
+    this.visitorService.postVisitorDetails(visitorUser, "None", "None", settings.rootURL, settings.token).subscribe(
+      res => {
+        var details = res as Visitor;
+        this.visitorService.selectedVisitor = details;
+        this.isEmployeeDropDownVisible = false;
+        this.selectedUser = new User();
+        this.openModal();
+      },
+      err=>{console.log(err)}
+    );
+  }
+  selectVal(user:User){
+    this.selectedUser = user;
+    this.isEmployeeDropDownVisible = false;
+    console.log(this.selectedUser);
+  }
 
   filterUserData(event){
     this.usersList = this.visitorService.allUserList;
@@ -335,5 +355,6 @@ selectVal(user:User){
       this.isEmployeeDropDownVisible = false;
     }
   }
+
 }
 

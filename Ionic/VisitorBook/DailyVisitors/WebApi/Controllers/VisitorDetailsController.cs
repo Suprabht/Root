@@ -10,6 +10,7 @@ using System.IO;
 using DailyVisitors.WebApi.Services;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using System.Text.RegularExpressions;
 
 namespace DailyVisitors.WebApi.Controllers
 {
@@ -102,6 +103,11 @@ namespace DailyVisitors.WebApi.Controllers
                 visitorDetails.IsDeleted = false;
                 _context.VisitorDetails.Add(visitorDetails);
                 await _context.SaveChangesAsync();
+                Regex regex = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",RegexOptions.CultureInvariant | RegexOptions.Singleline);
+                if (!string.IsNullOrEmpty(visitorDetails.PersonInSdl) && regex.IsMatch(visitorDetails.PersonInSdl))
+                {
+                    SendEmailNotification(visitorDetails);
+                }
                 //var visitorDetailsTosend = await _context.VisitorDetails.FindAsync(visitorDetails.VisitorId);
                 return CreatedAtAction("GetVisitorDetails", new { id = visitorDetails.VisitorId }, visitorDetails);
             }
@@ -109,7 +115,6 @@ namespace DailyVisitors.WebApi.Controllers
             {
                 return CreatedAtAction("Error", ex.Message.ToString());
             }
-           
         }
 
         [Authorize]
@@ -174,6 +179,93 @@ namespace DailyVisitors.WebApi.Controllers
             }
 
             return await _context.VisitorDetails.Where(x=>x.IsDeleted==false).ToListAsync();
+        }
+
+        private IActionResult SendEmailNotification(VisitorDetails visitorDetails)
+        {
+            try
+            {
+                var url = Request.Scheme + System.Uri.SchemeDelimiter + Request.Host + "/api/";
+                var pictureUrl = url + visitorDetails.Picture;
+                var signatureUrl = url + visitorDetails.Signature;
+                /*
+                var html = string.Format("@<table cellpadding=0 >" +
+                    "<tr><td><table cellpadding=0 style='font-size:11px; width:100%'><tr><td style='height:40px;'>Id:- </td><td>#{0}</td></tr> <tr><td style='height:40px;'>Name:- </td><td>{1}</td></tr><tr><td style='height:40px;'>Email:- </td><td>{2}</td></tr><tr><td style='height:40px;'>Mobile No:- </td><td>{3}</td></tr><tr><td style='height:40px;'>Address:- </td><td>{4}</td></tr><tr><td style='height:40px;'>Company Name:- </td><td>{5}</td></tr><tr><td style='height:40px;'>Person Visiting in RWS:- </td><td>{6}</td></tr><tr><td style='height:40px;'>Login Date:- </td><td>{7}</td></tr><tr><td style='height:40px;'>Log out Date:- </td><td>{8}</td></tr></table></td><td style='padding-right: 10px;'><img style=‘width:330px; height:230px’ src=‘{9}’ /><br/><img style=‘width:330px; height:230px’ src=‘{10}’ /></td></tr></table>");
+                */
+                var html = string.Format(@"<table cellpadding=0 ><tr><td>
+                    <table cellpadding=0 style='font-size:11px; width:100%'>
+	                    <tr>
+	                    <td style='height:40px;'>
+		                    Id:- </td>
+                                    <td>#{0}</td>
+                                  </tr>
+                                  <tr>
+                                      <td style='height:40px;'>Name:- </td>
+                                      <td>{1}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style='height:40px;'>Email:- </td>
+                                    <td>{2}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style='height:40px;'>Mobile No:- </td>
+                                    <td>{3}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style='height:40px;'>Address:- </td>
+                                    <td>{4}</td>
+                                  </tr><tr>
+                                      <td style='height:40px;'>Company Name:- </td>
+                                      <td>{5}</td>
+                                  </tr>
+                                  <tr>
+                                      <td style='height:40px;'>Person Visiting in RWS:- </td>
+                                      <td>{6}</td>
+                                  </tr>
+                                  <tr>
+                                      <td style='height:40px;'>Login Date:- </td>
+                                      <td>{7}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style='height:40px;'>Log out Date:- </td>
+                                    <td>{8}</td>
+                                  </tr>
+                                </table>
+                              </td>
+                              <td style='padding-right: 10px;'>
+                                <img style='width:330px; height:230px' src='{9}' /><br/>
+		                        <img style='width:330px; height:230px' src='{10}' />
+                              </td>
+                            </tr>
+                          </table>",
+                          visitorDetails.VisitorId,
+                          visitorDetails.VisitorName,
+                          visitorDetails.Email,
+                          visitorDetails.MobileNumber,
+                          visitorDetails.Adress,
+                          visitorDetails.Company,
+                          visitorDetails.VisitorName,
+                          visitorDetails.LoginDateTime.ToString(),
+                          visitorDetails.LogoutDateTime,
+                          pictureUrl,
+                          signatureUrl);
+                var result = (new EmailService()).Send(visitorDetails.PersonInSdl, "Visitor " + visitorDetails.VisitorName + " is waiting for you in Reciption.", html);
+                if (result.Contains("Success"))
+                    return Ok(new { Message = "Success: Email send successfully." });
+                else
+                    return Ok(new { Message = "Error: Email server not responding." });
+            }
+            catch (DbUpdateConcurrencyException exception)
+            {
+                if (!VisitorDetailsExists(visitorDetails.VisitorId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(new { Message = "Error:" + exception.Message });
+                }
+            }
         }
 
         [Authorize]

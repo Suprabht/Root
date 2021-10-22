@@ -27,6 +27,14 @@ const routes: Routes = [
   {
     path: 'visitor-details',
     loadChildren: () => import('./modals/visitor-details/visitor-details.module').then( m => m.VisitorDetailsPageModule)
+  },
+  {
+    path: 'changepassword',
+    loadChildren: () => import('./changepassword/changepassword.module').then( m => m.ChangepasswordPageModule)
+  },
+  {
+    path: 'searchuser',
+    loadChildren: () => import('./modals/searchuser/searchuser.module').then( m => m.SearchuserPageModule)
   }
 ];
 @NgModule({

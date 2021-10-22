@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { map, catchError} from 'rxjs/operators'
 import { Visitor } from '../models/visitor';
 import { User } from '../models/user';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http"
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http"
 import { AlertController} from '@ionic/angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file/ngx';
@@ -15,7 +15,7 @@ import { File } from '@ionic-native/file/ngx';
 export class VisitorsdetailsService implements OnDestroy {
   allVisitorList = [];
   allUserList = [];
-
+  selectedUserEmail = "";
   fetchingAllRecords = false;
   selectedVisitor:Visitor;
   
@@ -28,7 +28,7 @@ export class VisitorsdetailsService implements OnDestroy {
     //private transfer: FileTransfer, 
     private files: File
   ) {}
-  
+
   downloadPDFVisitorDetails(id:number, rootURL, token){
    /*  const url = rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id;
     this.fileTransfer = FileTransfer.create(); 
@@ -75,7 +75,6 @@ export class VisitorsdetailsService implements OnDestroy {
     this.http.get(rootURL+'/Users', {headers:requestHeaders}).subscribe((response) => {
       //console.log(response);
       this.allUserList = response as User[];
-      //this.fetchingAllRecords= false;
       this.observableUserList.next(response as User[]);
       return this.allUserList;
     });

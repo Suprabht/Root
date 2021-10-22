@@ -31,7 +31,7 @@
                 <!--Name:Start-->
                 <ion-item >
                   <ion-label color="primary" position ="floating">Visitors name</ion-label>
-                  <ion-input autocapitalize inputmode="text" required name="visitorName" formControlName="visitorName" ></ion-input>
+                  <ion-input  inputmode="text" required name="visitorName" formControlName="visitorName" ></ion-input>
                 </ion-item>
                 <div *ngFor="let error of errorMessages.visitorName">
                   <ng-container *ngIf="visitorName.hasError(error.type) && (visitorName.dirty || visitorName.touched)">
@@ -70,7 +70,7 @@
               <!--Address:Start-->
               <ion-item>
                 <ion-label color="primary" position ="floating">Address</ion-label>
-                <ion-textarea autocapitalize inputmode="text"  name="Address" formControlName ="adress"></ion-textarea>
+                <ion-textarea  inputmode="text"  name="Address" formControlName ="adress"></ion-textarea>
               </ion-item>
               <div *ngFor="let error of errorMessages.adress">
                 <ng-container *ngIf="adress.hasError(error.type) && (adress.dirty || adress.touched)">
@@ -87,7 +87,7 @@
               <!--From Place:Start-->
               <ion-item>
                 <ion-label color="primary" position ="floating">From Place Name</ion-label>
-                <ion-input autocapitalize inputmode="text"  name="FromPlace" formControlName ="fromPlace"></ion-input>
+                <ion-input  inputmode="text"  name="FromPlace" formControlName ="fromPlace"></ion-input>
               </ion-item> 
               <div *ngFor="let error of errorMessages.fromPlace">
                 <ng-container *ngIf="fromPlace.hasError(error.type) && (fromPlace.dirty || fromPlace.touched)">
@@ -98,7 +98,7 @@
               <!--From Place:Start-->
               <ion-item>
                 <ion-label color="primary" position ="floating">Company</ion-label>
-                <ion-input autocapitalize inputmode="text"  name="Company" formControlName ="company"></ion-input>
+                <ion-input  inputmode="text"  name="Company" formControlName ="company"></ion-input>
               </ion-item> 
               <div *ngFor="let error of errorMessages.Company">
                 <ng-container *ngIf="company.hasError(error.type) && (company.dirty || company.touched)">
@@ -106,17 +106,23 @@
                 </ng-container>
               </div>
               <!--From Place:End-->
-              <!--From Place:Start-->
-              <ion-item>
-                <ion-label color="primary" position ="floating">Person visiting in RWS</ion-label>
-                <ion-input autocapitalize inputmode="text"  name="PersonInSdl" formControlName ="personInSdl"></ion-input>
-              </ion-item> 
-              <div *ngFor="let error of errorMessages.personInSdl">
-                <ng-container *ngIf="personInSdl.hasError(error.type) && (personInSdl.dirty || personInSdl.touched)">
-                <small class="error-message">{{error.message}}</small>
-                </ng-container>
+              <!--From PersonToVisit:Start-->
+              <div class="personToVisit">
+                <ion-item>
+                  <ion-label color="primary" position ="floating">Person visiting in RWS</ion-label>
+                  <ion-input id="userNave" inputmode="text"  name="PersonInSdl" formControlName ="personInSdl" value={{this.visitorService.selectedUserEmail}}></ion-input>
+                </ion-item> 
+                <div *ngFor="let error of errorMessages.personInSdl">
+                  <ng-container *ngIf="personInSdl.hasError(error.type) && (personInSdl.dirty || personInSdl.touched)">
+                  <small class="error-message">{{error.message}}</small>
+                  </ng-container>
+                </div>
               </div>
-              <!--From Place:End-->
+              <div class="personToVisitSearch">
+                <ion-button (click)="openSelectUser()"> <ion-icon name="search-outline"></ion-icon>
+                  &nbsp;&nbsp;Search RWS User</ion-button>
+              </div>
+              <!--From PersonToVisit:End-->
             </Ioncontent>
           </ion-card-content>
         </ion-card>

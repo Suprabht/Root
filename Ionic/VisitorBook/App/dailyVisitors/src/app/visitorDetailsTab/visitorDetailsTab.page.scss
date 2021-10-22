@@ -10,7 +10,7 @@
 .segment{
     height: 50px;
     .segmentText{
-        font-size: 25px;
+        /*font-size: 25px;*/
     }
 }
 #employeeDetailEntry{
@@ -20,6 +20,14 @@
 {
     float: left;
     width: 60%;
+    .personToVisit{
+        width: calc(100% - 185px);
+        display: inline-block;
+    }
+    .personToVisitSearch{
+        display: inline-block;
+        width: 185px;
+    }
 }
 .rightContent
 {
