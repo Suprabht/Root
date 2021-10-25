@@ -30,13 +30,13 @@ export class RegisteruserService {
                         this.http.post(rootURL+'/Authentication/Register', registerModel).subscribe((resp:any)=>{
                             if(resp.result=="Error")
                             {
-                                this.errorMessage = resp.text
+                                this.errorMessage = resp.massage
                             }
                             else{
                                 this.router.navigateByUrl('/auth');
                             }
                             }, (error) => {
-                                this.errorMessage = "Registration unsuccessful!"
+                                this.errorMessage = error.error.massage
                             }); 
                     }
                     else{

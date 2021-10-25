@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DailyVisitors.DAL.Models;
 using DailyVisitors.WebApi.Authentication;
@@ -41,28 +42,49 @@ namespace DailyVisitors.WebApi.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             var userExist = await userManager.FindByEmailAsync(model.Email);
-            //var userExist = await userManager.FindByNameAsync(model.UserName);
             if (userExist! != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Massage = "User Already Exist" });
-            var empUser = new Users();
-            empUser.DisplayName = model.UserName;
-            empUser.Email = model.Email;
-            empUser.Active = false;
-            _context.Users.Add(empUser);
-            await _context.SaveChangesAsync();
+            Regex regex = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", RegexOptions.CultureInvariant | RegexOptions.Singleline);
+            if (!string.IsNullOrEmpty(model.Email) && regex.IsMatch(model.Email))
+            {
+                try
+                {
+                    var empUser = _context.Users.FirstOrDefault(user => user.Email == model.Email);
+                    if(empUser == null)
+                    {
+                        empUser = new Users();
+                        empUser.DisplayName = model.UserName;
+                        empUser.Email = model.Email;
+                        empUser.Active = false;
+                        empUser.InsertDateTime = DateTime.UtcNow;
+                        empUser.OfficeId = 1;
+                        _context.Users.Add(empUser);
+                        await _context.SaveChangesAsync();
+                    }
+                    ApplicationUser user = new ApplicationUser()
+                    {
+                        Email = model.Email,
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        UserName = model.UserName
+                    };
 
-            ApplicationUser user = new ApplicationUser()
-            {
-                Email = model.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.UserName
-            };
-            var result = await userManager.CreateAsync(user, model.Password);
-            if (!result.Succeeded)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Massage = "User Ccreatio failed." });
+                    var result = await userManager.CreateAsync(user, model.Password);
+                    if (!result.Succeeded)
+                    {
+                        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Massage = "User Ccreation failed." });
+                    }
+                    return Ok(new Response { Status = "Success", Massage = "User Created Successfully" });
+                }
+                catch (Exception exception)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Massage = "User Ccreatio failed: " + exception.InnerException.Message });
+                }
             }
-            return Ok(new Response { Status = "Success", Massage = "User Created Successfully" });
+            else
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Massage = "User Ccreatio failed: Please check the email id" });
+            }
+            
         }
 
         [HttpPost]
@@ -108,10 +130,10 @@ namespace DailyVisitors.WebApi.Controllers
                 {
                     var userRoles = await userManager.GetRolesAsync(user);
                     var authClames = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                };
+                    {
+                        new Claim(ClaimTypes.Name, user.UserName),
+                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                    };
                     foreach (var userRole in userRoles)
                     {
                         authClames.Add(new Claim(ClaimTypes.Role, userRole));

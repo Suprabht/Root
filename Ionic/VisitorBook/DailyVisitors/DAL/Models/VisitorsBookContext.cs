@@ -53,12 +53,12 @@ namespace DailyVisitors.DAL.Models
                 entity.Property(e => e.FirstName).HasMaxLength(500);
 
                 entity.Property(e => e.IdentityName)
-                    .IsRequired()
                     .HasMaxLength(500);
 
                 entity.Property(e => e.InsertDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.LastName).HasMaxLength(500);
+                entity.Property(e => e.OfficeId).IsRequired();
             });
 
 			modelBuilder.Entity<VisitorDetails>(entity =>
