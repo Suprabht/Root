@@ -38,9 +38,9 @@ namespace DailyVisitors.WebApi.Controllers
         [Authorize]
         // GET: api/VisitorDetails
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<VisitorDetails>>> GetVisitorDetails()
+        public async Task<ActionResult<IEnumerable<VisitorDetails>>> GetVisitorDetails(int userId)
         {
-            return await _context.VisitorDetails.Where(x => x.IsDeleted == false).ToListAsync();
+            return await _context.VisitorDetails.Where(x => (x.IsDeleted == false) && (x.User.OfficeId == _context.Users.FirstOrDefault(user => user.UserId == userId).OfficeId)).ToArrayAsync();
         }
 
         [Authorize]
@@ -119,8 +119,8 @@ namespace DailyVisitors.WebApi.Controllers
 
         [Authorize]
         // DELETE: api/VisitorDetail/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<IEnumerable<VisitorDetails>>> DeleteVisitorDetails(long id)
+        [HttpDelete("{id}/{userId}")]
+        public async Task<ActionResult<IEnumerable<VisitorDetails>>> DeleteVisitorDetails(long id, int userId)
         {
             var visitorDetails = _context.VisitorDetails.FirstOrDefault(visitor => visitor.VisitorId == id);
             if (id != visitorDetails.VisitorId)
@@ -146,13 +146,13 @@ namespace DailyVisitors.WebApi.Controllers
                 }
             }
 
-            return await _context.VisitorDetails.Where(x=>x.IsDeleted==false).ToListAsync();
+            return await _context.VisitorDetails.Where(x => (x.IsDeleted == false) && (x.User.OfficeId == _context.Users.FirstOrDefault(user => user.UserId == userId).OfficeId)).ToArrayAsync();
         }
 
         [Authorize]
         //api/VisitorDetails/logoutById?id=1
         [HttpGet("logoutById")]
-        public async Task<ActionResult<IEnumerable<VisitorDetails>>> Get(int id)
+        public async Task<ActionResult<IEnumerable<VisitorDetails>>> Get(int id, int userId)
         {
             var visitorDetails = _context.VisitorDetails.FirstOrDefault(visitor => visitor.VisitorId == id);
             if (id != visitorDetails.VisitorId)
@@ -178,7 +178,8 @@ namespace DailyVisitors.WebApi.Controllers
                 }
             }
 
-            return await _context.VisitorDetails.Where(x=>x.IsDeleted==false).ToListAsync();
+            return await _context.VisitorDetails.Where(x => (x.IsDeleted == false) && (x.User.OfficeId == _context.Users.FirstOrDefault(user => user.UserId == userId).OfficeId)).ToArrayAsync();
+
         }
 
         private IActionResult SendEmailNotification(VisitorDetails visitorDetails)

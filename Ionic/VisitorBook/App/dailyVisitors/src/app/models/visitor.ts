@@ -13,7 +13,7 @@ export class Visitor  {
     isLogoutVisible:boolean;
     isDeleted:boolean;
     personInSdl: string;
-    //userId:Number;
+    userId:Number;
 
 
     constructor();   
@@ -31,7 +31,7 @@ export class Visitor  {
         this.isLogoutVisible = object && object.logoutTime || false;
         this.isDeleted = object && object.isDeleted || false;
         this.personInSdl = object && object.personInSdl || "";
-        //this.userId = object && object.userId || 0;
+        this.userId = object && object.userId || 0;
     }
 
     

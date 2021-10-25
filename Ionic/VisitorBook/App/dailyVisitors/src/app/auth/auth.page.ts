@@ -21,6 +21,7 @@ export class AuthPage implements OnInit {
     settings.token = "";
     settings.userEmail = "";
     settings.userName = "";
+    settings.userId = 0;
   }
   ionViewDidEnter()
   {}

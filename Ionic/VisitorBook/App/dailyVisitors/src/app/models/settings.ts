@@ -3,5 +3,6 @@ export var settings={
     //rootURL:"https://apivisitor.azurewebsites.net/api",
     rootURL:"http://localhost:5000/api",
     userEmail:"",
-    userName:""
+    userName:"",
+    userId:0
 };

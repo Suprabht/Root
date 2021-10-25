@@ -18,7 +18,7 @@ export class VisitorDetailsPage implements OnInit {
 
   logout(id:number)
   {    
-    this.visitorService.logout(id, settings.rootURL,settings.token).subscribe(response => {
+    this.visitorService.logout(id, settings.rootURL,settings.token, settings.userId).subscribe(response => {
       var detailList = response as Visitor[];
       if(detailList.length>0)
       {
@@ -58,7 +58,7 @@ export class VisitorDetailsPage implements OnInit {
 
   delete(id:number)
   {    
-    this.visitorService.delete(id, settings.rootURL, settings.token).subscribe(response => {
+    this.visitorService.delete(id, settings.rootURL, settings.token, settings.userId).subscribe(response => {
       var detailList = response as Visitor[];
       if(detailList.length>0)
       {

@@ -166,7 +166,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
   }
 
   ngOnInit() {
-    this.visitorService.getVisitorDetails(settings.rootURL, settings.token);
+    this.visitorService.getVisitorDetails(settings.rootURL, settings.token, settings.userId);
     this.userName = settings.userName;
     /*this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
       this.visitorService.allVisitorList = res as Visitor[];
@@ -195,7 +195,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
       {
         var signatureString = this.signatureImage.replace("data:image/png;base64,","");
         this.getBase64ImageFromURL(this.photos[0].webviewPath).subscribe(base64data => {
-          this.visitorService.postVisitorDetails(form.value, signatureString, base64data, settings.rootURL, settings.token).subscribe(
+          this.visitorService.postVisitorDetails(form.value, signatureString, base64data, settings.rootURL, settings.token, settings.userId).subscribe(
             res => {
               this.resetForm(form);
               var details = res as Visitor;
@@ -324,7 +324,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     visitorUser.loginDateTime = undefined;
     visitorUser.logoutDateTime = undefined;
     visitorUser.personInSdl = "N/A";
-    this.visitorService.postVisitorDetails(visitorUser, "None", "None", settings.rootURL, settings.token).subscribe(
+    this.visitorService.postVisitorDetails(visitorUser, "None", "None", settings.rootURL, settings.token, settings.userId).subscribe(
       res => {
         var details = res as Visitor;
         this.visitorService.selectedVisitor = details;

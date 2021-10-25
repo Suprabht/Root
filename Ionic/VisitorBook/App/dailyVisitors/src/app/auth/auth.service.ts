@@ -35,6 +35,7 @@ export class AuthService {
             settings.token = resp.token;
             settings.userEmail = resp.userEmail;
             settings.userName = resp.userName;
+            settings.userId = resp.userId;
             this._userIsAuthenticated = true;
             this.router.navigateByUrl('/tabs/visitorDetailsTab');
          }, (error) => {
@@ -62,6 +63,7 @@ export class AuthService {
     settings.token = "";
     settings.userEmail = "";
     settings.userName = "";
+    settings.userId=0;
     this.userEmail="";
     this.userPassword="";
     this._userIsAuthenticated = false;

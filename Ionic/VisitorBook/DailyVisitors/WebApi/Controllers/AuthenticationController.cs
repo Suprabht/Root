@@ -147,22 +147,14 @@ namespace DailyVisitors.WebApi.Controllers
                         signingCredentials: new SigningCredentials(authSighKey, SecurityAlgorithms.HmacSha256)
                         );
 
-                    //var Users = _context.Users.FirstOrDefault(user => user.Email == model.Email);
-
-                    var Users = new Users
-                    {
-                        UserId = 1,
-                        FirstName = "Suprabhat",
-                        Email = "suprabhatpaul@sdl.com",
-                        LastName = "Paul",
-                        DisplayName = "suprabhatpaul"
-                    };
+                    var Users = _context.Users.FirstOrDefault(user => user.Email == model.Email);
 
                     return Ok(new
                     {
                         token = new JwtSecurityTokenHandler().WriteToken(token),
                         userEmail = Users.Email,
-                        userName = Users.DisplayName
+                        userName = Users.DisplayName,
+                        userId = Users.UserId
                     });
                 }
             }

@@ -33,7 +33,7 @@ export class VisitorListingTabPage implements OnInit {
    // this.imageUrl = settings.rootURL.replace("/api","");
     this.imageUrl = settings.rootURL;
     this.userName = settings.userName;
-    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token).subscribe(res => {
+    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token, settings.userId).subscribe(res => {
       this.detailList = res as Visitor[];
      /* this.detailList.forEach(e =>{
         console.log("testing"+e.loginDateTime);
@@ -44,25 +44,25 @@ export class VisitorListingTabPage implements OnInit {
   refresh()
   {
     this.detailList = [];
-    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token).subscribe(res => {
+    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token, settings.userId).subscribe(res => {
       this.detailList = res as Visitor[];});   
   }
   logout(id:number)
   {    
-    this.visitorService.logout(id, settings.rootURL, settings.token).subscribe(response => {
+    this.visitorService.logout(id, settings.rootURL, settings.token, settings.userId).subscribe(response => {
       this.detailList = response as Visitor[];
     });
   }
 
   delete(id:number)
   {    
-    this.visitorService.delete(id, settings.rootURL, settings.token).subscribe(response => {
+    this.visitorService.delete(id, settings.rootURL, settings.token, settings.userId).subscribe(response => {
       this.detailList = response as Visitor[];
     });
   }
 
   getDetails(){
-    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token);
+    this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token, settings.userId);
   }
 
   showDetails(visitor:Visitor){
