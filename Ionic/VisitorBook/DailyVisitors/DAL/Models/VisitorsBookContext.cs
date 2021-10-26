@@ -19,6 +19,7 @@ namespace DailyVisitors.DAL.Models
 
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<VisitorDetails> VisitorDetails { get; set; }
+        public virtual DbSet<Office> Office { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -78,6 +79,9 @@ namespace DailyVisitors.DAL.Models
 					.HasForeignKey(d => d.UserId)
 					.HasConstraintName("FK_VisitorDetails_Users");
 			});
-		}
+
+            modelBuilder.Entity<Office>();
+
+        }
     }
 }

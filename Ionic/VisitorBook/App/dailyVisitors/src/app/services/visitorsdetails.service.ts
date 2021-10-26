@@ -49,7 +49,7 @@ export class VisitorsdetailsService implements OnDestroy {
     throw new Error('Method not implemented.');
   }
 
-  postVisitorDetails(formData, signature:string, photoBase64String:string, rootURL, token){
+  postVisitorDetails(formData, signature:string, photoBase64String:string, rootURL, token, userId){
     var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
     var visitor = new Visitor();
     visitor.visitorId = formData.visitorId ;
@@ -66,13 +66,14 @@ export class VisitorsdetailsService implements OnDestroy {
     visitor.isLogoutVisible = false;
     visitor.isDeleted = false;
     visitor.personInSdl = formData.personInSdl;
+    visitor.userId = userId;
    return this.http.post(rootURL+'/VisitorDetails', visitor, {headers:requestHeaders});
   }
 
-  getUsers(rootURL, token):User[]{
+  getRWSUsers(rootURL, token):User[]{
     //this.fetchingAllRecords = true;
     var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
-    this.http.get(rootURL+'/Users', {headers:requestHeaders}).subscribe((response) => {
+    this.http.get(rootURL+'/Users/GetRWSUsers', {headers:requestHeaders}).subscribe((response) => {
       //console.log(response);
       this.allUserList = response as User[];
       this.observableUserList.next(response as User[]);
@@ -81,11 +82,11 @@ export class VisitorsdetailsService implements OnDestroy {
     return this.allUserList;
   }
 
-  getVisitorDetails(rootURL, token):Visitor[]{
+  getVisitorDetails(rootURL, token, userId):Visitor[]{
     //console.log("Start");
     this.fetchingAllRecords = true;
     var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
-    this.http.get(rootURL+'/VisitorDetails', {headers:requestHeaders}).subscribe((response) => {
+    this.http.get(rootURL+'/VisitorDetails?userId=' + userId, {headers:requestHeaders}).subscribe((response) => {
       //console.log(response);
       this.allVisitorList = response as Visitor[];
       this.fetchingAllRecords= false;
@@ -95,21 +96,21 @@ export class VisitorsdetailsService implements OnDestroy {
     return this.allVisitorList;
   }
 
-  getVisitorDetailsSingleDay(rootURL, token){
+  getVisitorDetailsSingleDay(rootURL, token, userId){
     var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
-    return this.http.get(rootURL+'/VisitorDetails', {headers:requestHeaders});
+    return this.http.get(rootURL+'/VisitorDetails?userId=' + userId, {headers:requestHeaders});
   }
 
-  logout(id:number, rootURL, token)
+  logout(id:number, rootURL, token, userId)
   {
     var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
-    return this.http.get(rootURL+'/VisitorDetails/logoutById?id=' + id, {headers:requestHeaders});
+    return this.http.get(rootURL+'/VisitorDetails/logoutById?id=' + id +'&userId=' + userId, {headers:requestHeaders});
   }
 
-  delete(id:number, rootURL, token)
+  delete(id:number, rootURL, token, userId)
   {
     var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
-    return this.http.delete(rootURL+'/VisitorDetails/' + id, {headers:requestHeaders});
+    return this.http.delete(rootURL+'/VisitorDetails/' + id +'/' + userId, {headers:requestHeaders});
   }
 
   sendEmailOfVisitorDetails(id:number, rootURL, emailId, token)

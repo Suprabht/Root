@@ -171,7 +171,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     /*this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
       this.visitorService.allVisitorList = res as Visitor[];
     });   */
-    this.visitorService.getUsers(settings.rootURL, settings.token);
+    this.visitorService.getRWSUsers(settings.rootURL, settings.token);
   }
 
   ngOnDestroy() {}

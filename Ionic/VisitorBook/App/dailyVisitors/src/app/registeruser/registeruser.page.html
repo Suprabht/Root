@@ -24,6 +24,13 @@
               <ion-label color="primary" position ="floating">Confirm Password</ion-label>
               <ion-input inputmode="password" type="password"required name="" [(ngModel)]="this.registeruserService.confirmPassword"></ion-input>
             </ion-item><br/>
+            <ion-item >
+              <ion-label color="primary" >Select: Your office</ion-label>
+              <ion-select [(value)]="this.registeruserService.officeId">
+                <ion-select-option *ngFor="let office of this.registeruserService.allOffice" [value]="office.officeId"><ion-text color="primary">{{office.officeName}}</ion-text></ion-select-option>
+              </ion-select>
+            </ion-item>
+            <br/>
             <ion-text color="danger">
               {{this.registeruserService.errorMessage}}
             </ion-text>

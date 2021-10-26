@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { report } from 'process';
 import { settings } from '../models/settings';
+import { User } from '../models/user';
+import { Office } from '../models/office';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,15 @@ export class RegisteruserService {
     public email="";
     public password="";
     public confirmPassword="";
+    public officeId;
     public errorMessage="";
-    constructor(private http:HttpClient, private router: Router) { }
+    public allUserDisplayName:string[];
+    public allOffice:Office[];
+
+    constructor(private http:HttpClient, private router: Router) {
+        
+     }
+
     registeruser(rootURL){
         if((this.password!="")&&(this.confirmPassword!="")&&(this.email!="")&&(this.userName!=""))
         {
@@ -25,8 +34,10 @@ export class RegisteruserService {
                         var registerModel={
                             "email": this.email,
                             "userName": this.userName,
-                            "password":this.password
+                            "password":this.password,
+                            "officeId":this.officeId
                         }
+                        debugger;
                         this.http.post(rootURL+'/Authentication/Register', registerModel).subscribe((resp:any)=>{
                             if(resp.result=="Error")
                             {
@@ -58,6 +69,28 @@ export class RegisteruserService {
 
             this.errorMessage = "All fields are mandatory please enter name, email id and passwords."
         }
+    }
+
+    getUsersDisplayName(rootURL):String[]{
+       this.http.get(rootURL+'/Users/GetUsersDisplayName').subscribe((response) => {
+          this.allUserDisplayName = response as string[];
+          return this.allUserDisplayName;
+        });
+        return this.allUserDisplayName;
+    }
+
+    getOfficeName(rootURL):Office[]{
+        this.http.get(rootURL+'/Users/GetOffice').subscribe((response) => {
+          //console.log(response);
+          this.allOffice = response as Office[];
+          this.officeId = this.allOffice[0].officeId;
+          /*var office = new Office();
+          office.officeId = 0;
+          office.officeName = "Please select a office";
+          this.allOffice.push(office);*/
+          return this.allOffice;
+        });
+        return this.allOffice;
     }
 
     validatePassword(password) 
