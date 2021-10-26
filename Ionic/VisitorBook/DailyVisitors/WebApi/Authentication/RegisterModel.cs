@@ -17,5 +17,8 @@ namespace DailyVisitors.WebApi.Authentication
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Office Id is required")]
+        public int OfficeId { get; set; }
+
     }
 }

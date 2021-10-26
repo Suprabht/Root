@@ -27,9 +27,37 @@ namespace DailyVisitors.WebApi.Controllers
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
         {
             //return await _context.Users.ToListAsync();
-            return await _context.Users.Where(x => x.Active == true).ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
+        [Authorize]
+        // GET: api/Users/GetRWSUsers
+        [HttpGet("GetRWSUsers")]
+        public async Task<ActionResult<IEnumerable<Users>>> GetRWSUsers()
+        {
+            //return await _context.Users.ToListAsync();
+            return await _context.Users.Where(x => (x.Active == true) && (x.EmpowerUserId != 0)).ToListAsync();
+        }
+
+        //[Authorize]
+        // GET: api/Users/GetUsersDisplayName
+        [HttpGet("GetUsersDisplayName")]
+        public async Task<ActionResult<IEnumerable<string>>> GetUsersDisplayName()
+        {
+            return await _context.Users
+                .Select(x=>x.DisplayName.ToString().Trim().Replace("\n","").Replace("\r", ""))
+                .ToListAsync();
+        }
+
+        //[Authorize]
+        [HttpGet("GetOffice")]
+        // GET: api/Users/GetOffice
+        public async Task<ActionResult<IEnumerable<Office>>> GetOffice()
+        {
+            return await _context.Office
+                .Where(x => x.Active == true)
+                .ToListAsync();
+        }
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Users>> GetUsers(int id)

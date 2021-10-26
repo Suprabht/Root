@@ -57,7 +57,7 @@ namespace DailyVisitors.WebApi.Controllers
                         empUser.Email = model.Email;
                         empUser.Active = false;
                         empUser.InsertDateTime = DateTime.UtcNow;
-                        empUser.OfficeId = 1;
+                        empUser.OfficeId = model.OfficeId;
                         _context.Users.Add(empUser);
                         await _context.SaveChangesAsync();
                     }
