@@ -5,6 +5,7 @@ import { report } from 'process';
 import { settings } from '../models/settings';
 import { User } from '../models/user';
 import { Office } from '../models/office';
+import { LoadingService } from '../services/loading.service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,9 +19,11 @@ export class RegisteruserService {
     public errorMessage = "";
     public allUserDisplayName: string[];
     public allOffice: Office[];
+    public loading;
 
-    constructor(private http: HttpClient, private router: Router) {
-
+    constructor(private http: HttpClient, 
+        private router: Router,
+        public loadingControl: LoadingService) {
     }
 
     registeruser(rootURL) {
@@ -94,23 +97,21 @@ export class RegisteruserService {
     }
 
     getUsersDisplayName(rootURL): String[] {
+        this.loadingControl.present();
         this.http.get(rootURL + '/Users/GetUsersDisplayName').subscribe((response) => {
             this.allUserDisplayName = response as string[];
-            console.log(this.allUserDisplayName);
+            this.loadingControl.dismiss();
             return this.allUserDisplayName;
         });
         return this.allUserDisplayName;
     }
 
     getOfficeName(rootURL): Office[] {
+        //this.loadingControl.present();
         this.http.get(rootURL + '/Users/GetOffice').subscribe((response) => {
-            //console.log(response);
             this.allOffice = response as Office[];
             this.officeId = this.allOffice[0].officeId;
-            /*var office = new Office();
-            office.officeId = 0;
-            office.officeName = "Please select a office";
-            this.allOffice.push(office);*/
+           // this.loadingControl.dismiss();
             return this.allOffice;
         });
         return this.allOffice;

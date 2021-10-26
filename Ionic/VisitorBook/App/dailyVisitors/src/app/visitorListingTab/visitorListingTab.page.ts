@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Visitor } from '../models/visitor';
 import { settings } from '../models/settings';
 import { AlertController} from '@ionic/angular';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-visitorListingTab',
@@ -25,7 +26,8 @@ export class VisitorListingTabPage implements OnInit {
      private photoService:PhotoService,
      private router:Router, 
      private activatedRouter:ActivatedRoute,
-     private alertController: AlertController) {
+     private alertController: AlertController,
+     public loadingControl: LoadingService) {
   }
  
   ngOnInit() {
@@ -33,31 +35,39 @@ export class VisitorListingTabPage implements OnInit {
    // this.imageUrl = settings.rootURL.replace("/api","");
     this.imageUrl = settings.rootURL;
     this.userName = settings.userName;
+    this.loadingControl.present();
     this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token, settings.userId).subscribe(res => {
       this.detailList = res as Visitor[];
      /* this.detailList.forEach(e =>{
         console.log("testing"+e.loginDateTime);
       });*/ 
-      
+      this.loadingControl.dismiss();
     });   
   }
   refresh()
   {
     this.detailList = [];
+    this.loadingControl.present();
     this.visitorService.getVisitorDetailsSingleDay(settings.rootURL, settings.token, settings.userId).subscribe(res => {
-      this.detailList = res as Visitor[];});   
+      this.detailList = res as Visitor[];
+      this.loadingControl.dismiss();
+    });   
   }
   logout(id:number)
-  {    
+  { 
+    this.loadingControl.present();   
     this.visitorService.logout(id, settings.rootURL, settings.token, settings.userId).subscribe(response => {
       this.detailList = response as Visitor[];
+      this.loadingControl.dismiss();
     });
   }
 
   delete(id:number)
-  {    
+  { 
+    this.loadingControl.present();   
     this.visitorService.delete(id, settings.rootURL, settings.token, settings.userId).subscribe(response => {
       this.detailList = response as Visitor[];
+      this.loadingControl.dismiss();
     });
   }
 
@@ -70,6 +80,7 @@ export class VisitorListingTabPage implements OnInit {
   }
   
   printBadgePDF(visitor:Visitor){
+    this.loadingControl.present();
     this.visitorService.printBadgePDF(visitor.visitorId, settings.rootURL, settings.token).subscribe((data: Blob) => {
         var file = new Blob([data], { type: 'application/pdf' })
         var fileURL = URL.createObjectURL(file);
@@ -81,6 +92,7 @@ export class VisitorListingTabPage implements OnInit {
         a.download    = 'visitorBadge.pdf';
         document.body.appendChild(a);
         a.click();
+        this.loadingControl.dismiss();
       },
       (error) => {
         console.log('getPDF error: ',error);

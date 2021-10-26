@@ -15,6 +15,7 @@ import { settings } from '../models/settings';
 import { VisitorDetailsPage } from '../modals/visitor-details/visitor-details.page';
 import { SearchuserPage } from '../modals/searchuser/searchuser.page';
 import { User } from '../models/user';
+import { LoadingService } from '../services/loading.service';
 
 
 declare var html2pdf;
@@ -111,7 +112,8 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
     private activatedRouter:ActivatedRoute,
     private formBuilder:FormBuilder,
     private alertController: AlertController,
-    private popover:PopoverController) {
+    private popover:PopoverController,
+    public loadingControl: LoadingService) {
     this.isEmployeeDropDownVisible = false
     this.visitor = new Visitor();
     this.selectedUser = new User();
@@ -168,9 +170,6 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
   ngOnInit() {
     this.visitorService.getVisitorDetails(settings.rootURL, settings.token, settings.userId);
     this.userName = settings.userName;
-    /*this.visitorService.getVisitorDetails(settings.rootURL).subscribe(res => {
-      this.visitorService.allVisitorList = res as Visitor[];
-    });   */
     this.visitorService.getRWSUsers(settings.rootURL, settings.token);
   }
 
@@ -195,11 +194,13 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
       {
         var signatureString = this.signatureImage.replace("data:image/png;base64,","");
         this.getBase64ImageFromURL(this.photos[0].webviewPath).subscribe(base64data => {
+          this.loadingControl.present();
           this.visitorService.postVisitorDetails(form.value, signatureString, base64data, settings.rootURL, settings.token, settings.userId).subscribe(
             res => {
               this.resetForm(form);
               var details = res as Visitor;
               this.visitorService.selectedVisitor = details;
+              this.loadingControl.dismiss();
               this.openModal();
             },
             err=>{console.log(err)}
@@ -311,6 +312,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
   }
 //#endregion  
   loginUser(){
+    this.loadingControl.present();
     var visitorUser= new Visitor;
     visitorUser.visitorId = undefined;
     visitorUser.visitorName = this.selectedUser.displayName;
@@ -330,6 +332,7 @@ export class VisitorDetailsTabPage implements OnInit,OnDestroy,AfterViewInit {
         this.visitorService.selectedVisitor = details;
         this.isEmployeeDropDownVisible = false;
         this.selectedUser = new User();
+        this.loadingControl.dismiss();
         this.openModal();
       },
       err=>{console.log(err)}
