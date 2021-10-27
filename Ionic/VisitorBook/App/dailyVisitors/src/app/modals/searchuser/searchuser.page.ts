@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { settings } from 'src/app/models/settings';
 import { User } from 'src/app/models/user';
 import { VisitorsdetailsService } from 'src/app/services/visitorsdetails.service';
 
@@ -38,11 +39,11 @@ export class SearchuserPage implements OnInit {
   selectVal(user:User){
     this.selectedUser = user;
     this.isEmployeeDropDownVisible = false;
-    console.log(this.selectedUser);
+    //console.log(this.selectedUser);
   }
 
   async closeModal() {
-    const onClosedData: string = "Wrapped Up!";
+    const onClosedData: User = this.selectedUser;
     await this.modalController.dismiss(onClosedData);
   }
 

@@ -8,10 +8,16 @@
     <ion-card class="card-center" >
       <ion-card-content>
         <div class="registerUserDiv">
-            <ion-item>
-              <ion-label color="primary" position ="floating">Name</ion-label>
-              <ion-input inputmode="text" required name="" [(ngModel)]="this.registeruserService.userName" (input)="this.registeruserService.checkName()" (ionBlur)="this.registeruserService.checkName()"></ion-input>
-            </ion-item>
+            <div class="personName">
+              <ion-item>
+                <ion-label color="primary" position ="floating">Name</ion-label>
+                <ion-input inputmode="text" required name="" [(ngModel)]="this.registeruserService.userName" (input)="this.registeruserService.checkName()" (ionBlur)="this.registeruserService.checkName()"></ion-input>
+              </ion-item>
+            </div>
+            <div class="personNameSearch">
+              <ion-button (click)="this.registeruserService.openSelectUser()"> <ion-icon name="search-outline"></ion-icon>
+                &nbsp;&nbsp;Search RWS User</ion-button>
+            </div>
             <ion-item>
               <ion-label color="primary" position ="floating">Email</ion-label>
               <ion-input inputmode="text" required name="" [(ngModel)]="this.registeruserService.email"></ion-input>

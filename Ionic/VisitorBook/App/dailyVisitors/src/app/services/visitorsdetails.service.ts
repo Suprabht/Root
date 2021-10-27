@@ -70,10 +70,10 @@ export class VisitorsdetailsService implements OnDestroy {
    return this.http.post(rootURL+'/VisitorDetails', visitor, {headers:requestHeaders});
   }
 
-  getRWSUsers(rootURL, token):User[]{
+  getRWSUsers(rootURL):User[]{
     //this.fetchingAllRecords = true;
-    var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
-    this.http.get(rootURL+'/Users/GetRWSUsers', {headers:requestHeaders}).subscribe((response) => {
+    //var requestHeaders = new HttpHeaders().set('Authorization','Bearer ' + token);
+    this.http.get(rootURL+'/Users/GetRWSUsers').subscribe((response) => {
       //console.log(response);
       this.allUserList = response as User[];
       this.observableUserList.next(response as User[]);

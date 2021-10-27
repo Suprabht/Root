@@ -30,7 +30,7 @@ namespace DailyVisitors.WebApi.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        [Authorize]
+        //[Authorize]
         // GET: api/Users/GetRWSUsers
         [HttpGet("GetRWSUsers")]
         public async Task<ActionResult<IEnumerable<Users>>> GetRWSUsers()
@@ -45,6 +45,7 @@ namespace DailyVisitors.WebApi.Controllers
         public async Task<ActionResult<IEnumerable<string>>> GetUsersDisplayName()
         {
             return await _context.Users
+                .Where(x =>(x.EmpowerUserId == 0))
                 .Select(x=>x.DisplayName.ToString().Trim().Replace("\n","").Replace("\r", ""))
                 .ToListAsync();
         }

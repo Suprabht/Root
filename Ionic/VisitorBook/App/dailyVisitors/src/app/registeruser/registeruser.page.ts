@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Office } from '../models/office';
 import { settings } from '../models/settings';
+import { VisitorsdetailsService } from '../services/visitorsdetails.service';
 import { RegisteruserService } from './registeruser.service';
 
 @Component({
@@ -10,15 +11,12 @@ import { RegisteruserService } from './registeruser.service';
 })
 export class RegisteruserPage implements OnInit {
 
-  constructor(private registeruserService:RegisteruserService) { }
+  constructor(private registeruserService:RegisteruserService,public visitorService:VisitorsdetailsService, ) { }
 
   ngOnInit() {
     this.registeruserService.getUsersDisplayName(settings.rootURL);
     this.registeruserService.getOfficeName(settings.rootURL);
-    /*var office = new Office();
-    office.officeId = 0;
-    office.officeName = "Please select a office";
-    this.registeruserService.allOffice.push(office);*/
+    this.visitorService.getRWSUsers(settings.rootURL);
   }
   registeruser(){
     this.registeruserService.registeruser(settings.rootURL)

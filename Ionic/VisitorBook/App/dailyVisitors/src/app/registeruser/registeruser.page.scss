@@ -23,6 +23,14 @@
         position: absolute;
         .registerUserDiv{
             width: 450px;
+            .personName{
+                width: calc(100% - 185px);
+                display: inline-block;
+            }
+            .personNameSearch{
+                display: inline-block;
+                width: 185px;
+            }
             .registerUserButton{
                 float: right;
             }

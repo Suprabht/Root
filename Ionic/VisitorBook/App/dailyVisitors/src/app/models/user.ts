@@ -9,7 +9,7 @@ export class User  {
     identityName:string;
     firstName:string;
     lastName:string;
-
+    officeId: number;
 
     constructor();   
     constructor(object?: any) {
@@ -23,6 +23,8 @@ export class User  {
         this.identityName = object && object.identityName || "";
         this.firstName = object && object.firstName || "";
         this.lastName = object && object.lastName || "";
+        this.officeId = object && object.officeId || null;
+        
     }
     
 }

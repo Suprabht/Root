@@ -6,6 +6,8 @@ import { settings } from '../models/settings';
 import { User } from '../models/user';
 import { Office } from '../models/office';
 import { LoadingService } from '../services/loading.service';
+import { ModalController } from '@ionic/angular';
+import { SearchuserPage } from '../modals/searchuser/searchuser.page';
 
 @Injectable({
     providedIn: 'root'
@@ -23,11 +25,12 @@ export class RegisteruserService {
 
     constructor(private http: HttpClient, 
         private router: Router,
+        public modalController: ModalController,
         public loadingControl: LoadingService) {
     }
 
     registeruser(rootURL) {
-        if (this.userName.trim().length > 4) {
+        if (this.userName.trim().length > 3) {
             if (this.allUserDisplayName.some(names => names.toLocaleLowerCase() === this.userName.toLocaleLowerCase())) {
                 this.errorMessage = "Please choose another name. This name already exists.";
             }
@@ -131,4 +134,25 @@ export class RegisteruserService {
         }
         return (false)
     }
+
+    async openSelectUser() {
+        const modal = await this.modalController.create({
+          component: SearchuserPage,
+          componentProps: {}
+        });
+    
+        modal.onDidDismiss().then((dataReturned) => {
+          if (dataReturned !== null) {
+            var x = dataReturned.data as User;
+            console.log(dataReturned)
+            this.userName = x.identityName;
+            this.email = x.email;
+            this.officeId = x.officeId;
+            //this.dataReturned = dataReturned.data;
+            //alert('Modal Sent Data :'+ dataReturned);
+          }
+        });
+    
+        return await modal.present();
+      }
 }
