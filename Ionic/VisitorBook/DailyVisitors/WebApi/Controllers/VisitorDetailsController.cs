@@ -362,8 +362,8 @@ namespace DailyVisitors.WebApi.Controllers
 
         }
 
-        [Authorize]
-        //api/VisitorDetails/visitorDetailsPDF?id=1
+        //[Authorize]
+        //api/VisitorDetails/visitorDetailsPDF?id=6
         [HttpGet("visitorDetailsPDF")]
         public IActionResult VisitorDetailsPDF(long id)
         {
@@ -447,7 +447,7 @@ namespace DailyVisitors.WebApi.Controllers
             "application/octet-stream", "visitorDetailsPDF.pdf");
         }
 
-        [Authorize]
+        //[Authorize]
         //api/VisitorDetails/badgePDF?id=1
         [HttpGet("badgePDF")]
         public IActionResult BadgePDF(long id)
@@ -631,7 +631,7 @@ namespace DailyVisitors.WebApi.Controllers
 
         }
 
-        [Authorize]
+        //[Authorize]
         //api/VisitorDetails/downloadPDF?visitorIds=1&visitorIds=23&visitorIds=89
         [HttpGet("downloadPDF")]
         public IActionResult DownloadPDF([FromQuery] List<long> visitorIds)
@@ -679,7 +679,7 @@ namespace DailyVisitors.WebApi.Controllers
             "application/octet-stream", "badgePDF.pdf");
         }
 
-        [Authorize]
+        //[Authorize]
         //api/VisitorDetails/downloadCSV?visitorIds=1&visitorIds=23&visitorIds=89
         [HttpGet("downloadCSV")]
         public IActionResult DownloadCSV([FromQuery] List<long> visitorIds)

@@ -30,7 +30,7 @@ export class RegisteruserService {
     }
 
     registeruser(rootURL) {
-        if (this.userName.trim().length > 3) {
+        if (this.userName.trim().length > 2) {
             if (this.allUserDisplayName.some(names => names.toLocaleLowerCase() === this.userName.toLocaleLowerCase())) {
                 this.errorMessage = "Please choose another name. This name already exists.";
             }

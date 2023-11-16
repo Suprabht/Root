@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Visitor } from '../models/visitor';
 import { settings } from '../models/settings';
 import { VisitorsdetailsService } from '../services/visitorsdetails.service';
+//import { CapacitordownloadService } from '../services/capacitordownload.service';
 
 @Component({
   selector: 'app-reportsTab',
@@ -91,11 +92,13 @@ export class ReportsTabPage {
 
   refresh()
   {
+    //this.capacitordownloadService.download();
+    
     this.selectedVisitor = new Visitor();
     if(!this.visitorService.fetchingAllRecords)
     {
       this.detailList = this.visitorService.getVisitorDetails(settings.rootURL, settings.token, settings.userId) as Visitor[];
-    }
+    }/**/
   }
 
   sendEmailOfVisitorDetails(id:number){
@@ -107,8 +110,8 @@ export class ReportsTabPage {
   }
 
   downloadPDFVisitorDetails(visitor:Visitor){
-    //this.visitorService.downloadPDFVisitorDetails(visitor.visitorId, settings.rootURL, settings.token);
-    this.visitorService.downloadPDFVisitorDetails(visitor.visitorId, settings.rootURL, settings.token).subscribe((data: Blob) => {
+    this.visitorService.downloadPDFVisitorDetails(visitor.visitorId, settings.rootURL, settings.token);
+    /*this.visitorService.downloadPDFVisitorDetails(visitor.visitorId, settings.rootURL, settings.token).subscribe((data: Blob) => {
         var file = new Blob([data], { type: 'application/pdf' })
         var fileURL = URL.createObjectURL(file);
         // if you want to open PDF in new tab
@@ -123,7 +126,8 @@ export class ReportsTabPage {
       (error) => {
         console.log('getPDF error: ',error);
       }
-    );
+    );*/
+
   }
 
   downloadExcel(){

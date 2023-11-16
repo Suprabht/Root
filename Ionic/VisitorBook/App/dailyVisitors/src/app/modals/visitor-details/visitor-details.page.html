@@ -16,7 +16,7 @@
         <ion-card-title>{{visitorService.selectedVisitor.visitorName}}</ion-card-title>
       </ion-card-header>
       <ion-card-content class="visitorDetailCardContent">
-          <IonContent class="visitorDetailContent">
+          <div class="visitorDetailContent">
               <ion-chip>
                   <ion-icon color="success" name="mail"></ion-icon>
                   <ion-label><a href="mailto:{{visitorService.selectedVisitor.email | lowercase}}" style="text-decoration: none; color:#000; cursor: pointer;">{{visitorService.selectedVisitor.email | lowercase}}</a></ion-label>
@@ -52,7 +52,7 @@
               <ion-icon color="primary" name="log-out-outline"></ion-icon>
               <ion-text><strong>&nbsp;Check Out Date and Time: </strong></ion-text>
               <ion-text *ngIf="visitorService.selectedVisitor.logoutDateTime != undefined">{{visitorService.selectedVisitor.logoutDateTime | date: "yyyy/MM/dd HH:mm:ss"}}</ion-text>
-              <ion-text *ngIf="visitorService.selectedVisitor.logoutDateTime == undefined"><italic>Still not logged out</italic></ion-text><br/><br/>
+              <ion-text *ngIf="visitorService.selectedVisitor.logoutDateTime == undefined">Still not logged out</ion-text><br/><br/>
 
               <ion-button *ngIf="visitorService.selectedVisitor.logoutDateTime == undefined" shape="round" color="secondary" (click)="printBadgePDF(visitorService.selectedVisitor)">
                   <ion-icon name="print-outline"></ion-icon>
@@ -65,7 +65,7 @@
               <ion-button shape="round" color="danger" (click) ="showConfirmAlert(visitorService.selectedVisitor.visitorId)">
                   <ion-icon name="trash"></ion-icon>
               </ion-button>-->
-          </IonContent>
+          </div>
       </ion-card-content>
       <ion-card class="photoCard">
           <ion-card-header>

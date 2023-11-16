@@ -14,10 +14,14 @@ import { VisitorDetailsTabPage } from './visitorDetailsTab/visitorDetailsTab.pag
 import { from } from 'rxjs';
 import { ReactiveFormsModule,ControlValueAccessor } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';  
+import { FileTransferObject} from '@ionic-native/file-transfer';  
 import { File } from '@ionic-native/file/ngx';
-/* 
-import { Ng2SearchPipeModule} from 'ng2-search-filter';
+import { FileOpener } from "@ionic-native/file-opener/ngx";
+import { DocumentViewer } from "@ionic-native/document-viewer/ngx";
+import { CapacitordownloadService } from './services/capacitordownload.service';
+import { DownloadService } from './services/download.service'; 
+//import {Transfer} from '@ionic-native/transfer'
+/*import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import {Ng2OrderModule} from 'ng2-order-pipe'
 import { NgxPaginationModule} from 'ngx-pagination'; */
 
@@ -29,7 +33,7 @@ import { NgxPaginationModule} from 'ngx-pagination'; */
      AppRoutingModule,
      SignaturePadModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
     /* ,
     Ng2SearchPipeModule,
     Ng2OrderModule,
@@ -41,8 +45,12 @@ import { NgxPaginationModule} from 'ngx-pagination'; */
     Camera,
     NavParams,
     VisitorDetailsTabPage, 
-    FileTransferObject,
     File,
+    FileOpener,
+    DocumentViewer,
+    CapacitordownloadService,
+    DownloadService,
+    FileTransferObject,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

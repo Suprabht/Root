@@ -21,7 +21,7 @@
           <ion-card-title>{{detail.visitorName}}</ion-card-title>
         </ion-card-header>
         <ion-card-content class="visitorDetailCardContent">
-            <IonContent class="visitorDetailContent">
+            <div class="visitorDetailContent">
                 <ion-chip>
                     <ion-icon color="success" name="mail"></ion-icon>
                     <ion-label><a href="mailto:{{detail.email | lowercase}}" style="text-decoration: none; color:#000; cursor: pointer;">{{detail.email | lowercase}}</a></ion-label>
@@ -70,7 +70,7 @@
                 <ion-button shape="round" color="danger" (click) ="showConfirmAlert(detail.visitorId)">
                     <ion-icon name="trash"></ion-icon>
                 </ion-button>
-            </IonContent>
+            </div>
         </ion-card-content>
         <ion-card class="photoCard">
             <ion-card-header>

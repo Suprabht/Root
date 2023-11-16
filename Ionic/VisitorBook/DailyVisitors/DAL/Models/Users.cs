@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace DailyVisitors.DAL.Models
 {
-    public partial class Users
+    public partial class
+        Users
     {
         public Users()
         {

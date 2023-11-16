@@ -1,21 +1,33 @@
 ﻿<Properties StartupConfiguration="{AFCEAE52-3D68-43F7-B067-BD620163D50B}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="DAL/Models/VisitorDetails.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WebApi/Controllers/UsersController.cs">
     <Files>
-      <File FileName="WebApi/appsettings.json" Line="11" Column="189" />
-      <File FileName="WebApi/Controllers/VisitorDetailsController.cs" Line="35" Column="64" />
-      <File FileName="DAL/Models/VisitorDetails.cs" Line="1" Column="1" />
+      <File FileName="WebApi/Controllers/VisitorDetailsController.cs" Line="304" Column="79" />
+      <File FileName="WebApi/Startup.cs" />
+      <File FileName="WebApi/Services/ReportService.cs" />
+      <File FileName="WebApi/Controllers/UsersController.cs" Line="134" Column="34" />
+      <File FileName="WebApi/Authentication/LoginModel.cs" />
+      <File FileName="WebApi/Authentication/RegisterModel.cs" />
+      <File FileName="DAL/Models/VisitorsBookContext.cs" />
+      <File FileName="DAL/Models/Users.cs" />
+      <File FileName="DAL/Models/VisitorDetails.cs" />
+      <File FileName="WebApi/Controllers/AuthenticationController.cs" Line="1" Column="1" />
+      <File FileName="DAL/Models/Office.cs" />
+      <File FileName="WebApi/Program.cs" />
+      <File FileName="DAL/Models/ErrorViewModel.cs" />
+      <File FileName="WebApi/appsettings.json" Line="26" Column="1" />
+      <File FileName="WebApi/Authentication/ApplicationUser.cs" />
+      <File FileName="WebApi/Authentication/ApplicationDbContext.cs" />
+      <File FileName="WebApi/Authentication/UserRoles.cs" />
+      <File FileName="WebApi/Authentication/Response.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="DailyVisitors" expanded="True">
-            <Node name="DAL" expanded="True">
-              <Node name="Models" expanded="True">
-                <Node name="VisitorDetails.cs" selected="True" />
-              </Node>
-            </Node>
             <Node name="WebApi" expanded="True">
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="UsersController.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -26,7 +38,14 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/WebApi/Controllers/UsersController.cs" relfile="WebApi/Controllers/UsersController.cs" line="110" column="1" />
+      <Breakpoint file="/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/WebApi/Controllers/AuthenticationController.cs" relfile="WebApi/Controllers/AuthenticationController.cs" line="43" column="1" />
+      <Breakpoint file="/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/WebApi/Controllers/VisitorDetailsController.cs" relfile="WebApi/Controllers/VisitorDetailsController.cs" line="370" column="1" />
+      <Breakpoint file="/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/WebApi/Controllers/VisitorDetailsController.cs" relfile="WebApi/Controllers/VisitorDetailsController.cs" line="43" column="1" />
+      <Breakpoint file="/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/WebApi/Controllers/VisitorDetailsController.cs" relfile="WebApi/Controllers/VisitorDetailsController.cs" line="35" column="1" />
+      <Breakpoint file="/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/WebApi/Controllers/VisitorDetailsController.cs" relfile="WebApi/Controllers/VisitorDetailsController.cs" line="51" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

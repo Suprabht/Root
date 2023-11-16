@@ -1,13 +1,15 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Form, FormGroup, NgForm } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
+import { from as fromPromise, BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { map, catchError} from 'rxjs/operators'
 import { Visitor } from '../models/visitor';
 import { User } from '../models/user';
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http"
-import { AlertController} from '@ionic/angular';
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file/ngx';
+import { AlertController, Platform} from '@ionic/angular';
+import { CapacitordownloadService } from './capacitordownload.service';
+import { DownloadService } from './download.service';
+//import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+//import { File } from '@ionic-native/file/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +23,15 @@ export class VisitorsdetailsService implements OnDestroy {
   
   public observableVisitorList = new Subject<Visitor[]>();
   public observableUserList  = new Subject<User[]>();
-  private fileTransfer: FileTransferObject; 
+ // private fileTransfer: FileTransferObject; 
 
   constructor( private http:HttpClient, 
+    private platform: Platform,
     private alertController: AlertController, 
-    //private transfer: FileTransfer, 
-    private files: File
+    private downloadService:DownloadService,
+    private capacitordownloadService:CapacitordownloadService
+   // private file: File,
+    //    private alertCtrl: AlertController
   ) {}
 
   downloadPDFVisitorDetails(id:number, rootURL, token){
@@ -37,12 +42,41 @@ export class VisitorsdetailsService implements OnDestroy {
   }, (error) => {
     // handle error
   });*/
+  /*
    const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization':'Bearer ' + token
   });
-    return this.http.get(rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });
+    return this.http.get(rootURL+'/VisitorDetails/visitorDetailsPDF?id=' + id, {headers: headers, responseType: 'blob' as 'json' });*/
+    if (this.platform.is('cordova')) {
+      this.downloadService.downloadFile('visitorDetails_' + Date.now() + '.pdf', rootURL + '/VisitorDetails/visitorDetailsPDF?id=' + id, token).subscribe();
+      //this.capacitordownloadService.download();
+    }
+    else {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
+      return this.http.get(rootURL + '/VisitorDetails/visitorDetailsPDF?id=' + id, { headers: headers, responseType: 'blob' as 'json' })
+        .subscribe((data: Blob) => {
+          var file = new Blob([data], { type: 'application/pdf' })
+          var fileURL = URL.createObjectURL(file);
+          // if you want to open PDF in new tab
+          window.open(fileURL); 
+          var a         = document.createElement('a');
+          a.href        = fileURL; 
+          //a.target      = '_blank';
+          a.download    = 'visitorDetails_'+Date.now()+'.pdf';
+          document.body.appendChild(a);
+          a.click();
+        },
+        (error) => {
+          console.log('getPDF error: ',error);
+        }
+      );
+    }
   }
 
   ngOnDestroy(): void {
@@ -211,4 +245,72 @@ export class VisitorsdetailsService implements OnDestroy {
     }
     
   }
+
+/*
+
+  public downloadFile(fileName: string, url: string, token: string): Observable<any> {
+    return fromPromise(this.performDownload(fileName, url, token));
+    //return Observable.fromPromise()
+  }
+
+  protected async performDownload(fileName: string, url: string, token: string){
+      // We added this check since this is only intended to work on devices and emulators 
+      if (!this.platform.is('cordova')) {
+          console.warn('Cannot download in local environment!');
+          return;
+      }
+      const fileTransfer: FileTransferObject = FileTransfer.create();
+      //const fileTransfer: FileTransferObject = this.transfer.create();
+
+      //let uri = encodeURI(url);
+      let uri = encodeURI("https://apivisitor.azurewebsites.net/StaticFiles/visitorBadge123.pdf");
+      let path = await this.getDownloadPath();
+
+     // let fullFileName = fileName + '.' + fileExtension;
+
+  // Depending on your needs, you might want to use some form of authentication for your API endpoints
+  // In this case, we are using bearer tokens
+    const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization':'Bearer ' + token
+      });
+      return fileTransfer.download(
+          uri,
+          path + fileName,
+          false
+      ).then(
+          result => {
+              this.showAlert(true, fileName);
+          },
+          error => {
+              this.showAlert(false, fileName);
+          }
+      )
+  }
+
+  public async getDownloadPath() {
+      if (this.platform.is('ios')) {
+          return this.file.documentsDirectory;
+      }
+
+    // To be able to save files on Android, we first need to ask the user for permission. 
+    // We do not let the download proceed until they grant access
+      
+
+      return this.file.externalRootDirectory + "/Download/";
+  }
+
+  public showAlert(hasPassed: boolean, fileName: string) {
+      let title = hasPassed ? "Download complete!" : "Download failed!";
+
+      let subTitle = hasPassed ? `Successfully downloaded ${fileName}.` : `There was a problem while downloading ${fileName}`;
+
+      const alert = this.alertCtrl.create({
+          message: title,
+          subHeader: subTitle,
+          buttons: ['OK']
+      }).then(alert=>alert.present());
+  }
+*/
 }

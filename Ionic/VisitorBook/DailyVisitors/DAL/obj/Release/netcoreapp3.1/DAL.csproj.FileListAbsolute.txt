@@ -1,0 +1,13 @@
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/bin/Release/netcoreapp3.1/DAL.deps.json
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/bin/Release/netcoreapp3.1/DAL.dll
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/bin/Release/netcoreapp3.1/DAL.pdb
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/bin/Release/netcoreapp3.1/EnumConstants.dll
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/bin/Release/netcoreapp3.1/EnumConstants.pdb
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/obj/Release/netcoreapp3.1/DAL.csproj.AssemblyReference.cache
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/obj/Release/netcoreapp3.1/DAL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/obj/Release/netcoreapp3.1/DAL.AssemblyInfoInputs.cache
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/obj/Release/netcoreapp3.1/DAL.AssemblyInfo.cs
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/obj/Release/netcoreapp3.1/DAL.csproj.CoreCompileInputs.cache
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/obj/Release/netcoreapp3.1/DAL.csproj.CopyComplete
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/obj/Release/netcoreapp3.1/DAL.dll
+/Users/suprabhatpaul/Git/Root/Ionic/VisitorBook/DailyVisitors/DAL/obj/Release/netcoreapp3.1/DAL.pdb

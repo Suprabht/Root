@@ -27,7 +27,7 @@
       <div class="leftContent">
         <ion-card>
           <ion-card-content>
-              <IonContent>
+             <!--<ion-content>--> 
                 <!--Name:Start-->
                 <ion-item >
                   <ion-label color="primary" position ="floating">Visitors name</ion-label>
@@ -61,12 +61,12 @@
                   </ng-container>
                 </div>
                 <!--Mobile:End-->
-              </IonContent>
+              <!--</ion-content>-->
           </ion-card-content>
         </ion-card>
         <ion-card>
           <ion-card-content>
-            <Ioncontent>
+            <!---->
               <!--Address:Start-->
               <ion-item>
                 <ion-label color="primary" position ="floating">Address</ion-label>
@@ -78,12 +78,12 @@
                 </ng-container>
               </div>
               <!--Address:End-->
-            </Ioncontent>
+            <!---->
           </ion-card-content>
         </ion-card>
         <ion-card>
           <ion-card-content>
-            <Ioncontent>
+            
               <!--From Place:Start-->
               <ion-item>
                 <ion-label color="primary" position ="floating">From Place Name</ion-label>
@@ -123,14 +123,14 @@
                   &nbsp;&nbsp;Search RWS User</ion-button>
               </div>
               <!--From PersonToVisit:End-->
-            </Ioncontent>
+            
           </ion-card-content>
         </ion-card>
       </div>
       <div class="rightContent">
         <ion-card>
           <ion-card-content>
-            <Ioncontent>
+            
               <!--Photo:Start-->
               <div class="photoDiv" (click)="opencamera()">
                 <ion-item *ngFor="let photo of photos; index as position">
@@ -145,12 +145,12 @@
                 </ion-fab-button>
                </ion-fab>
               <!--Photo:End-->
-            </Ioncontent>
+            
           </ion-card-content>
         </ion-card>
         <ion-card>
           <ion-card-content>
-            <Ioncontent>
+            
               <!--Signature:Start-->
               <div class="signatureDiv">
                 <img src="../../assets/signature.png" [hidden]="this.signatureMaskHidden" (mouseover)="hideImage()" (mousedown)="hideImage()" (click)="hideImage()">
@@ -165,7 +165,7 @@
                 </ion-fab-button>
                </ion-fab>
               <!--Signature:End-->
-            </Ioncontent>
+            
           </ion-card-content>
         </ion-card>
         <div class="buttons">
